@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/widgets/navBar/navBar.dart';
 
 class HomePage extends StatelessWidget{
   const HomePage({Key? key}) : super(key: key);
@@ -7,12 +8,8 @@ class HomePage extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Column(
-      children: [
-        Container(
-          width: 100,
-          height: 100,
-          color: Colors.blue,
-        ),
+      children: const [
+        NavBar(),
       ],
     );
   }
