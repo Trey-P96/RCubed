@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/pages/home/home.dart';
+import 'package:RCubed/pages/home/home.dart';
 
 void main() {
   runApp(const MyApp());

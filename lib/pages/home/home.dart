@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/widgets/navBar/navBar.dart';
+import 'package:RCubed/widgets/navBar/navBar.dart';
 
 class HomePage extends StatelessWidget{
   const HomePage({Key? key}) : super(key: key);
