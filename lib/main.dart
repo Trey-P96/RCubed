@@ -1,4 +1,4 @@
-import 'package:RCubed/themes/default.dart';
+import 'package:RCubed/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:RCubed/pages/home/home.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'R-Cubed Consulting',
       theme: ThemeData(
-        scaffoldBackgroundColor: DefaultTheme().secondary,
+        scaffoldBackgroundColor: MyTheme().secondary,
       ),
       home: Scaffold(
         body: HomePage(),
