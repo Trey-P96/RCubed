@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:RCubed/themes/theme.dart';
+import 'package:rcubed/themes/theme.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NavBarDesktop extends StatelessWidget{
@@ -7,7 +7,7 @@ class NavBarDesktop extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    const String logoPath = 'images/RcubedLogo.svg';
+    const String logoPath = 'images/rcubedLogo.svg';
     final Widget logo = SvgPicture.asset(
         logoPath,
         color: MyTheme().secondary,

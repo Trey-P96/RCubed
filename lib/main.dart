@@ -1,6 +1,8 @@
-import 'package:RCubed/themes/theme.dart';
+import 'dart:ui';
+
+import 'package:rcubed/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:RCubed/pages/home/home.dart';
+import 'package:rcubed/pages/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,6 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      scrollBehavior: MaterialScrollBehavior().copyWith(
+      dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown}),
       title: 'R-Cubed Consulting',
       theme: ThemeData(
         scaffoldBackgroundColor: MyTheme().secondary,

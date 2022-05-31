@@ -1,4 +1,4 @@
-name: RCubed
+name: rcubed
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -58,7 +58,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/images/RcubedLogo.svg
+    - assets/images/rcubedLogo.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

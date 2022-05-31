@@ -1,5 +1,5 @@
-import 'package:RCubed/widgets/navigation_bar/nav_bar_desktop.dart';
-import 'package:RCubed/widgets/navigation_bar/nav_bar_mobile.dart';
+import 'package:rcubed/widgets/navigation_bar/nav_bar_desktop.dart';
+import 'package:rcubed/widgets/navigation_bar/nav_bar_mobile.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
