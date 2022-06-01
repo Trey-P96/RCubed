@@ -17,8 +17,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      scrollBehavior: MaterialScrollBehavior().copyWith(
-      dragDevices: {PointerDeviceKind.mouse, PointerDeviceKind.touch, PointerDeviceKind.stylus, PointerDeviceKind.unknown}),
       title: 'R-Cubed Consulting',
       theme: ThemeData(
         scaffoldBackgroundColor: MyTheme().secondary,

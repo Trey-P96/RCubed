@@ -7,7 +7,7 @@ class NavBarMobile extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    const String logoPath = 'images/rcubedLogo.svg';
+    const String logoPath = 'assets/images/RcubedLogo.svg';
     final Widget logo = SvgPicture.asset(
       logoPath,
       color: MyTheme().secondary,
