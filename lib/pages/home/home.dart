@@ -11,11 +11,11 @@ import '../../themes/theme.dart';
 
 class HomePage extends StatelessWidget {
   final ScrollController controller = ScrollController();
+
   HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     // const String logoPath = 'assets/images/RcubedLogo.svg';
     // final Widget logo = SvgPicture.asset(
     //   logoPath,
@@ -26,11 +26,17 @@ class HomePage extends StatelessWidget {
     return Column(
       children: [
         NavBar(),
-        
         Expanded(
-          child: SingleChildScrollView(
-                  child: Text(HomeContent().diem),
-                ),
+          child: Listener(
+            onPointerSignal: (ps) {
+              controller.animateTo(controller.position.pixels+200, duration: Duration(milliseconds: 600), curve: Curves.linearToEaseOut);
+            },
+            child: SingleChildScrollView(
+              controller: controller,
+              physics: NeverScrollableScrollPhysics(),
+              child: Text(HomeContent().diem),
+            ),
+          ),
         ),
       ],
     );
