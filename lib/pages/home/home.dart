@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScrollPhysics scrollPhysics = NeverScrollableScrollPhysics();
     // const String logoPath = 'assets/images/RcubedLogo.svg';
     // final Widget logo = SvgPicture.asset(
     //   logoPath,
@@ -30,19 +31,21 @@ class HomePage extends StatelessWidget {
         Expanded(
           child: Listener(
             onPointerSignal: (ps) {
-              if(ps.kind == PointerDeviceKind.mouse) {
+              if(ps is PointerScrollEvent) {
+                if(ps.scrollDelta.dy > 0){
                 controller.animateTo(controller.position.pixels + 200,
                     duration: Duration(milliseconds: 600),
                     curve: Curves.linearToEaseOut);
-              } else{
-                controller.animateTo(controller.position.pixels - 200,
-                    duration: Duration(milliseconds: 600),
-                    curve: Curves.linearToEaseOut);
-              }
+                } else{
+                  controller.animateTo(controller.position.pixels - 200,
+                      duration: Duration(milliseconds: 600),
+                      curve: Curves.linearToEaseOut);
+                }
+              } else scrollPhysics = AlwaysScrollableScrollPhysics();
             },
             child: SingleChildScrollView(
               controller: controller,
-              physics: NeverScrollableScrollPhysics(),
+              physics: scrollPhysics,
               child: Text(HomeContent().diem),
             ),
           ),
