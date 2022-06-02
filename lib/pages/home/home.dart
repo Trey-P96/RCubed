@@ -11,12 +11,10 @@ import '../../themes/theme.dart';
 
 class HomePage extends StatelessWidget {
   final ScrollController controller = ScrollController();
-  final PointerData pd = PointerData();
   HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print(pd.kind.toString());
     // const String logoPath = 'assets/images/RcubedLogo.svg';
     // final Widget logo = SvgPicture.asset(
     //   logoPath,
@@ -30,16 +28,18 @@ class HomePage extends StatelessWidget {
         Expanded(
           child: Listener(
             onPointerSignal: (ps) {
-              if(ps is PointerScrollEvent) {
+              if(ps is PointerScrollEvent && ps.kind == PointerDeviceKind.mouse) {
                 if(ps.scrollDelta.dy > 0){
                   controller.animateTo(controller.position.pixels + 200,
                     duration: Duration(milliseconds: 600),
                     curve: Curves.linearToEaseOut);
-                } else{
+                } else if(ps.kind == PointerDeviceKind.mouse){
                     controller.animateTo(controller.position.pixels - 200,
                       duration: Duration(milliseconds: 600),
                       curve: Curves.linearToEaseOut);
                 }
+              } else{
+                controller.jumpTo(ps.position.dy);
               }
             },
             child: SingleChildScrollView(
