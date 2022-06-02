@@ -31,6 +31,10 @@ class HomePage extends StatelessWidget {
         NavBar(),
         Expanded(
           child: Listener(
+            onPointerMove: (details){
+              print(details.position.dy);
+              controller.jumpTo(controller.offset+(-details.delta.dy));
+            },
             onPointerSignal: (ps) {
 
               if (ps is PointerScrollEvent) {
