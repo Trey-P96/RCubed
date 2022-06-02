@@ -1,5 +1,4 @@
 import 'dart:ui';
-import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
@@ -12,12 +11,12 @@ import '../../themes/theme.dart';
 
 class HomePage extends StatelessWidget {
   final ScrollController controller = ScrollController();
-
+  final PointerData pd = PointerData();
   HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ScrollPhysics scrollPhysics = NeverScrollableScrollPhysics();
+    print(pd.kind.toString());
     // const String logoPath = 'assets/images/RcubedLogo.svg';
     // final Widget logo = SvgPicture.asset(
     //   logoPath,
@@ -33,19 +32,19 @@ class HomePage extends StatelessWidget {
             onPointerSignal: (ps) {
               if(ps is PointerScrollEvent) {
                 if(ps.scrollDelta.dy > 0){
-                controller.animateTo(controller.position.pixels + 200,
+                  controller.animateTo(controller.position.pixels + 200,
                     duration: Duration(milliseconds: 600),
                     curve: Curves.linearToEaseOut);
                 } else{
-                  controller.animateTo(controller.position.pixels - 200,
+                    controller.animateTo(controller.position.pixels - 200,
                       duration: Duration(milliseconds: 600),
                       curve: Curves.linearToEaseOut);
                 }
-              } else scrollPhysics = AlwaysScrollableScrollPhysics();
+              }
             },
             child: SingleChildScrollView(
               controller: controller,
-              physics: scrollPhysics,
+              physics: NeverScrollableScrollPhysics(),
               child: Text(HomeContent().diem),
             ),
           ),
