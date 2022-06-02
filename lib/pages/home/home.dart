@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:collection/collection.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
@@ -11,10 +12,13 @@ import '../../themes/theme.dart';
 
 class HomePage extends StatelessWidget {
   final ScrollController controller = ScrollController();
+
   HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // MyQ q = MyQ();
+    List<double> q = [];
     // const String logoPath = 'assets/images/RcubedLogo.svg';
     // final Widget logo = SvgPicture.asset(
     //   logoPath,
@@ -28,18 +32,23 @@ class HomePage extends StatelessWidget {
         Expanded(
           child: Listener(
             onPointerSignal: (ps) {
-              if(ps is PointerScrollEvent && ps.kind == PointerDeviceKind.mouse) {
-                if(ps.scrollDelta.dy > 0){
-                  controller.animateTo(controller.position.pixels + 200,
-                    duration: Duration(milliseconds: 600),
+
+              if (ps is PointerScrollEvent) {
+
+                // if(controller.position.activity!.velocity.abs() == 0){
+                //   q.clear();
+                // }
+                // if(controller.offset == controller.position.maxScrollExtent || controller.offset == 0){
+                //   q.clear();
+                // }
+                // if(q.length >= 2 && q[q.length-1].isNaN != q[q.length-2].isNaN){
+                //   q.clear();
+                // }
+                //
+                // q.add(ps.scrollDelta.dy);
+                controller.animateTo(controller.position.pixels + ps.scrollDelta.dy,
+                    duration: Duration(milliseconds: 400),
                     curve: Curves.linearToEaseOut);
-                } else if(ps.kind == PointerDeviceKind.mouse){
-                    controller.animateTo(controller.position.pixels - 200,
-                      duration: Duration(milliseconds: 600),
-                      curve: Curves.linearToEaseOut);
-                }
-              } else{
-                controller.jumpTo(ps.position.dy);
               }
             },
             child: SingleChildScrollView(
@@ -51,5 +60,18 @@ class HomePage extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class MyQ {
+  List<double> q = [];
+
+  void add(double num) {
+    q.add(num);
+  }
+
+  double sum() {
+    double sum = q.sum;
+    return sum;
   }
 }
