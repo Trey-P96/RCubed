@@ -34,23 +34,10 @@ class HomePage extends StatelessWidget {
             onPointerSignal: (ps) {
 
               if (ps is PointerScrollEvent) {
-                // if(controller.position.activity!.velocity.abs() == 0){
-                //   q.clear();
-                // }
-                // if(controller.offset == controller.position.maxScrollExtent || controller.offset == 0){
-                //   q.clear();
-                // }
-                // if(q.length >= 2 && q[q.length-1].isNaN != q[q.length-2].isNaN){
-                //   q.clear();
-                // }
-                //
-                // q.add(ps.scrollDelta.dy);
-                // controller.animateTo(controller.position.pixels + ps.scrollDelta.dy,
-                //     duration: Duration(milliseconds: duration),
-                //     curve: Curves.linearToEaseOut);
-                if(ps.scrollDelta.dy.abs() > 20){
-                  controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 200), curve: Curves.linearToEaseOut);
-                }else controller.jumpTo(controller.offset + ps.scrollDelta.dy);
+                q.add(ps.scrollDelta.dy.abs());
+                if(q.length > 10) q.removeRange(3, q.length-1);
+                if(q.average != ps.scrollDelta.dy.abs()) controller.jumpTo(controller.offset+ps.scrollDelta.dy);
+                else controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 200), curve: Curves.linearToEaseOut);
               }
             },
             child: SingleChildScrollView(
