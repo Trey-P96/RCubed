@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
@@ -29,7 +30,15 @@ class HomePage extends StatelessWidget {
         Expanded(
           child: Listener(
             onPointerSignal: (ps) {
-              controller.animateTo(controller.position.pixels+200, duration: Duration(milliseconds: 600), curve: Curves.linearToEaseOut);
+              if(ps.kind == PointerDeviceKind.mouse) {
+                controller.animateTo(controller.position.pixels + 200,
+                    duration: Duration(milliseconds: 600),
+                    curve: Curves.linearToEaseOut);
+              } else{
+                controller.animateTo(controller.position.pixels - 200,
+                    duration: Duration(milliseconds: 600),
+                    curve: Curves.linearToEaseOut);
+              }
             },
             child: SingleChildScrollView(
               controller: controller,
