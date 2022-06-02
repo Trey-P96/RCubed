@@ -34,7 +34,6 @@ class HomePage extends StatelessWidget {
             onPointerSignal: (ps) {
 
               if (ps is PointerScrollEvent) {
-
                 // if(controller.position.activity!.velocity.abs() == 0){
                 //   q.clear();
                 // }
@@ -46,9 +45,12 @@ class HomePage extends StatelessWidget {
                 // }
                 //
                 // q.add(ps.scrollDelta.dy);
-                controller.animateTo(controller.position.pixels + ps.scrollDelta.dy,
-                    duration: Duration(milliseconds: 400),
-                    curve: Curves.linearToEaseOut);
+                // controller.animateTo(controller.position.pixels + ps.scrollDelta.dy,
+                //     duration: Duration(milliseconds: duration),
+                //     curve: Curves.linearToEaseOut);
+                if(ps.scrollDelta.dy.abs() > 20){
+                  controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 200), curve: Curves.linearToEaseOut);
+                }else controller.jumpTo(controller.offset + ps.scrollDelta.dy);
               }
             },
             child: SingleChildScrollView(
@@ -63,15 +65,3 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class MyQ {
-  List<double> q = [];
-
-  void add(double num) {
-    q.add(num);
-  }
-
-  double sum() {
-    double sum = q.sum;
-    return sum;
-  }
-}
