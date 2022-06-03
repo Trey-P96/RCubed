@@ -3,15 +3,17 @@ import 'package:collection/collection.dart';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/src/physics/spring_simulation.dart';
 import 'package:rcubed/content/home_content.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/navigation_bar/nav_bar.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../themes/theme.dart';
 
 class HomePage extends StatelessWidget {
-  final ScrollController controller = ScrollController();
+  final controller = ScrollController();
 
   HomePage({Key? key}) : super(key: key);
 
@@ -19,6 +21,16 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // MyQ q = MyQ();
     List<double> q = [];
+    controller.addListener(() {
+      if(controller.offset > controller.position.maxScrollExtent + 180){
+        controller.jumpTo(controller.position.maxScrollExtent+180);
+      }
+      if(controller.offset < controller.position.minScrollExtent -180){
+        controller.jumpTo(controller.position.minScrollExtent-180);
+      }
+    });
+    //print(controller.position.maxScrollExtent);
+
     // const String logoPath = 'assets/images/RcubedLogo.svg';
     // final Widget logo = SvgPicture.asset(
     //   logoPath,
@@ -32,11 +44,11 @@ class HomePage extends StatelessWidget {
         Expanded(
           child: Listener(
             onPointerMove: (details){
-              print(details.position.dy);
               controller.jumpTo(controller.offset+(-details.delta.dy));
             },
             onPointerSignal: (ps) {
-
+              // print(controller.position.maxScrollExtent);
+              // print(controller.offset);
               if (ps is PointerScrollEvent) {
                 q.add(ps.scrollDelta.dy.abs());
                 if(q.length > 10) q.removeRange(3, q.length-1);
@@ -46,7 +58,8 @@ class HomePage extends StatelessWidget {
             },
             child: SingleChildScrollView(
               controller: controller,
-              physics: NeverScrollableScrollPhysics(),
+              // physics: NeverScrollableScrollPhysics().applyTo(BouncingScrollPhysics()),
+              physics: NeverScrollableScrollPhysics().applyTo(BouncingScrollPhysics()),
               child: Text(HomeContent().diem),
             ),
           ),
@@ -55,4 +68,7 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
+
 

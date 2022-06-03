@@ -16,7 +16,7 @@ class NavBarDesktop extends StatelessWidget{
 
     // TODO: implement build
     return Container(
-      height: 80,
+      height: 60,
       color: MyTheme().primary,
       child: Row(
         children: [
