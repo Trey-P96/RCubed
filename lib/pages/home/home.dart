@@ -50,17 +50,17 @@ class HomePage extends StatelessWidget {
               controller.jumpTo(controller.offset+(-details.delta.dy));
             },
             onPointerSignal: (ps) {
-              if(ps is PointerScrollEvent){
-                controller.position.moveTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 150),curve: Curves.linearToEaseOut, clamp: false);
-                controller.position.activity!.resetActivity();
-              }
-
-              // if (ps is PointerScrollEvent) {
-              //   q.add(ps.scrollDelta.dy.abs());
-              //   if(q.length > 10) q.removeRange(3, q.length-1);
-              //   if(q.average != ps.scrollDelta.dy.abs()) controller.jumpTo(controller.offset+ps.scrollDelta.dy);
-              //   else controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 200), curve: Curves.linearToEaseOut);
+              // if(ps is PointerScrollEvent){
+              //   controller.position.moveTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 150),curve: Curves.linearToEaseOut, clamp: false);
+              //   controller.position.activity!.resetActivity();
               // }
+
+              if (ps is PointerScrollEvent) {
+                q.add(ps.scrollDelta.dy.abs());
+                if(q.length > 10) q.removeRange(3, q.length-1);
+                if(q.average != ps.scrollDelta.dy.abs()) controller.jumpTo(controller.offset+ps.scrollDelta.dy);
+                else controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 200), curve: Curves.linearToEaseOut);
+              }
             },
             child: SingleChildScrollView(
               controller: controller,
