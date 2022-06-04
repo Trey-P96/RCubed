@@ -21,21 +21,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // MyQ q = MyQ();
     List<double> q = [];
-    // controller.addListener(() {
-    //   double overscroll = 250;
-    //
-    //
-    //   if(controller.offset > controller.position.maxScrollExtent + overscroll){
-    //     controller.position.activity!.delegate.goIdle();
-    //     controller.position.activity!.resetActivity();
-    //     controller.position.jumpTo(controller.position.maxScrollExtent+overscroll);
-    //   }
-    //   if(controller.offset < controller.position.minScrollExtent -overscroll){
-    //     controller.position.activity!.delegate.goIdle();
-    //     controller.position.activity!.resetActivity();
-    //     controller.position.jumpTo(controller.position.minScrollExtent-overscroll);
-    //   }
-    // });
+    controller.addListener(() {
+      if(controller.offset > controller.position.maxScrollExtent){
+        controller.jumpTo(controller.position.maxScrollExtent);
+      }
+      if(controller.offset < controller.position.minScrollExtent){
+        controller.jumpTo(controller.position.minScrollExtent);
+      }
+      // double overscroll = 250;
+      //
+      //
+      // if(controller.offset > controller.position.maxScrollExtent + overscroll){
+      //   controller.position.activity!.delegate.goIdle();
+      //   controller.position.activity!.resetActivity();
+      //   controller.position.jumpTo(controller.position.maxScrollExtent+overscroll);
+      // }
+      // if(controller.offset < controller.position.minScrollExtent -overscroll){
+      //   controller.position.activity!.delegate.goIdle();
+      //   controller.position.activity!.resetActivity();
+      //   controller.position.jumpTo(controller.position.minScrollExtent-overscroll);
+      // }
+    });
 
 
     // const String logoPath = 'assets/images/RcubedLogo.svg';
@@ -62,18 +68,18 @@ class HomePage extends StatelessWidget {
               if (ps is PointerScrollEvent) {
                 q.add(ps.scrollDelta.dy.abs());
                 if(q.length > 10) q.removeRange(3, q.length-1);
-                if(q.average != ps.scrollDelta.dy.abs()) controller.jumpTo(controller.offset+ps.scrollDelta.dy);
-                else controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 250), curve: Curves.linearToEaseOut);
+                if(q.average != ps.scrollDelta.dy.abs() && !controller.position.outOfRange) controller.jumpTo(controller.offset+ps.scrollDelta.dy);
+                else controller.animateTo(controller.offset+ps.scrollDelta.dy, duration: Duration(milliseconds: 200), curve: Curves.easeOutCubic);
               }
             },
             child: GestureDetector(
               onPanEnd: (details){
-                double velocity = details.velocity.pixelsPerSecond.dy/10;
-                controller.animateTo(controller.offset-velocity, duration: Duration(milliseconds: 500), curve: Curves.linearToEaseOut);
+                double velocity = details.velocity.pixelsPerSecond.dy/5;
+                controller.animateTo(controller.offset-velocity, duration: Duration(milliseconds: 1000), curve: Curves.fastLinearToSlowEaseIn);
               },
               child: SingleChildScrollView(
                 controller: controller,
-                physics: ClampingScrollPhysics().applyTo(NeverScrollableScrollPhysics()),
+                physics: NeverScrollableScrollPhysics(),
                 // physics: CustomScrollPhysics(parent: NeverScrollableScrollPhysics()),
                 child: Text(HomeContent().diem),
               ),
