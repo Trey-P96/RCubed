@@ -5,7 +5,7 @@ import '../themes/theme.dart';
 
 class HomeContent{
 
-  final String diem = ''' Update I want to go to the store.
+  final String diem = ''' Update5 I want to go to the store.
 
 I hate taking the time to pay for my food, walk to the car, load it into the car, drive the twenty minutes to the store, and then go in, get my groceries, pay for them, and then go back home.
 

@@ -20,21 +20,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // const String logoPath = 'assets/images/RcubedLogo.svg';
-    // final Widget logo = SvgPicture.asset(
-    //   logoPath,
-    //   color: MyTheme().primary,
-    //   width: 200,
-    // );
+    const String logoPath = 'assets/images/RcubedLogo.svg';
+    final Widget logo = SvgPicture.asset(
+      logoPath,
+      color: MyTheme().primary,
+      width: 200,
+    );
     // TODO: implement build
     return Column(
       children: [
         NavBar(),
         Expanded(
-          child: SingleChildScrollView(
-            controller: ScrollController(),
-            physics: AlwaysScrollableScrollPhysics(),
-            child: Text(HomeContent().diem),
+          child: ListView.builder(
+              controller: ScrollController(),
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 30,
+              itemBuilder: (context,i){
+                return Padding(
+                    padding: EdgeInsets.all(10),
+                    child: logo,
+                );
+              }
           ),
         ),
       ],

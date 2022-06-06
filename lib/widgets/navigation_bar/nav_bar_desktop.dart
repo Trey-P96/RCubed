@@ -44,7 +44,8 @@ class _NavBarObject extends StatelessWidget{
         title,
         style: TextStyle(
             fontSize: 22,
-            fontWeight: FontWeight.bold,
+            fontFamily: "Roboto",
+            fontWeight: FontWeight.normal,
             color: MyTheme().secondary,
         ),
       ),
