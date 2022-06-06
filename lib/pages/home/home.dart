@@ -32,7 +32,8 @@ class HomePage extends StatelessWidget {
         NavBar(),
         Expanded(
           child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+            controller: ScrollController(),
+            physics: AlwaysScrollableScrollPhysics(),
             child: Text(HomeContent().diem),
           ),
         ),
