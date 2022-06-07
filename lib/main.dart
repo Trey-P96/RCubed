@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      scrollBehavior: CupertinoScrollBehavior(),
+      scrollBehavior: MaterialScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'R-Cubed Consulting',
       theme: ThemeData(
