@@ -109,9 +109,10 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
           }
         },
         child: ListView.builder(
+            cacheExtent: 1000,
             controller: controller,
             physics: scrollPhysics,
-            shrinkWrap: true,
+            shrinkWrap: false,
             itemCount: myList.length,
             itemBuilder: (context, i) {
               return myList[i];
