@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
 
-class HomeMobile extends StatelessWidget {
-  const HomeMobile({Key? key}) : super(key: key);
+class HomeTablet extends StatelessWidget {
+  const HomeTablet({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

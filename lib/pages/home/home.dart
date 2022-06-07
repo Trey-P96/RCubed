@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:rcubed/pages/home/home_desktop.dart';
-import 'package:rcubed/pages/home/home_mobile.dart';
 import 'package:responsive_builder/responsive_builder.dart';
+import 'home_desktop.dart';
+import 'home_mobile.dart';
+import 'home_tablet.dart';
+
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class HomePage extends StatelessWidget {
     return ScreenTypeLayout(
       desktop: const HomeDesktop(),
       mobile: const HomeMobile(),
-      tablet: const HomeMobile(),
+      tablet: const HomeTablet(),
     );
   }
 }
