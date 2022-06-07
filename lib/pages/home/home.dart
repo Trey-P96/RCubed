@@ -43,6 +43,14 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
   double start = 0;
   bool isScrolling = false;
 
+  List<MyContainer> myList = [
+    MyContainer(300, Colors.blue),
+    MyContainer(500, Colors.lightBlue),
+    MyContainer(400, Colors.blue),
+    MyContainer(300, Colors.lightBlue),
+    MyContainer(500, Colors.blue)
+  ];
+
   AdaptiveScrollState(){
     _start();
   }
@@ -104,15 +112,28 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
             controller: controller,
             physics: scrollPhysics,
             shrinkWrap: true,
-            itemCount: 30,
+            itemCount: myList.length,
             itemBuilder: (context, i) {
-              return const Padding(
-                padding: EdgeInsets.all(10),
-                child: Logo(200),
-              );
+              return myList[i];
             }),
       ),
     );
   }
+}
+
+class MyContainer extends StatelessWidget{
+  final Color color;
+  final double  height;
+  const MyContainer(this.height, this.color,{Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      color: color,
+      height: height,
+    );
+  }
+
 }
 
