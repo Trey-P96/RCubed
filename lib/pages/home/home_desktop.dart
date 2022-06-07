@@ -32,7 +32,7 @@ class AdaptiveScroll extends StatefulWidget{
 }
 
 class AdaptiveScrollState extends State<AdaptiveScroll>{
-  ScrollPhysics scrollPhysics = NeverScrollableScrollPhysics();
+  ScrollPhysics scrollPhysics = const AlwaysScrollableScrollPhysics();
   PointerDeviceKind device = PointerDeviceKind.touch;
 
   @override
@@ -40,25 +40,21 @@ class AdaptiveScrollState extends State<AdaptiveScroll>{
     // TODO: implement build
     return Expanded(
       child: Listener(
-        onPointerSignal: (ps){
-
-          if(ps.kind != device){
-            switch(ps.kind){
-              case PointerDeviceKind.mouse:
-                setState((){
-                  device = ps.kind;
-                  scrollPhysics = NeverScrollableScrollPhysics();
-                });
-                break;
-              default:
-                setState((){
-                  device = ps.kind;
-                  scrollPhysics = AlwaysScrollableScrollPhysics();
-                });
-                break;
-            }
+        onPointerDown: (pd){
+          if(pd.kind == PointerDeviceKind.touch && device != pd.kind){
+            setState((){
+              device = pd.kind; // set to avoid extraneous setState calls after device is detected.
+              scrollPhysics = const AlwaysScrollableScrollPhysics();
+            });
           }
-
+        },
+        onPointerSignal: (ps){
+          if(ps.kind == PointerDeviceKind.mouse && device != ps.kind){
+            setState((){
+              device = ps.kind; // set to avoid extraneous setState calls after device is detected.
+              scrollPhysics = const NeverScrollableScrollPhysics();
+            });
+          }
         },
         child: ListView.builder(
             controller: ScrollController(),
