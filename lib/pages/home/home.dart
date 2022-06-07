@@ -58,7 +58,7 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
             setState(() {
               device = pointer
                   .kind; // set to avoid extraneous setState calls after device is detected.
-              scrollPhysics = const NeverScrollableScrollPhysics();
+              scrollPhysics = const NeverScrollableScrollPhysics().applyTo(ClampingScrollPhysics());
             });
           }
         },
@@ -66,9 +66,10 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
           if (ps is PointerScrollEvent) {
             q.add(ps.scrollDelta.dy.abs());
             if (q.length > 10) q.removeRange(3, q.length - 1);
-
-            if (q.average != ps.scrollDelta.dy.abs() && !controller.position.outOfRange) {
+            if (q.average != ps.scrollDelta.dy.abs()) {
               controller.jumpTo(controller.offset + ps.scrollDelta.dy);
+              if(controller.offset < controller.position.minScrollExtent) controller.jumpTo(controller.position.minScrollExtent);
+              if(controller.offset > controller.position.maxScrollExtent) controller.jumpTo(controller.position.maxScrollExtent);
             } else if(!controller.position.outOfRange){
               controller.animateTo(controller.offset + ps.scrollDelta.dy, duration: const Duration(milliseconds: 250), curve: Curves.easeOutQuart);
             }
