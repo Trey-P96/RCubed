@@ -66,13 +66,11 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
           if (ps is PointerScrollEvent) {
             q.add(ps.scrollDelta.dy.abs());
             if (q.length > 10) q.removeRange(3, q.length - 1);
-            if (q.average != ps.scrollDelta.dy.abs() &&
-                !controller.position.outOfRange) {
+
+            if (q.average != ps.scrollDelta.dy.abs() && !controller.position.outOfRange) {
               controller.jumpTo(controller.offset + ps.scrollDelta.dy);
-            } else {
-              controller.animateTo(controller.offset + ps.scrollDelta.dy,
-                  duration: const Duration(milliseconds: 250),
-                  curve: Curves.easeOutQuart);
+            } else if(!controller.position.outOfRange){
+              controller.animateTo(controller.offset + ps.scrollDelta.dy, duration: const Duration(milliseconds: 250), curve: Curves.easeOutQuart);
             }
           }
         },
@@ -91,3 +89,4 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
     );
   }
 }
+
