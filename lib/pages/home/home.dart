@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,6 +22,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
+
 class AdaptiveScroll extends StatefulWidget {
   const AdaptiveScroll({Key? key}) : super(key: key);
 
@@ -36,6 +39,23 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
   ScrollPhysics scrollPhysics = const AlwaysScrollableScrollPhysics();
   PointerDeviceKind device = PointerDeviceKind.touch;
   List<double> q = [];
+  List<double> scrollStream = [];
+  double start = 0;
+  bool isScrolling = false;
+
+  AdaptiveScrollState(){
+    _start();
+  }
+
+  void _start(){
+    Timer.periodic(Duration(milliseconds: 1), (timer) {
+      isScrolling = controller.position.activity!.isScrolling;
+      if(!isScrolling && scrollStream.isNotEmpty){
+        scrollStream.clear();
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +78,17 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
             setState(() {
               device = pointer
                   .kind; // set to avoid extraneous setState calls after device is detected.
-              scrollPhysics = const NeverScrollableScrollPhysics().applyTo(ClampingScrollPhysics());
+              scrollPhysics = const NeverScrollableScrollPhysics();
             });
           }
+
         },
         onPointerSignal: (ps) {
           if (ps is PointerScrollEvent) {
+            if(scrollStream.isEmpty){
+              start = controller.position.pixels;
+            }
+            scrollStream.add(ps.scrollDelta.dy);
             q.add(ps.scrollDelta.dy.abs());
             if (q.length > 10) q.removeRange(3, q.length - 1);
             if (q.average != ps.scrollDelta.dy.abs()) {
@@ -71,7 +96,7 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
               if(controller.offset < controller.position.minScrollExtent) controller.jumpTo(controller.position.minScrollExtent);
               if(controller.offset > controller.position.maxScrollExtent) controller.jumpTo(controller.position.maxScrollExtent);
             } else if(!controller.position.outOfRange){
-              controller.animateTo(controller.offset + ps.scrollDelta.dy, duration: const Duration(milliseconds: 250), curve: Curves.easeOutQuart);
+              controller.animateTo(start + scrollStream.sum, duration: const Duration(milliseconds: 800), curve: Curves.easeOutQuart);
             }
           }
         },
