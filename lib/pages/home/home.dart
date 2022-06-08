@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 import '../../themes/theme.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,8 +35,6 @@ class HomePage extends StatelessWidget {
   }
 }
 
-
-
 class AdaptiveScroll extends StatefulWidget {
   const AdaptiveScroll({Key? key}) : super(key: key);
 
@@ -56,26 +55,41 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
   bool isScrolling = false;
 
   List<Widget> myList = [
+    Container(
+      height: 400,
+      child: Logo(50),
+    ),
+    Container(
+      alignment: Alignment.center,
+      height: 200,
+      child: Text(
+        "R-CUBED",
+        style: TextStyle(
+          color: Colors.black54,
+          fontWeight: FontWeight.w100,
+            fontFamily: 'Roboto',
+            fontSize: 80),
+      ),
+    ),
     MyContainer(200, Colors.transparent),
     MyContainer(400, Colors.transparent),
-    MyContainer(400, MyTheme().primary),
+    MyContainer(400, Colors.transparent),
     MyContainer(300, Colors.transparent),
     MyContainer(200, Colors.transparent)
   ];
 
-  AdaptiveScrollState(){
+  AdaptiveScrollState() {
     _start();
   }
 
-  void _start(){
+  void _start() {
     Timer.periodic(Duration(milliseconds: 1), (timer) {
       isScrolling = controller.position.activity!.isScrolling;
-      if(!isScrolling && scrollStream.isNotEmpty){
+      if (!isScrolling && scrollStream.isNotEmpty) {
         scrollStream.clear();
       }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +115,10 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
               scrollPhysics = const NeverScrollableScrollPhysics();
             });
           }
-
         },
         onPointerSignal: (ps) {
           if (ps is PointerScrollEvent) {
-            if(scrollStream.isEmpty){
+            if (scrollStream.isEmpty) {
               start = controller.position.pixels;
             }
             scrollStream.add(ps.scrollDelta.dy);
@@ -113,10 +126,14 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
             if (q.length > 10) q.removeRange(3, q.length - 1);
             if (q.average != ps.scrollDelta.dy.abs()) {
               controller.jumpTo(controller.offset + ps.scrollDelta.dy);
-              if(controller.offset < controller.position.minScrollExtent) controller.jumpTo(controller.position.minScrollExtent);
-              if(controller.offset > controller.position.maxScrollExtent) controller.jumpTo(controller.position.maxScrollExtent);
-            } else if(!controller.position.outOfRange){
-              controller.animateTo(start + scrollStream.sum, duration: const Duration(milliseconds: 800), curve: Curves.easeOutQuart);
+              if (controller.offset < controller.position.minScrollExtent)
+                controller.jumpTo(controller.position.minScrollExtent);
+              if (controller.offset > controller.position.maxScrollExtent)
+                controller.jumpTo(controller.position.maxScrollExtent);
+            } else if (!controller.position.outOfRange) {
+              controller.animateTo(start + scrollStream.sum,
+                  duration: const Duration(milliseconds: 800),
+                  curve: Curves.easeOutQuart);
             }
           }
         },
@@ -134,10 +151,11 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
   }
 }
 
-class MyContainer extends StatelessWidget{
+class MyContainer extends StatelessWidget {
   final Color color;
-  final double  height;
-  const MyContainer(this.height, this.color,{Key? key}) : super(key: key);
+  final double height;
+
+  const MyContainer(this.height, this.color, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +168,4 @@ class MyContainer extends StatelessWidget{
       ),
     );
   }
-
 }
-
