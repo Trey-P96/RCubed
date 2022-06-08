@@ -19,8 +19,7 @@ class HomePage extends StatelessWidget {
         Positioned.fill(
           child: Image(
             colorBlendMode: BlendMode.modulate,
-            color: Colors.white.withOpacity(0.15),
-            image: AssetImage('assets/images/background.jpg'),
+            image: AssetImage('assets/images/background.png'),
             fit: BoxFit.cover,
           ),
         ),
