@@ -11,13 +11,22 @@ class NavBarDesktop extends StatelessWidget{
     final Widget logo = SvgPicture.asset(
         logoPath,
         color: MyTheme().secondary,
-        width: 60,
+        width: 40,
     );
 
     // TODO: implement build
     return Container(
+      decoration: BoxDecoration(
+        color: MyTheme().primary,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.3),
+            offset: Offset(0,4),
+            blurRadius: 4
+          )
+        ]
+      ),
       height: 60,
-      color: MyTheme().primary,
       child: Row(
         children: [
           Padding(padding: EdgeInsets.only(left: 25, right: 50), child: logo),

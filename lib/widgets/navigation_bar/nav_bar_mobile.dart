@@ -11,14 +11,23 @@ class NavBarMobile extends StatelessWidget{
     final Widget logo = SvgPicture.asset(
       logoPath,
       color: MyTheme().secondary,
-      width: 60,
+      width: 40,
       //height: 52,
     );
 
     // TODO: implement build
     return Container(
+      decoration: BoxDecoration(
+          color: MyTheme().primary,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.3),
+                offset: Offset(0,4),
+                blurRadius: 4
+            )
+          ]
+      ),
       height: 60,
-      color: MyTheme().primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

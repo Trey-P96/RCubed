@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
+import '../../themes/theme.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,10 +14,22 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Column(
+    return Stack(
       children: [
-        NavBar(),
-        const AdaptiveScroll(),
+        Positioned.fill(
+          child: Image(
+            colorBlendMode: BlendMode.modulate,
+            color: Colors.white.withOpacity(0.15),
+            image: AssetImage('assets/images/background.jpg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        Column(
+          children: [
+            NavBar(),
+            const AdaptiveScroll(),
+          ],
+        ),
       ],
     );
   }
@@ -43,12 +56,12 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
   double start = 0;
   bool isScrolling = false;
 
-  List<MyContainer> myList = [
-    MyContainer(300, Colors.blue),
-    MyContainer(500, Colors.lightBlue),
-    MyContainer(400, Colors.blue),
-    MyContainer(300, Colors.lightBlue),
-    MyContainer(500, Colors.blue)
+  List<Widget> myList = [
+    MyContainer(200, Colors.transparent),
+    MyContainer(400, Colors.transparent),
+    MyContainer(400, MyTheme().primary),
+    MyContainer(300, Colors.transparent),
+    MyContainer(200, Colors.transparent)
   ];
 
   AdaptiveScrollState(){
@@ -130,9 +143,12 @@ class MyContainer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      color: color,
-      height: height,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      child: Container(
+        color: color,
+        height: height,
+      ),
     );
   }
 
