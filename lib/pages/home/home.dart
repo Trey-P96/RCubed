@@ -25,21 +25,36 @@ class HomePage extends StatelessWidget {
             NavBar(),
             AdaptiveScroll(
               [
-                ScrollItem(topPadding: 60, height: 150, child: Logo()),
                 ScrollItem(
+                  width: 650,
+                    topPadding: 40,
+                    height: 175,
+                    child: Logo()),
+                ScrollItem(
+                  width: 650,
                     topPadding: 30,
-                    height: 30,
-                    child: Text("R-CUBED CONSULTING")),
+                    height: 40,
+                    bottomPadding: 10,
+                    child: Text("R-CUBED CONSULTING",
+                      style: TextStyle(
+                          fontFamily: "Roboto-Thin",
+                          fontWeight: FontWeight.w100),)),
                 ScrollItem(
+                  width: 650,
                     height: 0.5,
                     child: Container(
                       color: Colors.black,
-                      width: 1000,
+                      width: 1150,
                       height: 1,
                     )),
                 ScrollItem(
+                  width: 650,
                   height: 30,
-                    child: Text("Relationships * Results * Reputation")),
+                    topPadding: 10,
+                    child: Text("Relationships * Results * Reputation",
+                    style: TextStyle(
+                        fontFamily: "Roboto-Thin",
+                        fontWeight: FontWeight.w100),)),
                 SizedBox(height: 2000,)
               ],
             ),
@@ -71,6 +86,7 @@ class ScrollItem extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, topPadding, 0, bottomPadding),
         child: FittedBox(
           child: Container(
+            //color: Colors.white,
             width: width,
             height: height,
             child: FittedBox(
