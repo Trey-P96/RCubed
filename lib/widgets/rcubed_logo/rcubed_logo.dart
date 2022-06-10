@@ -14,7 +14,7 @@ class Logo extends StatelessWidget{
       'assets/images/RcubedLogo.svg',
       height: 300,
       color: MyTheme().primary.withOpacity(1),
-    );;
+    );
   }
 
 }

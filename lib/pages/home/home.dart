@@ -23,24 +23,24 @@ class HomePage extends StatelessWidget {
         Column(
           children: [
             NavBar(),
-            const AdaptiveScroll(
+            AdaptiveScroll(
               [
+                ScrollItem(topPadding: 60, height: 150, child: Logo()),
                 ScrollItem(
-                  child: Logo(),
-                  topPadding: 50,
-                  maxHeight: 200,
-                  minHeight: 80,
-                ),
+                    topPadding: 30,
+                    height: 30,
+                    child: Text("R-CUBED CONSULTING")),
                 ScrollItem(
-                    child: Text(
-                      "R-CUBED CONSULTING",
-                      style: TextStyle(fontSize: 60),
-                    ),
-                  topPadding: 30,
-                  maxHeight: 50,
-                  minHeight: 10,
-                ),
-                ScrollItem(child: SizedBox(height: 1000,)),
+                    height: 0.5,
+                    child: Container(
+                      color: Colors.black,
+                      width: 1000,
+                      height: 1,
+                    )),
+                ScrollItem(
+                  height: 30,
+                    child: Text("Relationships * Results * Reputation")),
+                SizedBox(height: 2000,)
               ],
             ),
           ],
@@ -51,37 +51,34 @@ class HomePage extends StatelessWidget {
 }
 
 class ScrollItem extends StatelessWidget {
-  final double
-      topPadding,
-      bottomPadding,
-      maxHeight,
-      minHeight;
+  final double topPadding, bottomPadding, height, width;
   final Widget child;
 
-  const ScrollItem({Key? key,
-    double this.topPadding=0,
-    double this.bottomPadding=0,
-    double this.maxHeight=double.infinity,
-    double this.minHeight=0,
-    required this.child})
+  const ScrollItem(
+      {Key? key,
+      double this.topPadding = 0,
+      double this.bottomPadding = 0,
+      double this.height = 100,
+      double this.width = 800,
+      required this.child})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Padding(
-      padding: EdgeInsets.fromLTRB(0, topPadding, 0, bottomPadding),
-      child: Container(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: minHeight,
-            maxHeight: maxHeight
-          ),
-          child: FittedBox(
-            fit: BoxFit.fitHeight,
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(500, 0, 500, 0),
-                child: child),
+    return Align(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(0, topPadding, 0, bottomPadding),
+        child: FittedBox(
+          child: Container(
+            width: width,
+            height: height,
+            child: FittedBox(
+              fit: BoxFit.fitHeight,
+              child: Align(
+                child: child,
+              ),
+            ),
           ),
         ),
       ),
