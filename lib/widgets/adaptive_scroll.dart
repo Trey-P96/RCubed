@@ -90,7 +90,7 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
             cacheExtent: 1000,
             controller: controller,
             physics: scrollPhysics,
-            shrinkWrap: false,
+            shrinkWrap: true,
             itemCount: widget.widgetList.length,
             itemBuilder: (context, i) {
               return widget.widgetList[i];

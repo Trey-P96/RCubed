@@ -63,7 +63,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/images/RcubedLogoFinal.png
     - assets/images/RcubedLogo.svg
+    - assets/images/RcubedLogoFinal.svg
     - assets/images/background.png
     - assets/fonts/Roboto-Thin.ttf
 

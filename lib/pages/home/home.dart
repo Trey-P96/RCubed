@@ -4,6 +4,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:rcubed/content/home_content.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 import '../../themes/theme.dart';
 import '../../widgets/adaptive_scroll.dart';
@@ -26,35 +28,25 @@ class HomePage extends StatelessWidget {
             AdaptiveScroll(
               [
                 ScrollItem(
-                  width: 650,
-                    topPadding: 40,
-                    height: 175,
-                    child: Logo()),
-                ScrollItem(
-                  width: 650,
-                    topPadding: 30,
-                    height: 40,
-                    bottomPadding: 10,
-                    child: Text("R-CUBED CONSULTING",
-                      style: TextStyle(
-                          fontFamily: "Roboto-Thin",
-                          fontWeight: FontWeight.w100),)),
-                ScrollItem(
-                  width: 650,
-                    height: 0.5,
-                    child: Container(
-                      color: Colors.black,
-                      width: 1150,
-                      height: 1,
-                    )),
-                ScrollItem(
-                  width: 650,
-                  height: 30,
-                    topPadding: 10,
-                    child: Text("Relationships * Results * Reputation",
-                    style: TextStyle(
-                        fontFamily: "Roboto-Thin",
-                        fontWeight: FontWeight.w100),)),
+                  topPadding: 30,
+                    height: 300,
+                    width: 550,
+                    child: SvgPicture.asset(
+                  'assets/images/RcubedLogoFinal.svg',
+                  fit: BoxFit.fitHeight,
+                  //color: MyTheme().primary.withOpacity(1),
+                )),
+
+                // ScrollItem(
+                //   width: 650,
+                //     topPadding: 40,
+                //     height: 275,
+                //     child: SvgPicture.asset(
+                //       'assets/images/RcubedLogoFinal.svg',
+                //       height: 400,
+                //       //color: MyTheme().primary.withOpacity(1),
+                //     )),
+
                 SizedBox(height: 2000,)
               ],
             ),
@@ -86,7 +78,7 @@ class ScrollItem extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(0, topPadding, 0, bottomPadding),
         child: FittedBox(
           child: Container(
-            //color: Colors.white,
+            // color: Colors.white,
             width: width,
             height: height,
             child: FittedBox(
