@@ -2,28 +2,27 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/themes/theme.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 
 import '../main.dart';
 
 class ScrollWindow extends StatelessWidget{
   final pageController = PageController();
+  final List<Widget> pages;
   MyOpacity leftOpacity = MyOpacity();
   MyOpacity rightOpacity = MyOpacity();
-  ScrollWindow({Key? key}) : super(key: key){
-    _init();
-  }
 
-  void _init(){
-
-  }
+  ScrollWindow({Key? key, required this.pages}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double width = min(MediaQuery.of(context).size.width - 50, 1300);
     double height = min(MediaQuery.of(context).size.height-150, 600);
+
 
     // TODO: implement build
     return Align(
@@ -31,26 +30,31 @@ class ScrollWindow extends StatelessWidget{
         alignment: Alignment.center,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(0),
+            borderRadius: BorderRadius.circular(5),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: .1, sigmaY: 0),
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Container(
                 width: width,
                 height: height,
-                color: Colors.grey.withOpacity(0.0),
+                color: Colors.white.withOpacity(0.6),
                 child: Stack(
                   children: [
 
-                    Scrollbar(
-                      trackVisibility: true,
+                    RawScrollbar(
+                      thumbColor: MyTheme().primary,
+                      //trackVisibility: true,
                       controller: pageController,
                       thumbVisibility: true,
-                      thickness: 10,
+                      radius: Radius.zero,
+                      thickness: 5,
                       child: PageView.builder(
+                        onPageChanged: (index){
+                          Provider.of<PageIndex>(context, listen: false).updateIndex(index);
+                        },
                           controller: pageController,
-                          itemCount: 3,
+                          itemCount: pages.length,
                           itemBuilder: (c,i){
-                            return Logo();
+                            return pages[i];
                           }),
                     ),
                     Align(
@@ -66,7 +70,7 @@ class ScrollWindow extends StatelessWidget{
 
                           },
                           child: MouseRegion(
-                            opaque: Provider.of<MouseInput>(context, listen: false).isMouse,
+                            opaque: Provider.of<MouseInput>(context).isMouse,
                             onEnter: (cursor){
                               Provider.of<MyOpacity>(context, listen: false).fadeIn(rightOpacity);
                             },
@@ -98,7 +102,7 @@ class ScrollWindow extends StatelessWidget{
 
                           },
                           child: MouseRegion(
-                            opaque: Provider.of<MouseInput>(context, listen: false).isMouse,
+                            opaque: Provider.of<MouseInput>(context).isMouse,
                             onEnter: (cursor){
                               Provider.of<MyOpacity>(context, listen: false).fadeIn(leftOpacity);
                             },
@@ -118,6 +122,17 @@ class ScrollWindow extends StatelessWidget{
                         ),
                       ),
                     ),
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: DotsIndicator(
+                          dotsCount: this.pages.length,
+                          decorator: DotsDecorator(
+                            //color: Colors.black,
+                            activeColor: MyTheme().primary,
+                          ),
+                          position: Provider.of<PageIndex>(context).index as double,
+                      ),
+                    )
 
                   ],
                 ),

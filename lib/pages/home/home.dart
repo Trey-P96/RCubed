@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/content/home_content.dart';
 import 'package:rcubed/main.dart';
+import 'package:rcubed/pages/home/content/what_we_do.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 import 'package:rcubed/widgets/scroll_window.dart';
 import '../../themes/theme.dart';
@@ -55,7 +56,14 @@ class HomePage extends StatelessWidget {
                       //color: MyTheme().primary.withOpacity(1),
                     )),
 
-                ScrollWindow(),
+                Divider(),
+
+                ScrollWindow(
+                  pages: [
+                    PageOne(),
+                    PageTwo(),
+                  ],
+                ),
 
                 // SizedBox(
                 //   height: 2000,

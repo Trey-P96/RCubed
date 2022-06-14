@@ -16,6 +16,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_)=>MyOpacity()),
         ChangeNotifierProvider(create: (_)=>MouseInput()),
+        ChangeNotifierProvider(create: (_)=>PageIndex())
       ],
       child: MyApp(),
     ),
@@ -80,5 +81,14 @@ class MouseInput extends ChangeNotifier{
       isMouse = true;
     }
     notifyListeners();
+  }
+}
+
+class PageIndex extends ChangeNotifier{
+  int index = 0;
+  
+  void updateIndex(int i){
+      index = i;
+      notifyListeners();
   }
 }
