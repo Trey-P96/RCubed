@@ -59,9 +59,23 @@ class HomePage extends StatelessWidget {
                 Divider(),
 
                 ScrollWindow(
+                  topPadding: 20,
+                  bottomPadding: 20,
                   pages: [
                     PageOne(),
                     PageTwo(),
+                  ],
+                ),
+
+                Divider(),
+
+                ScrollWindow(
+                  topPadding: 20,
+                  bottomPadding: 20,
+                  pages: [
+                    PageOne(),
+                    PageTwo(),
+                    PageThree(),
                   ],
                 ),
 

@@ -85,10 +85,20 @@ class MouseInput extends ChangeNotifier{
 }
 
 class PageIndex extends ChangeNotifier{
-  int index = 0;
+  Map<PageIndex, int> indexMap = {};
   
-  void updateIndex(int i){
-      index = i;
+  void updateIndex(PageIndex instance, int i){
+      indexMap.putIfAbsent(instance, () => i);
+      indexMap.update(instance, (value) => i);
       notifyListeners();
+  }
+
+  double getIndex(PageIndex instance){
+    if(indexMap.containsKey(instance)){
+      return indexMap[instance] as double;
+    }
+    else{
+      return 0;
+    }
   }
 }

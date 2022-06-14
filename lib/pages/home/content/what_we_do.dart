@@ -21,5 +21,16 @@ class PageTwo extends StatelessWidget{
       child: Text("Is none of your business"),
     );
   }
+}
+
+class PageThree extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      alignment: Alignment.center,
+      child: Text("More Sample TEXT"),
+    );
+  }
 
 }
