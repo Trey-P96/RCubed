@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  provider: ^5.0.0
   google_fonts: any
   flutter_svg: ^1.1.0
   flutter:
@@ -68,6 +69,8 @@ flutter:
     - assets/images/RcubedLogoFinal.svg
     - assets/images/background.png
     - assets/fonts/Roboto-Thin.ttf
+    - assets/images/businessStrategy.svg
+    - assets/images/relresrep.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

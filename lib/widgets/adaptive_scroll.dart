@@ -4,7 +4,10 @@ import 'package:collection/collection.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
+
+import '../main.dart';
 
 class AdaptiveScroll extends StatefulWidget {
   const AdaptiveScroll(this.widgetList, {Key? key}) : super(key: key);
@@ -18,7 +21,7 @@ class AdaptiveScroll extends StatefulWidget {
 }
 
 class AdaptiveScrollState extends State<AdaptiveScroll> {
-  final controller = ScrollController();
+  final controller = PageController();
   ScrollPhysics scrollPhysics = const AlwaysScrollableScrollPhysics();
   PointerDeviceKind device = PointerDeviceKind.touch;
   List<double> q = [];
@@ -54,6 +57,7 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
           }
         },
         onPointerHover: (pointer) {
+          Provider.of<MouseInput>(context, listen: false).set(pointer.kind);
           if (pointer.kind == PointerDeviceKind.mouse &&
               device != pointer.kind) {
             setState(() {
@@ -87,10 +91,12 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
           }
         },
         child: ListView.builder(
-            cacheExtent: 1000,
+
+          //prototypeItem: Text(''),
+
+            scrollDirection: Axis.vertical,
             controller: controller,
             physics: scrollPhysics,
-            shrinkWrap: true,
             itemCount: widget.widgetList.length,
             itemBuilder: (context, i) {
               return widget.widgetList[i];
