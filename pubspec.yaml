@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  scrollable_positioned_list: ^0.3.2
   provider: ^5.0.0
   dots_indicator: ^2.1.0
   google_fonts: any
