@@ -57,9 +57,16 @@ class HomePage extends StatelessWidget {
 
                 ScrollWindow(),
 
-                SizedBox(
-                  height: 2000,
-                )
+                // SizedBox(
+                //   height: 2000,
+                // ),
+                Padding(
+                  padding: EdgeInsets.only(top: 40),
+                  child: Container(
+                    height: 200,
+                    color: Colors.grey,
+                  ),
+                ),
               ],
             ),
           ],

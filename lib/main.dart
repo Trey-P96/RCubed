@@ -9,6 +9,8 @@ import 'package:rcubed/pages/home/home.dart';
 
 void main() {
   // flutter build web --web-renderer canvaskit --release // faster performance
+  // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
+
   runApp(
     MultiProvider(
       providers: [

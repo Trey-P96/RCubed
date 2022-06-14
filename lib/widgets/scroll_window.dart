@@ -92,7 +92,6 @@ class ScrollWindow extends StatelessWidget{
                         duration: Duration(milliseconds: 200),
                         child: Listener(
                           onPointerDown: (pointer){
-                            print(pointer.kind);
                             if(pointer.kind == PointerDeviceKind.mouse){
                               pageController.previousPage(duration: Duration(milliseconds: 600), curve: Curves.ease);
                             }
