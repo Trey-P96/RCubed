@@ -86,7 +86,7 @@ class MouseInput extends ChangeNotifier{
 
 class PageIndex extends ChangeNotifier{
   Map<PageIndex, int> indexMap = {};
-  
+  PageController pageController = PageController();
   void updateIndex(PageIndex instance, int i){
       indexMap.putIfAbsent(instance, () => i);
       indexMap.update(instance, (value) => i);
@@ -101,4 +101,10 @@ class PageIndex extends ChangeNotifier{
       return 0;
     }
   }
+
+  void updateController(PageController controller){
+    pageController = controller;
+    //notifyListeners();
+  }
+
 }

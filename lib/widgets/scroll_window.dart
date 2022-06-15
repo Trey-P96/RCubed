@@ -12,7 +12,6 @@ import '../main.dart';
 
 class ScrollWindow extends StatelessWidget{
   final double topPadding, bottomPadding;
-  final pageController = PageController();
   final List<Widget> pages;
   final pageIndex = PageIndex();
   MyOpacity leftOpacity = MyOpacity();
@@ -22,8 +21,10 @@ class ScrollWindow extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    final pageController = PageController(initialPage: Provider.of<PageIndex>(context, listen: false).getIndex(pageIndex)as int);
     double width = min(MediaQuery.of(context).size.width - 50, 1300);
     double height = min(MediaQuery.of(context).size.height-150, 600);
+
 
 
     // TODO: implement build

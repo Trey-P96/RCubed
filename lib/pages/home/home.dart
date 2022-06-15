@@ -34,49 +34,71 @@ class HomePage extends StatelessWidget {
             NavBar(),
             AdaptiveScroll(
               [
-                ScrollItem(
-                    topPadding: 30,
-                    height: min(MediaQuery.of(context).size.height - 120, 300),
-                    width: 550,
-                    child: SvgPicture.asset(
-                      'assets/images/RcubedLogoFinal.svg',
-                      fit: BoxFit.fitHeight,
-                      //color: MyTheme().primary.withOpacity(1),
-                    )),
-                ScrollItem(
-                    topPadding: 20,
-                    sidePadding: 20,
-                    bottomPadding: 50,
-                    boxfit: BoxFit.fitWidth,
-                    height: min(MediaQuery.of(context).size.height - 120, 50),
-                    width: 550,
-                    child: SvgPicture.asset(
-                      'assets/images/relresrep.svg',
-                      fit: BoxFit.fitHeight,
-                      //color: MyTheme().primary.withOpacity(1),
-                    )),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ScrollItem(
+                          height: min(MediaQuery.of(context).size.height - 120, 300),
+                          width: 550,
+                          child: SvgPicture.asset(
+                            'assets/images/RcubedLogoFinal.svg',
+                            fit: BoxFit.fitHeight,
+                            //color: MyTheme().primary.withOpacity(1),
+                          )),
+                      ScrollItem(
+                          topPadding: 20,
+                          sidePadding: 20,
+                          boxfit: BoxFit.fitWidth,
+                          height: min(MediaQuery.of(context).size.height - 120, 50),
+                          width: 550,
+                          child: SvgPicture.asset(
+                            'assets/images/relresrep.svg',
+                            fit: BoxFit.fitHeight,
+                            //color: MyTheme().primary.withOpacity(1),
+                          )),
+                    ],
+                  ),
 
-                Divider(),
 
                 ScrollWindow(
                   topPadding: 20,
                   bottomPadding: 20,
                   pages: [
                     PageOne(),
+                    PageOne(),
+                  ],
+                ),
+
+                ScrollWindow(
+                  topPadding: 20,
+                  bottomPadding: 20,
+                  pages: [
+                    PageTwo(),
+                    PageTwo(),
                     PageTwo(),
                   ],
                 ),
 
-                Divider(),
-
                 ScrollWindow(
                   topPadding: 20,
-                  bottomPadding: 20,
-                  pages: [
-                    PageOne(),
-                    PageTwo(),
-                    PageThree(),
-                  ],
+                    bottomPadding: 20,
+                    pages: [
+                      PageThree(),
+                      PageThree(),
+                      PageThree(),
+                      PageThree(),
+                    ]
+                ),
+
+                ScrollWindow(
+                    topPadding: 20,
+                    bottomPadding: 20,
+                    pages: [
+                      PageFour(),
+                      PageFour(),
+                      PageFour(),
+                      PageFour(),
+                    ]
                 ),
 
                 // SizedBox(

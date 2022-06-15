@@ -7,7 +7,7 @@ class PageOne extends StatelessWidget{
     // TODO: implement build
     return Container(
       alignment: Alignment.center,
-      child: Text("WHAT WE DO"),
+      child: Text("ABOUT US"),
     );
   }
 }
@@ -18,7 +18,7 @@ class PageTwo extends StatelessWidget{
     // TODO: implement build
     return Container(
       alignment: Alignment.center,
-      child: Text("Is none of your business"),
+      child: Text("CAREERS"),
     );
   }
 }
@@ -29,8 +29,18 @@ class PageThree extends StatelessWidget{
     // TODO: implement build
     return Container(
       alignment: Alignment.center,
-      child: Text("More Sample TEXT"),
+      child: Text("CONTACT"),
     );
   }
+}
 
+class PageFour extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      alignment: Alignment.center,
+      child: Text("WHY US"),
+    );
+  }
 }
