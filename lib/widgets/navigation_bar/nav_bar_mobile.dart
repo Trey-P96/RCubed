@@ -13,14 +13,14 @@ class NavBarMobile extends StatelessWidget {
     const String logoPath = 'assets/images/RcubedLogo.svg';
     final Widget logo = SvgPicture.asset(
       logoPath,
-      color: MyTheme().secondary,
+      color: MyTheme.secondary,
       width: 40,
       //height: 52,
     );
 
     // TODO: implement build
     return Container(
-      decoration: BoxDecoration(color: MyTheme().primary, boxShadow: [
+      decoration: BoxDecoration(color: MyTheme.primary, boxShadow: [
         BoxShadow(
             color: Colors.black.withOpacity(0.3),
             offset: Offset(0, 4),
@@ -43,7 +43,7 @@ class NavBarMobile extends StatelessWidget {
             padding: EdgeInsets.only(right: 25),
             child: IconButton(
                 iconSize: 35,
-                color: MyTheme().secondary,
+                color: MyTheme.secondary,
                 onPressed: () {},
                 icon: Icon(Icons.menu)),
           ),
@@ -69,7 +69,7 @@ class _NavBarObject extends StatelessWidget {
       style: TextStyle(
         fontSize: 22,
         fontWeight: FontWeight.bold,
-        color: MyTheme().secondary,
+        color: MyTheme.secondary,
       ),
     );
   }

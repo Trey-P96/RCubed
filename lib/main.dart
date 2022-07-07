@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'R-Cubed Consulting',
       theme: ThemeData(
-        scaffoldBackgroundColor: MyTheme().secondary,
+        scaffoldBackgroundColor: MyTheme.secondary,
       ),
       home: Scaffold(
         body: HomePage(),

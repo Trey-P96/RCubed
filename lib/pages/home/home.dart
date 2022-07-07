@@ -11,12 +11,14 @@ import 'package:rcubed/content/home_content.dart';
 import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/home/content/what_we_do.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
-import 'package:rcubed/widgets/scroll_window.dart';
+import 'package:rcubed/widgets/scroll_window/scroll_window.dart';
 import '../../themes/theme.dart';
 import '../../widgets/adaptive_scroll.dart';
 import '../../widgets/backgroundImage.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../about_us/about_us.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -64,8 +66,8 @@ class HomePage extends StatelessWidget {
                   topPadding: 20,
                   bottomPadding: 20,
                   pages: [
-                    PageOne(),
-                    PageOne(),
+                    AboutUs(),
+                    SystemSelect(),
                   ],
                 ),
 

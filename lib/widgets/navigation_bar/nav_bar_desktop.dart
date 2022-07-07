@@ -12,14 +12,14 @@ class NavBarDesktop extends StatelessWidget{
     const String logoPath = 'assets/images/RcubedLogo.svg';
     final Widget logo = SvgPicture.asset(
         logoPath,
-        color: MyTheme().secondary,
+        color: MyTheme.secondary,
         width: 60,
     );
 
     // TODO: implement build
     return Container(
       decoration: BoxDecoration(
-        color: MyTheme().primary,
+        color: MyTheme.primary,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.3),
@@ -54,7 +54,7 @@ class _NavBarObject extends StatelessWidget{
   final String title;
   final int page;
   _NavBarObject(this.title,{this.page = 0});
-  Color color = MyTheme().secondary;
+  Color color = MyTheme.secondary;
 
   @override
   Widget build(BuildContext context) {

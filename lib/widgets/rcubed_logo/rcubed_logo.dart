@@ -13,7 +13,7 @@ class Logo extends StatelessWidget{
     return SvgPicture.asset(
       'assets/images/RcubedLogo.svg',
       height: 300,
-      color: MyTheme().primary.withOpacity(1),
+      color: MyTheme.primary.withOpacity(1),
     );
   }
 
