@@ -20,8 +20,8 @@ class ScrollWindowMobile extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     final pageController = PageController(initialPage: Provider.of<PageIndex>(context, listen: false).getIndex(pageIndex)as int);
-    double width = min(MediaQuery.of(context).size.width - 50, 1300);
-    double height = min(MediaQuery.of(context).size.height-150, 600);
+    double width = min(MediaQuery.of(context).size.width - 30, 1300);
+    double height = min(MediaQuery.of(context).size.height-120, 600);
 
 
 
@@ -63,109 +63,31 @@ class ScrollWindowMobile extends StatelessWidget{
                                 return pages[i];
                               }),
                         ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: DotsIndicator(
-                            dotsCount: this.pages.length,
-                            decorator: DotsDecorator(
-                              //color: Colors.black,
-                              activeColor: MyTheme.primary,
-                            ),
-                            position: Provider.of<PageIndex>(context).getIndex(pageIndex),
-                          ),
-                        ),
+                        // Align(
+                        //   alignment: Alignment.topCenter,
+                        //   child: DotsIndicator(
+                        //     dotsCount: this.pages.length,
+                        //     decorator: DotsDecorator(
+                        //       //color: Colors.black,
+                        //       activeColor: MyTheme.primary,
+                        //     ),
+                        //     position: Provider.of<PageIndex>(context).getIndex(pageIndex),
+                        //   ),
+                        // ),
                         Align(
                           alignment: Alignment.topRight,
                           child: Builder(builder: (context)=>IconButton(color:MyTheme.primary,iconSize: 30, icon: Icon(Icons.apps_rounded), onPressed: () {  Scaffold.of(context).openEndDrawer();},)),
                         ),
-
-                        // Scaffold(
-                        //   endDrawerEnableOpenDragGesture: false,
-                        //   backgroundColor: Colors.transparent,
-                        //   appBar: AppBar(
-                        //     actions: [
-                        //       Builder(
-                        //         builder: (context)=>IconButton(onPressed: (){
-                        //           Scaffold.of(context).openEndDrawer();
-                        //         }, icon: Icon(Icons.dataset)),
-                        //       )
-                        //     ],
-                        //     backgroundColor: Colors.transparent,
-                        //     elevation: 0,
-                        //     iconTheme: IconThemeData(color: Colors.black, size: 40),
-                        //   ),
-                        //   endDrawer: Drawer(),
-                        //   body: Stack(
-                        //     children: [
-                        //       Align(
-                        //         alignment: Alignment.centerLeft,
-                        //         child: AnimatedOpacity(
-                        //           opacity: Provider.of<MyOpacity>(context).getOpacity(leftOpacity),
-                        //           duration: Duration(milliseconds: 200),
-                        //           child: Listener(
-                        //             onPointerDown: (pointer){
-                        //               if(pointer.kind == PointerDeviceKind.mouse){
-                        //                 pageController.previousPage(duration: Duration(milliseconds: 600), curve: Curves.ease);
-                        //               }
-                        //
-                        //             },
-                        //             child: MouseRegion(
-                        //               opaque: Provider.of<MouseInput>(context).isMouse,
-                        //               onEnter: (cursor){
-                        //                 Provider.of<MyOpacity>(context, listen: false).fadeIn(leftOpacity);
-                        //               },
-                        //               onExit: (cursor){
-                        //                 Provider.of<MyOpacity>(context, listen: false).fadeOut(leftOpacity);
-                        //               },
-                        //               child: Container(
-                        //                 alignment: Alignment.centerLeft,
-                        //                 // color: Colors.black,
-                        //                 width: width/2,
-                        //                 child: SizedBox(
-                        //                   // color: Colors.black,
-                        //                     height: height * 0.15,
-                        //                     child: FittedBox(child: Icon(Icons.arrow_back_ios, color: Colors.black.withOpacity(0.5)))),
-                        //               ),
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //       Align(
-                        //         alignment: Alignment.centerRight,
-                        //         child: AnimatedOpacity(
-                        //           opacity: Provider.of<MyOpacity>(context).getOpacity(rightOpacity),
-                        //           duration: Duration(milliseconds: 200),
-                        //           child: Listener(
-                        //             onPointerDown: (pointer){
-                        //               if(pointer.kind == PointerDeviceKind.mouse){
-                        //                 pageController.nextPage(duration: Duration(milliseconds: 600), curve: Curves.ease);
-                        //               }
-                        //
-                        //             },
-                        //             child: MouseRegion(
-                        //               opaque: Provider.of<MouseInput>(context).isMouse,
-                        //               onEnter: (cursor){
-                        //                 Provider.of<MyOpacity>(context, listen: false).fadeIn(rightOpacity);
-                        //               },
-                        //               onExit: (cursor){
-                        //                 Provider.of<MyOpacity>(context, listen: false).fadeOut(rightOpacity);
-                        //               },
-                        //               child: Container(
-                        //                 alignment: Alignment.centerRight,
-                        //                 // color: Colors.black,
-                        //                 width: width/2,
-                        //                 child: SizedBox(
-                        //                     height: height * 0.15,
-                        //                     child: FittedBox(child: Icon(Icons.arrow_forward_ios, color: Colors.black.withOpacity(0.5),))),
-                        //               ),
-                        //             ),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
-
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(color: MyTheme.primary, iconSize: 40, icon: Icon(Icons.arrow_back_rounded), onPressed: () {  pageController.previousPage(duration: Duration(milliseconds: 600), curve: Curves.ease);},),
+                              IconButton(color: MyTheme.primary, iconSize: 40, icon: Icon(Icons.arrow_forward_rounded), onPressed: () {  pageController.nextPage(duration: Duration(milliseconds: 600), curve: Curves.ease);},)
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

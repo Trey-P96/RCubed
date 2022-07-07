@@ -63,17 +63,17 @@ class ScrollWindowDesktop extends StatelessWidget{
                                 return pages[i];
                               }),
                         ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: DotsIndicator(
-                            dotsCount: this.pages.length,
-                            decorator: DotsDecorator(
-                              //color: Colors.black,
-                              activeColor: MyTheme.primary,
-                            ),
-                            position: Provider.of<PageIndex>(context).getIndex(pageIndex),
-                          ),
-                        ),
+                        // Align(
+                        //   alignment: Alignment.topCenter,
+                        //   child: DotsIndicator(
+                        //     dotsCount: this.pages.length,
+                        //     decorator: DotsDecorator(
+                        //       //color: Colors.black,
+                        //       activeColor: MyTheme.primary,
+                        //     ),
+                        //     position: Provider.of<PageIndex>(context).getIndex(pageIndex),
+                        //   ),
+                        // ),
                         Align(
                           alignment: Alignment.topRight,
                           child: Builder(builder: (context)=>IconButton(color:MyTheme.primary,iconSize: 40, icon: Icon(Icons.apps_rounded), onPressed: () {  Scaffold.of(context).openEndDrawer();},)),
