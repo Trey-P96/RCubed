@@ -9,6 +9,7 @@ import 'package:rcubed/themes/theme.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 
 import '../../main.dart';
+import '../blurredBox.dart';
 
 class ScrollWindowDesktop extends StatelessWidget{
   final double topPadding, bottomPadding;
@@ -42,7 +43,7 @@ class ScrollWindowDesktop extends StatelessWidget{
                   color: Colors.white.withOpacity(0.6),
                   child: Scaffold(
                     backgroundColor: Colors.transparent,
-                    endDrawer: Drawer(),
+                    drawer: Drawer(),
                     body: Stack(
                       children: [
 
@@ -63,28 +64,17 @@ class ScrollWindowDesktop extends StatelessWidget{
                                 return pages[i];
                               }),
                         ),
-                        // Align(
-                        //   alignment: Alignment.topCenter,
-                        //   child: DotsIndicator(
-                        //     dotsCount: this.pages.length,
-                        //     decorator: DotsDecorator(
-                        //       //color: Colors.black,
-                        //       activeColor: MyTheme.primary,
-                        //     ),
-                        //     position: Provider.of<PageIndex>(context).getIndex(pageIndex),
-                        //   ),
-                        // ),
                         Align(
-                          alignment: Alignment.topRight,
-                          child: Builder(builder: (context)=>IconButton(color:MyTheme.primary,iconSize: 40, icon: Icon(Icons.apps_rounded), onPressed: () {  Scaffold.of(context).openEndDrawer();},)),
+                          alignment: Alignment.topLeft,
+                          child: Builder(builder: (context)=>IconButton(color:Colors.black,iconSize: 40, icon: Icon(Icons.apps_rounded), onPressed: () {  Scaffold.of(context).openDrawer();},)),
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              IconButton(color: MyTheme.primary, iconSize: 40, icon: Icon(Icons.arrow_back_rounded), onPressed: () {  pageController.previousPage(duration: Duration(milliseconds: 600), curve: Curves.ease);},),
-                              IconButton(color: MyTheme.primary, iconSize: 40, icon: Icon(Icons.arrow_forward_rounded), onPressed: () {  pageController.nextPage(duration: Duration(milliseconds: 600), curve: Curves.ease);},)
+                              IconButton(color: Colors.black, iconSize: 40, icon: Icon(Icons.arrow_back_rounded), onPressed: () {  pageController.previousPage(duration: Duration(milliseconds: 600), curve: Curves.ease);},),
+                              IconButton(color: Colors.black, iconSize: 40, icon: Icon(Icons.arrow_forward_rounded), onPressed: () {  pageController.nextPage(duration: Duration(milliseconds: 600), curve: Curves.ease);},)
                             ],
                           ),
                         ),

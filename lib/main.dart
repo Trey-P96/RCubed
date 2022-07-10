@@ -16,7 +16,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_)=>MyOpacity()),
         ChangeNotifierProvider(create: (_)=>MouseInput()),
-        ChangeNotifierProvider(create: (_)=>PageIndex())
+        ChangeNotifierProvider(create: (_)=>PageIndex()),
+        ChangeNotifierProvider(create: (_)=>IgnoreMouse()),
       ],
       child: MyApp(),
     ),
@@ -33,11 +34,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       scrollBehavior: MaterialScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'R-Cubed Consulting',
       theme: ThemeData(
         scaffoldBackgroundColor: MyTheme.secondary,
+        fontFamily: 'KumbhSans',
+        textTheme: Theme.of(context).textTheme.apply(
+          fontSizeDelta: 2,
+          fontSizeFactor: 1.1
+        )
       ),
       home: Scaffold(
         body: HomePage(),
@@ -45,6 +52,20 @@ class MyApp extends StatelessWidget {
 
     );
   }
+}
+
+class IgnoreMouse extends ChangeNotifier{
+  bool isActive = false;
+
+  void setValue(bool ignoring){
+    isActive = ignoring;
+    notifyListeners();
+  }
+
+  bool getValue(){
+    return isActive;
+  }
+
 }
 
 class MyOpacity extends ChangeNotifier{

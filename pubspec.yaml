@@ -27,6 +27,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  transparent_pointer: ^1.0.0
   scrollable_positioned_list: ^0.3.2
   provider: ^5.0.0
   dots_indicator: ^2.1.0
@@ -58,9 +59,13 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   fonts:
+    - family: KumbhSans
+      fonts:
+        - asset: assets/fonts/KumbhSans-Light.ttf
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Thin.ttf
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -73,6 +78,9 @@ flutter:
     - assets/fonts/Roboto-Thin.ttf
     - assets/images/businessStrategy.svg
     - assets/images/relresrep.svg
+    - assets/images/what_we_do/buildings.png
+    - assets/images/what_we_do/what_we_do.svg
+    - assets/images/what_we_do/conferenceRoom.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

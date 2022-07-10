@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'package:rcubed/content/home_content.dart';
 import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/home/content/what_we_do.dart';
+import 'package:rcubed/pages/what_we_do/enterprise_applications.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 import 'package:rcubed/widgets/scroll_window/scroll_window.dart';
 import '../../themes/theme.dart';
@@ -18,7 +19,7 @@ import '../../widgets/backgroundImage.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../about_us/about_us.dart';
+import '../what_we_do/what_we_do.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -33,47 +34,53 @@ class HomePage extends StatelessWidget {
         Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            NavBar(),
+
             AdaptiveScroll(
               [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ScrollItem(
-                          height: min(MediaQuery.of(context).size.height - 120, 300),
-                          width: 550,
-                          child: SvgPicture.asset(
-                            'assets/images/RcubedLogoFinal.svg',
-                            fit: BoxFit.fitHeight,
-                            //color: MyTheme().primary.withOpacity(1),
-                          )),
-                      ScrollItem(
-                          topPadding: 20,
-                          sidePadding: 20,
-                          boxfit: BoxFit.fitWidth,
-                          height: min(MediaQuery.of(context).size.height - 120, 50),
-                          width: 550,
-                          child: SvgPicture.asset(
-                            'assets/images/relresrep.svg',
-                            fit: BoxFit.fitHeight,
-                            //color: MyTheme().primary.withOpacity(1),
-                          )),
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: ScrollItem(
+                          boxfit: BoxFit.fitHeight,
+                          topPadding: 50,
+                          height: min(MediaQuery.of(context).size.height - 100, 400),
+                          width: 600,
+                          child: Column(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/RcubedLogoFinal.svg',
+                                  fit: BoxFit.fitHeight,
+                                  //color: MyTheme().primary.withOpacity(1),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 30),
+                                  child: SvgPicture.asset(
+                                    'assets/images/relresrep.svg',
+                                    //color: MyTheme().primary.withOpacity(1),
+                                  ),
+                                )
+                              ],
+                            ),
+                        ),
+                      ),
                     ],
                   ),
 
 
-                ScrollWindow(
-                  topPadding: 20,
-                  bottomPadding: 20,
+                ScrollWindow( // WHAT WE DO
+                  topPadding: 45,
+                  bottomPadding: 0,
                   pages: [
-                    AboutUs(),
-                    SystemSelect(),
+                    WhatWeDo(),
+                    EnterpriseApp(),
                   ],
                 ),
 
                 ScrollWindow(
-                  topPadding: 20,
-                  bottomPadding: 20,
+                  topPadding: 45,
+                  bottomPadding: 0,
                   pages: [
                     PageTwo(),
                     PageTwo(),
@@ -82,8 +89,8 @@ class HomePage extends StatelessWidget {
                 ),
 
                 ScrollWindow(
-                  topPadding: 20,
-                    bottomPadding: 20,
+                  topPadding: 45,
+                    bottomPadding: 0,
                     pages: [
                       PageThree(),
                       PageThree(),
@@ -93,8 +100,8 @@ class HomePage extends StatelessWidget {
                 ),
 
                 ScrollWindow(
-                    topPadding: 20,
-                    bottomPadding: 20,
+                    topPadding: 45,
+                    bottomPadding: 0,
                     pages: [
                       PageFour(),
                       PageFour(),
@@ -117,6 +124,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
+        NavBar(),
       ],
     );
   }
