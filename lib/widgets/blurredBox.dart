@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class BlurredBox extends StatelessWidget{
   final Widget child;
-  final double width, height, blurX, blurY, opacity;
+  final double width, height, radius, blurX, blurY, opacity;
   final EdgeInsets padding;
   final Color color;
 
@@ -13,6 +13,7 @@ class BlurredBox extends StatelessWidget{
     required this.child,
     this.width=600,
     this.height=80,
+    this.radius=0,
     this.color=Colors.black,
     this.opacity=0.35,
     this.padding=EdgeInsets.zero,
@@ -26,6 +27,7 @@ class BlurredBox extends StatelessWidget{
     return Padding(
       padding: padding,
       child: ClipRRect(
+        borderRadius: BorderRadius.circular(radius),
         child: BackdropFilter(
           filter: ImageFilter.blur(sigmaX: blurX, sigmaY: blurY),
           child: FittedBox(

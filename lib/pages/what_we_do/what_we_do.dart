@@ -28,7 +28,6 @@ class WhatWeDo extends StatelessWidget{
         image: DecorationImage(
             image: AssetImage('assets/images/what_we_do/buildings.png'),
             fit: BoxFit.cover,
-          opacity: 0.4
         ),
       ),
     );

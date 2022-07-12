@@ -9,7 +9,7 @@ class Background extends StatelessWidget{
     // TODO: implement build
     return const Positioned.fill(
       child: Image(
-        colorBlendMode: BlendMode.modulate,
+        //colorBlendMode: BlendMode.modulate,
         image: AssetImage('assets/images/background.png'),
         fit: BoxFit.cover,
       ),

@@ -10,10 +10,14 @@ class Logo extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return SvgPicture.asset(
-      'assets/images/RcubedLogo.svg',
-      height: 300,
-      color: MyTheme.primary.withOpacity(1),
+    return SizedBox(
+      child: SvgPicture.asset(
+            'assets/images/CompleteLogo.svg',
+            height: 400,
+            //color: MyTheme.primary.withOpacity(1),
+          ),
+
+
     );
   }
 

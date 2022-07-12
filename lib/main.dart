@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:rcubed/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
+import 'package:rcubed/widgets/scroll_window/scroll_window.dart';
 
 void main() {
   // flutter build web --web-renderer canvaskit --release // faster performance
@@ -106,15 +107,16 @@ class MouseInput extends ChangeNotifier{
 }
 
 class PageIndex extends ChangeNotifier{
-  Map<PageIndex, int> indexMap = {};
+  Map<String, int> indexMap = {};
   PageController pageController = PageController();
-  void updateIndex(PageIndex instance, int i){
+  void updateIndex(String instance, int i){
       indexMap.putIfAbsent(instance, () => i);
       indexMap.update(instance, (value) => i);
+      print(indexMap);
       notifyListeners();
   }
 
-  double getIndex(PageIndex instance){
+  double getIndex(String instance){
     if(indexMap.containsKey(instance)){
       return indexMap[instance] as double;
     }

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/theme.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:transparent_pointer/transparent_pointer.dart';
 
 import '../../main.dart';
+import '../blurredBox.dart';
 
 class NavBarMobile extends StatelessWidget {
   const NavBarMobile({Key? key}) : super(key: key);
@@ -71,7 +74,20 @@ class NavBarMobile extends StatelessWidget {
           child: TransparentPointer(
             child: Scaffold(
               key: scaffoldKey,
-              endDrawer: Drawer(),
+              drawerScrimColor: Colors.transparent,
+              endDrawer: ClipRRect(
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                  child: Drawer(
+                    backgroundColor: Colors.white.withOpacity(0.6),
+                    child: Container(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               backgroundColor: Colors.transparent,
             ),
           ),
