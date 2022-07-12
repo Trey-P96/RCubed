@@ -20,7 +20,6 @@ import '../../widgets/backgroundImage.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../widgets/scroll_page.dart';
 import '../what_we_do/what_we_do.dart';
 
 class HomePage extends StatelessWidget {
@@ -40,105 +39,93 @@ class HomePage extends StatelessWidget {
             AdaptiveScroll(
               [
                   //RCubed(),
-                  ScrollPage(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 10, right: 10),
-                          child: ScrollItem(
-                            boxfit: BoxFit.fitHeight,
-                            topPadding: 50,
-                            height: min(MediaQuery.of(context).size.height - 100, 400),
-                            width: 600,
-                            child: Column(
-                                children: [
-                                  SvgPicture.asset(
-                                    'assets/images/RcubedLogoFinal.svg',
-                                    fit: BoxFit.fitHeight,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: ScrollItem(
+                          boxfit: BoxFit.fitHeight,
+                          topPadding: 50,
+                          height: min(MediaQuery.of(context).size.height - 100, 400),
+                          width: 600,
+                          child: Column(
+                              children: [
+                                SvgPicture.asset(
+                                  'assets/images/RcubedLogoFinal.svg',
+                                  fit: BoxFit.fitHeight,
+                                  //color: MyTheme().primary.withOpacity(1),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 30),
+                                  child: SvgPicture.asset(
+                                    'assets/images/relresrep.svg',
                                     //color: MyTheme().primary.withOpacity(1),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 30),
-                                    child: SvgPicture.asset(
-                                      'assets/images/relresrep.svg',
-                                      //color: MyTheme().primary.withOpacity(1),
-                                    ),
-                                  )
-                                ],
-                              ),
-                          ),
+                                )
+                              ],
+                            ),
                         ),
-                      ],
-                    ),
-                  ),
-
-
-
-
-                ScrollPage(
-                  child: ScrollWindow( // WHAT WE DO
-                    topPadding: 45,
-                    bottomPadding: 0,
-                    description: "What We Do",
-                    pages: [
-                      WhatWeDo(),
-                      EnterpriseApp(),
+                      ),
                     ],
                   ),
+
+
+
+
+                ScrollWindow( // WHAT WE DO
+                  topPadding: 45,
+                  bottomPadding: 0,
+                  description: "What We Do",
+                  pages: [
+                    WhatWeDo(),
+                    EnterpriseApp(),
+                  ],
                 ),
 
-                ScrollPage(
-                  child: ScrollWindow(
+                ScrollWindow(
+                  topPadding: 45,
+                  bottomPadding: 0,
+                  description: "Careers",
+                  pages: [
+                    PageTwo(),
+                    PageTwo(),
+                    PageTwo(),
+                  ],
+                ),
+
+                ScrollWindow(
+                  topPadding: 45,
+                    bottomPadding: 0,
+                    description: "Contact",
+                    pages: [
+                      PageThree(),
+                      PageThree(),
+                      PageThree(),
+                      PageThree(),
+                    ]
+                ),
+
+                ScrollWindow(
                     topPadding: 45,
                     bottomPadding: 0,
-                    description: "Careers",
+                    description: "Why Us",
                     pages: [
-                      PageTwo(),
-                      PageTwo(),
-                      PageTwo(),
-                    ],
-                  ),
-                ),
-
-                ScrollPage(
-                  child: ScrollWindow(
-                    topPadding: 45,
-                      bottomPadding: 0,
-                      description: "Contact",
-                      pages: [
-                        PageThree(),
-                        PageThree(),
-                        PageThree(),
-                        PageThree(),
-                      ]
-                  ),
-                ),
-
-                ScrollPage(
-                  child: ScrollWindow(
-                      topPadding: 45,
-                      bottomPadding: 0,
-                      description: "Why Us",
-                      pages: [
-                        PageFour(),
-                        PageFour(),
-                        PageFour(),
-                        PageFour(),
-                      ]
-                  ),
+                      PageFour(),
+                      PageFour(),
+                      PageFour(),
+                      PageFour(),
+                    ]
                 ),
 
                 // SizedBox(
                 //   height: 2000,
                 // ),
-                ScrollPage(
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 40),
-                    child: Container(
-                      height: 200,
-                      color: Colors.grey,
-                    ),
+                Padding(
+                  padding: EdgeInsets.only(top: 40),
+                  child: Container(
+                    height: 200,
+                    color: Colors.grey,
                   ),
                 ),
               ],
