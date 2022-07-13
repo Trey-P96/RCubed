@@ -12,8 +12,9 @@ import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/home/content/rcubed_branding.dart';
 import 'package:rcubed/pages/home/content/what_we_do.dart';
 import 'package:rcubed/pages/what_we_do/enterprise_applications.dart';
+import 'package:rcubed/widgets/page_scroll.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
-import 'package:rcubed/widgets/scroll_window/scroll_window.dart';
+import 'package:rcubed/widgets/scroll_window/scroll_page.dart';
 import '../../themes/theme.dart';
 import '../../widgets/adaptive_scroll.dart';
 import '../../widgets/backgroundImage.dart';
@@ -27,7 +28,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageController = PageController();
+    // final pageController = PageController();
+
+    // pageController.addListener(() {
+    //   print(pageController.page);
+    // });
     // TODO: implement build
     return Stack(
       children: [
@@ -36,100 +41,137 @@ class HomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
 
-            AdaptiveScroll(
-              [
-                  //RCubed(),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 10),
-                        child: ScrollItem(
-                          boxfit: BoxFit.fitHeight,
-                          topPadding: 50,
-                          height: min(MediaQuery.of(context).size.height - 100, 400),
-                          width: 600,
-                          child: Column(
-                              children: [
-                                SvgPicture.asset(
-                                  'assets/images/RcubedLogoFinal.svg',
-                                  fit: BoxFit.fitHeight,
-                                  //color: MyTheme().primary.withOpacity(1),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 30),
-                                  child: SvgPicture.asset(
-                                    'assets/images/relresrep.svg',
-                                    //color: MyTheme().primary.withOpacity(1),
-                                  ),
-                                )
-                              ],
-                            ),
-                        ),
-                      ),
+            PageScroll(
+                pageDescription: "Home Page",
+                children: [
+                  ScrollPage( // WHAT WE DO
+                    topPadding: 45,
+                    bottomPadding: 0,
+                    description: "What We Do",
+                    pages: [
+                      WhatWeDo(),
+                      EnterpriseApp(),
                     ],
                   ),
 
-
-
-
-                ScrollWindow( // WHAT WE DO
-                  topPadding: 45,
-                  bottomPadding: 0,
-                  description: "What We Do",
-                  pages: [
-                    WhatWeDo(),
-                    EnterpriseApp(),
-                  ],
-                ),
-
-                ScrollWindow(
-                  topPadding: 45,
-                  bottomPadding: 0,
-                  description: "Careers",
-                  pages: [
-                    PageTwo(),
-                    PageTwo(),
-                    PageTwo(),
-                  ],
-                ),
-
-                ScrollWindow(
-                  topPadding: 45,
-                    bottomPadding: 0,
-                    description: "Contact",
-                    pages: [
-                      PageThree(),
-                      PageThree(),
-                      PageThree(),
-                      PageThree(),
-                    ]
-                ),
-
-                ScrollWindow(
+                  ScrollPage(
                     topPadding: 45,
                     bottomPadding: 0,
-                    description: "Why Us",
+                    description: "Careers",
                     pages: [
-                      PageFour(),
-                      PageFour(),
-                      PageFour(),
-                      PageFour(),
-                    ]
-                ),
-
-                // SizedBox(
-                //   height: 2000,
-                // ),
-                Padding(
-                  padding: EdgeInsets.only(top: 40),
-                  child: Container(
-                    height: 200,
-                    color: Colors.grey,
+                      RCubed(),
+                      PageTwo(),
+                      PageTwo(),
+                    ],
                   ),
-                ),
-              ],
-            ),
+
+                  ScrollPage(
+                      topPadding: 45,
+                      bottomPadding: 0,
+                      description: "Contact",
+                      pages: [
+                        PageThree(),
+                        PageThree(),
+                        PageThree(),
+                        PageThree(),
+                      ]
+                  ),
+            ]),
+            // AdaptiveScroll(
+            //
+            //   [
+            //       //RCubed(),
+            //       Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           Padding(
+            //             padding: EdgeInsets.only(left: 10, right: 10),
+            //             child: ScrollItem(
+            //               boxfit: BoxFit.fitHeight,
+            //               topPadding: 50,
+            //               height: min(MediaQuery.of(context).size.height - 100, 400),
+            //               width: 600,
+            //               child: Column(
+            //                   children: [
+            //                     SvgPicture.asset(
+            //                       'assets/images/RcubedLogoFinal.svg',
+            //                       fit: BoxFit.fitHeight,
+            //                       //color: MyTheme().primary.withOpacity(1),
+            //                     ),
+            //                     Padding(
+            //                       padding: EdgeInsets.only(top: 30),
+            //                       child: SvgPicture.asset(
+            //                         'assets/images/relresrep.svg',
+            //                         //color: MyTheme().primary.withOpacity(1),
+            //                       ),
+            //                     )
+            //                   ],
+            //                 ),
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //
+            //
+            //
+            //
+            //     ScrollWindow( // WHAT WE DO
+            //       topPadding: 45,
+            //       bottomPadding: 0,
+            //       description: "What We Do",
+            //       pages: [
+            //         WhatWeDo(),
+            //         EnterpriseApp(),
+            //       ],
+            //     ),
+            //
+            //     ScrollWindow(
+            //       topPadding: 45,
+            //       bottomPadding: 0,
+            //       description: "Careers",
+            //       pages: [
+            //         RCubed(),
+            //         PageTwo(),
+            //         PageTwo(),
+            //       ],
+            //     ),
+            //
+            //     ScrollWindow(
+            //       topPadding: 45,
+            //         bottomPadding: 0,
+            //         description: "Contact",
+            //         pages: [
+            //           PageThree(),
+            //           PageThree(),
+            //           PageThree(),
+            //           PageThree(),
+            //         ]
+            //     ),
+            //
+            //     ScrollWindow(
+            //         topPadding: 45,
+            //         bottomPadding: 0,
+            //         description: "Why Us",
+            //         pages: [
+            //           PageFour(),
+            //           PageFour(),
+            //           PageFour(),
+            //           PageFour(),
+            //         ]
+            //     ),
+            //
+            //     // SizedBox(
+            //     //   height: 2000,
+            //     // ),
+            //     Padding(
+            //       padding: EdgeInsets.only(top: 40),
+            //       child: Container(
+            //         height: 200,
+            //         color: Colors.grey,
+            //       ),
+            //     ),
+            //   ],
+            // ),
           ],
         ),
         NavBar(),

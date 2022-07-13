@@ -7,17 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/theme.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
-import 'package:rcubed/widgets/scroll_window/scroll_window.dart';
+import 'package:rcubed/widgets/scroll_window/scroll_page.dart';
 
 import '../../main.dart';
 import '../blurredBox.dart';
 
-class ScrollWindowDesktop extends StatelessWidget{
+class ScrollPageDesktop extends StatelessWidget{
   final double topPadding, bottomPadding;
   final List<Widget> pages;
   final String description;
 
-  ScrollWindowDesktop({Key? key, required this.pages, required this.description, double this.topPadding=0, double this.bottomPadding=0}) : super(key: key);
+  ScrollPageDesktop({Key? key, required this.pages, required this.description, double this.topPadding=0, double this.bottomPadding=0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

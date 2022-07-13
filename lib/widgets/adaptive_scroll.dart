@@ -6,7 +6,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
-import 'package:rcubed/widgets/scroll_window/scroll_window.dart';
+import 'package:rcubed/widgets/scroll_window/scroll_page.dart';
 
 import '../main.dart';
 
