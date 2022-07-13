@@ -20,6 +20,7 @@ void main() {
         ChangeNotifierProvider(create: (_)=>PageIndex()),
         ChangeNotifierProvider(create: (_)=>IgnoreMouse()),
         ChangeNotifierProvider(create: (_)=>PageHandler()),
+        ChangeNotifierProvider(create: (_)=>AbsorbInput()),
       ],
       child: MyApp(),
     ),
@@ -245,4 +246,34 @@ class PageHandler extends ChangeNotifier{
     return _absorbing;
   }
 
+}
+
+class AbsorbInput extends ChangeNotifier{
+  bool _isAbsorbing = false;
+  ScrollPhysics _scrollPhysics = ClampingScrollPhysics();
+  int scrollDirection = 0;
+
+  void setAbsorb(bool absorb){
+    _isAbsorbing = absorb;
+    notifyListeners();
+  }
+
+  bool isAbsorbing(){
+    return _isAbsorbing;
+  }
+
+  void setPhysics(ScrollPhysics scrollPhysics){
+    _scrollPhysics = scrollPhysics;
+    notifyListeners();
+  }
+  ScrollPhysics getScrollPhysics(){
+    return _scrollPhysics;
+  }
+
+  void updateScrollDirection(int direction){
+    if(scrollDirection != direction){
+      scrollDirection = direction;
+      setPhysics(ClampingScrollPhysics());
+    }
+  }
 }

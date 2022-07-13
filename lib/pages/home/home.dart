@@ -15,6 +15,7 @@ import 'package:rcubed/pages/what_we_do/enterprise_applications.dart';
 import 'package:rcubed/widgets/page_scroll.dart';
 import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
 import 'package:rcubed/widgets/scroll_window/scroll_page.dart';
+import 'package:transparent_pointer/transparent_pointer.dart';
 import '../../themes/theme.dart';
 import '../../widgets/adaptive_scroll.dart';
 import '../../widgets/backgroundImage.dart';
@@ -37,42 +38,47 @@ class HomePageState extends State<HomePage> {
   ScrollController _scrollController = ScrollController();
   PageController _pageController = PageController();
 
+  List<Widget> pageItems = [
+    TestScrollObject(),
+    Container(color: Colors.blue,),
+    Container(color: Colors.orange,)
+  ];
+
   @override
   Widget build(BuildContext context) {
+    _pageController.addListener(() {
+      int direction = _pageController.position.userScrollDirection.index;
+      Provider.of<AbsorbInput>(context, listen: false).updateScrollDirection(direction);
+    });
+
     // TODO: implement build
     return Scaffold(
       body: NestedScrollView(
+        floatHeaderSlivers: true,
         controller: _scrollController,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text("Flutter Demo5"),
+              ),
               backgroundColor: MyTheme.primary,
               shadowColor: Colors.black,
+              floating: true,
               //pinned: true,
-              title: Text("Flutter Demo"),
+
             ),
           ];
         },
         body: PageView.builder(
-            itemCount: 10,
+            itemCount: pageItems.length,
             scrollDirection: Axis.vertical,
             controller: _pageController,
             pageSnapping: false,
             itemBuilder: (c, i) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 300,
-                  color: Colors.blue,
-                  child: ListView.builder(
-                    controller: ScrollController(),
-                    itemCount: 10,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Padding(padding: EdgeInsets.all(150), child: Container(height: 100, color: Colors.black,),);
-                    },
-
-                  ),
-                ),
+                child: pageItems[i],
               );
             }),
       ),
@@ -234,43 +240,44 @@ class HomePageState extends State<HomePage> {
 //   }
 // }
 
-class ScrollItem extends StatelessWidget {
-  final double topPadding, bottomPadding, sidePadding, height, width;
-  final Widget child;
-  final BoxFit boxfit;
-
-  const ScrollItem(
-      {Key? key,
-      double this.topPadding = 0,
-      double this.bottomPadding = 0,
-      double this.sidePadding = 0,
-      double this.height = 100,
-      double this.width = 800,
-      BoxFit this.boxfit = BoxFit.fitHeight,
-      required this.child})
-      : super(key: key);
-
+class TestScrollObject extends StatelessWidget{
+  ScrollController scrollController = ScrollController(keepScrollOffset: true);
+  DraggableScrollableController dragController = DraggableScrollableController();
   @override
   Widget build(BuildContext context) {
+    scrollController.addListener(() {
+      print(scrollController.offset);
+      if(scrollController.position.atEdge){
+        Provider.of<AbsorbInput>(context,listen: false).setPhysics(NeverScrollableScrollPhysics());
+        Provider.of<AbsorbInput>(context,listen: false).setAbsorb(true);
+        // scrollController.position.context.
+      }
+    });
     // TODO: implement build
-    return Align(
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-            sidePadding, topPadding, sidePadding, bottomPadding),
-        child: FittedBox(
-          child: Container(
-            // color: Colors.white,
-            width: width,
-            height: height,
-            child: FittedBox(
-              fit: boxfit,
-              child: Align(
-                child: child,
-              ),
-            ),
-          ),
+    return GestureDetector(
+      onPanDown: (pan){
+        Provider.of<AbsorbInput>(context,listen: false).setAbsorb(false);
+      },
+      onPanStart: (pan){
+        Provider.of<AbsorbInput>(context,listen: false).setAbsorb(false);
+      },
+      child: AbsorbPointer(
+        absorbing: Provider.of<AbsorbInput>(context).isAbsorbing(),
+        child: ListView.builder(
+            controller: scrollController,
+            itemCount: 10,
+            physics: ClampingScrollPhysics(),
+            //physics: Provider.of<AbsorbInput>(context).getScrollPhysics(),
+            itemBuilder: (c,i){
+              return Padding(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Container(height: 100,
+                  color: Colors.black,),
+              );
+            }
         ),
       ),
     );
   }
+
 }
