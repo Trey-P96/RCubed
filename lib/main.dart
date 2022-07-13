@@ -48,9 +48,7 @@ class MyApp extends StatelessWidget {
           fontSizeFactor: 1.1
         )
       ),
-      home: Scaffold(
-        body: HomePage(),
-      ),
+      home: HomePage(),
 
     );
   }
