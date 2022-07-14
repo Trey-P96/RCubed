@@ -24,7 +24,7 @@ class NavBarMobile extends StatelessWidget {
       //height: 52,
     );
 
-    // TODO: implement build
+    
     return Column(
       children: [
         Container(
@@ -104,7 +104,7 @@ class _NavBarObject extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Text(
       title,
       style: TextStyle(

@@ -9,7 +9,7 @@ class Logo extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return SizedBox(
       child: SvgPicture.asset(
             'assets/images/CompleteLogo.svg',

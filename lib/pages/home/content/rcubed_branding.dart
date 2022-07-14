@@ -10,7 +10,7 @@ class RCubed extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return RCubedState();
   }
 
@@ -33,7 +33,7 @@ class RCubedState extends State<RCubed>{
         // });
       }
     });
-    // TODO: implement build
+    
     return GestureDetector(
       onVerticalDragUpdate: (drag){
         print(drag.delta.dy);

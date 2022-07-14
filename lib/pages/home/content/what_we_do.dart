@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 class PageOne extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Container(
       alignment: Alignment.center,
       child: Text("ABOUT US"),
@@ -15,7 +15,7 @@ class PageOne extends StatelessWidget{
 class PageTwo extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Container(
       alignment: Alignment.center,
       child: Text("CAREERS"),
@@ -26,7 +26,7 @@ class PageTwo extends StatelessWidget{
 class PageThree extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Container(
       alignment: Alignment.center,
       child: Text("CONTACT15"),
@@ -37,7 +37,7 @@ class PageThree extends StatelessWidget{
 class PageFour extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Container(
       alignment: Alignment.center,
       child: Text("WHY US"),

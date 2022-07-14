@@ -8,7 +8,7 @@ class NavBar extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return ScreenTypeLayout(
       mobile: NavBarMobile(),
       desktop: NavBarDesktop(),

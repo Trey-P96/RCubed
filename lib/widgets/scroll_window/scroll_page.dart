@@ -13,7 +13,7 @@ class ScrollPage extends StatelessWidget{
   ScrollPage({Key? key, required this.description, required this.pages, double this.topPadding=0, double this.bottomPadding=0}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return ScreenTypeLayout(
       mobile: ScrollPageMobile(pages:pages, description: this.description, topPadding: topPadding, bottomPadding: bottomPadding,),
       desktop: ScrollPageDesktop(pages: pages, description: this.description, topPadding: topPadding, bottomPadding: bottomPadding,),);

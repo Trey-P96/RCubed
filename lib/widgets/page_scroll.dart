@@ -13,7 +13,7 @@ class PageScroll extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return PageScrollState();
   }
 
@@ -65,7 +65,7 @@ class PageScrollState extends State<PageScroll>{
     });
 
 
-    // TODO: implement build
+    
     return Expanded(
       child: PageView.builder(
           scrollDirection: Axis.vertical,

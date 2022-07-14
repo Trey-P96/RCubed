@@ -16,7 +16,7 @@ class AdaptiveScroll extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
+    
     return AdaptiveScrollState();
   }
 }
@@ -47,7 +47,7 @@ class AdaptiveScrollState extends State<AdaptiveScroll> {
   @override
   Widget build(BuildContext context) {
     Provider.of<PageIndex>(context).updateController(controller);
-    // TODO: implement build
+    
     return Expanded(
       child: Listener(
         onPointerDown: (pointer) {

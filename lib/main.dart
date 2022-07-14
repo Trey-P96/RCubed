@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/providers/smooth_scroll_provider.dart';
 import 'package:rcubed/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
@@ -21,6 +22,7 @@ void main() {
         ChangeNotifierProvider(create: (_)=>IgnoreMouse()),
         ChangeNotifierProvider(create: (_)=>PageHandler()),
         ChangeNotifierProvider(create: (_)=>AbsorbInput()),
+        ChangeNotifierProvider(create: (_)=>SmoothScroll()),
       ],
       child: MyApp(),
     ),

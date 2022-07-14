@@ -16,7 +16,7 @@ class NavBarDesktop extends StatelessWidget{
         width: 60,
     );
 
-    // TODO: implement build
+    
     return Container(
       decoration: BoxDecoration(
         color: MyTheme.primary,
@@ -58,7 +58,7 @@ class _NavBarObject extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    
     return Padding(
       padding: EdgeInsets.only(right: 50),
       child: InkWell(
