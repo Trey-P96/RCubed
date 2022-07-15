@@ -21,19 +21,30 @@ class SmoothListScroll extends StatefulWidget{
 class SmoothListScrollState extends State<SmoothListScroll>{
   final ScrollController _scrollController = ScrollController();
   final ScrollController _dummyController = ScrollController();
+  late Timer _timer;
   late double beginScrollOffset;
   late bool isScrolling;
   List<double> pointerSignalInput = [];
   List<double> pointerSignalInputDelta = [];
 
-  SmoothListScrollState(){_start();}
+  SmoothListScrollState(){}
 
-  void _start() { //TODO: dispose timer, etc.
-    Timer.periodic(const Duration(milliseconds: 1), (timer) {
+  @override
+  void initState(){ //TODO: dispose timer, etc.
+    super.initState();
+    _timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
       if(pointerSignalInput.isEmpty)beginScrollOffset = _scrollController.offset;
       isScrolling = _scrollController.position.activity!.isScrolling;
       disposeList();
     });
+  }
+
+  @override
+  void dispose(){
+    _scrollController.dispose();
+    _dummyController.dispose();
+    _timer.cancel();
+    super.dispose();
   }
 
   @override

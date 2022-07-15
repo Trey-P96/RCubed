@@ -40,6 +40,9 @@ class HomePageState extends State<HomePage> {
   PageController _pageController = PageController();
 
   List<Widget> pageItems = [
+    Container(
+      color: Colors.blue,
+    ),
     SmoothListScroll(
       children: [
         Padding(
