@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 class SmoothScroll extends ChangeNotifier{
   Map<StatefulWidget, ScrollPhysics> _physicsMap = {};
   Map<StatefulWidget, PointerDeviceKind> _deviceMap = {};
-  late StatefulWidget _activeScrollView;
+  Map<StatefulWidget, double> _controllerOffsetMap = {};
 
   void updatePhysics(StatefulWidget widget, ScrollPhysics scrollPhysics){
     _physicsMap.putIfAbsent(widget, () => scrollPhysics);
@@ -15,15 +15,19 @@ class SmoothScroll extends ChangeNotifier{
   void updateDevice(StatefulWidget widget, PointerDeviceKind device){
     _deviceMap.putIfAbsent(widget, () => device);
     _deviceMap.update(widget, (value) => device);
-    _activeScrollView = widget;
-    if(device == PointerDeviceKind.touch) updatePhysics(widget, AlwaysScrollableScrollPhysics());
+    if(device == PointerDeviceKind.touch) updatePhysics(widget, ClampingScrollPhysics());
     else updatePhysics(widget, NeverScrollableScrollPhysics());
     notifyListeners();
   }
 
+  void updateOffset(StatefulWidget widget, double offset){
+    _controllerOffsetMap.putIfAbsent(widget, () => offset);
+    _controllerOffsetMap.update(widget, (value) => offset);
+  }
+
   ScrollPhysics getPhysics(StatefulWidget widget){
     if(_physicsMap.containsKey(widget)) return _physicsMap[widget]!;
-    else return AlwaysScrollableScrollPhysics();
+    else return ClampingScrollPhysics();
   }
 
   PointerDeviceKind getDevice(StatefulWidget widget){
@@ -31,7 +35,8 @@ class SmoothScroll extends ChangeNotifier{
     else return PointerDeviceKind.touch;
   }
 
-  StatefulWidget getActiveScrollView(){
-    return _activeScrollView;
+  double getOffset(StatefulWidget widget){
+    if(_controllerOffsetMap.containsKey(widget)) return _controllerOffsetMap[widget]!;
+    else return 0;
   }
 }

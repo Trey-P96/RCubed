@@ -1,14 +1,10 @@
-
-
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
-import 'package:transparent_pointer/transparent_pointer.dart';
 
 class SmoothListScroll extends StatefulWidget{
   final List<Widget> children;
@@ -19,19 +15,18 @@ class SmoothListScroll extends StatefulWidget{
 }
 
 class SmoothListScrollState extends State<SmoothListScroll>{
-  final ScrollController _scrollController = ScrollController();
   final ScrollController _dummyController = ScrollController();
+  late ScrollController _scrollController;
   late Timer _timer;
-  late double beginScrollOffset;
+  late double initialScrollOffset, beginScrollOffset;
   late bool isScrolling;
   List<double> pointerSignalInput = [];
   List<double> pointerSignalInputDelta = [];
 
-  SmoothListScrollState(){}
-
   @override
   void initState(){ //TODO: dispose timer, etc.
     super.initState();
+    _scrollController = ScrollController(initialScrollOffset: Provider.of<SmoothScroll>(context,listen: false).getOffset(widget));
     _timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
       if(pointerSignalInput.isEmpty)beginScrollOffset = _scrollController.offset;
       isScrolling = _scrollController.position.activity!.isScrolling;
@@ -52,6 +47,8 @@ class SmoothListScrollState extends State<SmoothListScroll>{
     SmoothScroll scrollProvider = Provider.of<SmoothScroll>(context, listen: false);
     PointerDeviceKind currentDevice = Provider.of<SmoothScroll>(context).getDevice(widget);
 
+    _scrollController.addListener(() {scrollProvider.updateOffset(widget, _scrollController.offset);});
+
     return Listener(
       onPointerHover: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
         if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget, device.kind);}
@@ -67,11 +64,11 @@ class SmoothListScrollState extends State<SmoothListScroll>{
           pointerSignalInput.add(device.scrollDelta.dy);
 
           if(isTrackPad(device)){
-            _scrollController.jumpTo(_scrollController.offset + device.scrollDelta.dy);
+            jumpTo(_scrollController.offset + device.scrollDelta.dy);
             _dummyController.jumpTo(_scrollController.offset);
           }
-          else{
-            _scrollController.animateTo(beginScrollOffset+pointerSignalInput.sum, duration: Duration(milliseconds: 800), curve: Curves.easeOutQuart);
+          else{ // device is mouse scrollwheel
+            _scrollController.animateTo(beginScrollOffset+pointerSignalInput.sum, duration: Duration(milliseconds: 300), curve: Curves.easeOutQuart);
             _dummyController.jumpTo(_scrollController.offset);
           }
         }
@@ -95,10 +92,8 @@ class SmoothListScrollState extends State<SmoothListScroll>{
             maintainAnimation: true,
             child: ListView.builder(
                 scrollDirection: Axis.vertical,
-                // primary: true,
-                // shrinkWrap: true,
                 controller: _dummyController,
-                physics: AlwaysScrollableScrollPhysics(),
+                physics: ClampingScrollPhysics(),
                 itemCount: widget.children.length,
                 itemBuilder: (ctx, i){
                   return widget.children[i];
@@ -108,6 +103,8 @@ class SmoothListScrollState extends State<SmoothListScroll>{
       ),
     );
   }
+
+
 
 // -----------------------------------------------------------------------
 //                            Utility Functions
@@ -119,6 +116,18 @@ class SmoothListScrollState extends State<SmoothListScroll>{
 
   bool isTrackPad(PointerScrollEvent input){
     return pointerSignalInputDelta.average != input.scrollDelta.dy.abs();
+  }
+
+  void jumpTo(double offset){
+    if(offset > _scrollController.position.maxScrollExtent){
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    }
+    else if(offset < _scrollController.position.minScrollExtent){
+      _scrollController.jumpTo(_scrollController.position.minScrollExtent);
+    }
+    else{
+      _scrollController.jumpTo(offset);
+    }
   }
 
   void disposeList(){
