@@ -74,8 +74,9 @@ class HomePageState extends State<HomePage> {
           Background(),
 
           PageView.builder(
+              // dragStartBehavior: DragStartBehavior.down,
               itemCount: pageItems.length,
-              physics: NeverScrollableScrollPhysics(),
+              // physics: NeverScrollableScrollPhysics(),
               scrollDirection: Axis.vertical,
               controller: _pageController,
               // physics: ClampingScrollPhysics(),

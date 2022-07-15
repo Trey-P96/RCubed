@@ -4,6 +4,7 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
@@ -19,6 +20,7 @@ class SmoothListScroll extends StatefulWidget{
 
 class SmoothListScrollState extends State<SmoothListScroll>{
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _dummyController = ScrollController();
   late double beginScrollOffset;
   late bool isScrolling;
   List<double> pointerSignalInput = [];
@@ -62,19 +64,40 @@ class SmoothListScrollState extends State<SmoothListScroll>{
           }
           else{
             _scrollController.animateTo(beginScrollOffset+pointerSignalInput.sum, duration: Duration(milliseconds: 800), curve: Curves.easeOutQuart);
+            _dummyController.jumpTo(_scrollController.offset);
           }
         }
       },
-      child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          // primary: true,
-          // shrinkWrap: true,
-          controller: _scrollController,
-          physics: Provider.of<SmoothScroll>(context).getPhysics(widget),
-          itemCount: widget.children.length,
-          itemBuilder: (ctx, i){
-            return widget.children[i];
-          }),
+      child: Stack(
+        children: [
+          ListView.builder(
+              scrollDirection: Axis.vertical,
+              controller: _scrollController,
+              physics: Provider.of<SmoothScroll>(context).getPhysics(widget),
+              itemCount: widget.children.length,
+              itemBuilder: (ctx, i){
+                return widget.children[i];
+              }),
+          Visibility(
+            visible: false,
+            maintainState: true,
+            maintainSize: true,
+            maintainSemantics: true,
+            maintainInteractivity: true,
+            maintainAnimation: true,
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                // primary: true,
+                // shrinkWrap: true,
+                controller: _dummyController,
+                physics: AlwaysScrollableScrollPhysics(),
+                itemCount: widget.children.length,
+                itemBuilder: (ctx, i){
+                  return widget.children[i];
+                }),
+          ),
+        ],
+      ),
     );
   }
 
