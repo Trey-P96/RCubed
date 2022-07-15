@@ -66,12 +66,9 @@ class SmoothListScrollState extends State<SmoothListScroll>{
           pointerSignalInputDelta.add(device.scrollDelta.dy.abs());
           pointerSignalInput.add(device.scrollDelta.dy);
 
-          // if(_scrollController.position.atEdge){
-          //   // UPDATE PARENT PHYSICS to alwaysscrollable
-          // } else // update parent physics to neverscrollable
-
           if(isTrackPad(device)){
             _scrollController.jumpTo(_scrollController.offset + device.scrollDelta.dy);
+            _dummyController.jumpTo(_scrollController.offset);
           }
           else{
             _scrollController.animateTo(beginScrollOffset+pointerSignalInput.sum, duration: Duration(milliseconds: 800), curve: Curves.easeOutQuart);
