@@ -3,10 +3,12 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/providers/input_device_provider.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
 import 'package:rcubed/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
+import 'package:rcubed/widgets/device_handler/device_handler.dart';
 import 'package:rcubed/widgets/scroll_window/scroll_page.dart';
 
 void main() {
@@ -22,7 +24,9 @@ void main() {
         ChangeNotifierProvider(create: (_)=>IgnoreMouse()),
         ChangeNotifierProvider(create: (_)=>PageHandler()),
         ChangeNotifierProvider(create: (_)=>AbsorbInput()),
-        ChangeNotifierProvider(create: (_)=>SmoothScroll()),
+        ChangeNotifierProvider(create: (_)=>SmoothScrollProvider()),
+        ChangeNotifierProvider(create: (_)=>InputDevice()),
+        ChangeNotifierProvider(create: (_)=>ControllerProvider()),
       ],
       child: MyApp(),
     ),
@@ -51,7 +55,9 @@ class MyApp extends StatelessWidget {
           fontSizeFactor: 1.1
         )
       ),
-      home: HomePage(),
+      home: InputDeviceHandler(
+          child: SafeArea(child: HomePage())
+      ),
 
     );
   }

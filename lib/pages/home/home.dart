@@ -8,88 +8,91 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:rcubed/content/home_content.dart';
 import 'package:rcubed/main.dart';
-import 'package:rcubed/pages/home/content/rcubed_branding.dart';
-import 'package:rcubed/pages/home/content/what_we_do.dart';
-import 'package:rcubed/pages/what_we_do/enterprise_applications.dart';
-import 'package:rcubed/widgets/page_scroll.dart';
-import 'package:rcubed/widgets/rcubed_logo/rcubed_logo.dart';
-import 'package:rcubed/widgets/scroll_window/scroll_page.dart';
+import 'package:rcubed/providers/smooth_scroll_provider.dart';
+import 'package:rcubed/widgets/smooth_scroll/sliver_testing.dart';
 import 'package:transparent_pointer/transparent_pointer.dart';
 import '../../themes/theme.dart';
-import '../../widgets/adaptive_scroll.dart';
 import '../../widgets/backgroundImage.dart';
 import '../../widgets/navigation_bar/nav_bar.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_test/flutter_test.dart' as tester;
+import 'dart:developer' as developer;
 
-import '../../widgets/smooth_scroll/smooth_list_scroll.dart';
-import '../what_we_do/what_we_do.dart';
+import '../../widgets/smooth_scroll/SmoothScroll.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-
     return HomePageState();
   }
 }
 
 class HomePageState extends State<HomePage> {
-  PageController _pageController = PageController();
+  ScrollController scrollController = ScrollController();
 
-  List<Widget> pageItems = [
-    Container(
-      color: Colors.blue,
-    ),
-    SmoothListScroll(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(height: 400, color: Colors.red,),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(height: 400, color: Colors.orange,),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(height: 400, color: Colors.red,),
-        ),
-      ],
-    ),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.orange,
-    )
-  ];
+  //final keytest = GlobalKey<SliverScrollState>();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-
-    
     return Scaffold(
       body: Stack(
         children: [
           Background(),
 
-          PageView.builder(
-              // dragStartBehavior: DragStartBehavior.down,
-              itemCount: pageItems.length,
-              // physics: NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              controller: _pageController,
-              // physics: ClampingScrollPhysics(),
-              pageSnapping: false,
-              itemBuilder: (c, i) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: pageItems[i],
-                );
-              }),
+
+          SizedBox(
+            height: 400,
+            child: SliverScroll(children: [
+              Container(height: 300, color: Colors.black,),
+              Container(height: 300, color: Colors.orange,),
+              Container(height: 300, color: Colors.black,),
+              Container(height: 300, color: Colors.orange,),
+              SizedBox(
+                height: 500,
+                child: SliverScroll(children: [
+                  Container(height: 300, color: Colors.blue,),
+                  Container(height: 300, color: Colors.red,),
+                  Container(height: 300, color: Colors.blue,),
+                  Container(height: 300, color: Colors.red,),
+                  SizedBox(
+                    height: 700,
+                    child: SliverScroll(children: MyTheme.testing,),
+                  ),
+                ],)
+              ),
+            ]),
+          ),
+
+          // SizedBox(
+          //   height: 500,
+          //   child: SliverScroll(
+          //     children: [
+          //       // Container(height: 300, color: Colors.blue,),
+          //       // Container(height: 300, color: Colors.red,),
+          //       // Container(height: 300, color: Colors.orange,),
+          //       // Container(height: 300, color: Colors.green,),
+          //       SizedBox(
+          //         height: 400,
+          //         child: SliverScroll(children: [
+          //           Container(height: 300, color: Colors.black,),
+          //           Container(height: 300, color: Colors.orange,),
+          //           Container(height: 300, color: Colors.black,),
+          //           Container(height: 300, color: Colors.orange,),
+          //         ]),
+          //       )
+          //     ],
+          //   ),
+          // ),
+
+
+
 
           NavBar(),
         ],
@@ -105,7 +108,7 @@ class HomePageState extends State<HomePage> {
 //     // pageController.addListener(() {
 //     //   print(pageController.page);
 //     // });
-//     
+//
 //     return Stack(
 //       children: [
 //         const Background(),
@@ -252,10 +255,9 @@ class HomePageState extends State<HomePage> {
 //   }
 // }
 
-
-
 class NestedScrollableWidget extends StatelessWidget {
   final List<Widget> children;
+
   NestedScrollableWidget({required this.children, Key? key}) : super(key: key);
 
   ScrollController scrollController = ScrollController();
@@ -264,16 +266,16 @@ class NestedScrollableWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     scrollController.addListener(() {
-      if (scrollController.position.atEdge && device == PointerDeviceKind.touch) {
+      if (scrollController.position.atEdge &&
+          device == PointerDeviceKind.touch) {
         Provider.of<AbsorbInput>(context, listen: false).setAbsorb(true);
       }
     });
 
-    
     return Listener(
-      onPointerSignal: (pointer)=>device = pointer.kind,
-      onPointerDown: (pointer)=>device = pointer.kind,
-      onPointerHover: (pointer)=>device = pointer.kind,
+      onPointerSignal: (pointer) => device = pointer.kind,
+      onPointerDown: (pointer) => device = pointer.kind,
+      onPointerHover: (pointer) => device = pointer.kind,
       child: GestureDetector(
         onPanDown: (pan) {
           Provider.of<AbsorbInput>(context, listen: false).setAbsorb(false);
@@ -284,7 +286,8 @@ class NestedScrollableWidget extends StatelessWidget {
         child: AbsorbPointer(
           absorbing: Provider.of<AbsorbInput>(context).isAbsorbing(),
           child: ScrollConfiguration(
-            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+            behavior:
+                ScrollConfiguration.of(context).copyWith(scrollbars: false),
             child: RawScrollbar(
               thumbColor: Colors.black,
               thickness: 0,
@@ -302,5 +305,18 @@ class NestedScrollableWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class ControllerProvider extends ChangeNotifier {
+  ScrollController controller = ScrollController();
+
+  void updateController(ScrollController controller) {
+    this.controller = controller;
+    notifyListeners();
+  }
+
+  ScrollController getController() {
+    return controller;
   }
 }

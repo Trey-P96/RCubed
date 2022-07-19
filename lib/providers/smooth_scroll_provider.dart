@@ -1,18 +1,20 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 
-class SmoothScroll extends ChangeNotifier{
-  Map<StatefulWidget, ScrollPhysics> _physicsMap = {};
-  Map<StatefulWidget, PointerDeviceKind> _deviceMap = {};
-  Map<StatefulWidget, double> _controllerOffsetMap = {};
+import '../widgets/smooth_scroll/SmoothScroll.dart';
 
-  void updatePhysics(StatefulWidget widget, ScrollPhysics scrollPhysics){
+class SmoothScrollProvider extends ChangeNotifier{
+  Map<SmoothScroll, ScrollPhysics> _physicsMap = {};
+  Map<SmoothScroll, PointerDeviceKind> _deviceMap = {};
+  Map<SmoothScroll, double> _controllerOffsetMap = {};
+
+  void updatePhysics(SmoothScroll widget, ScrollPhysics scrollPhysics){
     _physicsMap.putIfAbsent(widget, () => scrollPhysics);
     _physicsMap.update(widget, (value) => scrollPhysics);
     notifyListeners();
   }
 
-  void updateDevice(StatefulWidget widget, PointerDeviceKind device){
+  void updateDevice(SmoothScroll widget, PointerDeviceKind device){
     _deviceMap.putIfAbsent(widget, () => device);
     _deviceMap.update(widget, (value) => device);
     if(device == PointerDeviceKind.touch) updatePhysics(widget, ClampingScrollPhysics());
@@ -20,22 +22,22 @@ class SmoothScroll extends ChangeNotifier{
     notifyListeners();
   }
 
-  void updateOffset(StatefulWidget widget, double offset){
+  void updateOffset(SmoothScroll widget, double offset){
     _controllerOffsetMap.putIfAbsent(widget, () => offset);
     _controllerOffsetMap.update(widget, (value) => offset);
   }
 
-  ScrollPhysics getPhysics(StatefulWidget widget){
+  ScrollPhysics getPhysics(SmoothScroll widget){
     if(_physicsMap.containsKey(widget)) return _physicsMap[widget]!;
     else return ClampingScrollPhysics();
   }
 
-  PointerDeviceKind getDevice(StatefulWidget widget){
+  PointerDeviceKind getDevice(SmoothScroll widget){
     if(_deviceMap.containsKey(widget)) return _deviceMap[widget]!;
     else return PointerDeviceKind.touch;
   }
 
-  double getOffset(StatefulWidget widget){
+  double getOffset(SmoothScroll widget){
     if(_controllerOffsetMap.containsKey(widget)) return _controllerOffsetMap[widget]!;
     else return 0;
   }

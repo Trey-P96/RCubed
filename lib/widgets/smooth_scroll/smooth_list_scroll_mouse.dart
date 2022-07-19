@@ -6,15 +6,18 @@ import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
 
-class SmoothListScroll extends StatefulWidget{
+import 'SmoothScroll.dart';
+
+class SmoothScrollMouse extends StatefulWidget{
   final List<Widget> children;
-  const SmoothListScroll({required this.children, Key? key}) : super(key: key);
+  final SmoothScroll parent;
+  const SmoothScrollMouse({required this.children, required this.parent, Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => SmoothListScrollState();
+  State<StatefulWidget> createState() => SmoothScrollMouseState();
 }
 
-class SmoothListScrollState extends State<SmoothListScroll>{
+class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   final ScrollController _dummyController = ScrollController();
   late ScrollController _scrollController;
   late Timer _timer;
@@ -26,7 +29,7 @@ class SmoothListScrollState extends State<SmoothListScroll>{
   @override
   void initState(){ //TODO: dispose timer, etc.
     super.initState();
-    _scrollController = ScrollController(initialScrollOffset: Provider.of<SmoothScroll>(context,listen: false).getOffset(widget));
+    _scrollController = ScrollController(initialScrollOffset: Provider.of<SmoothScrollProvider>(context,listen: false).getOffset(widget.parent));
     _timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
       if(pointerSignalInput.isEmpty)beginScrollOffset = _scrollController.offset;
       isScrolling = _scrollController.position.activity!.isScrolling;
@@ -44,20 +47,20 @@ class SmoothListScrollState extends State<SmoothListScroll>{
 
   @override
   Widget build(BuildContext context) {
-    SmoothScroll scrollProvider = Provider.of<SmoothScroll>(context, listen: false);
-    PointerDeviceKind currentDevice = Provider.of<SmoothScroll>(context).getDevice(widget);
+    SmoothScrollProvider scrollProvider = Provider.of<SmoothScrollProvider>(context, listen: false);
+    PointerDeviceKind currentDevice = Provider.of<SmoothScrollProvider>(context).getDevice(widget.parent);
 
-    _scrollController.addListener(() {scrollProvider.updateOffset(widget, _scrollController.offset);});
+    _scrollController.addListener(() {scrollProvider.updateOffset(widget.parent, _scrollController.offset);});
 
     return Listener(
       onPointerHover: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
-        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget, device.kind);}
+        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget.parent, device.kind);}
       },
       onPointerDown: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
-        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget, device.kind);}
+        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget.parent, device.kind);}
       },
       onPointerSignal: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
-        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget, device.kind);}
+        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget.parent, device.kind);}
 
         if(device is PointerScrollEvent){
           pointerSignalInputDelta.add(device.scrollDelta.dy.abs());
@@ -78,7 +81,7 @@ class SmoothListScrollState extends State<SmoothListScroll>{
           ListView.builder(
               scrollDirection: Axis.vertical,
               controller: _scrollController,
-              physics: Provider.of<SmoothScroll>(context).getPhysics(widget),
+              physics: Provider.of<SmoothScrollProvider>(context).getPhysics(widget.parent),
               itemCount: widget.children.length,
               itemBuilder: (ctx, i){
                 return widget.children[i];
