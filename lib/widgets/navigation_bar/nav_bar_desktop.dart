@@ -16,7 +16,6 @@ class NavBarDesktop extends StatelessWidget{
         width: 60,
     );
 
-    
     return Container(
       decoration: BoxDecoration(
         color: MyTheme.primary,

@@ -10,7 +10,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/main.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
-import 'package:rcubed/widgets/smooth_scroll/sliver_testing.dart';
+import 'package:rcubed/widgets/smooth_scroll/smooth_list_scroll_mouse.dart';
+import 'package:rcubed/widgets/smooth_scroll/smooth_list_scroll_touch.dart';
 import 'package:transparent_pointer/transparent_pointer.dart';
 import '../../themes/theme.dart';
 import '../../widgets/backgroundImage.dart';
@@ -18,6 +19,7 @@ import '../../widgets/navigation_bar/nav_bar.dart';
 import 'package:flutter_test/flutter_test.dart' as tester;
 import 'dart:developer' as developer;
 
+import '../../widgets/scroll_window/scroll_page.dart';
 import '../../widgets/smooth_scroll/SmoothScroll.dart';
 
 class HomePage extends StatefulWidget {
@@ -46,52 +48,31 @@ class HomePageState extends State<HomePage> {
         children: [
           Background(),
 
-
-          SizedBox(
-            height: 400,
-            child: SliverScroll(children: [
-              Container(height: 300, color: Colors.black,),
-              Container(height: 300, color: Colors.orange,),
-              Container(height: 300, color: Colors.black,),
-              Container(height: 300, color: Colors.orange,),
-              SizedBox(
-                height: 500,
-                child: SliverScroll(children: [
-                  Container(height: 300, color: Colors.blue,),
-                  Container(height: 300, color: Colors.red,),
-                  Container(height: 300, color: Colors.blue,),
-                  Container(height: 300, color: Colors.red,),
-                  SizedBox(
-                    height: 700,
-                    child: SliverScroll(children: MyTheme.testing,),
-                  ),
-                ],)
-              ),
-            ]),
+          Column(
+            children: [
+              SmoothScroll(
+                debugLabel: "scrollParent",
+                  // isPageView: true,
+                  children: [
+                Container(height: 300, color: Colors.black,),
+                Container(height: 300, color: Colors.orange,),
+                Container(height: 300, color: Colors.black,),
+                Container(height: 300, color: Colors.orange,),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: SmoothScroll(
+                        isPageView: true,
+                          children: [
+                            Container(height: 300, color: Colors.blue,),
+                            Container(height: 300, color: Colors.red,),
+                            Container(height: 300, color: Colors.blue,),
+                            Container(height: 300, color: Colors.red,),
+                          ],
+                          debugLabel: "scrollChild"),
+                    )
+              ]),
+            ],
           ),
-
-          // SizedBox(
-          //   height: 500,
-          //   child: SliverScroll(
-          //     children: [
-          //       // Container(height: 300, color: Colors.blue,),
-          //       // Container(height: 300, color: Colors.red,),
-          //       // Container(height: 300, color: Colors.orange,),
-          //       // Container(height: 300, color: Colors.green,),
-          //       SizedBox(
-          //         height: 400,
-          //         child: SliverScroll(children: [
-          //           Container(height: 300, color: Colors.black,),
-          //           Container(height: 300, color: Colors.orange,),
-          //           Container(height: 300, color: Colors.black,),
-          //           Container(height: 300, color: Colors.orange,),
-          //         ]),
-          //       )
-          //     ],
-          //   ),
-          // ),
-
-
 
 
           NavBar(),

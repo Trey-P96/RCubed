@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:collection/collection.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
+import 'package:transparent_pointer/transparent_pointer.dart';
 
 import 'SmoothScroll.dart';
 
@@ -18,21 +19,31 @@ class SmoothScrollMouse extends StatefulWidget{
 }
 
 class SmoothScrollMouseState extends State<SmoothScrollMouse>{
-  final ScrollController _dummyController = ScrollController();
-  late ScrollController _scrollController;
+  PageController _dummyController = PageController();
+  PageController _scrollController = PageController();
   late Timer _timer;
-  late double initialScrollOffset, beginScrollOffset;
-  late bool isScrolling;
+  double initialScrollOffset=0, beginScrollOffset=0;
+  bool isScrolling = false;
+  double currentOffset = 0;
   List<double> pointerSignalInput = [];
   List<double> pointerSignalInputDelta = [];
+  PointerDeviceKind device = PointerDeviceKind.mouse;
 
   @override
   void initState(){ //TODO: dispose timer, etc.
     super.initState();
-    _scrollController = ScrollController(initialScrollOffset: Provider.of<SmoothScrollProvider>(context,listen: false).getOffset(widget.parent));
-    _timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
-      if(pointerSignalInput.isEmpty)beginScrollOffset = _scrollController.offset;
-      isScrolling = _scrollController.position.activity!.isScrolling;
+    //SmoothScrollProvider scrollProvider = Provider.of<SmoothScrollProvider>(context, listen: false);
+    //_scrollController = PageController(initialScrollOffset: Provider.of<SmoothScrollProvider>(context,listen: false).getOffset(widget.parent));
+    // _timer = Timer.periodic(Duration(milliseconds: 1), (timer) {
+    //   disposeList();
+    // });
+    _dummyController.addListener(() {
+      if(device == PointerDeviceKind.mouse){
+        _scrollController.animateTo(_dummyController.offset, duration: Duration(milliseconds: 500), curve: Curves.easeOutQuart);
+      }
+      else{
+        _scrollController.jumpTo(_dummyController.offset);
+      }
       disposeList();
     });
   }
@@ -41,69 +52,88 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   void dispose(){
     _scrollController.dispose();
     _dummyController.dispose();
-    _timer.cancel();
+    //_timer.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    SmoothScrollProvider scrollProvider = Provider.of<SmoothScrollProvider>(context, listen: false);
-    PointerDeviceKind currentDevice = Provider.of<SmoothScrollProvider>(context).getDevice(widget.parent);
-
-    _scrollController.addListener(() {scrollProvider.updateOffset(widget.parent, _scrollController.offset);});
-
     return Listener(
-      onPointerHover: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
-        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget.parent, device.kind);}
-      },
-      onPointerDown: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
-        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget.parent, device.kind);}
-      },
-      onPointerSignal: (device){ // LISTENING FOR DEVICE TYPE (TOUCH, MOUSE, etc.)
-        if(userUpdatedDevice(currentDevice, device.kind)){scrollProvider.updateDevice(widget.parent, device.kind);}
+      onPointerSignal: (pointer){
+        if(pointer is PointerScrollEvent){
+          pointerSignalInputDelta.add(pointer.scrollDelta.dy.abs());
 
-        if(device is PointerScrollEvent){
-          pointerSignalInputDelta.add(device.scrollDelta.dy.abs());
-          pointerSignalInput.add(device.scrollDelta.dy);
-
-          if(isTrackPad(device)){
-            jumpTo(_scrollController.offset + device.scrollDelta.dy);
-            _dummyController.jumpTo(_scrollController.offset);
-          }
-          else{ // device is mouse scrollwheel
-            _scrollController.animateTo(beginScrollOffset+pointerSignalInput.sum, duration: Duration(milliseconds: 300), curve: Curves.easeOutQuart);
-            _dummyController.jumpTo(_scrollController.offset);
-          }
+          if(isTrackPad(pointer)){
+            device = PointerDeviceKind.trackpad;
+          } else device = PointerDeviceKind.mouse;
         }
       },
-      child: Stack(
-        children: [
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              controller: _scrollController,
-              physics: Provider.of<SmoothScrollProvider>(context).getPhysics(widget.parent),
-              itemCount: widget.children.length,
-              itemBuilder: (ctx, i){
-                return widget.children[i];
-              }),
-          Visibility(
-            visible: false,
-            maintainState: true,
-            maintainSize: true,
-            maintainSemantics: true,
-            maintainInteractivity: true,
-            maintainAnimation: true,
-            child: ListView.builder(
-                scrollDirection: Axis.vertical,
-                controller: _dummyController,
-                physics: ClampingScrollPhysics(),
-                itemCount: widget.children.length,
-                itemBuilder: (ctx, i){
-                  return widget.children[i];
-                }),
-          ),
-        ],
-      ),
+      child: widget.parent.isPageView?
+      SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Stack(
+          children: [
+            Opacity(
+              opacity: 0,
+              child: PageView.builder(
+                  controller: _dummyController,
+                  scrollDirection: Axis.vertical,
+                  physics: ClampingScrollPhysics(),
+                  pageSnapping: false,
+                  itemCount: widget.children.length,
+                  itemBuilder: (context, i){
+                    return AbsorbPointer(child: widget.children[i]);
+                  }
+              ),
+            ),
+
+            TransparentPointer(
+              child: PageView.builder(
+                  controller: _scrollController,
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  pageSnapping: false,
+                  itemCount: widget.children.length,
+                  itemBuilder: (context, i){
+                    return widget.children[i];
+                  }
+              ),
+            ),
+          ],
+        ),
+      )
+          :
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          child: Stack(
+          children: [
+            Opacity(
+              opacity: 0,
+              child: ListView.builder(
+                  controller: _dummyController,
+                  scrollDirection: Axis.vertical,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: widget.children.length,
+                  itemBuilder: (context, i){
+                    return AbsorbPointer(child: widget.children[i]);
+                  }
+              ),
+            ),
+
+            TransparentPointer(
+              child: ListView.builder(
+                  controller: _scrollController,
+                  scrollDirection: Axis.vertical,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: widget.children.length,
+                  itemBuilder: (context, i){
+                    return widget.children[i];
+                  }
+              ),
+            ),
+          ],
+    ),
+        ),
     );
   }
 
@@ -134,11 +164,8 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   }
 
   void disposeList(){
-    if(pointerSignalInputDelta.length > 10){
-      pointerSignalInputDelta.removeRange(0, 9);
-    }
-    if (!isScrolling && pointerSignalInput.isNotEmpty) {
-      pointerSignalInput.clear();
+    if(pointerSignalInputDelta.length > 5){
+      pointerSignalInputDelta.removeRange(0, 4);
     }
   }
 // -----------------------------------------------------------------------

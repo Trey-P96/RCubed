@@ -8,7 +8,7 @@ class MyTheme{
   static List<Widget> testing = [Container(
     color: Colors.blue,
     height: 500,
-    child: Text("TEST"),
+    child: Text("TEST2"),
   ),
     Container(
       color: Colors.red,
