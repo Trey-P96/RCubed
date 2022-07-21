@@ -12,6 +12,7 @@ class SmoothScrollTouch extends StatefulWidget{
   final SmoothScroll parent;
   const SmoothScrollTouch({required this.children, required this.parent, Key? key}) : super(key: key);
   SmoothScrollTouchState? of(BuildContext context)=>context.findAncestorStateOfType<SmoothScrollTouchState>();
+  SmoothScrollState? parentState(BuildContext context)=>context.findAncestorStateOfType<SmoothScrollState>();
 
   @override
   State<StatefulWidget> createState() {
@@ -23,18 +24,68 @@ class SmoothScrollTouch extends StatefulWidget{
 
 class SmoothScrollTouchState extends State<SmoothScrollTouch>{
   PageController controller = PageController();
-  PageController dummyController = PageController();
+  ScrollController dummyController = ScrollController();
+  List<Widget> dummyList = [];
+  double initialOffset = 0;
+  double minScrollExtent = 0, maxScrollExtent = 0;
+  double underScroll = 0, overScroll = 0;
+  double currentOffset = 0, dummyOffset = 0;
+  double localMaxScroll = 0;
+  bool inRange = false;
 
   @override
   void initState(){
     super.initState();
+    initialOffset = widget.parentState(context)!.screenHeight*3;
+    minScrollExtent = initialOffset;
+    dummyController = ScrollController(initialScrollOffset: initialOffset);
     //SmoothScrollProvider scrollProvider = Provider.of<SmoothScrollProvider>(context, listen: false);
-    controller.addListener(() {
-      if(controller.offset > controller.position.maxScrollExtent) controller.jumpTo(controller.position.maxScrollExtent);
-      if(controller.offset < controller.position.minScrollExtent) controller.jumpTo(controller.position.minScrollExtent);
-      //if(controller.hasClients) scrollProvider.updateOffset(widget.key, controller.offset);
+
+    dummyController.addListener(() {
+      if(dummyController.hasClients) {
+        maxScrollExtent = minScrollExtent+controller.position.maxScrollExtent;
+        currentOffset = controller.offset;
+        dummyOffset = dummyController.offset;
+        localMaxScroll = controller.position.maxScrollExtent;
+      }
+
+      if(dummyController.offset > minScrollExtent && dummyController.offset < maxScrollExtent){
+        inRange = true;
+        //if(widget.of(context)?.controller != null && widget.of(context)!.controller.hasClients) beginOffset = widget.of(context)!.controller.offset;
+      }
+      else {
+        inRange = false;
+        if(underScroll < 0){
+          if(widget.of(context)?.controller.offset != null){
+            if(widget.of(context)!.controller.offset > widget.of(context)!.controller.position.minScrollExtent){
+              widget.of(context)?.controller.jumpTo(widget.of(context)!.currentOffset+underScroll);
+            }
+          }
+          //widget.of(context)?.dummyController.jumpTo(widget.of(context)!.dummyOffset+underScroll);
+        }
+        if(overScroll > 0){
+          if(widget.of(context)?.controller.offset != null){
+            if(widget.of(context)!.controller.offset < widget.of(context)!.controller.position.maxScrollExtent){
+              widget.of(context)?.controller.jumpTo(widget.of(context)!.currentOffset+overScroll);
+            }
+          }
+
+
+          //print(widget.of(context)!.inRange);
+        }
+      }
+
+      if(inRange){
+        controller.jumpTo(dummyController.offset-initialOffset);
+      }
+
+      overScroll = max(dummyController.offset-maxScrollExtent, 0);
+      underScroll = min(dummyController.offset-minScrollExtent, 0);
+
     });
   }
+
+
 
   @override
   void dispose(){
@@ -44,84 +95,42 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
 
   @override
   Widget build(BuildContext context) {
+    createList();
 
     // TODO: implement build
-    return NotificationListener(
-      onNotification: (notification){
-        if(notification is OverscrollNotification){
-          widget.of(context)?.controller.jumpTo(widget.of(context)!.controller.offset + notification.overscroll);
-        }
-        return true;
-      },
-      child: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: CustomScrollView(
-          //controller: widget.parent.isPageView? controller:ScrollController(),
-          physics: ClampingScrollPhysics(),
-          slivers: [
-            widget.parent.isPageView?
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: PageView.builder(
-                  scrollDirection: Axis.vertical,
-                    pageSnapping: false,
-                    controller: controller,
-                    physics: ClampingScrollPhysics(),
-                    itemCount: widget.children.length,
-                    itemBuilder: (context, i){
-                      return widget.children[i];
-                    }
-                ),
-              ),
-            )
-                :
-            SliverToBoxAdapter(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height,
-                child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    controller: controller,
-                    itemCount: widget.children.length,
-                    physics: ClampingScrollPhysics(),
-                    itemBuilder: (context, i){
-                      return widget.children[i];
-                    }
-                ),
-              ),
+    return Stack(
+      children: [
+
+        Listener(
+          onPointerDown: (pointer){
+            if(controller.offset+initialOffset != dummyController.offset){
+              dummyController.jumpTo(controller.offset+initialOffset);
+            }
+          },
+          child: Opacity(
+            opacity: 0,
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                controller: dummyController,
+                itemCount: dummyList.length,
+                physics: ClampingScrollPhysics(),
+                itemBuilder: (context, i){
+                  return AbsorbPointer(child: dummyList[i]);
+                }
             ),
-
-
-
-            // widget.parent.isPageView?
-            // SliverToBoxAdapter(
-            //   child: SizedBox(
-            //     height: MediaQuery.of(context).size.height,
-            //     child: PageView.builder(
-            //         scrollDirection: Axis.vertical,
-            //         pageSnapping: false,
-            //         controller: dummyController,
-            //         physics: ClampingScrollPhysics(),
-            //         itemCount: widget.children.length,
-            //         itemBuilder: (context, i){
-            //           return Opacity(opacity: 0,
-            //           child: widget.children[i]);
-            //         }
-            //     ),
-            //   ),
-            // ) :
-            // SliverList(
-            //     delegate: SliverChildBuilderDelegate(
-            //           (BuildContext context, int index){
-            //         return Opacity(opacity: 0,
-            //         child: widget.children[index]);
-            //       },
-            //       childCount: widget.children.length,
-            //     )),
-
-          ],
+          ),
         ),
-      ),
+
+        TransparentPointer(
+          child: ListView.builder(
+              controller: controller,
+              itemCount: widget.children.length,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context,i){
+                return widget.children[i];
+              }),
+        ),
+      ],
     );
   }
 
@@ -129,6 +138,31 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
 //---------------------------------------------------------------------------
 //                            UTILITY FUNCTIONS
 //---------------------------------------------------------------------------
-
+  void createList(){
+    dummyList.clear();
+    dummyList.add(OverScrollItem(
+      child: SizedBox(
+        height: initialOffset,
+      ),
+    ));
+    dummyList.addAll(widget.children);
+    dummyList.add(OverScrollItem(
+      child: SizedBox(
+        height: initialOffset,
+      ),
+    ));
+  }
 //---------------------------------------------------------------------------
+}
+
+class OverScrollItem extends StatelessWidget{
+  final Widget child;
+  OverScrollItem({required this.child, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return child;
+  }
+
 }

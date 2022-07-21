@@ -48,31 +48,52 @@ class HomePageState extends State<HomePage> {
         children: [
           Background(),
 
-          Column(
-            children: [
-              SmoothScroll(
-                debugLabel: "scrollParent",
-                  // isPageView: true,
-                  children: [
-                Container(height: 300, color: Colors.black,),
-                Container(height: 300, color: Colors.orange,),
-                Container(height: 300, color: Colors.black,),
-                Container(height: 300, color: Colors.orange,),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: SmoothScroll(
-                        isPageView: true,
-                          children: [
-                            Container(height: 300, color: Colors.blue,),
-                            Container(height: 300, color: Colors.red,),
-                            Container(height: 300, color: Colors.blue,),
-                            Container(height: 300, color: Colors.red,),
-                          ],
-                          debugLabel: "scrollChild"),
-                    )
-              ]),
-            ],
-          ),
+          // Column(
+          //   children: [
+          //     SmoothScroll(
+          //       debugLabel: "scrollParent",
+          //         // isPageView: true,
+          //         children: [
+          //       Container(height: 300, color: Colors.black,),
+          //       Container(height: 300, color: Colors.orange,),
+          //       Container(height: 300, color: Colors.black,),
+          //       Container(height: 300, color: Colors.orange,),
+          //           Padding(
+          //             padding: const EdgeInsets.all(20.0),
+          //             child: SmoothScroll(
+          //               isPageView: true,
+          //                 children: [
+          //                   Container(height: 300, color: Colors.blue,),
+          //                   Container(height: 300, color: Colors.red,),
+          //                   Container(height: 300, color: Colors.blue,),
+          //                   Container(height: 300, color: Colors.red,),
+          //                 ],
+          //                 debugLabel: "scrollChild"),
+          //           )
+          //     ]),
+          //   ],
+          // ),
+
+
+          SmoothScroll(
+              children: [
+                  Container(height: 400, color: Colors.blue,),
+                  Container(height: 400, color: Colors.red,),
+                  Container(height: 400, color: Colors.blue,),
+                  SizedBox(
+                    height: 400,
+                    child: SmoothScroll(
+                        children: [
+                          Container(height: 400, color: Colors.green,),
+                          Container(height: 400, color: Colors.orange,),
+                          Container(height: 400, color: Colors.green,),
+                          Container(height: 400, color: Colors.orange,),
+                        ],
+                        debugLabel: "inner"),
+                  ),
+                  Container(height: 400, color: Colors.red,),
+              ],
+              debugLabel: "outer"),
 
 
           NavBar(),

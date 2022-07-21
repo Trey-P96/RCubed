@@ -23,9 +23,11 @@ class SmoothScroll extends StatefulWidget{
 }
 
 class SmoothScrollState extends State<SmoothScroll>{
+  double screenHeight = 0;
 
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
     // TODO: implement build
     // return SmoothScrollMouse(parent: widget,children: widget.children,);
     return (Provider.of<InputDevice>(context).getDevice() == PointerDeviceKind.touch ?
