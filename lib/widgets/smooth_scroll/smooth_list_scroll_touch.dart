@@ -18,6 +18,7 @@ class SmoothScrollTouch extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() {
+
     // TODO: implement createState
     return SmoothScrollTouchState();
   }
@@ -27,6 +28,7 @@ class SmoothScrollTouch extends StatefulWidget{
 class SmoothScrollTouchState extends State<SmoothScrollTouch>{
   PageController controller = PageController();
   ScrollController dummyController = ScrollController();
+  GlobalKey<SmoothScrollTouchState> activeChild = GlobalKey<SmoothScrollTouchState>();
   late Timer _timer;
   List<Widget> dummyList = [];
   double initialOffset = 0;
@@ -37,7 +39,8 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
   bool hasParent = false;
   bool parentHasClients = false;
   bool initiateOverscroll = false;
-  bool cancelledScroll = false;
+  bool cancelScroll = false;
+  bool isActive = false;
   double opacity = 1;
 
   @override
@@ -88,10 +91,17 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
 
         Listener(
           onPointerDown: (_){
+            cancelScroll = false;
+            isActive = true;
+            if(activeChild.currentState != null && !activeChild.currentState!.isActive) activeChild.currentState!.cancelScroll = true;
+
             if(controller.offset+initialOffset != dummyController.offset){
               dummyController.jumpTo(controller.offset+initialOffset);
-              cancelledScroll = true;
             }
+          },
+          onPointerUp: (_){
+            if(hasParent) widget.of(context)!.activeChild = widget.key;
+            isActive = false;
           },
           child: Opacity(
             opacity: 0,
@@ -150,15 +160,21 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
     if(overScroll > 0 && parentHasClients){
       if(!initiateOverscroll) startOffset = widget.of(context)!.controller.offset;
       initiateOverscroll = true;
-      //widget.of(context)!.jumpTo(startOffset+overScroll, widget.key);
-      widget.of(context)!.controller.jumpTo(startOffset+overScroll);
+      if(!cancelScroll) widget.of(context)!.jumpToOverscroll(startOffset+overScroll);
     }
     else if(underScroll < 0 && parentHasClients){
       if(!initiateOverscroll) startOffset = widget.of(context)!.controller.offset;
       initiateOverscroll = true;
-      widget.of(context)!.controller.jumpTo(startOffset+underScroll);
-      //widget.of(context)!.jumpTo(startOffset+underScroll, widget.key);
-    } else initiateOverscroll = false;
+
+      if(!cancelScroll){
+        // widget.of(context)!.jumpToOverscroll(startOffset+underScroll);
+        widget.of(context)!.jumpToUnderScroll(startOffset+underScroll);
+      }
+
+    } else{
+      initiateOverscroll = false;
+
+    }
 
     //print("${widget.parent.debugLabel} : $startOffset");
   }
@@ -171,13 +187,12 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
     }
   }
 
-  void jumpTo(double offset, GlobalKey<SmoothScrollTouchState> key){
-    controller.jumpTo(offset);
-    if(cancelledScroll && !key.currentState!.inRange){
-      print("jumpback");
-      key.currentState!.dummyController.jumpTo(key.currentState!.initialOffset);
-      cancelledScroll = false;
-    }
+  void jumpToOverscroll(double offset){
+    controller.jumpTo(min(offset, controller.position.maxScrollExtent));
+  }
+
+  void jumpToUnderScroll(double offset){
+    controller.jumpTo(max(offset, controller.position.minScrollExtent));
   }
 //---------------------------------------------------------------------------
 }
