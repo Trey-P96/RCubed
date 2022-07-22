@@ -168,11 +168,20 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
                 //itemCount: dummyList.length,
                 physics: ClampingScrollPhysics(),
                 itemBuilder: (context, i){
-                  return Container();
+                  return Container(height: 500,);
                 }
             ),
           ),
         ),
+        //
+        // ListView.builder(      TESTING WIDGET DO NOT USE
+        //   scrollDirection: Axis.vertical,
+        //     controller: dummyController,
+        //     itemCount: widget.children.length,
+        //     physics: ClampingScrollPhysics(),
+        //     itemBuilder: (context, index){
+        //       return widget.children[index];
+        //     }),
 
         Opacity(
           // opacity: opacity,

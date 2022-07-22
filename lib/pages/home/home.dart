@@ -40,9 +40,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    pageController.addListener(() {
-      if(pageController.hasClients) print(pageController.page);
-    });
+
   }
 
   @override
@@ -78,12 +76,12 @@ class HomePageState extends State<HomePage> {
           //   ],
           // ),
 
-          // PageView.builder(
-          //     itemCount: MyTheme.testing.length,
+          // ListView.builder(
+          //     //itemCount: MyTheme.testing.length,
           //     scrollDirection: Axis.vertical,
           //     controller: pageController,
           //     itemBuilder: (context, index){
-          //       return MyTheme.testing[index];
+          //       return (index%2==0)?Container(height: 500, color: Colors.blue,):Container(height: 500, color: Colors.red,);
           //     }),
 
 
@@ -93,20 +91,22 @@ class HomePageState extends State<HomePage> {
                   Container(height: 400, color: Colors.blue,),
                   Container(height: 400, color: Colors.red,),
                   Container(height: 400, color: Colors.blue,),
-                  // SizedBox(
-                  //   height: 400,
-                  //   child: SmoothScroll(
-                  //       children: [
-                  //         Container(height: 400, color: Colors.green,),
-                  //         Container(height: 400, color: Colors.orange,),
-                  //         Container(height: 400, color: Colors.green,),
-                  //         Container(height: 400, color: Colors.orange,),
-                  //       ],
-                  //       debugLabel: "inner"),
-                  // ),
+                  SizedBox(
+                    height: 400,
+                    child: SmoothScroll(
+                        children: [
+                          Container(height: 400, color: Colors.green,),
+                          Container(height: 400, color: Colors.orange,),
+                          Container(height: 400, color: Colors.green,),
+                          Container(height: 400, color: Colors.orange,),
+                        ],
+                        debugLabel: "inner"),
+                  ),
                   Container(height: 400, color: Colors.red,),
               ],
               debugLabel: "outer"),
+
+
 
 
           //NavBar(),
