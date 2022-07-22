@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_pointer/transparent_pointer.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import '../../providers/smooth_scroll_provider.dart';
 import '../../themes/theme.dart';
 import 'SmoothScroll.dart';
@@ -43,6 +44,10 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch> with AutomaticKeep
   bool isActive = false;
   bool initialized = false;
   bool hasClients = false;
+  bool keepAlive = true;
+  bool detectedInput = false;
+  bool onScreen = false;
+  Offset pos = Offset.zero;
 
   @override
   void initState(){
@@ -51,13 +56,22 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch> with AutomaticKeep
     _timer = Timer.periodic(Duration(milliseconds: 1), (timer) {
       dataListener();
       handleControllers();
+
+      RenderBox? test = widget.key.currentContext?.findRenderObject() as RenderBox?;
+      if(test != null){
+        pos = test.localToGlobal(Offset.zero);
+        if(pos.dy.isNaN) onScreen = false;
+        else onScreen = true;
+      }
+
+
+      if(!onScreen && hasClients && !inRange && !dummyController.position.activity!.isScrolling) updateKeepAlive();
     });
 
 
 
 
       dummyController.addListener(() {
-
         if(controller.hasClients && dummyController.hasClients) {
           dummyOffset = dummyController.offset-minScrollExtent;
           maxScrollExtent = minScrollExtent+controller.position.maxScrollExtent;}
@@ -73,7 +87,14 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch> with AutomaticKeep
 
   @override
   // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => keepAlive;
+
+  @override
+  void updateKeepAlive() {
+    // TODO: implement updateKeepAlive
+    super.updateKeepAlive();
+    keepAlive = false;
+  }
 
   @override
   void dispose(){
@@ -81,6 +102,7 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch> with AutomaticKeep
     controller.dispose();
     dummyController.dispose();
     _timer.cancel();
+    print(widget.head.debugLabel);
   }
 
   @override
