@@ -88,28 +88,26 @@ class HomePageState extends State<HomePage> {
           SmoothScroll(
             isPageView: true,
               children: [
-                  Container(height: 400, color: Colors.blue,),
-                  Container(height: 400, color: Colors.red,),
-                  Container(height: 400, color: Colors.blue,),
-                  SizedBox(
-                    height: 400,
-                    child: SmoothScroll(
-                        children: [
-                          Container(height: 400, color: Colors.green,),
-                          Container(height: 400, color: Colors.orange,),
-                          Container(height: 400, color: Colors.green,),
-                          Container(height: 400, color: Colors.orange,),
-                        ],
-                        debugLabel: "inner"),
-                  ),
-                  Container(height: 400, color: Colors.red,),
+                  ScrollPage(description: "first",
+                      pages: [
+                        Container(color: Colors.blue,),
+                        SmoothScroll(
+                            children: [
+                              Container(color: Colors.green, height: 400,),
+                              Container(color: Colors.orange, height: 400,),
+                              Container(color: Colors.green, height: 400,),
+                            ],
+                            debugLabel: "innerScroll")
+                      ]),
+                ScrollPage(description: "second",
+                    pages: [Container(color: Colors.blue,)]),
               ],
               debugLabel: "outer"),
 
 
 
 
-          //NavBar(),
+          NavBar(),
         ],
       ),
     );

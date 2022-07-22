@@ -102,7 +102,6 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch> with AutomaticKeep
     controller.dispose();
     dummyController.dispose();
     _timer.cancel();
-    print(widget.head.debugLabel);
   }
 
   @override

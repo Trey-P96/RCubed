@@ -27,9 +27,7 @@ class ScrollPageMobile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     //print(description + Provider.of<PageHandler>(context,listen: false).isAbsorbing(description).toString());
-    final pageController = PageController(
-        initialPage: Provider.of<PageIndex>(context, listen: false)
-            .getIndex(description) as int);
+    final pageController = PageController();
     double width = min(MediaQuery.of(context).size.width - 30, 1300);
     double height = min(MediaQuery.of(context).size.height - 70, 600);
     
