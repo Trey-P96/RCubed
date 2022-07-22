@@ -25,7 +25,7 @@ class SmoothScrollTouch extends StatefulWidget{
 
 }
 
-class SmoothScrollTouchState extends State<SmoothScrollTouch>{
+class SmoothScrollTouchState extends State<SmoothScrollTouch> with AutomaticKeepAliveClientMixin{
   PageController controller = PageController();
   PageController dummyController = PageController(initialPage: 10);
 
@@ -71,9 +71,9 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
 
   }
 
-
-
-
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
   @override
   void dispose(){
@@ -163,6 +163,7 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
           child: Opacity(
             opacity: 0,
             child: ListView.builder(
+                cacheExtent: 2000,
                 scrollDirection: Axis.vertical,
                 controller: dummyController,
                 //itemCount: dummyList.length,
@@ -258,6 +259,8 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
       initialized = true;
     }
   }
+
+
 
 
 //---------------------------------------------------------------------------
