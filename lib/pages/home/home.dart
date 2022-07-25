@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/main.dart';
+import 'package:rcubed/pages/what_we_do/enterprise_applications.dart';
+import 'package:rcubed/pages/what_we_do/what_we_do.dart';
 import 'package:rcubed/providers/smooth_scroll_provider.dart';
 import 'package:rcubed/widgets/smooth_scroll/smooth_list_scroll_mouse.dart';
 import 'package:rcubed/widgets/smooth_scroll/smooth_list_scroll_touch.dart';
@@ -19,6 +21,7 @@ import '../../widgets/navigation_bar/nav_bar.dart';
 import 'package:flutter_test/flutter_test.dart' as tester;
 import 'dart:developer' as developer;
 
+import '../../widgets/rcubed_logo/rcubed_logo.dart';
 import '../../widgets/scroll_window/scroll_page.dart';
 import '../../widgets/smooth_scroll/SmoothScroll.dart';
 
@@ -33,83 +36,113 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   PageController pageController = PageController();
-
+  ScrollController scrollController = ScrollController();
 
   //final keytest = GlobalKey<SliverScrollState>();
 
   @override
   void initState() {
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> myList = [
+      Container(
+        color: Colors.blue,
+        height: 500,
+        child: Text("TEST2"),
+      ),
+      Container(
+        color: Colors.red,
+        height: 500,
+      ),
+      Container(
+        height: 200,
+        child: SingleChildScrollView(
+          primary: false,
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            children:
+              MyTheme.testing,
+          ),
+        )
+      ),
+      Container(
+        color: Colors.orange,
+        height: 500,
+      ),
+      Container(
+        color: Colors.blue,
+        height: 500,
+        child: Text("TEST2"),
+      ),
+      Container(
+        color: Colors.red,
+        height: 500,
+        //test
+      ),
+      Container(
+        color: Colors.blue,
+        height: 500,
+        child: Text("TEST2"),
+      ),
+      Container(
+        color: Colors.red,
+        height: 500,
+      ),
+    ];
+
+
     return Scaffold(
       body: Stack(
         children: [
           Background(),
 
-          // Column(
+          Container(
+            height: 600,
+            child: ListView.builder(
+                //controller: scrollController,
+                primary: true,
+                shrinkWrap: false,
+                // physics: NeverScrollableScrollPhysics(),
+                itemCount: myList.length,
+                itemBuilder: (context, index){
+              return myList[index];
+            }),
+          ),
+
+          // SmoothScroll(
+          //   debugLabel: '',
           //   children: [
-          //     SmoothScroll(
-          //       debugLabel: "scrollParent",
-          //         // isPageView: true,
-          //         children: [
-          //       Container(height: 300, color: Colors.black,),
-          //       Container(height: 300, color: Colors.orange,),
-          //       Container(height: 300, color: Colors.black,),
-          //       Container(height: 300, color: Colors.orange,),
-          //           Padding(
-          //             padding: const EdgeInsets.all(20.0),
-          //             child: SmoothScroll(
-          //               isPageView: true,
-          //                 children: [
-          //                   Container(height: 300, color: Colors.blue,),
-          //                   Container(height: 300, color: Colors.red,),
-          //                   Container(height: 300, color: Colors.blue,),
-          //                   Container(height: 300, color: Colors.red,),
-          //                 ],
-          //                 debugLabel: "scrollChild"),
-          //           )
-          //     ]),
+          //
+          //
+          //     Padding(
+          //       padding: EdgeInsets.only(top: 60, bottom: 10),
+          //       child: ScrollPage(
+          //           description: "What We Do",
+          //           pages: [
+          //             WhatWeDo(), EnterpriseApp()
+          //           ]),
+          //     ),
+          //
+          //     Padding(
+          //       padding: EdgeInsets.only(top: 60, bottom: 10),
+          //       child: ScrollPage(
+          //           description: "What We Do",
+          //           pages: [
+          //             WhatWeDo(), EnterpriseApp()
+          //           ]),
+          //     ),
+          //
+          //
           //   ],
           // ),
-
-          // ListView.builder(
-          //     //itemCount: MyTheme.testing.length,
-          //     scrollDirection: Axis.vertical,
-          //     controller: pageController,
-          //     itemBuilder: (context, index){
-          //       return (index%2==0)?Container(height: 500, color: Colors.blue,):Container(height: 500, color: Colors.red,);
-          //     }),
-
-
-          SmoothScroll(
-            isPageView: true,
-              children: [
-                  ScrollPage(description: "first",
-                      pages: [
-                        Container(color: Colors.blue,),
-                        SmoothScroll(
-                            children: [
-                              Container(color: Colors.green, height: 400,),
-                              Container(color: Colors.orange, height: 400,),
-                              Container(color: Colors.green, height: 400,),
-                            ],
-                            debugLabel: "innerScroll")
-                      ]),
-                ScrollPage(description: "second",
-                    pages: [Container(color: Colors.blue,)]),
-              ],
-              debugLabel: "outer"),
-
-
-
-
           NavBar(),
         ],
       ),
+
+
     );
   }
 }

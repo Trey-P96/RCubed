@@ -31,7 +31,14 @@ class SmoothScrollState extends State<SmoothScroll>{
     // TODO: implement build
     // return SmoothScrollMouse(parent: widget,children: widget.children,);
     return (Provider.of<InputDevice>(context).getDevice() == PointerDeviceKind.touch ?
-              SmoothScrollTouch(head: widget,children: widget.children, key: GlobalKey<SmoothScrollTouchState>(),):
+              PageView.builder(
+                  pageSnapping: false,
+                  scrollDirection: Axis.vertical,
+                  itemCount: widget.children.length,
+                  itemBuilder: (context, index){
+                    return widget.children[index];
+                  })
+        :
               SmoothScrollMouse(parent: widget,children: widget.children,));
   }
 }

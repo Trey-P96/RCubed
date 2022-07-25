@@ -4,18 +4,21 @@ import 'package:flutter_svg/svg.dart';
 import '../../themes/theme.dart';
 
 class Logo extends StatelessWidget{
-
-  const Logo({Key? key}) : super(key: key);
+  final double padding;
+  const Logo({this.padding=0, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     
     return SizedBox(
-      child: SvgPicture.asset(
-            'assets/images/CompleteLogo.svg',
-            height: 400,
-            //color: MyTheme.primary.withOpacity(1),
-          ),
+      child: Padding(
+        padding: EdgeInsets.all(padding),
+        child: SvgPicture.asset(
+              'assets/images/RCubedLogoFinalized.svg',
+              height: 400,
+              //color: MyTheme.primary.withOpacity(1),
+            ),
+      ),
 
 
     );

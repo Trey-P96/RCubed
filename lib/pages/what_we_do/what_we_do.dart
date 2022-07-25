@@ -19,10 +19,11 @@ class WhatWeDo extends StatelessWidget{
       child: BlurredBox(
         padding: EdgeInsets.all(40),
         child: SvgPicture.asset(
-            'assets/images/what_we_do/what_we_do.svg',
-          fit: BoxFit.fitHeight,
-          color: Colors.white,
-        ),
+              'assets/images/what_we_do/what_we_do.svg',
+            fit: BoxFit.fitHeight,
+            color: Colors.white,
+          ),
+
       ),
       decoration: BoxDecoration(
         image: DecorationImage(

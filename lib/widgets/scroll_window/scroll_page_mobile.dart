@@ -40,107 +40,115 @@ class ScrollPageMobile extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                  child: Container(
-                    width: width,
-                    //height: height,
-                    color: Colors.white.withOpacity(0.3),
-                    child: Scaffold(
-                      backgroundColor: Colors.transparent,
-                      endDrawer: Drawer(
-                        backgroundColor: Colors.black.withOpacity(0.8),
-                      ),
-                      body: Stack(
-                        children: [
-                          RawScrollbar(
-                            thumbColor: MyTheme.primary,
-                            //trackVisibility: true,
+              Container(
+                //width: width,
+                //height: height,
+                color: Colors.white.withOpacity(0.3),
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  endDrawer: Drawer(
+                    backgroundColor: Colors.black.withOpacity(0.8),
+                  ),
+                  body: Stack(
+                    children: [
+                      RawScrollbar(
+                        thumbColor: MyTheme.primary,
+                        //trackVisibility: true,
+                        controller: pageController,
+                        thumbVisibility: true,
+                        radius: Radius.zero,
+                        thickness: 5,
+                        child: PageView.builder(
+                            onPageChanged: (index) {
+                              Provider.of<PageIndex>(context, listen: false)
+                                  .updateIndex(description, index);
+                            },
                             controller: pageController,
-                            thumbVisibility: true,
-                            radius: Radius.zero,
-                            thickness: 5,
-                            child: PageView.builder(
-                                onPageChanged: (index) {
-                                  Provider.of<PageIndex>(context, listen: false)
-                                      .updateIndex(description, index);
-                                },
-                                controller: pageController,
-                                itemCount: pages.length,
-                                itemBuilder: (c, i) {
-                                  return pages[i];
-                                }),
-                          ),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Builder(
-                                builder: (context) => BlurredBox(
-                                  child: IconButton(
-                                        color: Colors.white,
-                                        iconSize: 30,
-                                        padding: EdgeInsets.zero,
-                                        icon: Icon(Icons.apps_rounded),
-                                        onPressed: () {
-                                          Scaffold.of(context).openEndDrawer();
-                                        },
-                                      ),
-                                  width: 30,
-                                  height: 30,
-                                  radius: 5,
-                                  padding: EdgeInsets.all(10),
-                                  opacity: 0.5,
-                                ),
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.bottomCenter,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                BlurredBox(
-                                    child: IconButton(
-                                      padding: EdgeInsets.zero,
-                                  color: Colors.white,
-                                  iconSize: 30,
-                                  icon: Icon(Icons.arrow_back_rounded),
-                                  onPressed: () {
-                                    pageController.previousPage(
-                                        duration: Duration(milliseconds: 600),
-                                        curve: Curves.ease);
-                                  },
-                                ),
-                                  width: 30,
-                                  height: 30,
-                                  radius: 5,
-                                  padding: EdgeInsets.all(10),
-                                  opacity: 0.5,
-                                ),
-                                BlurredBox(
-                                  child: IconButton(
-                                    padding: EdgeInsets.zero,
+                            itemCount: pages.length,
+                            itemBuilder: (c, i) {
+                              return pages[i];
+                            }),
+                      ),
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Builder(
+                            builder: (context) => BlurredBox(
+                              child: IconButton(
                                     color: Colors.white,
                                     iconSize: 30,
-                                    icon: Icon(Icons.arrow_forward_rounded),
+                                    padding: EdgeInsets.zero,
+                                    icon: Icon(Icons.apps_rounded),
                                     onPressed: () {
-                                      pageController.nextPage(
-                                          duration: Duration(milliseconds: 600),
-                                          curve: Curves.ease);
+                                      Scaffold.of(context).openEndDrawer();
                                     },
                                   ),
-                                  width: 30,
-                                  height: 30,
-                                  radius: 5,
-                                  padding: EdgeInsets.all(10),
-                                  opacity: 0.5,
-                                )
-                              ],
+                              width: 30,
+                              height: 30,
+                              radius: 5,
+                              padding: EdgeInsets.all(10),
+                              opacity: 0.5,
                             ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            BlurredBox(
+                                child: IconButton(
+                                  padding: EdgeInsets.zero,
+                              color: Colors.white,
+                              iconSize: 30,
+                              icon: Icon(Icons.arrow_back_rounded),
+                              onPressed: () {
+                                pageController.previousPage(
+                                    duration: Duration(milliseconds: 600),
+                                    curve: Curves.ease);
+                              },
+                            ),
+                              width: 30,
+                              height: 30,
+                              radius: 5,
+                              padding: EdgeInsets.all(10),
+                              opacity: 0.5,
+                            ),
+
+                            // BlurredBox(
+                            //   width: 200,
+                            //     height: 30,
+                            //     radius: 5,
+                            //     child: DotsIndicator(
+                            //       dotsCount: 5,
+                            //       decorator: DotsDecorator(
+                            //         color: Colors.white,
+                            //         activeSize: Size(12,12),
+                            //       ),
+                            //     )),
+
+
+                            BlurredBox(
+                              child: IconButton(
+                                padding: EdgeInsets.zero,
+                                color: Colors.white,
+                                iconSize: 30,
+                                icon: Icon(Icons.arrow_forward_rounded),
+                                onPressed: () {
+                                  pageController.nextPage(
+                                      duration: Duration(milliseconds: 600),
+                                      curve: Curves.ease);
+                                },
+                              ),
+                              width: 30,
+                              height: 30,
+                              radius: 5,
+                              padding: EdgeInsets.all(10),
+                              opacity: 0.5,
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

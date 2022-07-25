@@ -6,16 +6,16 @@ class MyTheme{
   static const Color secondary = const Color(0xFFFFFFFF);
   static const double offset = 800;
   static List<Widget> testing = [Container(
-    color: Colors.blue,
+    color: Colors.purple,
     height: 500,
-    child: Text("TEST2"),
+    child: Text("nested"),
   ),
     Container(
-      color: Colors.red,
+      color: Colors.black,
       height: 500,
     ),
     Container(
-      color: Colors.orange,
+      color: Colors.pink,
       height: 500,
     ),];
   static List<Widget> boxes = [
