@@ -1,13 +1,8 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/widgets/smooth_scrolling/smooth_scroll_mouse.dart';
 import 'package:rcubed/widgets/smooth_scrolling/smooth_scroll_touch.dart';
-import 'package:responsive_builder/responsive_builder.dart';
-
-import '../../scratch.dart';
 
 class SmoothScroll extends StatelessWidget{
   final bool isPageView;

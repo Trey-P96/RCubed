@@ -1,13 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:rcubed/themes/theme.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
+
+import '../logo/logo_simple.dart';
 
 class NavBarMobile extends StatelessWidget {
   const NavBarMobile({Key? key}) : super(key: key);
   final double navBarHeight = 60;
   final double iconSize = 40;
-  final double outerPadding = 20;
+  final double outerPadding = 30;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +28,7 @@ class NavBarMobile extends StatelessWidget {
                 child: SizedBox(
                     height: iconSize,
                     width: iconSize,
-                    child: SvgPicture.asset("assets/images/RcubedLogo.svg",
-                        color: RCubedTheme.secondary))),
+                    child: Logo())),
           ),
           Padding(
             padding: EdgeInsets.only(right: outerPadding),

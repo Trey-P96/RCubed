@@ -2,7 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:rcubed/themes/theme.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
+
+import '../logo/logo_simple.dart';
 
 class NavBarDesktop extends StatelessWidget{
   const NavBarDesktop({Key? key}) : super(key: key);
@@ -17,6 +19,7 @@ class NavBarDesktop extends StatelessWidget{
       height: navBarHeight,
       color: RCubedTheme.primary,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _NavBarObject(
             child: InkWell(
@@ -25,8 +28,7 @@ class NavBarDesktop extends StatelessWidget{
                 child: SizedBox(
                     height: iconSize,
                     width: iconSize,
-                    child: SvgPicture.asset("assets/images/RcubedLogo.svg",
-                        color: RCubedTheme.secondary))),
+                    child: Logo())),
           ),
 
           _NavBarObject(
@@ -49,6 +51,18 @@ class NavBarDesktop extends StatelessWidget{
             ),
           ),
 
+          _NavBarObject(
+            child: InkWell(
+              child: Text("Careers"),
+            ),
+          ),
+
+          _NavBarObject(
+            child: InkWell(
+              child: Text("Contact"),
+            ),
+          ),
+
         ],
       ),
     );
@@ -64,7 +78,7 @@ class _NavBarObject extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Padding(
-        padding: EdgeInsets.only(left: 20, right: 30), child: child,);
+        padding: EdgeInsets.only(left:0, right:0), child: child,);
   }
   
 }

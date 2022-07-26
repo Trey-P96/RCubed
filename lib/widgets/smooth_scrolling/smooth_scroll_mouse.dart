@@ -148,7 +148,7 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
 
   void disposeList(){
     if(_pointerSignalInputDelta.length > 5){
-      _pointerSignalInputDelta.removeRange(0, 4);
+      _pointerSignalInputDelta.removeRange(0, 3);
     }
   }
 // -----------------------------------------------------------------------

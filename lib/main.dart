@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/device_provider.dart';
-import 'package:rcubed/themes/theme.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/widgets/device_listener/device_listener.dart';
