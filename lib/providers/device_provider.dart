@@ -12,4 +12,6 @@ class DeviceProvider extends ChangeNotifier{
   }
 
   PointerDeviceKind getDevice() => _device;
+
+  bool isTouch() => _device == PointerDeviceKind.touch;
 }
