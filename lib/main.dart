@@ -3,9 +3,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
+import 'package:rcubed/widgets/device_listener/device_listener.dart';
 import 'package:rcubed/widgets/nav_bar/nav_bar.dart';
 
 void main() {
@@ -13,7 +15,11 @@ void main() {
   // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
 
   runApp(
-    MyApp(),
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_)=>DeviceProvider()),
+    ],
+    child: MyApp()),
   );
 
 }
@@ -39,15 +45,17 @@ class MyApp extends StatelessWidget {
         )
       ),
       home: SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
+        child: DeviceListener(
+          child: Scaffold(
             backgroundColor: Colors.transparent,
-            elevation: 10,
-            title: NavBar(),
-            titleSpacing: 0,
-          ),
-          body: Home()),
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 10,
+              title: NavBar(),
+              titleSpacing: 0,
+            ),
+            body: Home()),
+        ),
       ),
 
     );
