@@ -22,10 +22,12 @@ class NavBarDesktop extends StatelessWidget{
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _NavBarObject(
-            child: InkWell(
+            child: IconButton(
+              padding: EdgeInsets.zero,
                 mouseCursor: SystemMouseCursors.click,
                 hoverColor: Colors.blue,
-                child: SizedBox(
+                onPressed: () {  },
+                icon: SizedBox(
                     height: iconSize,
                     width: iconSize,
                     child: Logo())),

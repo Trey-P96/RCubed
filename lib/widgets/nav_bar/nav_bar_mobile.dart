@@ -22,14 +22,16 @@ class NavBarMobile extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(left: outerPadding),
-            child: InkWell(
-                mouseCursor: SystemMouseCursors.click,
-                hoverColor: Colors.blue,
-                child: SizedBox(
-                    height: iconSize,
-                    width: iconSize,
-                    child: Logo())),
-          ),
+            child:IconButton(
+                  padding: EdgeInsets.zero,
+                  mouseCursor: SystemMouseCursors.click,
+                  hoverColor: Colors.blue,
+                  onPressed: () {  },
+                  icon: SizedBox(
+                      height: iconSize,
+                      width: iconSize,
+                      child: Logo())),
+            ),
           Padding(
             padding: EdgeInsets.only(right: outerPadding),
             child: SizedBox(height: iconSize, width: iconSize, child: IconButton(padding: EdgeInsets.zero, onPressed: (){}, icon: Icon(Icons.menu, size: iconSize,),)),

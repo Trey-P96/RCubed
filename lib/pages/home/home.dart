@@ -4,6 +4,7 @@ import 'package:rcubed/widgets/logo/business_strategy.dart';
 import 'package:rcubed/widgets/logo/logo_complete.dart';
 
 import '../../widgets/background/background.dart';
+import '../../widgets/logo/logo_simple.dart';
 import '../../widgets/logo/motto.dart';
 import '../../widgets/smooth_scrolling/smooth_scrolling.dart';
 
@@ -30,9 +31,13 @@ class Home extends StatelessWidget{
                 isPageView: false,
                 children: [
                   Container(height: MediaQuery.of(context).size.height-56, child: CompleteLogo(),),
-                  Motto(),
-                  BusinessStrategy(),
-                  Container(height: 100,),
+                  Container(height: 400, color: Colors.blue,),
+                  Container(height: 400, color: Colors.red,),
+                  Container(height: 400, color: Colors.orange,),
+                  Logo(),
+                  // Motto(),
+                  // BusinessStrategy(),
+                  // Container(height: 100,),
 
                 ])
           ],
