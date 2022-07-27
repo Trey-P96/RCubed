@@ -12,6 +12,7 @@ import 'package:rcubed/widgets/nav_bar/nav_bar.dart';
 
 void main() {
   // flutter build web --web-renderer canvaskit --release // faster performance
+  //flutter build web --release --web-renderer canvaskit --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false // compatible for android
   // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
 
   runApp(

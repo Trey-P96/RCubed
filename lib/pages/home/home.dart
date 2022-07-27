@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/widgets/logo/business_strategy.dart';
 import 'package:rcubed/widgets/logo/logo_complete.dart';
 
@@ -27,19 +28,18 @@ class Home extends StatelessWidget{
           isPageView: true,
           maxWidth: 1200,
           children: [
-            SmoothScroll( // home screen Logo and motto
-                isPageView: false,
-                children: [
-                  Container(height: MediaQuery.of(context).size.height-56, child: CompleteLogo(),),
-                  Container(height: 400, color: Colors.blue,),
-                  Container(height: 400, color: Colors.red,),
-                  Container(height: 400, color: Colors.orange,),
-                  Logo(),
-                  // Motto(),
-                  // BusinessStrategy(),
-                  // Container(height: 100,),
+            SmoothScroll(
+              isPageView: false,
+              //isPrimary: false,
+              children:[
+                Container(height: MediaQuery.of(context).size.height-56, child: CompleteLogo(),),
+              Motto(),
+              BusinessStrategy(),
+              Container(height: 300,),]
+            ),
+            WhatWeDo(children: [
 
-                ])
+            ]),
           ],
         )
       ],

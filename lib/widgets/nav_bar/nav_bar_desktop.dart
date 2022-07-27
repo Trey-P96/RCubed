@@ -27,10 +27,8 @@ class NavBarDesktop extends StatelessWidget{
                 mouseCursor: SystemMouseCursors.click,
                 hoverColor: Colors.blue,
                 onPressed: () {  },
-                icon: SizedBox(
-                    height: iconSize,
-                    width: iconSize,
-                    child: Logo())),
+                iconSize: iconSize,
+                icon: Logo()),
           ),
 
           _NavBarObject(
