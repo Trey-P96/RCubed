@@ -14,5 +14,4 @@ class WhatWeDo extends StatelessWidget{
       return children[index];
     });
   }
-
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
+import 'package:rcubed/widgets/cover_page/cover_page.dart';
 import 'package:rcubed/widgets/logo/business_strategy.dart';
 import 'package:rcubed/widgets/logo/logo_complete.dart';
 
@@ -38,7 +39,7 @@ class Home extends StatelessWidget{
               Container(height: 300,),]
             ),
             WhatWeDo(children: [
-
+              CoverPage(backgroundPath: "assets/images/what_we_do/buildings.png", titlePath: "assets/images/what_we_do/what_we_do.svg",)
             ]),
           ],
         )
