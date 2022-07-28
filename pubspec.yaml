@@ -85,6 +85,8 @@ flutter:
     - assets/images/what_we_do/conferenceRoom.png
     - assets/images/CompleteLogo.svg
     - assets/images/Motto.svg
+    - assets/images/who_we_are/who_we_are.svg
+    - assets/images/who_we_are/who_we_are_cover.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
