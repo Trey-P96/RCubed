@@ -56,7 +56,7 @@ class CoverPage extends StatelessWidget{
                       child: AspectRatio(
                         aspectRatio: 8,
                         child: Container(
-                          child: FittedBox(fit: BoxFit.fitHeight, child: SvgPicture.asset(titlePath)),
+                          child: FittedBox(fit: BoxFit.fitHeight, child: SvgPicture.asset(titlePath, color: Colors.white,)),
                           color: Colors.transparent),
                       ),
                     ),
