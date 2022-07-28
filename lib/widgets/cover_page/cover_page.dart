@@ -5,14 +5,19 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
+import '../../pages/page.dart';
 import '../blurred_box/blurred_box.dart';
+
 
 class CoverPage extends StatelessWidget{
   final String backgroundPath;
   final String titlePath;
   const CoverPage({required this.titlePath, required this.backgroundPath, Key? key}) : super(key: key);
+  PageState? parent(BuildContext context)=>context.findAncestorStateOfType<PageState>();
+
 
 
   @override
@@ -69,11 +74,13 @@ class CoverPage extends StatelessWidget{
           Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: EdgeInsets.only(top: 40),
-              child: SizedBox(width: 200, height: 40,
+              padding: EdgeInsets.only(top: 30, bottom: 10),
+              child: SizedBox(width: 300, height: 50,
                   child: ElevatedButton(
-                      onPressed: (){},
-                      style: ElevatedButton.styleFrom(primary: RCubedTheme.primary),
+                      onPressed: (){
+                        parent(context)?.animateTo();
+                      },
+                      style: ElevatedButton.styleFrom(primary: RCubedTheme.primary, elevation: 25),
                       child: Text("LEARN MORE"))),
             ),
           )

@@ -14,6 +14,7 @@ class SmoothScrollMouse extends StatefulWidget{
 }
 
 class SmoothScrollMouseState extends State<SmoothScrollMouse>{
+  PageController pageController = PageController();
 
   @override
   void initState(){ //TODO: dispose timer, etc.
@@ -28,14 +29,18 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   @override
   Widget build(BuildContext context) {
     return widget.isPageView?
-    PageView.builder(
-        scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
-        pageSnapping: false,
-        itemCount: widget.children.length,
-        itemBuilder: (context, i){
-          return widget.children[i];
-        }
+    RawScrollbar(
+      controller: pageController,
+      child: PageView.builder(
+          scrollDirection: Axis.vertical,
+          controller: pageController,
+          physics: ClampingScrollPhysics(),
+          pageSnapping: false,
+          itemCount: widget.children.length,
+          itemBuilder: (context, i){
+            return widget.children[i];
+          }
+      ),
     )
         :
     ListView.builder(

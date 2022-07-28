@@ -9,6 +9,7 @@ class WhatWeDo extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return PageView.builder(
+        allowImplicitScrolling: true,
         itemCount: children.length,
         itemBuilder: (context, index){
       return children[index];

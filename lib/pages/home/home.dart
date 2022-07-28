@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rcubed/pages/home/what_we_do/info_page.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
 import 'package:rcubed/widgets/cover_page/cover_page.dart';
@@ -10,17 +11,14 @@ import '../../widgets/background/background.dart';
 import '../../widgets/logo/logo_simple.dart';
 import '../../widgets/logo/motto.dart';
 import '../../widgets/smooth_scrolling/smooth_scrolling.dart';
+import '../page.dart';
 
 class Home extends StatelessWidget{
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> scratchList = [
-      Container(height: MediaQuery.of(context).size.height-56, child: Text("CHILD"),),
-      Container(height: 400, color: Colors.red,),
-      Container(height: 400, color: Colors.orange,),
-    ];
+
     // TODO: implement build
     return Stack(
       alignment: AlignmentDirectional.center,
@@ -30,27 +28,43 @@ class Home extends StatelessWidget{
           isPageView: true,
           maxWidth: 1200,
           children: [
+
+
             SmoothScroll(
               isPageView: false,
               //isPrimary: false,
               children:[
-                Container(height: MediaQuery.of(context).size.height-56, child: CompleteLogo(),),
-              Motto(),
-              BusinessStrategy(),
-              Container(height: 300,),]
+                Container(
+                  height: MediaQuery.of(context).size.height-56,
+                  child: CompleteLogo(),
+                ),
+                Motto(),
+                BusinessStrategy(),
+                Container(height: 300,),
+              ]
             ),
-            const WhatWeDo(children: [
+
+
+            NewPage(    // WHAT WE DO
+                children: [
               CoverPage(
                 backgroundPath: "assets/images/what_we_do/buildings.png",
-                titlePath: "assets/images/what_we_do/what_we_do.svg",)
+                titlePath: "assets/images/what_we_do/what_we_do.svg",),
+                  WhatWeDoDetails(),
             ]),
-            const WhoWeAre(children: [
+
+
+            NewPage(    // WHO WE ARE
+                children: [
               CoverPage(
                   titlePath: "assets/images/who_we_are/who_we_are.svg",
-                  backgroundPath: "assets/images/who_we_are/who_we_are_cover.png")
+                  backgroundPath: "assets/images/who_we_are/who_we_are_cover.png"),
+              Container(color: Colors.red,)
             ]),
+
+
           ],
-        )
+        ),
       ],
     );
   }
