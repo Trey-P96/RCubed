@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rcubed/pages/home/what_we_do/info_page.dart';
+import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
+import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/widgets/cover_page/cover_page.dart';
 import 'package:rcubed/widgets/logo/logo_complete.dart';
@@ -47,27 +48,13 @@ class HomeState extends State<Home>{
               child: CompleteLogo(),
             ),
 
-            // SmoothScroll(
-            //   isPageView: false,
-            //   //isPrimary: false,
-            //   children:[
-            //     Container(
-            //       height: MediaQuery.of(context).size.height-56,
-            //       child: CompleteLogo(),
-            //     ),
-            //     Motto(),
-            //     BusinessStrategy(),
-            //     Container(height: 300,),
-            //   ]
-            // ),
-
 
             NewPage(    // WHAT WE DO
                 children: [
               CoverPage(
                 backgroundPath: Images.buildings,
                 titlePath: "assets/images/what_we_do/what_we_do.svg",),
-                  WhatWeDoDetails(),
+                  WhatWeDo(),
             ]),
 
 
@@ -76,7 +63,7 @@ class HomeState extends State<Home>{
               CoverPage(
                   titlePath: "assets/images/who_we_are/who_we_are.svg",
                   backgroundPath: Images.whoWeAreCover),
-              Container(color: Colors.red,)
+              WhoWeAre(),
             ]),
             
             
