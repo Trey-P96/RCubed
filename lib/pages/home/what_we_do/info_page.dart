@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
 
 import '../../../network_images/network_images.dart';
 
@@ -24,6 +25,10 @@ class WhatWeDoDetailsState extends State<WhatWeDoDetails> {
       children: [
         Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
         Scaffold(
+          appBar: AppBar(
+            title: Text("What We Do"),
+            backgroundColor: Colors.black.withOpacity(0.8),
+          ),
           backgroundColor: Colors.transparent,
             body:SingleChildScrollView(
                         controller: ScrollController(),
@@ -32,35 +37,92 @@ class WhatWeDoDetailsState extends State<WhatWeDoDetails> {
                             ExpansionTile(
                                 children: [
                                   Container(
-                                    color: Colors.grey,
+                                    color: Colors.transparent,
                                     height: 500,
                                   )
                                 ],
+                                textColor: Colors.white,
+                                collapsedIconColor: RCubedTheme.primary,
+                                collapsedTextColor: Colors.white,
                                 title: Container(
-                                  height: 100,
-                                  color: Colors.blue,
+                                  height: 70,
+                                  color: RCubedTheme.primary,
+                                  child: Center(child: Text("Enterprise Applications")),
                                 )),
                             ExpansionTile(
                                 children: [
                                   Container(
-                                    color: Colors.grey,
+                                    color: Colors.transparent,
                                     height: 500,
                                   )
                                 ],
+                                collapsedIconColor: RCubedTheme.primary,
+                                collapsedTextColor: Colors.white,
+                                textColor: Colors.white,
                                 title: Container(
-                                  height: 100,
-                                  color: Colors.blue,
+                                  height: 70,
+                                  color: RCubedTheme.primary,
+                                  child: Center(child: Text("Integration Architecture")),
                                 )),
                             ExpansionTile(
                                 children: [
                                   Container(
-                                    color: Colors.grey,
+                                    color: Colors.transparent,
                                     height: 500,
                                   )
                                 ],
+                                collapsedIconColor: RCubedTheme.primary,
+                                collapsedTextColor: Colors.white,
+                                textColor: Colors.white,
                                 title: Container(
-                                  height: 100,
-                                  color: Colors.red,
+                                  height: 70,
+                                  color: RCubedTheme.primary,
+                                  child: Center(child: Text("Cloud Computing")),
+                                )),
+                            ExpansionTile(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    height: 500,
+                                  )
+                                ],
+                                collapsedIconColor: RCubedTheme.primary,
+                                collapsedTextColor: Colors.white,
+                                textColor: Colors.white,
+                                title: Container(
+                                  height: 70,
+                                  color: RCubedTheme.primary,
+                                  child: Center(child: Text("Managed Services")),
+                                )),
+                            ExpansionTile(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    height: 500,
+                                  )
+                                ],
+                                collapsedIconColor: RCubedTheme.primary,
+                                collapsedTextColor: Colors.white,
+                                textColor: Colors.white,
+                                title: Container(
+                                  height: 70,
+                                  color: RCubedTheme.primary,
+                                  child: Center(child: Text("Co-Soucing")),
+                                )),
+                            ExpansionTile(
+                                children: [
+                                  Container(
+                                    color: Colors.transparent,
+                                    height: 500,
+                                  )
+                                ],
+                                collapsedIconColor: RCubedTheme.primary,
+                                collapsedTextColor: Colors.white,
+                                textColor: Colors.white,
+                                title: Container(
+                                  height: 70,
+                                  color: RCubedTheme.primary,
+                                  child: Center(child: Text("Technologies")),
                                 )),
                           ],
                         ),

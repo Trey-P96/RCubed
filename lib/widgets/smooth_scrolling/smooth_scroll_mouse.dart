@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
 
 class SmoothScrollMouse extends StatefulWidget{
   final bool isPageView;
   final List<Widget> children;
-  final PageController pageController;
+  final PreloadPageController pageController;
   const SmoothScrollMouse({required this.isPageView, required this.pageController, required this.children, Key? key}) : super(key: key);
 
   @override
@@ -34,8 +35,9 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
       thumbColor: RCubedTheme.primary,
       thickness: 10,
       controller: widget.pageController,
-      child: PageView.builder(
+      child: PreloadPageView.builder(
           scrollDirection: Axis.vertical,
+          preloadPagesCount: 3,
           controller: widget.pageController,
           physics: ClampingScrollPhysics(),
           pageSnapping: false,

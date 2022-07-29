@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 
 class NewPage extends StatefulWidget{
@@ -13,7 +14,8 @@ class NewPage extends StatefulWidget{
 }
 
 class PageState extends State<NewPage>{
-  PageController controller = PageController();
+  //PageController controller = PageController();
+  PreloadPageController controller = PreloadPageController();
   void animateTo(){
     if(controller.hasClients){
       // pageController.nextPage(duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
@@ -30,7 +32,7 @@ class PageState extends State<NewPage>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return PageView.builder(
+    return PreloadPageView.builder(
         itemCount: widget.children.length,
         controller: controller,
         itemBuilder: (context, index){

@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/widgets/smooth_scrolling/smooth_scroll_mouse.dart';
@@ -21,7 +22,8 @@ class SmoothScroll extends StatefulWidget{
 
 
 class SmoothScrollState extends State<SmoothScroll>{
-  PageController pageController = PageController();
+  //PageController pageController = PageController();
+  PreloadPageController pageController = PreloadPageController();
 
   @override
   void dispose(){

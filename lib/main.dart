@@ -50,6 +50,9 @@ class MyApp extends StatelessWidget {
       home: SafeArea(
         child: DeviceListener(
           child: Scaffold(
+            endDrawer: Drawer(
+
+            ),
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               backgroundColor: Colors.transparent,

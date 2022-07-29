@@ -32,7 +32,9 @@ class NavBarMobile extends StatelessWidget {
             ),
           Padding(
             padding: EdgeInsets.only(right: outerPadding),
-            child: SizedBox(height: iconSize, width: iconSize, child: IconButton(padding: EdgeInsets.zero, onPressed: (){}, icon: Icon(Icons.menu, size: iconSize,),)),
+            child: SizedBox(height: iconSize, width: iconSize, child: IconButton(padding: EdgeInsets.zero, onPressed: (){
+
+            }, icon: Icon(Icons.menu, size: iconSize,),)),
           )
         ],
       ),

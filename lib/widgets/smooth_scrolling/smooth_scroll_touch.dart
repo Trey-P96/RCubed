@@ -1,10 +1,11 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:preload_page_view/preload_page_view.dart';
 
 class SmoothScrollTouch extends StatefulWidget{
   final bool isPageView, isPrimary;
   final List<Widget> children;
-  final PageController pageController;
+  final PreloadPageController pageController;
   const SmoothScrollTouch({required this.pageController, this.isPrimary=true, required this.isPageView, required this.children, Key? key}) : super(key: key);
   SmoothScrollTouchState? parent(BuildContext context)=>context.findAncestorStateOfType<SmoothScrollTouchState>();
 
@@ -42,8 +43,9 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
         return true;
       },
       child: (widget.isPageView)?
-        PageView.builder(
+        PreloadPageView.builder(
         scrollDirection: Axis.vertical,
+          preloadPagesCount: 3,
           itemCount: widget.children.length,
           controller: widget.pageController,
           pageSnapping: true,
