@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/device_provider.dart';
+import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
@@ -19,6 +20,7 @@ void main() {
     MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_)=>DeviceProvider()),
+          ChangeNotifierProvider(create: (_)=>PrimaryScrollProvider()),
     ],
     child: MyApp()),
   );

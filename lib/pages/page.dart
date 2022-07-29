@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class NewPage extends StatefulWidget{
   final List<Widget> children;
@@ -12,26 +13,26 @@ class NewPage extends StatefulWidget{
 }
 
 class PageState extends State<NewPage>{
-  PageController pageController = PageController();
-
+  PageController controller = PageController();
   void animateTo(){
-    if(pageController.hasClients){
-      pageController.nextPage(duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
+    if(controller.hasClients){
+      // pageController.nextPage(duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
+      controller.nextPage(duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
     }
   }
 
   @override
   void dispose(){
     super.dispose();
-    pageController.dispose();
+    controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return PageView.builder(
-        controller: pageController,
         itemCount: widget.children.length,
+        controller: controller,
         itemBuilder: (context, index){
           return widget.children[index];
         });

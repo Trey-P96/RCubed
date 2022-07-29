@@ -1,8 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class WhatWeDoDetails extends StatelessWidget {
+import '../../../network_images/network_images.dart';
+
+class WhatWeDoDetails extends StatefulWidget{
   const WhatWeDoDetails({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return WhatWeDoDetailsState();
+  }
+}
+
+class WhatWeDoDetailsState extends State<WhatWeDoDetails> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +28,14 @@ class WhatWeDoDetails extends StatelessWidget {
         title: Text("WHAT WE DO"),
       ),
       body: Stack(
+        fit: StackFit.expand,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(fit: BoxFit.cover, image: ExactAssetImage("assets/images/what_we_do/what_we_do_info.jpg")),
-            ),
+          Positioned.fill(
+            child: CachedNetworkImage(
+              placeholder: (context, url)=>SizedBox(height: 100, width: 100, child: CircularProgressIndicator()),
+              fit: BoxFit.cover,
+              imageUrl: Images.whatWeDoInfo,),
           ),
-
 
             Padding(
               padding: const EdgeInsets.only(top: 50),
@@ -37,7 +52,7 @@ class WhatWeDoDetails extends StatelessWidget {
                         ],
                         title: Container(
                           height: 100,
-                          color: Colors.green,
+                          color: Colors.blue,
                         )),
                     ExpansionTile(
                         children: [

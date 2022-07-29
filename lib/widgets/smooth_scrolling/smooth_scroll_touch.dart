@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 class SmoothScrollTouch extends StatefulWidget{
   final bool isPageView, isPrimary;
   final List<Widget> children;
-  const SmoothScrollTouch({this.isPrimary=true, required this.isPageView, required this.children, Key? key}) : super(key: key);
+  final PageController pageController;
+  const SmoothScrollTouch({required this.pageController, this.isPrimary=true, required this.isPageView, required this.children, Key? key}) : super(key: key);
   SmoothScrollTouchState? parent(BuildContext context)=>context.findAncestorStateOfType<SmoothScrollTouchState>();
 
   @override
@@ -15,7 +16,6 @@ class SmoothScrollTouch extends StatefulWidget{
 }
 
 class SmoothScrollTouchState extends State<SmoothScrollTouch>{
-  PageController controller = PageController();
   bool isScrollingUp = false;
   bool atMaxRange = false;
   bool atMinRange = false;
@@ -23,15 +23,11 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
   @override
   void initState(){
     super.initState();
-    controller.addListener(() {
-
-    });
   }
 
   @override
   void dispose(){
     super.dispose();
-    controller.dispose();
   }
 
   @override
@@ -40,7 +36,8 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
     return NotificationListener(
       onNotification: (notification){
         if(notification is OverscrollNotification){
-          widget.parent(context)?.controller.jumpTo(widget.parent(context)!.controller.offset + notification.overscroll);
+          //widget.parent(context)?.controller.jumpTo(widget.parent(context)!.controller.offset + notification.overscroll);
+          widget.parent(context)?.widget.pageController.jumpTo(widget.parent(context)!.widget.pageController.offset + notification.overscroll);
         }
         return true;
       },
@@ -48,14 +45,14 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
         PageView.builder(
         scrollDirection: Axis.vertical,
           itemCount: widget.children.length,
-          controller: controller,
+          controller: widget.pageController,
           pageSnapping: true,
           itemBuilder: (context, index){
             return widget.children[index];
           }):
       ListView.builder(
           itemCount: widget.children.length,
-          controller: controller,
+          controller: widget.pageController,
           physics: ClampingScrollPhysics(),
           //shrinkWrap: true,
           itemBuilder: (context, index){

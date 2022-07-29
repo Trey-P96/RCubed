@@ -27,6 +27,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+#  preload_page_view: ^0.1.6
+  url_launcher: any
+  cached_network_image: any
   visibility_detector: ^0.3.3
   transparent_pointer: ^1.0.0
   #scrollable_positioned_list: ^0.3.2
@@ -76,19 +79,20 @@ flutter:
     - assets/images/Rcubed_LogoFinal.png
     - assets/images/RcubedLogo.svg
     - assets/images/RcubedLogoFinal.svg
-    - assets/images/background.png
+#    - assets/images/background.png
     - assets/fonts/Roboto-Thin.ttf
     - assets/images/businessStrategy.svg
     - assets/images/relresrep.svg
-    - assets/images/what_we_do/buildings.png
+#    - assets/images/what_we_do/buildings.png
     - assets/images/what_we_do/what_we_do.svg
-    - assets/images/what_we_do/conferenceRoom.png
+#    - assets/images/what_we_do/conferenceRoom.png
     - assets/images/CompleteLogo.svg
     - assets/images/Motto.svg
     - assets/images/who_we_are/who_we_are.svg
-    - assets/images/who_we_are/who_we_are_cover.png
-    - assets/images/what_we_do/what_we_do_info.jpg
-    - assets/images/what_we_do/what_we_do_app_bar.jpg
+    - assets/images/why_us/why_us.svg
+#    - assets/images/who_we_are/who_we_are_cover.png
+#    - assets/images/what_we_do/what_we_do_info.jpg
+#    - assets/images/what_we_do/what_we_do_app_bar.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:

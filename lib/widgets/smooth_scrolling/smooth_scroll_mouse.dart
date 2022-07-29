@@ -7,14 +7,14 @@ import 'package:collection/collection.dart';
 class SmoothScrollMouse extends StatefulWidget{
   final bool isPageView;
   final List<Widget> children;
-  const SmoothScrollMouse({required this.isPageView, required this.children, Key? key}) : super(key: key);
+  final PageController pageController;
+  const SmoothScrollMouse({required this.isPageView, required this.pageController, required this.children, Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => SmoothScrollMouseState();
 }
 
 class SmoothScrollMouseState extends State<SmoothScrollMouse>{
-  PageController pageController = PageController();
 
   @override
   void initState(){ //TODO: dispose timer, etc.
@@ -30,10 +30,10 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   Widget build(BuildContext context) {
     return widget.isPageView?
     RawScrollbar(
-      controller: pageController,
+      controller: widget.pageController,
       child: PageView.builder(
           scrollDirection: Axis.vertical,
-          controller: pageController,
+          controller: widget.pageController,
           physics: ClampingScrollPhysics(),
           pageSnapping: false,
           itemCount: widget.children.length,
