@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_network/image_network.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
@@ -26,8 +27,9 @@ class CoverPage extends StatelessWidget{
     // TODO: implement build
     return Stack(
       children: [
+        // ImageNetwork(image: backgroundPath, height: 150, width: 150, imageCache: CachedNetworkImageProvider(backgroundPath), fullScreen: true,),
         Positioned.fill(child: CachedNetworkImage(
-          placeholder: (context, url)=> SizedBox(height: 100, width: 100, child: CircularProgressIndicator()),
+         // placeholder: (context, url)=> SizedBox(height: 100, width: 100, child: CircularProgressIndicator()),
           fit: BoxFit.cover,
           imageUrl: backgroundPath,)),
         Column(

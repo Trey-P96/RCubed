@@ -29,6 +29,7 @@ environment:
 dependencies:
 #  preload_page_view: ^0.1.6
   url_launcher: any
+  image_network: any
   cached_network_image: any
   visibility_detector: ^0.3.3
   transparent_pointer: ^1.0.0

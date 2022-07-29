@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:collection/collection.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
 
 
 class SmoothScrollMouse extends StatefulWidget{
@@ -30,6 +31,8 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   Widget build(BuildContext context) {
     return widget.isPageView?
     RawScrollbar(
+      thumbColor: RCubedTheme.primary,
+      thickness: 10,
       controller: widget.pageController,
       child: PageView.builder(
           scrollDirection: Axis.vertical,
