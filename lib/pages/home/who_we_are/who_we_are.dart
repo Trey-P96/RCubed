@@ -24,15 +24,15 @@ class WhoWeAreState extends State<WhoWeAre>{
   List<Widget> list = [
     SizedBox(child: Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Container(color: RCubedTheme.primary.withOpacity(0.95),child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
+      child: Container(color: RCubedTheme.primary.withOpacity(0.8),child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
     ),),
     SizedBox(child: Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Container(color: RCubedTheme.primary.withOpacity(0.95), child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
+      child: Container(color: RCubedTheme.primary.withOpacity(0.8), child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
     ),),
     SizedBox(child: Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Container(color: RCubedTheme.primary.withOpacity(0.95),child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
+      child: Container(color: RCubedTheme.primary.withOpacity(0.8),child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
     ),),
   ];
 
