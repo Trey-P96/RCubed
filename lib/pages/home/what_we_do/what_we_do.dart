@@ -2,7 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_scroll_to_index/easy_scroll_to_index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/src/rendering/sliver_persistent_header.dart';
 import 'package:image_network/image_network.dart';
+import 'package:linked_scroll_controller/linked_scroll_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/cloud_computing.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/co_sourcing.dart';
@@ -27,22 +30,27 @@ class WhatWeDo extends StatefulWidget {
   }
 }
 
-class WhatWeDoState extends State<WhatWeDo> {
+class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
+  final ScrollController controller = ScrollController();
+  final key = GlobalKey();
+  final scrollKey = GlobalKey();
+  final nestedScrollKey = GlobalKey<NestedScrollViewState>();
 
-  final controller = ItemScrollController();
-  final itemListener = ItemPositionsListener.create();
 
-  Future scrollToIndex() async{
-    controller.scrollTo(index: 5, duration: Duration(seconds: 1), curve: Curves.ease);
+
+  void scrollToIndex() {
+    print("check");
+    //PrimaryScrollController.of(scrollKey.currentContext!)!.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
+    // controller.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1));
+
+    nestedScrollKey.currentState!.innerController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
+    //nestedScrollKey.currentState!.innerController.position.ensureVisible(nestedScrollKey.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
 
   }
 
   @override
   void initState(){
     super.initState();
-    itemListener.itemPositions.addListener(() {
-      // print(itemListener.itemPositions.value);
-    });
   }
 
   @override
@@ -56,41 +64,59 @@ class WhatWeDoState extends State<WhatWeDo> {
     return Stack(
       children: [
         //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
+
         NestedScrollView(
+              key: nestedScrollKey,
               floatHeaderSlivers: true,
               //controller: itemScrollController as ScrollController,
               headerSliverBuilder: (context, innerBoxIsScrolled){
                 return [
-                  SliverAppBar(
-                    title: Text("What We Do: Enterprise Applications"),
-                    pinned: true,
-                    //collapsedHeight: 80,
-                    expandedHeight: 300,
-                    actions: [ElevatedButton(onPressed: (){scrollToIndex();}, child: Text("Press"))],
-                    backgroundColor: RCubedTheme.primary,
-                  )
-                ];
-              },
-              body: Stack(
-                children: [
-
-
-                  ScrollablePositionedList.builder(
-                      itemCount: 10,
-                      shrinkWrap: true,
-                      itemPositionsListener: itemListener,
-                      itemScrollController: controller,
-                      itemBuilder: (context, index){
-                    return Container(height: 300, child: Text("$index"),);
-                  }),
-
-                  TransparentPointer(
-                    child: SingleChildScrollView(
-                      child: Container(height: MediaQuery.of(context).size.height,),
+                  SliverOverlapAbsorber(
+                    handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                    sliver: SliverSafeArea(
+                      sliver: SliverAppBar(
+                        title: Text("What We Do: Enterprise Applications"),
+                        pinned: true,
+                        floating: true,
+                        snap: true,
+                        expandedHeight: 300,
+                        actions: [ElevatedButton(onPressed: (){scrollToIndex();}, child: Text("Press"))],
+                        backgroundColor: RCubedTheme.primary,
+                      ),
                     ),
                   ),
                   
-                ],
+                  
+                  // SliverOverlapAbsorber(
+                  //     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  //     sliver: SliverSafeArea(
+                  //       sliver: SliverPersistentHeader(
+                  //         delegate: Header(vsync: this, callBack: scrollToIndex),
+                  //         pinned: true,
+                  //       ),
+                  //     ),
+                  // ),
+                  
+                  
+                ];
+              },
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    EnterpriseApplications(key: key,),
+                    IntegrationArchitecture(),
+                    CloudComputing(),
+                    ManagedServices(),
+                    CoSourcing(),
+                    Technologies(),
+
+                    IntegrationArchitecture(),
+                    CloudComputing(),
+                    ManagedServices(),
+                    CoSourcing(),
+                    Technologies(),
+                  ],
+                ),
               ),
               ),
 
@@ -99,4 +125,47 @@ class WhatWeDoState extends State<WhatWeDo> {
     );
 
   }
+}
+
+class Header extends SliverPersistentHeaderDelegate{
+  final TickerProvider vsync;
+  final Function() callBack;
+  Header({required this.vsync, required this.callBack}):super();
+
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    // TODO: implement build
+    return Material(
+      elevation: 10,
+      child: Stack(
+        children: [
+          Container(color: RCubedTheme.primary,),
+          ElevatedButton(onPressed: (){callBack();}, child: Text("PRESS")),
+        ],
+      ),
+    );
+  }
+
+  @override
+  // TODO: implement maxExtent
+  double get maxExtent => 300;
+
+  @override
+  // TODO: implement minExtent
+  double get minExtent => 60;
+
+  @override
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+    // TODO: implement shouldRebuild
+    return true;
+  }
+
+  // @override
+  // FloatingHeaderSnapConfiguration get snapConfiguration => FloatingHeaderSnapConfiguration(
+  //   curve: Curves.easeInOut,
+  //   duration: Duration(milliseconds: 300),
+  // );
+
+
 }
