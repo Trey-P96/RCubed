@@ -33,8 +33,11 @@ class PageState extends State<NewPage>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return PreloadPageView.builder(
+        scrollDirection: Axis.vertical,
+        pageSnapping: false,
         itemCount: widget.children.length,
         controller: controller,
+        physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, index){
           return widget.children[index];
         });

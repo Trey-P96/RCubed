@@ -7,7 +7,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_network/image_network.dart';
+import 'package:provider/provider.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
+import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
 import '../../pages/page.dart';
@@ -17,7 +19,8 @@ import '../blurred_box/blurred_box.dart';
 class CoverPage extends StatelessWidget{
   final String backgroundPath;
   final String titlePath;
-  const CoverPage({required this.titlePath, required this.backgroundPath, Key? key}) : super(key: key);
+  final int page;
+  const CoverPage({required this.titlePath, required this.backgroundPath, required this.page, Key? key}) : super(key: key);
   PageState? parent(BuildContext context)=>context.findAncestorStateOfType<PageState>();
 
 
@@ -84,6 +87,7 @@ class CoverPage extends StatelessWidget{
                     child: ElevatedButton(
                         onPressed: (){
                           parent(context)?.animateTo();
+                          Provider.of<PrimaryScrollProvider>(context, listen: false).getKey().currentState?.animateTo(page);
                         },
                         style: ElevatedButton.styleFrom(primary: RCubedTheme.primary, elevation: 25),
                         child: Text("LEARN MORE"))),

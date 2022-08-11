@@ -22,7 +22,6 @@ class SmoothScroll extends StatefulWidget{
 
 
 class SmoothScrollState extends State<SmoothScroll>{
-  //PageController pageController = PageController();
   PreloadPageController pageController = PreloadPageController();
 
   @override

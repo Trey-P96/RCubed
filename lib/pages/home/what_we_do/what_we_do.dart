@@ -1,9 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_scroll_to_index/easy_scroll_to_index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/cloud_computing.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/co_sourcing.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/integration_architecture.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:transparent_pointer/transparent_pointer.dart';
 
 import '../../../network_images/network_images.dart';
 
@@ -18,183 +28,75 @@ class WhatWeDo extends StatefulWidget {
 }
 
 class WhatWeDoState extends State<WhatWeDo> {
+
+  final controller = ItemScrollController();
+  final itemListener = ItemPositionsListener.create();
+
+  Future scrollToIndex() async{
+    controller.scrollTo(index: 5, duration: Duration(seconds: 1), curve: Curves.ease);
+
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    itemListener.itemPositions.addListener(() {
+      // print(itemListener.itemPositions.value);
+    });
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Stack(
       children: [
-        Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
-        Scaffold(
-          appBar: AppBar(
-            title: Text("What We Do"),
-            backgroundColor: Colors.black.withOpacity(0.6),
-          ),
-          backgroundColor: Colors.transparent,
-            body:Center(
-              child: SingleChildScrollView(
-                          controller: ScrollController(),
-                          child: Column(
-                            children: [
-                              ExpansionTile(
-                                  children: [
-                                    Container(
-                                      color: Colors.transparent,
-                                      height: 500,
-                                    )
-                                  ],
-                                  textColor: Colors.white,
-                                  collapsedIconColor: RCubedTheme.primary,
-                                  collapsedTextColor: Colors.white,
-                                  title: Container(
-                                    height: 70,
-                                    color: RCubedTheme.primary,
-                                    child: Center(child: Text("Enterprise Applications")),
-                                  )),
-                              ExpansionTile(
-                                  children: [
-                                    Container(
-                                      color: Colors.transparent,
-                                      height: 500,
-                                    )
-                                  ],
-                                  collapsedIconColor: RCubedTheme.primary,
-                                  collapsedTextColor: Colors.white,
-                                  textColor: Colors.white,
-                                  title: Container(
-                                    height: 70,
-                                    color: RCubedTheme.primary,
-                                    child: Center(child: Text("Integration Architecture")),
-                                  )),
-                              ExpansionTile(
-                                  children: [
-                                    Container(
-                                      color: Colors.transparent,
-                                      height: 500,
-                                    )
-                                  ],
-                                  collapsedIconColor: RCubedTheme.primary,
-                                  collapsedTextColor: Colors.white,
-                                  textColor: Colors.white,
-                                  title: Container(
-                                    height: 70,
-                                    color: RCubedTheme.primary,
-                                    child: Center(child: Text("Cloud Computing")),
-                                  )),
-                              ExpansionTile(
-                                  children: [
-                                    Container(
-                                      color: Colors.transparent,
-                                      height: 500,
-                                    )
-                                  ],
-                                  collapsedIconColor: RCubedTheme.primary,
-                                  collapsedTextColor: Colors.white,
-                                  textColor: Colors.white,
-                                  title: Container(
-                                    height: 70,
-                                    color: RCubedTheme.primary,
-                                    child: Center(child: Text("Managed Services")),
-                                  )),
-                              ExpansionTile(
-                                  children: [
-                                    Container(
-                                      color: Colors.transparent,
-                                      height: 500,
-                                    )
-                                  ],
-                                  collapsedIconColor: RCubedTheme.primary,
-                                  collapsedTextColor: Colors.white,
-                                  textColor: Colors.white,
-                                  title: Container(
-                                    height: 70,
-                                    color: RCubedTheme.primary,
-                                    child: Center(child: Text("Co-Soucing")),
-                                  )),
-                              ExpansionTile(
-                                  children: [
-                                    Container(
-                                      color: Colors.transparent,
-                                      height: 500,
-                                    )
-                                  ],
-                                  collapsedIconColor: RCubedTheme.primary,
-                                  collapsedTextColor: Colors.white,
-                                  textColor: Colors.white,
-                                  title: Container(
-                                    height: 70,
-                                    color: RCubedTheme.primary,
-                                    child: Center(child: Text("Technologies")),
-                                  )),
-                            ],
-                          ),
-                        ),
-            )),
+        //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
+        NestedScrollView(
+              floatHeaderSlivers: true,
+              //controller: itemScrollController as ScrollController,
+              headerSliverBuilder: (context, innerBoxIsScrolled){
+                return [
+                  SliverAppBar(
+                    title: Text("What We Do: Enterprise Applications"),
+                    pinned: true,
+                    //collapsedHeight: 80,
+                    expandedHeight: 300,
+                    actions: [ElevatedButton(onPressed: (){scrollToIndex();}, child: Text("Press"))],
+                    backgroundColor: RCubedTheme.primary,
+                  )
+                ];
+              },
+              body: Stack(
+                children: [
+
+
+                  ScrollablePositionedList.builder(
+                      itemCount: 10,
+                      shrinkWrap: true,
+                      itemPositionsListener: itemListener,
+                      itemScrollController: controller,
+                      itemBuilder: (context, index){
+                    return Container(height: 300, child: Text("$index"),);
+                  }),
+
+                  TransparentPointer(
+                    child: SingleChildScrollView(
+                      child: Container(height: MediaQuery.of(context).size.height,),
+                    ),
+                  ),
+                  
+                ],
+              ),
+              ),
+
+
       ],
     );
 
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     backgroundColor: Colors.black.withOpacity(.8),
-    //     //backgroundColor: Colors.black.withOpacity(0.5),
-    //     title: Text("WHAT WE DO"),
-    //   ),
-    //   body: Stack(
-    //     fit: StackFit.expand,
-    //     children: [
-    //       ImageNetwork(width: 150, height: 150, image: Images.whatWeDoInfo, imageCache: CachedNetworkImageProvider(Images.whatWeDoInfo),fullScreen: true,),
-    //
-    //       // Positioned.fill(
-    //       //   child: CachedNetworkImage(
-    //       //     placeholder: (context, url)=>SizedBox(height: 100, width: 100, child: CircularProgressIndicator()),
-    //       //     fit: BoxFit.cover,
-    //       //     imageUrl: Images.whatWeDoInfo,),
-    //       // ),
-    //
-    //         Padding(
-    //           padding: const EdgeInsets.only(top: 50),
-    //           child: SingleChildScrollView(
-    //             controller: ScrollController(),
-    //             child: Column(
-    //               children: [
-    //                 ExpansionTile(
-    //                     children: [
-    //                       Container(
-    //                         color: Colors.grey,
-    //                         height: 500,
-    //                       )
-    //                     ],
-    //                     title: Container(
-    //                       height: 100,
-    //                       color: Colors.blue,
-    //                     )),
-    //                 ExpansionTile(
-    //                     children: [
-    //                       Container(
-    //                         color: Colors.grey,
-    //                         height: 500,
-    //                       )
-    //                     ],
-    //                     title: Container(
-    //                       height: 100,
-    //                       color: Colors.blue,
-    //                     )),
-    //                 ExpansionTile(
-    //                     children: [
-    //                       Container(
-    //                         color: Colors.grey,
-    //                         height: 500,
-    //                       )
-    //                     ],
-    //                     title: Container(
-    //                       height: 100,
-    //                       color: Colors.red,
-    //                     )),
-    //               ],
-    //             ),
-    //           ),
-    //         ),
-    //     ],
-    //   ),
-    // );
   }
 }

@@ -52,6 +52,7 @@ class HomeState extends State<Home>{
             NewPage(    // WHAT WE DO
                 children: [
               CoverPage(
+                page: 1,
                 backgroundPath: Images.buildings,
                 titlePath: "assets/images/what_we_do/what_we_do.svg",),
                   WhatWeDo(),
@@ -61,6 +62,7 @@ class HomeState extends State<Home>{
             NewPage(    // WHO WE ARE
                 children: [
               CoverPage(
+                page: 2,
                   titlePath: "assets/images/who_we_are/who_we_are.svg",
                   backgroundPath: Images.whoWeAreCover),
               WhoWeAre(),
@@ -69,7 +71,9 @@ class HomeState extends State<Home>{
             
             NewPage(    //WHY US
                 children: [
-                  CoverPage(titlePath: "assets/images/why_us/why_us.svg", backgroundPath: Images.whyUsCover)
+                  CoverPage(
+                      page: 3,
+                      titlePath: "assets/images/why_us/why_us.svg", backgroundPath: Images.whyUsCover)
                 ])
 
 

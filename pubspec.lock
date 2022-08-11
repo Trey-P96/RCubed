@@ -85,6 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  easy_scroll_to_index:
+    dependency: "direct main"
+    description:
+      name: easy_scroll_to_index
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2+1"
   fake_async:
     dependency: transitive
     description:
@@ -131,7 +138,7 @@ packages:
       name: flutter_lints
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.1"
+    version: "1.0.4"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -190,7 +197,7 @@ packages:
       name: lints
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0"
+    version: "1.0.1"
   matcher:
     dependency: transitive
     description:
@@ -366,6 +373,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.5"
+  scroll_to_index:
+    dependency: "direct main"
+    description:
+      name: scroll_to_index
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+  scrollable_positioned_list:
+    dependency: "direct main"
+    description:
+      name: scrollable_positioned_list
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.3.2"
   sky_engine:
     dependency: transitive
     description: flutter
