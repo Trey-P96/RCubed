@@ -6,6 +6,8 @@ import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/widgets/cover_page/cover_page.dart';
 import 'package:rcubed/widgets/logo/logo_complete.dart';
+import 'package:rcubed/widgets/video_background/video_background.dart';
+import 'package:video_player/video_player.dart';
 import '../../network_images/network_images.dart';
 import '../../widgets/background/background.dart';
 import '../../widgets/smooth_scrolling/smooth_scrolling.dart';
@@ -45,7 +47,12 @@ class HomeState extends State<Home>{
           children: [
             Container(    // HOME PAGE LOGO
               height: MediaQuery.of(context).size.height-56,
-              child: CompleteLogo(),
+              child: Stack(
+                children: [
+                  BackgroundVideo(),
+                  CompleteLogo(),
+                ],
+              ),
             ),
 
 

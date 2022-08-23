@@ -6,4 +6,5 @@ class Images{
   static String whoWeAreCover = "https://i.imgur.com/tZGMoAv.png";
   static String whyUsCover = "https://i.imgur.com/NssyLf0.jpg";
   static String whoWeAreInfo = "https://i.imgur.com/l0dBGNO.jpg";
+  static String videoBackground = "https://i.imgur.com/uroKA8U.mp4";
 }

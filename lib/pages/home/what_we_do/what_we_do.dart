@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_scroll_to_index/easy_scroll_to_index.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +15,7 @@ import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.
 import 'package:rcubed/pages/home/what_we_do/categories/integration_architecture.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
+import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -31,21 +34,13 @@ class WhatWeDo extends StatefulWidget {
 }
 
 class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
-  final ScrollController controller = ScrollController();
   final key = GlobalKey();
-  final scrollKey = GlobalKey();
   final nestedScrollKey = GlobalKey<NestedScrollViewState>();
 
 
 
   void scrollToIndex() {
-    print("check");
-    //PrimaryScrollController.of(scrollKey.currentContext!)!.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
-    // controller.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1));
-
     nestedScrollKey.currentState!.innerController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
-    //nestedScrollKey.currentState!.innerController.position.ensureVisible(nestedScrollKey.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
-
   }
 
   @override
@@ -67,8 +62,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
 
         NestedScrollView(
               key: nestedScrollKey,
-              floatHeaderSlivers: true,
-              //controller: itemScrollController as ScrollController,
+              //floatHeaderSlivers: true,
               headerSliverBuilder: (context, innerBoxIsScrolled){
                 return [
                   SliverOverlapAbsorber(
@@ -76,40 +70,22 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                     sliver: SliverSafeArea(
                       sliver: SliverAppBar(
                         title: Text("What We Do: Enterprise Applications"),
-                        pinned: true,
-                        floating: true,
-                        snap: true,
+                        pinned: Provider.of<DeviceProvider>(context).getDevice() == PointerDeviceKind.touch? false:true,
+                        //floating: true,
+                        //snap: true,
                         expandedHeight: 300,
                         actions: [ElevatedButton(onPressed: (){scrollToIndex();}, child: Text("Press"))],
                         backgroundColor: RCubedTheme.primary,
                       ),
                     ),
                   ),
-                  
-                  
-                  // SliverOverlapAbsorber(
-                  //     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-                  //     sliver: SliverSafeArea(
-                  //       sliver: SliverPersistentHeader(
-                  //         delegate: Header(vsync: this, callBack: scrollToIndex),
-                  //         pinned: true,
-                  //       ),
-                  //     ),
-                  // ),
-                  
-                  
+
                 ];
               },
               body: SingleChildScrollView(
                 child: Column(
                   children: [
                     EnterpriseApplications(key: key,),
-                    IntegrationArchitecture(),
-                    CloudComputing(),
-                    ManagedServices(),
-                    CoSourcing(),
-                    Technologies(),
-
                     IntegrationArchitecture(),
                     CloudComputing(),
                     ManagedServices(),

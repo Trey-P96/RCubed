@@ -32,7 +32,9 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   Widget build(BuildContext context) {
     return widget.isPageView?
     RawScrollbar(
-      thumbColor: RCubedTheme.primary,
+      thumbVisibility: true,
+      trackVisibility: true,
+      thumbColor: Colors.black87,
       thickness: 10,
       controller: widget.pageController,
       child: PreloadPageView.builder(
