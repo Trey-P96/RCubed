@@ -153,7 +153,7 @@ class _MenuButton extends StatelessWidget{
       ),
       decoration: BoxDecoration(
           color: RCubedTheme.offPrimary,
-          borderRadius: BorderRadius.all(Radius.circular(5))
+          borderRadius: BorderRadius.all(Radius.circular(25))
       ),
     );
   }
