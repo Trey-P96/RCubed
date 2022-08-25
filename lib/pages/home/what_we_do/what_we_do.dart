@@ -59,7 +59,6 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
     return Stack(
       children: [
         //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
-
         NestedScrollView(
               key: nestedScrollKey,
               //floatHeaderSlivers: true,
@@ -69,12 +68,49 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                     sliver: SliverSafeArea(
                       sliver: SliverAppBar(
-                        title: Text("What We Do: Enterprise Applications"),
+                        title: Center(child: Text("What We Do: Enterprise Applications")),
                         pinned: Provider.of<DeviceProvider>(context).getDevice() == PointerDeviceKind.touch? false:true,
+                        flexibleSpace: SingleChildScrollView(
+                          controller: ScrollController(),
+                          physics: NeverScrollableScrollPhysics(),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 40),
+                            child: Container(
+                              height: 200,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      _MenuButton(title: "Enterprise Applications"),
+                                      _MenuButton(title: "Integration Architecture"),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      _MenuButton(title: "Cloud Computing"),
+                                      _MenuButton(title: "Managed Services"),
+                                    ],
+                                  ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      _MenuButton(title: "Co Sourcing"),
+                                      _MenuButton(title: "Technologies"),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                          ),
+                        ),
                         //floating: true,
                         //snap: true,
-                        expandedHeight: 300,
-                        actions: [ElevatedButton(onPressed: (){scrollToIndex();}, child: Text("Press"))],
+                        expandedHeight: 220,
+                        //actions: [ElevatedButton(onPressed: (){scrollToIndex();}, child: Text("Press"))],
+                        actions: [Container()],
                         backgroundColor: RCubedTheme.primary,
                       ),
                     ),
@@ -103,45 +139,66 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
   }
 }
 
-class Header extends SliverPersistentHeaderDelegate{
-  final TickerProvider vsync;
-  final Function() callBack;
-  Header({required this.vsync, required this.callBack}):super();
-
+class _MenuButton extends StatelessWidget{
+  final String title;
+  _MenuButton({required this.title});
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(BuildContext context) {
     // TODO: implement build
-    return Material(
-      elevation: 10,
-      child: Stack(
-        children: [
-          Container(color: RCubedTheme.primary,),
-          ElevatedButton(onPressed: (){callBack();}, child: Text("PRESS")),
-        ],
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(title, style: TextStyle(color: Colors.white),),
+      ),
+      decoration: BoxDecoration(
+          color: RCubedTheme.offPrimary,
+          borderRadius: BorderRadius.all(Radius.circular(5))
       ),
     );
   }
 
-  @override
-  // TODO: implement maxExtent
-  double get maxExtent => 300;
-
-  @override
-  // TODO: implement minExtent
-  double get minExtent => 60;
-
-  @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
-    // TODO: implement shouldRebuild
-    return true;
-  }
-
-  // @override
-  // FloatingHeaderSnapConfiguration get snapConfiguration => FloatingHeaderSnapConfiguration(
-  //   curve: Curves.easeInOut,
-  //   duration: Duration(milliseconds: 300),
-  // );
-
-
 }
+
+// class Header extends SliverPersistentHeaderDelegate{
+//   final TickerProvider vsync;
+//   final Function() callBack;
+//   Header({required this.vsync, required this.callBack}):super();
+//
+//
+//   @override
+//   Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+//     // TODO: implement build
+//     return Material(
+//       elevation: 10,
+//       child: Stack(
+//         children: [
+//           Container(color: RCubedTheme.primary,),
+//           ElevatedButton(onPressed: (){callBack();}, child: Text("PRESS")),
+//         ],
+//       ),
+//     );
+//   }
+//
+//   @override
+//   // TODO: implement maxExtent
+//   double get maxExtent => 300;
+//
+//   @override
+//   // TODO: implement minExtent
+//   double get minExtent => 60;
+//
+//   @override
+//   bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) {
+//     // TODO: implement shouldRebuild
+//     return true;
+//   }
+//
+//   // @override
+//   // FloatingHeaderSnapConfiguration get snapConfiguration => FloatingHeaderSnapConfiguration(
+//   //   curve: Curves.easeInOut,
+//   //   duration: Duration(milliseconds: 300),
+//   // );
+//
+//
+// }

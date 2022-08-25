@@ -13,8 +13,17 @@ class EnterpriseApplications extends StatelessWidget{
       children: [
         Container(height: 50, child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: const Text(heading, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-        ), alignment: Alignment.centerLeft,color: Colors.grey,),
+          child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: RCubedTheme.offPrimary,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
+              )),
+        ),
+          alignment: Alignment.centerLeft,),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Container(child: const Text(info, style: TextStyle(fontWeight: FontWeight.bold)),alignment: Alignment.centerLeft,),
@@ -27,7 +36,6 @@ class EnterpriseApplications extends StatelessWidget{
 const heading = "Enterprise Applications";
 
 const info = ''' 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    R-CUBED provides solutions across the end-to-end application journey. We maximize potential by shaping your digital strategy with deliberate
+  execution that fuels transformation and maximizes potential.
  ''';

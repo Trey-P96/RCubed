@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,8 +49,10 @@ class HomeState extends State<Home>{
             Container(    // HOME PAGE LOGO
               height: MediaQuery.of(context).size.height-56,
               child: Stack(
+                fit: StackFit.expand,
                 children: [
-                  BackgroundVideo(),
+                  //BackgroundVideo(),
+                  CachedNetworkImage(imageUrl: Images.homeLogoBackground, fit: BoxFit.cover,),
                   CompleteLogo(),
                 ],
               ),

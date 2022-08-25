@@ -14,8 +14,17 @@ class IntegrationArchitecture extends StatelessWidget {
       children: [
         Container(height: 50, child: Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
-          child: const Text(heading, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
-        ), alignment: Alignment.centerLeft,color: Colors.grey,),
+          child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                color: RCubedTheme.offPrimary,
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
+              )),
+        ),
+          alignment: Alignment.centerLeft,),
         Padding(
           padding: const EdgeInsets.only(left: 10, right: 10),
           child: Container(child: const Text(info, style: TextStyle(fontWeight: FontWeight.bold)),alignment: Alignment.centerLeft,),
