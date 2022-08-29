@@ -23,7 +23,7 @@ class IntegrationArchitecture extends StatelessWidget {
                     color: RCubedTheme.offPrimary,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.all(12.0),
+                    padding: const EdgeInsets.only(left: 12, right: 12, top: 3, bottom: 3),
                     child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
                   )),
             ),

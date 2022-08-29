@@ -12,29 +12,36 @@ class EnterpriseApplications extends StatelessWidget{
     return Padding(
       padding: const EdgeInsets.only(top:50),
       child: Column(
+        verticalDirection: VerticalDirection.up,
         children: [
-          Container(height: 50, child: Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Center(
-              child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    color: RCubedTheme.offPrimary,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
-                  )),
-            ),
-          ),
-            alignment: Alignment.centerLeft,),
+          _ExpansionTile(title: "Enterprise Analysis", description: info),
+          _ExpansionTile(title: "Corporate Performance Management", description: info),
+          _ExpansionTile(title: "Enterprise Resource Planning", description: info),
+          _ExpansionTile(title: "Master Data Governance", description: info),
+          _ExpansionTile(title: "System Diagnostic & Strategy", description: info),
+          _ExpansionTile(title: "System Select", description: info),
+          _ExpansionTile(title: "Summary", description: info, initiallyExpanded: true,),
+
+          //Divider(color: Colors.black, thickness: 2,),
           Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              children: [
-                Divider(),
-                Container(child: const Text(info, style: TextStyle(fontWeight: FontWeight.bold)),alignment: Alignment.centerLeft,),
-              ],
+            padding: const EdgeInsets.only(bottom: 15),
+            child: Container(height: 50, child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Center(
+                child: Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [BoxShadow(offset: Offset(0,5), blurRadius: 10, color: Colors.black.withOpacity(0.6))],
+                      borderRadius: BorderRadius.all(Radius.circular(25)),
+                      color: RCubedTheme.offPrimary,
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20, top: 3, bottom: 3),
+                      child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 25),),
+                    ),
+                ),
+              ),
+            ),
+              alignment: Alignment.centerLeft,
             ),
           ),
         ],
@@ -46,6 +53,37 @@ class EnterpriseApplications extends StatelessWidget{
 const heading = "Enterprise Applications";
 
 const info = ''' 
-    R-CUBED provides solutions across the end-to-end application journey. We maximize potential by shaping your digital strategy with deliberate
+  R-CUBED provides solutions across the end-to-end application journey. We maximize potential by shaping your digital strategy with deliberate
   execution that fuels transformation and maximizes potential.
  ''';
+
+
+class _ExpansionTile extends StatelessWidget{
+  final String title, description;
+  final bool initiallyExpanded;
+  _ExpansionTile({required this.title, required this.description, this.initiallyExpanded=false});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Material(
+      elevation: 5,
+      color: Colors.transparent,
+      child: ExpansionTile(
+        title: Text(title),
+        initiallyExpanded: initiallyExpanded,
+        collapsedIconColor: Colors.grey,
+        collapsedTextColor: Colors.white,
+        collapsedBackgroundColor: Palette.darkGrey.withOpacity(0.95),
+        backgroundColor: Colors.white.withOpacity(0.95),
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Text(description, style: TextStyle(color: Colors.black,),),
+          )
+        ],
+      ),
+    );
+  }
+
+}

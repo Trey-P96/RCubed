@@ -58,7 +58,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
     // TODO: implement build
     return Stack(
       children: [
-        //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
+        Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
         NestedScrollView(
               key: nestedScrollKey,
               //floatHeaderSlivers: true,
@@ -68,7 +68,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                     sliver: SliverSafeArea(
                       sliver: SliverAppBar(
-                        title: Center(child: Text("What We Do: Enterprise Applications")),
+                        title: Center(child: Text("What We Do")),
                         pinned: Provider.of<DeviceProvider>(context).getDevice() == PointerDeviceKind.touch? false:true,
                         flexibleSpace: SingleChildScrollView(
                           controller: ScrollController(),

@@ -6,3 +6,8 @@ class RCubedTheme {
   static const Color secondary = const Color(0xFFFFFFFF);
   static const Color offPrimary = const Color(0xFF3a6791);
 }
+
+class Palette {
+  static const Color darkGrey = const Color(0xFF383838);
+  static const Color darkBlue = const Color(0xFF002c47);
+}

@@ -21,21 +21,12 @@ class WhoWeAre extends StatefulWidget{
 class WhoWeAreState extends State<WhoWeAre>{
   PreloadPageController controller = PreloadPageController(viewportFraction: 0.75, initialPage: 1);
 
-  List<Widget> list = [
-    SizedBox(child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(color: RCubedTheme.primary.withOpacity(0.8),child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
-    ),),
-    SizedBox(child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(color: RCubedTheme.primary.withOpacity(0.8), child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
-    ),),
-    SizedBox(child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Container(color: RCubedTheme.primary.withOpacity(0.8),child: Center(child: Text("PLACE PROFILE IMAGE HERE:", style: TextStyle(color: Colors.white),)),),
-    ),),
-  ];
-
+  // int _crossAxisCount(){
+  //   double width = MediaQuery.of(context).size.width;
+  //
+  //   if(width < 500) return 2;
+  //   else if(width < 800) return 3;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -43,25 +34,41 @@ class WhoWeAreState extends State<WhoWeAre>{
     return Stack(
       children: [
         Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whoWeAreInfo)),
-        Scaffold(
-          appBar: AppBar(
-            title: Text("Who We Are"),
-            backgroundColor: Colors.black.withOpacity(0.8),
-          ),
-          backgroundColor: Colors.transparent,
-          body: Padding(
-            padding: const EdgeInsets.only(top: 50, bottom: 50),
-            child: Container(
-              color: Colors.black.withOpacity(0.7),
-              child: PreloadPageView.builder(
-                  controller: controller,
-                  itemCount: list.length,
+        NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled){
+              return [
+                SliverOverlapAbsorber(
+                  handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+                  sliver: SliverSafeArea(
+                    sliver: SliverAppBar(
+                      title: Center(child: Text("Who We Are")),
+                      pinned: true,
+                      backgroundColor: RCubedTheme.primary,
+                      actions: [Container()],
+                    ),
+                  ),
+                ),
+              ];
+            },
+            body: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: GridView.builder(
+                  controller: ScrollController(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: MediaQuery.of(context).size.width <= 500? 1: 2,
+                  ),
+                  itemCount: 5,
                   itemBuilder: (context, index){
-                return list[index];
-              }),
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(color: Colors.white.withOpacity(0.95)),
+                    );
+                  }
+              ),
             ),
-          ),
         ),
+
+
       ],
     );
   }
