@@ -24,7 +24,7 @@ class EnterpriseApplications extends StatelessWidget{
 
           //Divider(color: Colors.black, thickness: 2,),
           Padding(
-            padding: const EdgeInsets.only(bottom: 15),
+            padding: const EdgeInsets.only(bottom: 35),
             child: Container(height: 50, child: Padding(
               padding: const EdgeInsets.only(left: 10, right: 10),
               child: Center(

@@ -10,4 +10,5 @@ class RCubedTheme {
 class Palette {
   static const Color darkGrey = const Color(0xFF383838);
   static const Color darkBlue = const Color(0xFF002c47);
+  static const Color offWhite = const Color(0xFFd9d9d9);
 }
