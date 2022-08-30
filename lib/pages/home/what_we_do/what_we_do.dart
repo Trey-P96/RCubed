@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -11,7 +12,7 @@ import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.
 import 'package:rcubed/pages/home/what_we_do/categories/integration_architecture.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
-import 'package:rcubed/providers/app_bar_provider.dart';
+import 'package:rcubed/providers/what_we_do_providers.dart';
 import '../../../network_images/network_images.dart';
 import '../../../providers/device_provider.dart';
 import '../../../themes/rcubed_theme.dart';
@@ -39,18 +40,32 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
   void updateSize(){
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       RenderBox? box = navBarKey.currentContext?.findRenderObject() as RenderBox?;
+      //RenderBox? appBar = appBarKey.currentContext?.findRenderObject() as RenderBox;
       if(box != null){
         Provider.of<AppBarProvider>(context, listen: false).updateHeight(box.size.height);
-        //print(box.size.height);
-
       }
+
     });
   }
+
+  void listen(){
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      nestedScrollKey.currentState!.outerController.addListener(() {
+        if(nestedScrollKey.currentState!.outerController.offset == 0){
+          Provider.of<AppBarProvider>(context, listen: false).updateOpacity(true);
+        } else{
+          Provider.of<AppBarProvider>(context, listen: false).updateOpacity(false);
+        }
+      });
+    });
+  }
+
 
   @override
   void initState(){
     super.initState();
     updateSize();
+    listen();
   }
 
   @override
@@ -78,14 +93,15 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                         expandedHeight: Provider.of<AppBarProvider>(context).getHeight(),
                         actions: [Container()],
                         backgroundColor: Colors.white,
-                        title: Center(child: Text("What We Do", style: TextStyle(color: Colors.black),)),
+                        title: Center(child: Text("What We Do", style: TextStyle(color: Colors.black, fontSize: 30),)),
                         pinned: Provider.of<DeviceProvider>(context).getDevice() == PointerDeviceKind.touch? false:true,
                         flexibleSpace: SingleChildScrollView(
+                          //key: appBarKey,
                           physics: NeverScrollableScrollPhysics(),
                           controller: ScrollController(),
                           child: Container(
                             decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.white, Palette.offWhite], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-                            child: MediaQuery.of(context).size.width < 600?
+                            child: MediaQuery.of(context).size.width < 650?
                             Align(
                               key: navBarKey,
                               child: Padding(
@@ -143,17 +159,28 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
 
                 ];
               },
-              body: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    EnterpriseApplications(key: key,),
-                    IntegrationArchitecture(),
-                    CloudComputing(),
-                    ManagedServices(),
-                    CoSourcing(),
-                    Technologies(),
-                  ],
-                ),
+              body: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        EnterpriseApplications(key: key,),
+                        IntegrationArchitecture(),
+                        CloudComputing(),
+                        ManagedServices(),
+                        CoSourcing(),
+                        Technologies(),
+                      ],
+                    ),
+                  ),
+                  IgnorePointer(
+                    child: AnimatedOpacity(
+                        opacity: Provider.of<AppBarProvider>(context).isExpanded()? 1:0,
+                        duration: Duration(milliseconds: 400),
+                        child: Container(color: Colors.black.withOpacity(0.5),),
+                    ),
+                  ),
+                ],
               ),
               ),
 
@@ -170,16 +197,25 @@ class _MenuButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
-      width: 200,
-      height: 60,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(child: Text(title, style: TextStyle(color: Colors.black),)),
-      ),
-      decoration: BoxDecoration(
-          color: Colors.transparent,
-          //borderRadius: BorderRadius.all(Radius.circular(25))
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: MouseRegion(
+        onEnter: (pointer){
+          Provider.of<AppBarProvider>(context, listen: false).updateColor(Colors.grey);
+        },
+        onExit:(pointer){
+          Provider.of<AppBarProvider>(context, listen: false).updateColor(Colors.transparent);
+        },
+        child: AnimatedContainer(
+          width: 200,
+          height: 40,
+          decoration: BoxDecoration(
+              color: Provider.of<AppBarProvider>(context).getColor(),
+              borderRadius: BorderRadius.all(Radius.circular(25))
+          ),
+          duration: Duration(milliseconds: 500),
+          child: Center(child: Text(title, style: TextStyle(color: Colors.black),)),
+        ),
       ),
     );
   }
