@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -28,19 +29,29 @@ class WhatWeDo extends StatefulWidget {
 }
 
 class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
-  final key = GlobalKey();
   final nestedScrollKey = GlobalKey<NestedScrollViewState>();
   final navBarKey = GlobalKey();
 
+  final enterpriseAppKey = GlobalKey();
+  final integrationArchKey = GlobalKey();
+  final cloudCompKey = GlobalKey();
+  final managedServiceKey = GlobalKey();
+  final coSourceKey = GlobalKey();
+  final technologyKey = GlobalKey();
 
-  void scrollToIndex() {
-    nestedScrollKey.currentState!.innerController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
+
+  void scrollToIndex(GlobalKey key) {
+    if(key == enterpriseAppKey){
+      nestedScrollKey.currentState!.outerController.position.animateTo(nestedScrollKey.currentState!.outerController.position.maxScrollExtent, duration: Duration(seconds: 1), curve: Curves.easeInOut);
+    }
+    else{
+      nestedScrollKey.currentState!.innerController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: Duration(seconds: 1), alignment: 0);
+    }
   }
 
   void updateSize(){
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       RenderBox? box = navBarKey.currentContext?.findRenderObject() as RenderBox?;
-      //RenderBox? appBar = appBarKey.currentContext?.findRenderObject() as RenderBox;
       if(box != null){
         Provider.of<AppBarProvider>(context, listen: false).updateHeight(box.size.height);
       }
@@ -82,6 +93,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
         Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
         NestedScrollView(
               key: nestedScrollKey,
+              //floatHeaderSlivers: true,
               headerSliverBuilder: (context, innerBoxIsScrolled){
                 return [
                   SliverOverlapAbsorber(
@@ -94,63 +106,33 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                         actions: [Container()],
                         backgroundColor: Colors.white,
                         title: Center(child: Text("What We Do", style: TextStyle(color: Colors.black, fontSize: 30),)),
-                        pinned: Provider.of<DeviceProvider>(context).getDevice() == PointerDeviceKind.touch? false:true,
+                        //pinned: Provider.of<DeviceProvider>(context).getDevice() == PointerDeviceKind.touch? false:true,
+                        pinned: true,
                         flexibleSpace: SingleChildScrollView(
                           //key: appBarKey,
                           physics: NeverScrollableScrollPhysics(),
                           controller: ScrollController(),
                           child: Container(
                             decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.white, Palette.offWhite], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-                            child: MediaQuery.of(context).size.width < 650?
-                            Align(
+                            child: Align(
                               key: navBarKey,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: kToolbarHeight+10),
                                 child: Wrap(
                                   alignment: WrapAlignment.spaceEvenly,
                                   children: [
-                                    _MenuButton(title: "Enterprise Applications",),
-                                    _MenuButton(title: "Integration Architecture"),
-                                    _MenuButton(title: "Cloud Computing"),
-                                    _MenuButton(title: "Managed Services"),
-                                    _MenuButton(title: "Co Sourcing"),
-                                    _MenuButton(title: "Technologies"),
+                                    Divider(),
+                                    _MenuButton(title: "Enterprise Applications", scrollToIndex: scrollToIndex, pageKey: enterpriseAppKey,),
+                                    _MenuButton(title: "Integration Architecture", scrollToIndex: scrollToIndex,pageKey: integrationArchKey,),
+                                    _MenuButton(title: "Cloud Computing", scrollToIndex: scrollToIndex,pageKey: cloudCompKey,),
+                                    _MenuButton(title: "Managed Services", scrollToIndex: scrollToIndex,pageKey: managedServiceKey,),
+                                    _MenuButton(title: "Co Sourcing", scrollToIndex: scrollToIndex,pageKey: coSourceKey,),
+                                    _MenuButton(title: "Technologies", scrollToIndex: scrollToIndex,pageKey: technologyKey,),
 
                                   ],
                                 ),
                               ),
                             )
-                                :
-                            Padding(
-                              key: navBarKey,
-                              padding: const EdgeInsets.only(top: kToolbarHeight+10),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      _MenuButton(title: "Enterprise Applications"),
-                                      _MenuButton(title: "Integration Architecture"),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      _MenuButton(title: "Cloud Computing"),
-                                      _MenuButton(title: "Managed Services"),
-                                    ],
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      _MenuButton(title: "Co Sourcing"),
-                                      _MenuButton(title: "Technologies"),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
                           ),
                         ),
                       ),
@@ -164,12 +146,12 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                   SingleChildScrollView(
                     child: Column(
                       children: [
-                        EnterpriseApplications(key: key,),
-                        IntegrationArchitecture(),
-                        CloudComputing(),
-                        ManagedServices(),
-                        CoSourcing(),
-                        Technologies(),
+                        EnterpriseApplications(key: enterpriseAppKey,),
+                        IntegrationArchitecture(key: integrationArchKey,),
+                        CloudComputing(key: cloudCompKey,),
+                        ManagedServices(key: managedServiceKey,),
+                        CoSourcing(key: coSourceKey,),
+                        Technologies(key: technologyKey,),
                       ],
                     ),
                   ),
@@ -177,7 +159,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                     child: AnimatedOpacity(
                         opacity: Provider.of<AppBarProvider>(context).isExpanded()? 1:0,
                         duration: Duration(milliseconds: 400),
-                        child: Container(color: Colors.black.withOpacity(0.5),),
+                        child: Container(color: Colors.black.withOpacity(0.6),),
                     ),
                   ),
                 ],
@@ -192,31 +174,26 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
 
 class _MenuButton extends StatelessWidget{
   final String title;
-  _MenuButton({required this.title, Key? key}) : super(key: key);
+  final Function(GlobalKey) scrollToIndex;
+  final GlobalKey pageKey;
+  _MenuButton({required this.title, required this.pageKey, required this.scrollToIndex, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: MouseRegion(
-        onEnter: (pointer){
-          Provider.of<AppBarProvider>(context, listen: false).updateColor(Colors.grey);
+    return InkWell(
+        onTap: (){
+          scrollToIndex(pageKey);
         },
-        onExit:(pointer){
-          Provider.of<AppBarProvider>(context, listen: false).updateColor(Colors.transparent);
-        },
-        child: AnimatedContainer(
-          width: 200,
-          height: 40,
-          decoration: BoxDecoration(
-              color: Provider.of<AppBarProvider>(context).getColor(),
-              borderRadius: BorderRadius.all(Radius.circular(25))
-          ),
-          duration: Duration(milliseconds: 500),
-          child: Center(child: Text(title, style: TextStyle(color: Colors.black),)),
-        ),
-      ),
+        child: Container(
+            width: 200,
+            height: 100,
+            child: Center(
+                child: Text(title,
+                  style: TextStyle(
+                      color: Colors.black),)
+            )
+        )
     );
   }
 }
