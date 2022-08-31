@@ -7,6 +7,7 @@ import 'package:rcubed/providers/what_we_do_providers.dart';
 import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/providers/scaffold_provider.dart';
+import 'package:rcubed/providers/who_we_are_providers.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
@@ -25,7 +26,8 @@ void main() {
           ChangeNotifierProvider(create: (_)=>DeviceProvider()),
           ChangeNotifierProvider(create: (_)=>PrimaryScrollProvider()),
           ChangeNotifierProvider(create: (_)=>ScaffoldProvider()),
-          ChangeNotifierProvider(create: (_)=>AppBarProvider()),
+          ChangeNotifierProvider(create: (_)=>WhatWeDoProvider()),
+          ChangeNotifierProvider(create: (_)=>WhoWeAreProvider()),
     ],
     child: MyApp()),
   );

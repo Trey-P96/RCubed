@@ -53,7 +53,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       RenderBox? box = navBarKey.currentContext?.findRenderObject() as RenderBox?;
       if(box != null){
-        Provider.of<AppBarProvider>(context, listen: false).updateHeight(box.size.height);
+        Provider.of<WhatWeDoProvider>(context, listen: false).updateHeight(box.size.height);
       }
 
     });
@@ -63,9 +63,9 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       nestedScrollKey.currentState!.outerController.addListener(() {
         if(nestedScrollKey.currentState!.outerController.offset == 0){
-          Provider.of<AppBarProvider>(context, listen: false).updateOpacity(true);
+          Provider.of<WhatWeDoProvider>(context, listen: false).updateOpacity(true);
         } else{
-          Provider.of<AppBarProvider>(context, listen: false).updateOpacity(false);
+          Provider.of<WhatWeDoProvider>(context, listen: false).updateOpacity(false);
         }
       });
     });
@@ -102,7 +102,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                       sliver: SliverAppBar(
                         forceElevated: true,
                         elevation: 5,
-                        expandedHeight: Provider.of<AppBarProvider>(context).getHeight(),
+                        expandedHeight: Provider.of<WhatWeDoProvider>(context).getHeight(),
                         actions: [Container()],
                         backgroundColor: Colors.white,
                         title: Center(child: Text("What We Do", style: TextStyle(color: Colors.black, fontSize: 30),)),
@@ -111,26 +111,33 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                         flexibleSpace: SingleChildScrollView(
                           //key: appBarKey,
                           physics: NeverScrollableScrollPhysics(),
-                          controller: ScrollController(),
                           child: Container(
                             decoration: BoxDecoration(gradient: LinearGradient(colors: [Colors.white, Palette.offWhite], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
                             child: Align(
                               key: navBarKey,
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: kToolbarHeight+10),
-                                child: Wrap(
-                                  alignment: WrapAlignment.spaceEvenly,
-                                  children: [
-                                    Divider(),
-                                    _MenuButton(title: "Enterprise Applications", scrollToIndex: scrollToIndex, pageKey: enterpriseAppKey,),
-                                    _MenuButton(title: "Integration Architecture", scrollToIndex: scrollToIndex,pageKey: integrationArchKey,),
-                                    _MenuButton(title: "Cloud Computing", scrollToIndex: scrollToIndex,pageKey: cloudCompKey,),
-                                    _MenuButton(title: "Managed Services", scrollToIndex: scrollToIndex,pageKey: managedServiceKey,),
-                                    _MenuButton(title: "Co Sourcing", scrollToIndex: scrollToIndex,pageKey: coSourceKey,),
-                                    _MenuButton(title: "Technologies", scrollToIndex: scrollToIndex,pageKey: technologyKey,),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: kToolbarHeight+10),
+                                    child: Divider(),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Wrap(
+                                      alignment: WrapAlignment.spaceEvenly,
+                                      children: [
+                                        //Divider(),
+                                        MenuButton(title: "Enterprise Applications", scrollToIndex: scrollToIndex, pageKey: enterpriseAppKey,),
+                                        MenuButton(title: "Integration Architecture", scrollToIndex: scrollToIndex,pageKey: integrationArchKey,),
+                                        MenuButton(title: "Cloud Computing", scrollToIndex: scrollToIndex,pageKey: cloudCompKey,),
+                                        MenuButton(title: "Managed Services", scrollToIndex: scrollToIndex,pageKey: managedServiceKey,),
+                                        MenuButton(title: "Co Sourcing", scrollToIndex: scrollToIndex,pageKey: coSourceKey,),
+                                        MenuButton(title: "Technologies", scrollToIndex: scrollToIndex,pageKey: technologyKey,),
 
-                                  ],
-                                ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             )
                           ),
@@ -157,7 +164,7 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
                   ),
                   IgnorePointer(
                     child: AnimatedOpacity(
-                        opacity: Provider.of<AppBarProvider>(context).isExpanded()? 1:0,
+                        opacity: Provider.of<WhatWeDoProvider>(context).isExpanded()? 1:0,
                         duration: Duration(milliseconds: 400),
                         child: Container(color: Colors.black.withOpacity(0.6),),
                     ),
@@ -172,11 +179,11 @@ class WhatWeDoState extends State<WhatWeDo> with TickerProviderStateMixin{
   }
 }
 
-class _MenuButton extends StatelessWidget{
+class MenuButton extends StatelessWidget{
   final String title;
   final Function(GlobalKey) scrollToIndex;
   final GlobalKey pageKey;
-  _MenuButton({required this.title, required this.pageKey, required this.scrollToIndex, Key? key}) : super(key: key);
+  MenuButton({required this.title, required this.pageKey, required this.scrollToIndex, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -187,7 +194,7 @@ class _MenuButton extends StatelessWidget{
         },
         child: Container(
             width: 200,
-            height: 100,
+            height: 50,
             child: Center(
                 child: Text(title,
                   style: TextStyle(
