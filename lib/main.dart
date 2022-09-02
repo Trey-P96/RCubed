@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/providers/custom_appbar_provider.dart';
 import 'package:rcubed/providers/what_we_do_providers.dart';
 import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
@@ -28,6 +29,7 @@ void main() {
           ChangeNotifierProvider(create: (_)=>ScaffoldProvider()),
           ChangeNotifierProvider(create: (_)=>WhatWeDoProvider()),
           ChangeNotifierProvider(create: (_)=>WhoWeAreProvider()),
+          ChangeNotifierProvider(create: (_)=>CustomAppBarProvider()),
     ],
     child: MyApp()),
   );

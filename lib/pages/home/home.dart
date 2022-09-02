@@ -58,25 +58,27 @@ class HomeState extends State<Home>{
               ),
             ),
 
+            WhatWeDo(),
+            WhoWeAre(),
 
-            NewPage(    // WHAT WE DO
-                children: [
-              CoverPage(
-                page: 1,
-                backgroundPath: Images.buildings,
-                titlePath: "assets/images/what_we_do/what_we_do.svg",),
-                  WhatWeDo(),
-            ]),
+            // NewPage(    // WHAT WE DO
+            //     children: [
+            //   CoverPage(
+            //     page: 1,
+            //     backgroundPath: Images.buildings,
+            //     titlePath: "assets/images/what_we_do/what_we_do.svg",),
+            //       WhatWeDo(),
+            // ]),
 
 
-            NewPage(    // WHO WE ARE
-                children: [
-              CoverPage(
-                page: 2,
-                  titlePath: "assets/images/who_we_are/who_we_are.svg",
-                  backgroundPath: Images.whoWeAreCover),
-              WhoWeAre(),
-            ]),
+            // NewPage(    // WHO WE ARE
+            //     children: [
+            //   CoverPage(
+            //     page: 2,
+            //       titlePath: "assets/images/who_we_are/who_we_are.svg",
+            //       backgroundPath: Images.whoWeAreCover),
+            //   WhoWeAre(),
+            // ]),
             
             
             NewPage(    //WHY US
