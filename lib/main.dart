@@ -1,7 +1,5 @@
-import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/custom_appbar_provider.dart';
 import 'package:rcubed/providers/what_we_do_providers.dart';
@@ -31,7 +29,7 @@ void main() {
           ChangeNotifierProvider(create: (_)=>WhoWeAreProvider()),
           ChangeNotifierProvider(create: (_)=>CustomAppBarProvider()),
     ],
-    child: MyApp()),
+    child: const MyApp()),
   );
 
 }
@@ -65,7 +63,7 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
 
-      scrollBehavior: MaterialScrollBehavior(),
+      scrollBehavior: const MaterialScrollBehavior(),
       debugShowCheckedModeBanner: false,
       title: 'R-Cubed Consulting',
       theme: ThemeData(
@@ -82,17 +80,17 @@ class MyAppState extends State<MyApp> {
             key: scaffoldKey,
             endDrawer: Drawer(
               backgroundColor: Colors.white.withOpacity(0.9),
-              child: Center(child: NavList()),
+              child: const Center(child: NavList()),
             ),
             backgroundColor: Colors.transparent,
             appBar: AppBar(
               backgroundColor: Colors.transparent,
-              elevation: 10,
-              title: NavBar(),
+              elevation: 5,
+              title: const NavBar(),
               actions: [Container()],
               titleSpacing: 0,
             ),
-            body: Home()),
+            body: const Home()),
         ),
       ),
 

@@ -6,14 +6,16 @@ class CustomAppBarProvider extends ChangeNotifier{
   final Map<String, double> _heightMap = {};
   final Map<String, bool> _expandedMap = {};
 
-  void updateHeight(CustomAppbar appbar){
+  double updateHeight(CustomAppbar appbar){
     _heightMap.putIfAbsent(appbar.title, () => 0);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       RenderBox? box = appbar.navBarHeightKey.currentContext?.findRenderObject() as RenderBox?;
-      if(box != null){
+      if(box != null && _heightMap[appbar.title]!=box.size.height){
         _heightMap.update(appbar.title, (value) => box.size.height);
+        notifyListeners();
       }
     });
+    return _heightMap[appbar.title]!;
   }
 
   double getHeight(CustomAppbar appbar){

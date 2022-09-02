@@ -41,7 +41,7 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
           scrollDirection: Axis.vertical,
           preloadPagesCount: 3,
           controller: widget.pageController,
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           pageSnapping: false,
           itemCount: widget.children.length,
           itemBuilder: (context, i){
@@ -52,7 +52,7 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
         :
     ListView.builder(
         scrollDirection: Axis.vertical,
-        physics: ClampingScrollPhysics(),
+        physics: const ClampingScrollPhysics(),
         itemCount: widget.children.length,
         itemBuilder: (context, i){
           return widget.children[i];

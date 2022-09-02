@@ -25,8 +25,8 @@ class CustomAppbar extends StatelessWidget{
 
   double getHeight(BuildContext context){
     listen(context);
-    Provider.of<CustomAppBarProvider>(context, listen: false).updateHeight(this);
-    return Provider.of<CustomAppBarProvider>(context).getHeight(this);
+    return Provider.of<CustomAppBarProvider>(context, listen: false).updateHeight(this);
+    //return Provider.of<CustomAppBarProvider>(context).getHeight(this);
   }
 
   void listen(BuildContext context){
@@ -58,7 +58,7 @@ class CustomAppbar extends StatelessWidget{
                     forceElevated: true,
                     elevation: 5,
                     backgroundColor: Colors.white,
-                    expandedHeight: getHeight(context),
+                    expandedHeight: Provider.of<CustomAppBarProvider>(context).updateHeight(this),
                     actions: [Container()],
                     flexibleSpace: SingleChildScrollView(
                       physics: const NeverScrollableScrollPhysics(),
@@ -92,13 +92,13 @@ class CustomAppbar extends StatelessWidget{
         body: Stack(
           children: [
             body,
-            IgnorePointer(
-              child: AnimatedOpacity(
-                opacity: Provider.of<CustomAppBarProvider>(context).isExpanded(this)? 1:0,
-                duration: const Duration(milliseconds: 400),
-                child: Container(color: Colors.black.withOpacity(0.6),),
-              ),
-            ),
+            // IgnorePointer(
+            //   child: AnimatedOpacity(
+            //     opacity: Provider.of<CustomAppBarProvider>(context).isExpanded(this)? 1:0,
+            //     duration: const Duration(milliseconds: 400),
+            //     child: Container(color: Colors.black.withOpacity(0.6),),
+            //   ),
+            // ),
           ],
         ),
     );

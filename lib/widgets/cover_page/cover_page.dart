@@ -3,12 +3,9 @@
 import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:image_network/image_network.dart';
 import 'package:provider/provider.dart';
-import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
@@ -44,7 +41,7 @@ class CoverPage extends StatelessWidget{
                   child: Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: Container(
-                      constraints: BoxConstraints(maxWidth: 500),
+                      constraints: const BoxConstraints(maxWidth: 500),
                       child: ClipRRect(
                         child: AspectRatio(
                           aspectRatio: 8,
@@ -64,7 +61,7 @@ class CoverPage extends StatelessWidget{
                   child: Padding(
                     padding: const EdgeInsets.all(50.0),
                     child: Container(
-                      constraints: BoxConstraints(maxWidth: 500),
+                      constraints: const BoxConstraints(maxWidth: 500),
                       child: ClipRRect(
                         child: AspectRatio(
                           aspectRatio: 8,
@@ -82,7 +79,7 @@ class CoverPage extends StatelessWidget{
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(top: 30, bottom: 10),
+                padding: const EdgeInsets.only(top: 30, bottom: 10),
                 child: SizedBox(width: 300, height: 50,
                     child: ElevatedButton(
                         onPressed: (){
@@ -90,7 +87,7 @@ class CoverPage extends StatelessWidget{
                           Provider.of<PrimaryScrollProvider>(context, listen: false).getKey().currentState?.animateTo(page);
                         },
                         style: ElevatedButton.styleFrom(primary: RCubedTheme.primary, elevation: 25),
-                        child: Text("LEARN MORE"))),
+                        child: const Text("LEARN MORE"))),
               ),
             )
 

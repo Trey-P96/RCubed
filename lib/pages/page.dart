@@ -19,7 +19,7 @@ class PageState extends State<NewPage>{
   void animateTo(){
     if(controller.hasClients){
       // pageController.nextPage(duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
-      controller.nextPage(duration: Duration(milliseconds: 1000), curve: Curves.easeInOut);
+      controller.nextPage(duration: const Duration(milliseconds: 1000), curve: Curves.easeInOut);
     }
   }
 
@@ -37,7 +37,7 @@ class PageState extends State<NewPage>{
         pageSnapping: false,
         itemCount: widget.children.length,
         controller: controller,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index){
           return widget.children[index];
         });

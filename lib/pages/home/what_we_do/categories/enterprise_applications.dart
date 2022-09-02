@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
@@ -14,13 +13,13 @@ class EnterpriseApplications extends StatelessWidget{
       child: Column(
         verticalDirection: VerticalDirection.up,
         children: [
-          _ExpansionTile(title: "Enterprise Analysis", description: info),
-          _ExpansionTile(title: "Corporate Performance Management", description: info),
-          _ExpansionTile(title: "Enterprise Resource Planning", description: info),
-          _ExpansionTile(title: "Master Data Governance", description: info),
-          _ExpansionTile(title: "System Diagnostic & Strategy", description: info),
-          _ExpansionTile(title: "System Select", description: info),
-          _ExpansionTile(title: "Summary", description: info, initiallyExpanded: true,),
+          const _ExpansionTile(title: "Enterprise Analysis", description: info),
+          const _ExpansionTile(title: "Corporate Performance Management", description: info),
+          const _ExpansionTile(title: "Enterprise Resource Planning", description: info),
+          const _ExpansionTile(title: "Master Data Governance", description: info),
+          const _ExpansionTile(title: "System Diagnostic & Strategy", description: info),
+          const _ExpansionTile(title: "System Select", description: info),
+          const _ExpansionTile(title: "Summary", description: info, initiallyExpanded: true,),
 
           //Divider(color: Colors.black, thickness: 2,),
           Padding(
@@ -30,12 +29,12 @@ class EnterpriseApplications extends StatelessWidget{
               child: Center(
                 child: Container(
                     decoration: BoxDecoration(
-                      boxShadow: [BoxShadow(offset: Offset(0,5), blurRadius: 10, color: Colors.black.withOpacity(0.6))],
-                      borderRadius: BorderRadius.all(Radius.circular(25)),
+                      boxShadow: [BoxShadow(offset: const Offset(0,5), blurRadius: 10, color: Colors.black.withOpacity(0.6))],
+                      borderRadius: const BorderRadius.all(Radius.circular(25)),
                       color: RCubedTheme.offPrimary,
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20, right: 20, top: 3, bottom: 3),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 20, right: 20, top: 3, bottom: 3),
                       child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 25),),
                     ),
                 ),
@@ -61,7 +60,7 @@ const info = '''
 class _ExpansionTile extends StatelessWidget{
   final String title, description;
   final bool initiallyExpanded;
-  _ExpansionTile({required this.title, required this.description, this.initiallyExpanded=false});
+  const _ExpansionTile({required this.title, required this.description, this.initiallyExpanded=false});
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +78,7 @@ class _ExpansionTile extends StatelessWidget{
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Text(description, style: TextStyle(color: Colors.black,),),
+            child: Text(description, style: const TextStyle(color: Colors.black,),),
           )
         ],
       ),

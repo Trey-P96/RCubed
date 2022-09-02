@@ -5,12 +5,14 @@ import 'package:flutter_svg/svg.dart';
 import '../../themes/rcubed_theme.dart';
 
 class CompleteLogo extends StatelessWidget{
+  const CompleteLogo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Align(
       child: ConstrainedBox(
-        constraints: BoxConstraints(
+        constraints: const BoxConstraints(
           maxWidth: 1000,
         ),
         child: Padding(

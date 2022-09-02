@@ -1,11 +1,10 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class WhatWeDoProvider extends ChangeNotifier{
   double _height = 0;
   bool _isExpanded = true;
-  Color _color = Colors.transparent;
+  final Color _color = Colors.transparent;
 
   void updateHeight(double height){
     _height = height;

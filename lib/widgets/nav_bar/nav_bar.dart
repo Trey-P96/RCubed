@@ -11,8 +11,8 @@ class NavBar extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return ScreenTypeLayout(
-        mobile: NavBarMobile(),
-        desktop: NavBarDesktop(),
+        mobile: const NavBarMobile(),
+        desktop: const NavBarDesktop(),
     );
   }
   

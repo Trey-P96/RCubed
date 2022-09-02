@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../providers/primary_scroll_provider.dart';
@@ -42,7 +39,7 @@ class NavBarDesktop extends StatelessWidget {
               onTap: () {
                 Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(1);
               },
-              child: Text("What We Do"),
+              child: const Text("What We Do"),
             ),
           ),
           _NavBarObject(
@@ -51,7 +48,7 @@ class NavBarDesktop extends StatelessWidget {
                 onTap: () {
                   Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(2);
                 },
-                child: Text("Who We Are"),
+                child: const Text("Who We Are"),
               ),
             ),
           ),
@@ -60,7 +57,7 @@ class NavBarDesktop extends StatelessWidget {
               onTap: () {
                 Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(3);
               },
-              child: Text("Why Us"),
+              child: const Text("Why Us"),
             ),
           ),
           _NavBarObject(
@@ -68,10 +65,10 @@ class NavBarDesktop extends StatelessWidget {
               onTap:(){
                 launchUrlString("https://rcubed.bamboohr.com/jobs/");
               },
-              child: Text("Careers"),
+              child: const Text("Careers"),
             ),
           ),
-          _NavBarObject(
+          const _NavBarObject(
             child: InkWell(
               child: Text("Contact"),
             ),
@@ -91,7 +88,7 @@ class _NavBarObject extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Padding(
-      padding: EdgeInsets.only(left: 0, right: 0),
+      padding: const EdgeInsets.only(left: 0, right: 0),
       child: child,
     );
   }

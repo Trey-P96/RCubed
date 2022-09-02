@@ -48,7 +48,7 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
           preloadPagesCount: 3,
           itemCount: widget.children.length,
           controller: widget.pageController,
-          pageSnapping: true,
+          pageSnapping: false,
           itemBuilder: (context, index){
             return widget.children[index];
           }):

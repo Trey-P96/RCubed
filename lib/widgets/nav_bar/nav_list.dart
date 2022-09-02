@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/scaffold_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
@@ -23,12 +22,12 @@ class NavList extends StatelessWidget{
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text("Home", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
           ),
-          Divider(),
+          const Divider(),
 
           InkWell(
             onTap:(){
@@ -37,12 +36,12 @@ class NavList extends StatelessWidget{
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text("What We Do", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
           ),
-          Divider(),
+          const Divider(),
 
           InkWell(
             onTap:(){
@@ -51,12 +50,12 @@ class NavList extends StatelessWidget{
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text("Who We Are", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
           ),
-          Divider(),
+          const Divider(),
 
           InkWell(
             onTap:(){
@@ -65,34 +64,34 @@ class NavList extends StatelessWidget{
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text("Why Us", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
           ),
-          Divider(),
+          const Divider(),
 
           InkWell(
             onTap:(){
 
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text("Careers", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
           ),
-          Divider(),
+          const Divider(),
 
           InkWell(
             onTap:(){
 
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: const Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
               child: Text("Contact", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
             ),
           ),
-          Divider(),
+          const Divider(),
 
         ],
       ),

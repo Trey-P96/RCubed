@@ -27,7 +27,7 @@ class MottoState extends State<Motto>{
   @override
   void initState(){
     super.initState();
-    timer = Timer.periodic(Duration(milliseconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
       updatePosition();
       if(position.dy > 0 && position.dy < MediaQuery.of(context).size.height * 0.75){
         setState((){opacity = 1;});
@@ -52,7 +52,7 @@ class MottoState extends State<Motto>{
     // TODO: implement build
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: AnimatedOpacity(duration: Duration(milliseconds: 2000),
+      child: AnimatedOpacity(duration: const Duration(milliseconds: 2000),
       curve: Curves.easeOutQuart,
       opacity: opacity,
       child: SvgPicture.asset("assets/images/Motto.svg", key: _key, color: RCubedTheme.primary,)),

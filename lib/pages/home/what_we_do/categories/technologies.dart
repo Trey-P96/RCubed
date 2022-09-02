@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
@@ -16,12 +15,12 @@ class Technologies extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Center(
               child: Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     color: RCubedTheme.offPrimary,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 12, right: 12, top: 3, bottom: 3),
+                  child: const Padding(
+                    padding: EdgeInsets.only(left: 12, right: 12, top: 3, bottom: 3),
                     child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
                   )),
             ),
@@ -31,7 +30,7 @@ class Technologies extends StatelessWidget {
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: [
-                Divider(),
+                const Divider(),
                 Container(child: const Text(info, style: TextStyle(fontWeight: FontWeight.bold)),alignment: Alignment.centerLeft,),
               ],
             ),

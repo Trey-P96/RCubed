@@ -1,11 +1,8 @@
 
 
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/custom_appbar/custom_appbar.dart';
 
-import '../../../network_images/network_images.dart';
 import '../../../themes/rcubed_theme.dart';
 
 class WhoWeAre extends StatelessWidget{
@@ -45,7 +42,7 @@ class WhoWeAre extends StatelessWidget{
                   itemBuilder: (context, index){
                     return const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: Card(elevation: 5,),
+                      child: Card(elevation: 5, child: Text("test2"),),
                     );
                   }
               ),

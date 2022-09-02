@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -25,7 +24,7 @@ class BusinessStrategyState extends State<BusinessStrategy>{
   @override
   void initState(){
     super.initState();
-    timer = Timer.periodic(Duration(milliseconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(milliseconds: 1), (timer) {
       updatePosition();
       if(position.dy > 0 && position.dy < MediaQuery.of(context).size.height * 0.75){
         setState((){opacity = 1;});
@@ -50,7 +49,7 @@ class BusinessStrategyState extends State<BusinessStrategy>{
     // TODO: implement build
     return Padding(
       padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20, top: 80),
-      child: AnimatedOpacity(duration: Duration(milliseconds: 2000),
+      child: AnimatedOpacity(duration: const Duration(milliseconds: 2000),
           curve: Curves.easeOutQuart,
           opacity: opacity,
           child: SvgPicture.asset("assets/images/businessStrategy.svg", key: _key, color: Colors.black,)),
