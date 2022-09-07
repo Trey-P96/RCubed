@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
+import 'package:rcubed/pages/home/why_us/why_us.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/widgets/cover_page/cover_page.dart';
 import 'package:rcubed/widgets/logo/logo_complete.dart';
@@ -58,6 +59,7 @@ class HomeState extends State<Home>{
 
             WhatWeDo(),
             WhoWeAre(),
+            WhyUs(),
 
             // NewPage(    // WHAT WE DO
             //     children: [
@@ -79,12 +81,12 @@ class HomeState extends State<Home>{
             // ]),
             
             
-            NewPage(    //WHY US
-                children: [
-                  CoverPage(
-                      page: 3,
-                      titlePath: "assets/images/why_us/why_us.svg", backgroundPath: Images.whyUsCover)
-                ])
+            // NewPage(    //WHY US
+            //     children: [
+            //       CoverPage(
+            //           page: 3,
+            //           titlePath: "assets/images/why_us/why_us.svg", backgroundPath: Images.whyUsCover)
+            //     ])
 
 
           ],

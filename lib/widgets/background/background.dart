@@ -9,7 +9,15 @@ class Background extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Positioned.fill(child: Image.network(path, fit: BoxFit.cover,));
+    return Positioned.fill(child: Stack(
+      fit: StackFit.expand,
+      children: [
+
+        Image.network(path, fit: BoxFit.cover,),
+        Container(color: Colors.black.withOpacity(0.2)),
+
+      ],
+    ));
   }
 
 }

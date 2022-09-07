@@ -24,9 +24,9 @@ class CustomAppbar extends StatelessWidget{
       }) : super(key: key);
 
   double getHeight(BuildContext context){
-    listen(context);
-    return Provider.of<CustomAppBarProvider>(context, listen: false).updateHeight(this);
-    //return Provider.of<CustomAppBarProvider>(context).getHeight(this);
+    //listen(context); -------------------------------------------------
+    //return Provider.of<CustomAppBarProvider>(context, listen: false).updateHeight(this);
+    return 0;
   }
 
   void listen(BuildContext context){
