@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
+import 'package:rcubed/widgets/contact_dialog/contact_dialog.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../providers/primary_scroll_provider.dart';
@@ -23,6 +24,8 @@ class NavBarDesktop extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+
+          // ----------------- RCUBED LOGO -----------------
           _NavBarObject(
             child: IconButton(
                 padding: EdgeInsets.zero,
@@ -34,6 +37,9 @@ class NavBarDesktop extends StatelessWidget {
                 iconSize: iconSize,
                 icon: Logo()),
           ),
+
+
+          // ----------------- WHAT WE DO -----------------
           _NavBarObject(
             child: InkWell(
               onTap: () {
@@ -42,6 +48,9 @@ class NavBarDesktop extends StatelessWidget {
               child: const Text("What We Do"),
             ),
           ),
+
+
+          // ----------------- WHO WE ARE -----------------
           _NavBarObject(
             child: _NavBarObject(
               child: InkWell(
@@ -52,6 +61,9 @@ class NavBarDesktop extends StatelessWidget {
               ),
             ),
           ),
+
+
+          // ----------------- WHY US -----------------
           _NavBarObject(
             child: InkWell(
               onTap: () {
@@ -60,6 +72,9 @@ class NavBarDesktop extends StatelessWidget {
               child: const Text("Why Us"),
             ),
           ),
+
+
+          // ----------------- CAREERS -----------------
           _NavBarObject(
             child: InkWell(
               onTap:(){
@@ -68,11 +83,24 @@ class NavBarDesktop extends StatelessWidget {
               child: const Text("Careers"),
             ),
           ),
-          const _NavBarObject(
+
+
+          // ----------------- CONTACT -----------------
+          _NavBarObject(
             child: InkWell(
-              child: Text("Contact"),
+              child: const Text("Contact"),
+              onTap: (){
+                showDialog(
+                    context: context,
+                    builder: (context){
+                      return const ContactForm();
+                    }
+                );
+              },
             ),
           ),
+
+
         ],
       ),
     );

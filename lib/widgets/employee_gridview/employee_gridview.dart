@@ -23,7 +23,7 @@ class EmployeeGridView extends StatelessWidget{
                 showDialog(
                     context: context,
                     builder: (context){
-                      return const ProfileDialog();
+                      return ProfileDialog(employee: Employment.employees[index],);
                     }
                 );
               },

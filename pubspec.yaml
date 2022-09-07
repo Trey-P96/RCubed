@@ -53,6 +53,7 @@ dependencies:
   linked_scroll_controller: ^0.2.0
   video_player: ^2.4.6
   flutter_sticky_header: ^0.6.4
+  http: any
 
 dev_dependencies:
   flutter_test:

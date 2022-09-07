@@ -5,6 +5,7 @@ import 'package:rcubed/providers/scaffold_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
 import '../../providers/primary_scroll_provider.dart';
+import '../contact_dialog/contact_dialog.dart';
 
 class NavList extends StatelessWidget{
   const NavList({Key? key}) : super(key: key);
@@ -84,7 +85,12 @@ class NavList extends StatelessWidget{
 
           InkWell(
             onTap:(){
-
+              showDialog(
+                  context: context,
+                  builder: (context){
+                    return const ContactForm();
+                  }
+              );
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
