@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:rcubed/widgets/contact_dialog/contact_dialog.dart';
-import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../providers/primary_scroll_provider.dart';
 import '../logo/logo_simple.dart';
@@ -35,8 +34,9 @@ class NavBarDesktop extends StatelessWidget {
                     Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(0);
                 },
                 iconSize: iconSize,
-                icon: Logo()),
+                icon: const Logo()),
           ),
+          //const Logo(),
 
 
           // ----------------- WHAT WE DO -----------------
@@ -45,7 +45,7 @@ class NavBarDesktop extends StatelessWidget {
               onTap: () {
                 Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(1);
               },
-              child: const Text("What We Do"),
+              child: const _NavBarText(text: "What We Do3",),
             ),
           ),
 
@@ -57,7 +57,7 @@ class NavBarDesktop extends StatelessWidget {
                 onTap: () {
                   Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(2);
                 },
-                child: const Text("Who We Are"),
+                child: const _NavBarText(text: "Who We Are",),
               ),
             ),
           ),
@@ -69,7 +69,7 @@ class NavBarDesktop extends StatelessWidget {
               onTap: () {
                 Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(3);
               },
-              child: const Text("Why Us"),
+              child: const _NavBarText(text: "Why Us",),
             ),
           ),
 
@@ -78,9 +78,9 @@ class NavBarDesktop extends StatelessWidget {
           _NavBarObject(
             child: InkWell(
               onTap:(){
-                launchUrlString("https://rcubed.bamboohr.com/jobs/");
+                //launchUrlString("https://rcubed.bamboohr.com/jobs/");
               },
-              child: const Text("Careers"),
+              child: const _NavBarText(text: "Careers",),
             ),
           ),
 
@@ -88,7 +88,7 @@ class NavBarDesktop extends StatelessWidget {
           // ----------------- CONTACT -----------------
           _NavBarObject(
             child: InkWell(
-              child: const Text("Contact"),
+              child: const _NavBarText(text: "Contact",),
               onTap: (){
                 showDialog(
                     context: context,
@@ -120,4 +120,15 @@ class _NavBarObject extends StatelessWidget {
       child: child,
     );
   }
+}
+
+class _NavBarText extends StatelessWidget{
+  final String text;
+  const _NavBarText({required this.text, Key? key});
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Text(text, style: const TextStyle(fontFamily: "MyRoboto", ),);
+  }
+
 }

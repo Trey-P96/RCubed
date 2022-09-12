@@ -3,22 +3,23 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/providers/custom_appbar_provider.dart';
+import 'package:rcubed/providers/primary_scroll_provider.dart';
 
 import '../../themes/rcubed_theme.dart';
 
 class CustomAppbar extends StatelessWidget{
   final String title;
-  final List<Widget> menuButtons;
+  final List<Widget>? menuButtons;
   final Widget body;
-  final GlobalKey navBarHeightKey;
-  final GlobalKey<NestedScrollViewState> nestedScrollKey;
+  final GlobalKey? navBarHeightKey;
+  final GlobalKey<NestedScrollViewState>? nestedScrollKey;
 
   const CustomAppbar(
       {
         required this.title,
-        required this.navBarHeightKey,
-        required this.nestedScrollKey,
-        required this.menuButtons,
+        this.navBarHeightKey,
+        this.nestedScrollKey,
+        this.menuButtons,
         required this.body,
         Key? key,
       }) : super(key: key);
@@ -31,14 +32,14 @@ class CustomAppbar extends StatelessWidget{
 
   void listen(BuildContext context){
     WidgetsBinding.instance.addPostFrameCallback((_) {
-        nestedScrollKey.currentState!.outerController.addListener(() {
+        nestedScrollKey?.currentState!.outerController.addListener(() {
             Provider.of<CustomAppBarProvider>(context, listen: false).isExpanded(this);
         });
     });
   }
 
   void scrollToIndex(GlobalKey key){
-    nestedScrollKey.currentState!.innerController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), alignment: 0);
+    nestedScrollKey?.currentState!.innerController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), alignment: 0);
   }
 
 
@@ -53,14 +54,15 @@ class CustomAppbar extends StatelessWidget{
                 handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
                 sliver: SliverSafeArea(
                   sliver: SliverAppBar(
-                    title: Center(child: Text(title, style: const TextStyle(color: Colors.black, fontSize: 30, fontWeight: FontWeight.bold))),
+                    title: Center(child: Text(title, style: const TextStyle(color: Colors.black, fontSize: 30, fontFamily: "Montserrat"))),
                     pinned: true,
                     forceElevated: true,
                     elevation: 5,
                     backgroundColor: Colors.white,
                     expandedHeight: Provider.of<CustomAppBarProvider>(context).updateHeight(this),
                     actions: [Container()],
-                    flexibleSpace: SingleChildScrollView(
+                    flexibleSpace: menuButtons!=null?
+                    SingleChildScrollView(
                       physics: const NeverScrollableScrollPhysics(),
                       child: Container(
                         decoration: const BoxDecoration(gradient: LinearGradient(colors: [Colors.white, Palette.offWhite], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
@@ -76,14 +78,15 @@ class CustomAppbar extends StatelessWidget{
                                 padding: const EdgeInsets.only(bottom: 10),
                                 child: Wrap(
                                   alignment: WrapAlignment.spaceEvenly,
-                                  children: menuButtons,
+                                  children: menuButtons!,
                                 ),
                               ),
                             ],
                           ),
                         ),
                       ),
-                    ),
+                    )
+                    : null,
                   ),
                 ),
             )
@@ -91,7 +94,16 @@ class CustomAppbar extends StatelessWidget{
         },
         body: Stack(
           children: [
-            body,
+            NotificationListener(
+              onNotification: (notification){
+                if(notification is OverscrollNotification){
+                  double offset = Provider.of<PrimaryScrollProvider>(context, listen: false).getKey().currentState!.pageController.offset+notification.overscroll;
+                  Provider.of<PrimaryScrollProvider>(context, listen: false).getKey().currentState!.jumpTo(offset);
+                }
+                return true;
+              },
+                child: body
+            ),
             // IgnorePointer(
             //   child: AnimatedOpacity(
             //     opacity: Provider.of<CustomAppBarProvider>(context).isExpanded(this)? 1:0,
@@ -120,13 +132,13 @@ class MenuButton extends StatelessWidget{
           scrollToIndex(pageKey);
         },
         child: SizedBox(
-            width: 200,
-            height: 50,
-            child: Center(
-                child: Text(title,
-                  style: const TextStyle(
-                      color: Colors.black, fontWeight: FontWeight.bold), )
-            )
+          height: 50,
+          width: 350,
+          child: Center(
+              child: Text(title,
+                style: const TextStyle(
+                    color: Colors.black, fontFamily: "Montserrat"), )
+          ),
         )
     );
   }

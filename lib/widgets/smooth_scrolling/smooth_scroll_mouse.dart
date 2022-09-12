@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:collection/collection.dart';
 import 'package:preload_page_view/preload_page_view.dart';
-import 'package:rcubed/themes/rcubed_theme.dart';
 
 
 class SmoothScrollMouse extends StatefulWidget{
@@ -17,6 +14,12 @@ class SmoothScrollMouse extends StatefulWidget{
 }
 
 class SmoothScrollMouseState extends State<SmoothScrollMouse>{
+  ScrollPhysics physics = const ClampingScrollPhysics();
+
+  // void animateToPage(){
+  //   physics = const NeverScrollableScrollPhysics();
+  //   widget.pageController.animateToPage(widget.pageController.page!.toInt()+1, duration: const Duration(milliseconds: 700), curve: Curves.easeOutQuart);
+  // }
 
   @override
   void initState(){ //TODO: dispose timer, etc.
@@ -26,6 +29,7 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
   @override
   void dispose(){
     super.dispose();
+    widget.pageController.dispose();
   }
 
   @override
@@ -39,9 +43,9 @@ class SmoothScrollMouseState extends State<SmoothScrollMouse>{
       controller: widget.pageController,
       child: PreloadPageView.builder(
           scrollDirection: Axis.vertical,
-          preloadPagesCount: 3,
+          preloadPagesCount: 5,
           controller: widget.pageController,
-          physics: const ClampingScrollPhysics(),
+          physics: physics,
           pageSnapping: false,
           itemCount: widget.children.length,
           itemBuilder: (context, i){

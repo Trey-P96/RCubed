@@ -1,6 +1,6 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/providers/animated_container_provider.dart';
 import 'package:rcubed/providers/contact_form_provider.dart';
 import 'package:rcubed/providers/custom_appbar_provider.dart';
 import 'package:rcubed/providers/what_we_do_providers.dart';
@@ -19,7 +19,9 @@ void main() {
   // flutter build web --web-renderer canvaskit --release // faster performance
   //flutter build web --release --web-renderer canvaskit --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false // compatible for android
   // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
+  //flutter run -d chrome --web-renderer html
 
+  //GestureBinding.instance.resamplingEnabled = true;
   runApp(
     MultiProvider(
         providers: [
@@ -30,6 +32,7 @@ void main() {
           ChangeNotifierProvider(create: (_)=>WhoWeAreProvider()),
           ChangeNotifierProvider(create: (_)=>CustomAppBarProvider()),
           ChangeNotifierProvider(create: (_)=>ContactProvider()),
+          ChangeNotifierProvider(create: (_)=>AnimatedContainerProvider()),
     ],
     child: const MyApp()),
   );

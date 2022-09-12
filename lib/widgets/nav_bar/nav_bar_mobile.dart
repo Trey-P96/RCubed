@@ -33,7 +33,7 @@ class NavBarMobile extends StatelessWidget {
                     Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
                   },
                 iconSize: iconSize,
-                  icon: Logo()),
+                  icon: const Logo()),
             ),
           Padding(
             padding: EdgeInsets.only(right: outerPadding),

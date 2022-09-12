@@ -10,7 +10,8 @@ class Logo extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return SvgPicture.asset("assets/images/RcubedLogo.svg",
+    return Image.asset("assets/images/LogoWhite.png",);
+    return SvgPicture.asset("assets/images/RCubedLogoFinalized.svg",
         color: RCubedTheme.secondary);
   }
 

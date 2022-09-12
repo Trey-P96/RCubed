@@ -35,7 +35,7 @@ class WhyUs extends StatelessWidget{
           body: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: GridView.builder(
-              //controller: ScrollController(),
+                physics: const ClampingScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: MediaQuery.of(context).size.width <= 500? 1: 2,
                 ),

@@ -31,8 +31,12 @@ class SmoothScrollState extends State<SmoothScroll>{
 
   void animateTo(int page){
     if(pageController.hasClients){
-      pageController.animateToPage(page, duration: Duration(milliseconds: 700), curve: Curves.easeInOut);
+      pageController.animateToPage(page, duration: const Duration(milliseconds: 700), curve: Curves.easeInOut);
     }
+  }
+
+  void jumpTo(double offset){
+    pageController.jumpTo(offset);
   }
 
 

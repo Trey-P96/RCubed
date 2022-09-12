@@ -45,17 +45,17 @@ class SmoothScrollTouchState extends State<SmoothScrollTouch>{
       child: (widget.isPageView)?
         PreloadPageView.builder(
         scrollDirection: Axis.vertical,
-          preloadPagesCount: 3,
+          preloadPagesCount: 5,
           itemCount: widget.children.length,
           controller: widget.pageController,
-          pageSnapping: false,
+          pageSnapping: true,
           itemBuilder: (context, index){
             return widget.children[index];
           }):
       ListView.builder(
           itemCount: widget.children.length,
           controller: widget.pageController,
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           //shrinkWrap: true,
           itemBuilder: (context, index){
         return widget.children[index];

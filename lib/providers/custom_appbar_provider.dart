@@ -9,7 +9,7 @@ class CustomAppBarProvider extends ChangeNotifier{
   double updateHeight(CustomAppbar appbar){
     _heightMap.putIfAbsent(appbar.title, () => 0);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      RenderBox? box = appbar.navBarHeightKey.currentContext?.findRenderObject() as RenderBox?;
+      RenderBox? box = appbar.navBarHeightKey?.currentContext?.findRenderObject() as RenderBox?;
       if(box != null && _heightMap[appbar.title]!=box.size.height){
         _heightMap.update(appbar.title, (value) => box.size.height);
         notifyListeners();
@@ -30,8 +30,8 @@ class CustomAppBarProvider extends ChangeNotifier{
   bool isExpanded(CustomAppbar appbar){
     _expandedMap.putIfAbsent(appbar.title, () => true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if(appbar.nestedScrollKey.currentContext!=null){
-        _expandedMap.update(appbar.title, (value) => appbar.nestedScrollKey.currentState!.outerController.offset==0);
+      if(appbar.nestedScrollKey?.currentContext!=null){
+        _expandedMap.update(appbar.title, (value) => appbar.nestedScrollKey?.currentState!.outerController.offset==0);
         notifyListeners();
       }
     });

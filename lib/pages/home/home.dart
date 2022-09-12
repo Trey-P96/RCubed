@@ -12,6 +12,7 @@ import '../../network_images/network_images.dart';
 import '../../widgets/background/background.dart';
 import '../../widgets/smooth_scrolling/smooth_scrolling.dart';
 import '../page.dart';
+import 'contact/contact.dart';
 
 class Home extends StatefulWidget{
   const Home({Key? key}) : super(key: key);
@@ -60,6 +61,7 @@ class HomeState extends State<Home>{
             WhatWeDo(),
             WhoWeAre(),
             WhyUs(),
+            const Contact(),
 
             // NewPage(    // WHAT WE DO
             //     children: [

@@ -11,6 +11,7 @@ class EmployeeGridView extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return GridView.builder(
+        physics: const ClampingScrollPhysics(),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: MediaQuery.of(context).size.width <= 500? 1: 2,
         ),
