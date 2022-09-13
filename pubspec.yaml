@@ -80,9 +80,9 @@ flutter:
     - family: MyKumbhSans
       fonts:
         - asset: assets/fonts/KumbhSans-Regular.ttf
-#    - family: MyRoboto
-#      fonts:
-#        - asset: assets/fonts/Roboto-Thin.ttf
+    - family: MyRoboto
+      fonts:
+        - asset: assets/fonts/Roboto-Thin.ttf
 #    - family: Montserrat
 #      fonts:
 #        - asset: assets/fonts/Montserrat-Thin.ttf

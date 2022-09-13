@@ -1,23 +1,23 @@
 
 import 'package:flutter/material.dart';
-import 'package:rcubed/widgets/expanded_child/expanded_child.dart';
 
 
 
 class AnimatedContainerProvider extends ChangeNotifier{
-    double? _height;
+    bool _isExpanded = false;
+    double _opacity = 0;
 
-    void setHeight(double height){
-        _height = height;
-        //notifyListeners();
+    void expand(){
+        _isExpanded = _isExpanded?false:true;
+        notifyListeners();
+    }
+    bool isExpanded()=>_isExpanded;
+
+    void setOpacity(double opacity){
+        _opacity = opacity;
+        notifyListeners();
     }
 
-    double? getHeight(){
-        return _height;
-    }
-  //
-  //   @override
-  // void notifyListeners(){
-  //       notifyListeners();
-  //   }
+    double getOpacity()=>_opacity;
+
 }

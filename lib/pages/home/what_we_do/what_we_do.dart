@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/cloud_computing.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/co_sourcing.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.dart';
@@ -22,11 +23,21 @@ class WhatWeDo extends StatelessWidget{
 
   static const List<Widget> myList = [
     EnterpriseApplications(),
-    IntegrationArchitecture(),
-    CloudComputing(),
-    ManagedServices(),
-    CoSourcing(),
-    Technologies(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+    EnterpriseApplications(),
+
+    // IntegrationArchitecture(),
+    // CloudComputing(),
+    // ManagedServices(),
+    // CoSourcing(),
+    // Technologies(),
   ];
 
   const WhatWeDo({Key? key}) : super(key: key);
@@ -49,7 +60,7 @@ class WhatWeDo extends StatelessWidget{
         //CachedNetworkImage(fit: BoxFit.cover, imageUrl: "https://github.com/Trey-P96/RCubed/blob/master/assets/images/what_we_do/buildings.jpg?raw=true"),
         //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: "https://github.com/Trey-P96/RCubed/blob/master/assets/images/what_we_do/buildings.jpg?raw=true")),
         CustomAppbar(
-            title: "What We Do",
+            title: "What We Do6",
             navBarHeightKey: GlobalKey(),
             //nestedScrollKey: nestedScrollKey,
             menuButtons: [
@@ -61,21 +72,14 @@ class WhatWeDo extends StatelessWidget{
               MenuButton(title: "Technologies", scrollToIndex: scrollToIndex,pageKey: GlobalKey(),),
             ],
             body:
-            SingleChildScrollView(
-              physics: const ClampingScrollPhysics(),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: myList.length,
-                      itemBuilder: (context, index){
-                        return myList[index];
-                      }
-                  ),
-                ],
-              ),
+            ListView.builder(
+                //physics: const ClampingScrollPhysics(),
+                physics: const CustomScrollPhysics(),
+                //shrinkWrap: true,
+                itemCount: myList.length,
+                itemBuilder: (context, index){
+                  return myList[index];
+                }
             ),
         ),
       ],

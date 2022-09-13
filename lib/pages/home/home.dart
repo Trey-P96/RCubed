@@ -58,7 +58,7 @@ class HomeState extends State<Home>{
               ),
             ),
 
-            WhatWeDo(),
+            const WhatWeDo(),
             WhoWeAre(),
             WhyUs(),
             const Contact(),

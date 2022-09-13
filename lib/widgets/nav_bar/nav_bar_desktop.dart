@@ -19,7 +19,7 @@ class NavBarDesktop extends StatelessWidget {
     // TODO: implement build
     return Container(
       height: navBarHeight,
-      color: RCubedTheme.primary,
+      color: Palette.darkBlueShade.withOpacity(0.9),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -45,7 +45,7 @@ class NavBarDesktop extends StatelessWidget {
               onTap: () {
                 Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(1);
               },
-              child: const _NavBarText(text: "What We Do3",),
+              child: const _NavBarText(text: "What We Do",),
             ),
           ),
 

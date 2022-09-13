@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/providers/custom_appbar_provider.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
+import 'package:rcubed/themes/fonts.dart';
 
 import '../../themes/rcubed_theme.dart';
 

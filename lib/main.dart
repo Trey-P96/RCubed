@@ -1,4 +1,8 @@
 
+import 'dart:math';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/physics.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/animated_container_provider.dart';
 import 'package:rcubed/providers/contact_form_provider.dart';
@@ -73,7 +77,7 @@ class MyAppState extends State<MyApp> {
       title: 'R-Cubed Consulting',
       theme: ThemeData(
         scaffoldBackgroundColor: RCubedTheme.secondary,
-        fontFamily: 'KumbhSans',
+        fontFamily: 'MyRoboto',
         textTheme: Theme.of(context).textTheme.apply(
           fontSizeDelta: 2,
           fontSizeFactor: 1.1
@@ -101,4 +105,118 @@ class MyAppState extends State<MyApp> {
 
     );
   }
+}
+
+
+class CustomScrollPhysics extends ScrollPhysics{
+  const CustomScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+
+  @override
+  // TODO: implement allowImplicitScrolling
+  bool get allowImplicitScrolling => true;
+
+  @override
+  double get dragStartDistanceMotionThreshold => 3.5;
+
+  @override
+  double get minFlingVelocity => kMinFlingVelocity * 2.0;
+
+  @override
+  double get maxFlingVelocity => double.infinity;
+
+  @override
+  double get minFlingDistance => 0;
+
+
+
+  static final Tolerance _kDefaultTolerance = Tolerance(
+    // TODO(ianh): Handle the case of the device pixel ratio changing.
+    // TODO(ianh): Get this from the local MediaQuery not dart:ui's window object.
+    velocity: 1 / (0.050 * WidgetsBinding.instance.window.devicePixelRatio), // logical pixels per second
+    distance: 1 / WidgetsBinding.instance.window.devicePixelRatio, // logical pixels (roughly 0.28 on standard phone)
+  );
+
+
+
+
+  @override
+  double applyBoundaryConditions(ScrollMetrics position, double value) {
+    assert(() {
+      if (value == position.pixels) {
+        throw FlutterError.fromParts(<DiagnosticsNode>[
+          ErrorSummary('$runtimeType.applyBoundaryConditions() was called redundantly.'),
+          ErrorDescription(
+            'The proposed new position, $value, is exactly equal to the current position of the '
+                'given ${position.runtimeType}, ${position.pixels}.\n'
+                'The applyBoundaryConditions method should only be called when the value is '
+                'going to actually change the pixels, otherwise it is redundant.',
+          ),
+          DiagnosticsProperty<ScrollPhysics>('The physics object in question was', this, style: DiagnosticsTreeStyle.errorProperty),
+          DiagnosticsProperty<ScrollMetrics>('The position object in question was', position, style: DiagnosticsTreeStyle.errorProperty),
+        ]);
+      }
+      return true;
+    }());
+    if (value < position.pixels && position.pixels <= position.minScrollExtent) // underscroll
+      return value - position.pixels;
+    if (position.maxScrollExtent <= position.pixels && position.pixels < value) // overscroll
+      return value - position.pixels;
+    if (value < position.minScrollExtent && position.minScrollExtent < position.pixels) // hit top edge
+      return value - position.minScrollExtent;
+    if (position.pixels < position.maxScrollExtent && position.maxScrollExtent < value) // hit bottom edge
+      return value - position.maxScrollExtent;
+    return 0.0;
+  }
+
+
+
+  @override
+  Simulation? createBallisticSimulation(ScrollMetrics position, double velocity) {
+    final Tolerance tolerance = this.tolerance;
+    //final Tolerance tolerance = _kDefaultTolerance;
+    if (position.outOfRange) {
+      double? end;
+      if (position.pixels > position.maxScrollExtent)
+        end = position.maxScrollExtent;
+      if (position.pixels < position.minScrollExtent)
+        end = position.minScrollExtent;
+      assert(end != null);
+      return ScrollSpringSimulation(
+        spring,
+        position.pixels,
+        end!,
+        min(0.0, velocity),
+        //tolerance: tolerance,
+      );
+    }
+    //return ClampingScrollSimulation(position: position.pixels, velocity: velocity, friction: 100);
+    return ClampingScrollSimulation(
+      position: position.pixels,
+      velocity: velocity,
+      tolerance: tolerance,
+      friction: 0.01
+    );
+  }
+
+
+
+
+  // @override
+  // Simulation? createBallisticSimulation(
+  //     ScrollMetrics position, double velocity) {
+  //   // If we're out of range and not headed back in range, defer to the parent
+  //   // ballistics, which should put us back in range at a page boundary.
+  //   if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) ||
+  //       (velocity >= 0.0 && position.pixels >= position.maxScrollExtent)) {
+  //     return ClampingScrollSimulation(position: position.pixels, velocity: velocity);
+  //   }
+  //   return ClampingScrollSimulation(position: position.pixels, velocity: velocity, friction: 0.005);
+  // }
+
+
+  @override
+  CustomScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomScrollPhysics(parent: buildParent(ancestor));
+  }
+
 }

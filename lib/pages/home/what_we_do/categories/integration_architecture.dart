@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:rcubed/themes/fonts.dart';
 
 import '../../../../themes/rcubed_theme.dart';
 
@@ -14,28 +15,12 @@ class IntegrationArchitecture extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Container(height: 50, child: Padding(
-          //   padding: const EdgeInsets.only(left: 10, right: 10),
-          //   child: Center(
-          //     child: Container(
-          //         decoration: const BoxDecoration(
-          //           borderRadius: BorderRadius.all(Radius.circular(25)),
-          //           color: RCubedTheme.offPrimary,
-          //         ),
-          //         child: const Padding(
-          //           padding: EdgeInsets.only(left: 12, right: 12, top: 3, bottom: 3),
-          //           child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
-          //         )),
-          //   ),
-          // ),
-          //   alignment: Alignment.centerLeft,),
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Column(
-              children: [
-                const Divider(),
-                Container(child: const Text(info, style: TextStyle(fontWeight: FontWeight.bold)),alignment: Alignment.centerLeft,),
-              ],
+              children: const [
+                Divider(),
+                RcubedText(info)],
             ),
           ),
         ],
