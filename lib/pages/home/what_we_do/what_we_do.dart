@@ -23,15 +23,7 @@ class WhatWeDo extends StatelessWidget{
 
   static const List<Widget> myList = [
     EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
-    EnterpriseApplications(),
+    IntegrationArchitecture(),
 
     // IntegrationArchitecture(),
     // CloudComputing(),
@@ -60,7 +52,7 @@ class WhatWeDo extends StatelessWidget{
         //CachedNetworkImage(fit: BoxFit.cover, imageUrl: "https://github.com/Trey-P96/RCubed/blob/master/assets/images/what_we_do/buildings.jpg?raw=true"),
         //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: "https://github.com/Trey-P96/RCubed/blob/master/assets/images/what_we_do/buildings.jpg?raw=true")),
         CustomAppbar(
-            title: "What We Do6",
+            title: "What We Do",
             navBarHeightKey: GlobalKey(),
             //nestedScrollKey: nestedScrollKey,
             menuButtons: [

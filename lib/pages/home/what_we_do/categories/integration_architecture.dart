@@ -1,38 +1,136 @@
 
 import 'package:flutter/material.dart';
 import 'package:rcubed/themes/fonts.dart';
+import 'package:rcubed/widgets/description_box/description_box.dart';
+import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
 
 import '../../../../themes/rcubed_theme.dart';
 
 class IntegrationArchitecture extends StatelessWidget {
   const IntegrationArchitecture({Key? key}) : super(key: key);
 
+  static const String integrationArchSVG = "assets/images/what_we_do/categories/integration_architecture/integration_architecture.svg";
+  static const String summary =
+      "R-CUBED’s vision & know how designing and implementing enterprise integrations solutions provides a flexible foundation to optimize "
+      "business performance.We boost your ability to adapt to change and enhance decision making with richer insight through an integrated business.";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              children: const [
-                Divider(),
-                RcubedText(info)],
-            ),
-          ),
-        ],
-      ),
+    return ExpandingBox(
+        svgPath: integrationArchSVG,
+        summary: summary,
+        color: Palette.darkBlueShade,
+        buttonColor: Colors.white,
+        buttonTextColor: Colors.black,
+        expanded: Column(
+          children: const [
+            _DiagAsmnt(),
+            _StrtgyRoadMp(),
+            _ResArch(),
+            _DevImplmnt(),
+            _SuppMngmt(),
+            _DataAnalytics(),
+          ],
+        ),
     );
   }
 }
 
-const heading = "Integration Architecture";
+class _DiagAsmnt extends StatelessWidget{
+  const _DiagAsmnt({Key? key}) : super(key: key);
 
-const info = ''' 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
- ''';
+  static const heading = "Diagnostic & Assessment";
+  static const description =
+      "R-CUBED will work with you to build a value proposition for ‘first-in-class’ integration frameworks, platforms, "
+      "and processes that ignite digital transformation today & flex for the future. We will baseline your current integration "
+      "landscape and position options for modernization that are fit for purpose with your strategy and business initiatives.";
+
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _StrtgyRoadMp extends StatelessWidget{
+  const _StrtgyRoadMp({Key? key}) : super(key: key);
+
+  static const heading = "Strategy & Road-Map";
+  static const description =
+      "R-CUBED helps organizations develop an integration strategy that drives business transformation "
+      "with organizational flexibility to quickly respond to evolving market demands.An integration strategy "
+      "is a ‘must have’ in today’s continuous disruption and pace of change.R-CUBED will team with you to create "
+      "a time-phased integration roadmap to fuel your digital transformation journey.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _ResArch extends StatelessWidget{
+  const _ResArch({Key? key}) : super(key: key);
+
+  static const heading = "Resilient Architecture";
+  static const description =
+      "We understand that agility, performance, and data quality are critical to business success and "
+      "sustainability.R-CUBED’s integration design methodology constructs a foundation that is scalable, "
+      "supportable, and reusable. Let’s work together to realize these benefits today & be ready for tomorrow’s demands.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _DevImplmnt extends StatelessWidget{
+  const _DevImplmnt({Key? key}) : super(key: key);
+
+  static const heading = "Development & Implementation";
+  static const description =
+      "R-CUBED unleashes business performance by building and implementing integration solutions that lay "
+      "the foundation for business services. Our proprietary and agile methods deliver digital enablement "
+      "that is core in achieving quality, completeness, and responsiveness to business needs.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _SuppMngmt extends StatelessWidget{
+  const _SuppMngmt({Key? key}) : super(key: key);
+  
+  static const heading = "Support & Change Management";
+  static const description =
+      "R-CUBED prioritizes integration adoption through continuous knowledge transfer of the ‘know how’ "
+      "to sustain and scale. R-CUBED takes pride in its ability to prepare teams for success in the new paradigm.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _DataAnalytics extends StatelessWidget{
+  const _DataAnalytics({Key? key}) : super(key: key);
+  
+  static const heading = "Data Availability & Analytics";
+  static const description =
+      "R-CUBED constructs an architecture that enables enterprise analytic platforms by having ready access to quality data. "
+      "Ready access to data and data quality is essential to adjust strategy and remain competitive in your ever-evolving market. "
+      "This data foundation allows business to make better, faster, data-driven decisions and flex to market changes.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+  
+}

@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/physics.dart';
+//import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/animated_container_provider.dart';
 import 'package:rcubed/providers/contact_form_provider.dart';
@@ -18,6 +19,7 @@ import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/widgets/device_listener/device_listener.dart';
 import 'package:rcubed/widgets/nav_bar/nav_bar.dart';
 import 'package:rcubed/widgets/nav_bar/nav_list.dart';
+import 'package:rcubed/widgets/smooth_scrolling/smooth_scrolling.dart';
 
 void main() {
   // flutter build web --web-renderer canvaskit --release // faster performance
@@ -38,7 +40,7 @@ void main() {
           ChangeNotifierProvider(create: (_)=>ContactProvider()),
           ChangeNotifierProvider(create: (_)=>AnimatedContainerProvider()),
     ],
-    child: const MyApp()),
+    child: const MyApp(),)
   );
 
 }
@@ -55,10 +57,12 @@ class MyApp extends StatefulWidget{
 
 class MyAppState extends State<MyApp> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<SmoothScrollState> scrollKey = GlobalKey<SmoothScrollState>();
 
   @override
   void initState(){
     super.initState();
+    Provider.of<PrimaryScrollProvider>(context, listen: false).updateKey(scrollKey);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Provider.of<ScaffoldProvider>(context, listen: false).updateKey(scaffoldKey);
     });
@@ -99,7 +103,7 @@ class MyAppState extends State<MyApp> {
               actions: [Container()],
               titleSpacing: 0,
             ),
-            body: const Home()),
+            body: Home(scrollKey: scrollKey,)),
         ),
       ),
 
