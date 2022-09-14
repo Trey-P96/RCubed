@@ -14,3 +14,10 @@ class Palette {
   static const Color darkerBlueShade = Color(0xFF0E4170);
   static const Color offWhite = Color(0xFFcccccc);
 }
+
+class Shades{
+  static const Color swatch1 = Color(0xFF007585);
+  static const Color swatch2 = Color(0xFF325458);
+  static const Color swatch3 = Color(0xFF0156D6);
+  static const Color swatch4 = Color(0xFF034B8E);
+}

@@ -24,12 +24,10 @@ class WhatWeDo extends StatelessWidget{
   static const List<Widget> myList = [
     EnterpriseApplications(),
     IntegrationArchitecture(),
-
-    // IntegrationArchitecture(),
-    // CloudComputing(),
-    // ManagedServices(),
-    // CoSourcing(),
-    // Technologies(),
+    CloudComputing(),
+    ManagedServices(),
+    CoSourcing(),
+    Technologies(),
   ];
 
   const WhatWeDo({Key? key}) : super(key: key);

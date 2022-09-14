@@ -96,6 +96,10 @@ flutter:
   assets:
     - assets/images/what_we_do/categories/enterprise_applications/enterprise_applications.svg
     - assets/images/what_we_do/categories/integration_architecture/integration_architecture.svg
+    - assets/images/what_we_do/categories/cloud_computing/cloud_computing.svg
+    - assets/images/what_we_do/categories/managed_services/managed_services.svg
+    - assets/images/what_we_do/categories/co_sourcing/co_sourcing.svg
+    - assets/images/what_we_do/categories/technologies/technologies.svg
     - assets/images/cubes.svg
     - assets/images/RCubedLogoFinalized.svg
     - assets/images/Rcubed_LogoFinal.png

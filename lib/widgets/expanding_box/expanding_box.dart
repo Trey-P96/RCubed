@@ -49,10 +49,12 @@ class ExpandingBox extends ConsumerWidget{
   final Widget expanded;
   final Color color, buttonColor, buttonTextColor;
   final String svgPath, summary, buttonText, shrinkButtonText;
+  final bool isExpandable;
   const ExpandingBox({
     required this.svgPath,
     required this.summary,
     required this.expanded,
+    this.isExpandable=true,
     this.color=Colors.blue,
     this.buttonText="Learn More",
     this.shrinkButtonText="Minimize",
@@ -67,9 +69,9 @@ class ExpandingBox extends ConsumerWidget{
     return Builder(
       builder: (context) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          ref.read(expandedMapProvider).updateMap(svgPath, false);
+          if(isExpandable) ref.read(expandedMapProvider).updateMap(svgPath, false);
         });
-        return ColoredBox(
+        return isExpandable? ColoredBox(
           color: color.withOpacity(0.9),
           child: AnimatedSize(
               alignment: Alignment.topCenter,
@@ -102,7 +104,19 @@ class ExpandingBox extends ConsumerWidget{
 
 
           ),
-        );
+        )
+            :
+            Container(
+              color: color.withOpacity(0.9),
+              child: _BuildHeader(
+                svgPath: svgPath,
+                summary: summary,
+                buttonColor: buttonColor,
+                buttonText: buttonText,
+                buttonTextColor: buttonTextColor,
+                isExpandable: false,
+              ),
+            );
       }
     );
   }
@@ -112,7 +126,9 @@ class ExpandingBox extends ConsumerWidget{
 class _BuildHeader extends ConsumerWidget{
   final Color buttonColor, buttonTextColor;
   final String svgPath, summary, buttonText;
+  final bool isExpandable;
   const _BuildHeader({
+    this.isExpandable=true,
     required this.svgPath,
     required this.summary,
     required this.buttonText,
@@ -127,11 +143,20 @@ class _BuildHeader extends ConsumerWidget{
       mainAxisSize: MainAxisSize.min,
       children: [
         CubedHeading(path: svgPath),
-        SummaryBox(description: summary),
-        ThemedButton(label: buttonText, textColor: buttonTextColor, onPressed: (){
+        Padding(
+          padding: EdgeInsets.only(bottom: isExpandable?0:60),
+          child: SummaryBox(description: summary),
+        ),
+        isExpandable?ThemedButton(
+          label: buttonText,
+          textColor: buttonTextColor,
+          bottomPadding: 60,
+          onPressed: (){
           ref.read(expandedMapProvider).updateMap(svgPath, true);
           //Provider.of<AnimatedContainerProvider>(context,listen: false).expand();
-        }, color: buttonColor,),
+        }, color: buttonColor,)
+            :
+        const SizedBox(),
       ],
     );
   }
@@ -198,6 +223,7 @@ class _BuildExpandedState extends State<_BuildExpanded> {
                       label: widget.buttonText,
                       color: widget.buttonColor,
                       textColor: widget.buttonTextColor,
+                      bottomPadding: 60,
                       onPressed: () {
                         ref.read(expandedMapProvider).updateMap(widget.svgPath, false);
                         ref.read(expandedMapProvider).setOpacity(widget.svgPath, 0);

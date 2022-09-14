@@ -1,53 +1,88 @@
 
 import 'package:flutter/material.dart';
+import 'package:rcubed/widgets/description_box/description_box.dart';
+import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
 
 import '../../../../themes/rcubed_theme.dart';
 
 class CloudComputing extends StatelessWidget {
   const CloudComputing({Key? key}) : super(key: key);
 
+  static const svgPath = "assets/images/what_we_do/categories/cloud_computing/cloud_computing.svg";
+  static const summary =
+      "R-CUBED makes your path to the cloud achievable. Our business focused approach is right sized to your "
+      "initiatives.  R-CUBED methods are designed to migrate you to the cloud in a mindful, flexible, and scalable "
+      "way - realizing cloud’s benefits today and for the future. Move to the cloud with R-CUBED.";
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.only(top: 50),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // Container(height: 50, child: Padding(
-          //   padding: const EdgeInsets.only(left: 10, right: 10),
-          //   child: Center(
-          //     child: Container(
-          //         decoration: const BoxDecoration(
-          //           borderRadius: BorderRadius.all(Radius.circular(25)),
-          //           color: RCubedTheme.offPrimary,
-          //         ),
-          //         child: const Padding(
-          //           padding: EdgeInsets.only(left: 12, right: 12, top: 3, bottom: 3),
-          //           child: Text(heading, style: TextStyle(color: Colors.white, fontSize: 20),),
-          //         )),
-          //   ),
-          // ),
-          //   alignment: Alignment.centerLeft,),
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Column(
-              children: [
-                const Divider(),
-                Container(child: const Text(info, style: TextStyle(fontWeight: FontWeight.bold)),alignment: Alignment.centerLeft,),
-              ],
-            ),
-          ),
-        ],
-      ),
+    return ExpandingBox(
+        svgPath: svgPath,
+        summary: summary,
+        color: Shades.swatch1,
+        buttonColor: Colors.white,
+        buttonTextColor: Colors.black,
+        expanded: Column(
+          children: const [
+            _CloudRdyAsmnt(),
+            _CloudStrtgyRdMp(),
+            _CloudEnblmnt(),
+          ],
+        )
     );
   }
 }
 
-const heading = "Cloud Computing";
+class _CloudRdyAsmnt extends StatelessWidget{
+  const _CloudRdyAsmnt({Key? key}) : super(key: key);
 
-const info = ''' 
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
- ''';
+  static const heading = "Cloud Readiness Assessment";
+  static const description =
+      "Let R-CUBED assess and size the value to move to the cloud. Security, unstructured "
+      "data, and performance of IT operations are the top drivers to migrate to the cloud. "
+      "R-CUBED will baseline your current IT environment and resources. We will build an "
+      "insightful value proposition with cloud model considerations (SaaS, PaaS, IaaS, &/or "
+      "blended) and decision path options & impacts giving you the confidence to take the "
+      "cloud journey.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _CloudStrtgyRdMp extends StatelessWidget{
+  const _CloudStrtgyRdMp({Key? key}) : super(key: key);
+
+  static const heading = "Cloud Strategy & Road Map";
+  static const description =
+      "Let’s shape your cloud value path strategy and ‘must have’ milestones. Are you ready to "
+      "move to the cloud and capitalize on reducing technical debt, data modernization, quicker scalability, "
+      "greater agility, better use of IT resources, and enhanced data security? R-CUBED will team "
+      "with you to build the right cloud migration roadmap and time-phased modernization plan.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
+
+class _CloudEnblmnt extends StatelessWidget{
+  const _CloudEnblmnt({Key? key}) : super(key: key);
+
+  static const heading = "Cloud Enablement";
+  static const description =
+      "Team with R-CUBED to move to the cloud.  Our agile, value-focused method helps you move to a cloud solution – "
+      "whether that be from your on-premise environment to the cloud or a net new cloud platform. Let’s help you execute "
+      "a smooth migration to the cloud with timely stage gates to manage progress, mitigate risk, and modernize your way "
+      "of working.  We know how to enable cloud success.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const DescriptionBox(description: description, heading: heading);
+  }
+}
