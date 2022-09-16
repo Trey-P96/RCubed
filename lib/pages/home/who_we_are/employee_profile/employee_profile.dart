@@ -15,16 +15,21 @@ class EmployeeProfile extends StatelessWidget{
       child: Column(
         children: [
           Center(
-            child: Container(
-              child: const Center(child: Text("Employee")),
-              height: 300,
-              width: 300,
-              decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(25)),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 100, right: 100),
+              child: FittedBox(
+                child: Container(
+                  child: const Center(child: Text("Employee")),
+                  height: 400,
+                  width: 400,
+                  decoration: BoxDecoration(color: Colors.black, borderRadius: BorderRadius.circular(25)),
+                ),
+              ),
             ),
           ),
-          RcubedText(name, fontFamily: DefaultFonts.kumbhsans, fontSize: 30,),
-          Container(height: 1, width: 300, color: Colors.white,),
-          RcubedText(position, fontSize: 25,),
+          FittedBox(child: RcubedText(name, fontFamily: DefaultFonts.kumbhsans, fontSize: 30,)),
+          Container(height: 1, width: 300, color: Colors.white, padding: const EdgeInsets.only(left: 10, right: 10),),
+          FittedBox(child: RcubedText(position, fontSize: 25,)),
         ],
       ),
     );

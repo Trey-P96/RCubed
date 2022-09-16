@@ -13,6 +13,7 @@ import 'package:rcubed/providers/device_provider.dart';
 import 'package:rcubed/providers/primary_scroll_provider.dart';
 import 'package:rcubed/providers/scaffold_provider.dart';
 import 'package:rcubed/providers/who_we_are_providers.dart';
+import 'package:rcubed/routes/route_generator.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/pages/home/home.dart';
@@ -80,25 +81,8 @@ class MyAppState extends State<MyApp> {
           fontSizeFactor: 1.1
         )
       ),
-      home: SafeArea(
-        child: DeviceListener(
-          child: Scaffold(
-            //key: scaffoldKey,
-            endDrawer: Drawer(
-              backgroundColor: Colors.white.withOpacity(0.9),
-              child: const Center(child: NavList()),
-            ),
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 5,
-              title: const NavBar(),
-              actions: [Container()],
-              titleSpacing: 0,
-            ),
-            body: const Home()),
-        ),
-      ),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
 
     );
   }

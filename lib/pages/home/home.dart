@@ -20,6 +20,9 @@ import 'package:rcubed/widgets/logo/logo_complete.dart';
 import '../../network_images/network_images.dart';
 import '../../widgets/background/background.dart';
 import '../../widgets/custom_appbar/custom_appbar.dart';
+import '../../widgets/device_listener/device_listener.dart';
+import '../../widgets/nav_bar/nav_bar.dart';
+import '../../widgets/nav_bar/nav_list.dart';
 import '../../widgets/nested_navbar/nested_navbar.dart';
 import '../../widgets/smooth_scrolling/smooth_scrolling.dart';
 import 'contact/contact.dart';
@@ -27,17 +30,52 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'home_page_view/home_page_view.dart';
 
-class Home extends StatefulWidget{
+
+
+
+class Home extends StatelessWidget{
   const Home({Key? key}) : super(key: key);
+
+  @override
+  Widget build(context) {
+    // TODO: implement build
+    return SafeArea(
+      child: DeviceListener(
+        child: Scaffold(
+          //key: scaffoldKey,
+            endDrawer: Drawer(
+              backgroundColor: Colors.white.withOpacity(0.9),
+              child: const Center(child: NavList()),
+            ),
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 5,
+              title: const NavBar(),
+              actions: [Container()],
+              titleSpacing: 0,
+            ),
+            body: const _Home()),
+      ),
+    );
+  }
+
+}
+
+
+
+
+class _Home extends StatefulWidget{
+  const _Home({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return HomeState();
+    return _HomeState();
   }
 }
 
-class HomeState extends State<Home>{
+class _HomeState extends State<_Home>{
   //GlobalKey<SmoothScrollState> key = GlobalKey<SmoothScrollState>();
   ScrollController testController = ScrollController();
   GlobalKey key = GlobalKey();
@@ -109,17 +147,16 @@ class HomeState extends State<Home>{
             ),
           ),
 
-          // Align(
-          //   alignment: Alignment.topLeft,
-          //   child: SizedBox(
-          //     width: 200,
-          //     height: 60,
-          //     child: ElevatedButton(onPressed: (){
-          //       //testController.animateTo(testController.position.maxScrollExtent, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
-          //       testController.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 2), curve: Curves.easeInOut);
-          //     }, child: const Text("PRESS")),
-          //   ),
-          // )
+          Align(
+            alignment: Alignment.topLeft,
+            child: SizedBox(
+              width: 200,
+              height: 60,
+              child: ElevatedButton(onPressed: (){
+                Navigator.of(context).pushNamed('/test');
+              }, child: const Text("PRESS")),
+            ),
+          )
         ],
       ),
     );

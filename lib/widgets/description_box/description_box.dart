@@ -63,7 +63,7 @@ class _Heading extends StatelessWidget{
       child: Container(height: 40, decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
         child: Padding(
           padding: const EdgeInsets.only(left: 12, right: 12),
-          child: RcubedText(heading, fontFamily: DefaultFonts.kumbhsans, color: textColor,),
+          child: FittedBox(child: RcubedText(heading, fontFamily: DefaultFonts.kumbhsans, color: textColor,)),
         ),
       ),
     ));
