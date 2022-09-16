@@ -56,17 +56,10 @@ class MyApp extends StatefulWidget{
 }
 
 class MyAppState extends State<MyApp> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-  GlobalKey<SmoothScrollState> scrollKey = GlobalKey<SmoothScrollState>();
 
   @override
   void initState(){
     super.initState();
-    Provider.of<PrimaryScrollProvider>(context, listen: false).updateKey(scrollKey);
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<ScaffoldProvider>(context, listen: false).updateKey(scaffoldKey);
-    });
-
   }
 
 
@@ -90,7 +83,7 @@ class MyAppState extends State<MyApp> {
       home: SafeArea(
         child: DeviceListener(
           child: Scaffold(
-            key: scaffoldKey,
+            //key: scaffoldKey,
             endDrawer: Drawer(
               backgroundColor: Colors.white.withOpacity(0.9),
               child: const Center(child: NavList()),
@@ -103,7 +96,7 @@ class MyAppState extends State<MyApp> {
               actions: [Container()],
               titleSpacing: 0,
             ),
-            body: Home(scrollKey: scrollKey,)),
+            body: const Home()),
         ),
       ),
 
@@ -116,32 +109,9 @@ class CustomScrollPhysics extends ScrollPhysics{
   const CustomScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
 
   @override
-  // TODO: implement allowImplicitScrolling
-  bool get allowImplicitScrolling => true;
-
-  @override
-  double get dragStartDistanceMotionThreshold => 3.5;
-
-  @override
-  double get minFlingVelocity => kMinFlingVelocity * 2.0;
-
-  @override
-  double get maxFlingVelocity => double.infinity;
-
-  @override
-  double get minFlingDistance => 0;
-
-
-
-  static final Tolerance _kDefaultTolerance = Tolerance(
-    // TODO(ianh): Handle the case of the device pixel ratio changing.
-    // TODO(ianh): Get this from the local MediaQuery not dart:ui's window object.
-    velocity: 1 / (0.050 * WidgetsBinding.instance.window.devicePixelRatio), // logical pixels per second
-    distance: 1 / WidgetsBinding.instance.window.devicePixelRatio, // logical pixels (roughly 0.28 on standard phone)
-  );
-
-
-
+  CustomScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomScrollPhysics(parent: buildParent(ancestor));
+  }
 
   @override
   double applyBoundaryConditions(ScrollMetrics position, double value) {
@@ -172,12 +142,9 @@ class CustomScrollPhysics extends ScrollPhysics{
     return 0.0;
   }
 
-
-
   @override
   Simulation? createBallisticSimulation(ScrollMetrics position, double velocity) {
     final Tolerance tolerance = this.tolerance;
-    //final Tolerance tolerance = _kDefaultTolerance;
     if (position.outOfRange) {
       double? end;
       if (position.pixels > position.maxScrollExtent)
@@ -190,37 +157,21 @@ class CustomScrollPhysics extends ScrollPhysics{
         position.pixels,
         end!,
         min(0.0, velocity),
-        //tolerance: tolerance,
+        tolerance: tolerance,
       );
     }
-    //return ClampingScrollSimulation(position: position.pixels, velocity: velocity, friction: 100);
+    if (velocity.abs() < tolerance.velocity)
+      return null;
+    if (velocity > 0.0 && position.pixels >= position.maxScrollExtent)
+      return null;
+    if (velocity < 0.0 && position.pixels <= position.minScrollExtent)
+      return null;
     return ClampingScrollSimulation(
       position: position.pixels,
       velocity: velocity,
       tolerance: tolerance,
-      friction: 0.01
+      friction: 0.005
     );
-  }
-
-
-
-
-  // @override
-  // Simulation? createBallisticSimulation(
-  //     ScrollMetrics position, double velocity) {
-  //   // If we're out of range and not headed back in range, defer to the parent
-  //   // ballistics, which should put us back in range at a page boundary.
-  //   if ((velocity <= 0.0 && position.pixels <= position.minScrollExtent) ||
-  //       (velocity >= 0.0 && position.pixels >= position.maxScrollExtent)) {
-  //     return ClampingScrollSimulation(position: position.pixels, velocity: velocity);
-  //   }
-  //   return ClampingScrollSimulation(position: position.pixels, velocity: velocity, friction: 0.005);
-  // }
-
-
-  @override
-  CustomScrollPhysics applyTo(ScrollPhysics? ancestor) {
-    return CustomScrollPhysics(parent: buildParent(ancestor));
   }
 
 }

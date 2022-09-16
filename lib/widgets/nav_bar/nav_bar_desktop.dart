@@ -19,7 +19,7 @@ class NavBarDesktop extends StatelessWidget {
     // TODO: implement build
     return Container(
       height: navBarHeight,
-      color: Palette.darkBlueShade.withOpacity(0.9),
+      color: RCubedTheme.primary,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [

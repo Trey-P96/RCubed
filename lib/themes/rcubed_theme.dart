@@ -20,4 +20,5 @@ class Shades{
   static const Color swatch2 = Color(0xFF325458);
   static const Color swatch3 = Color(0xFF0156D6);
   static const Color swatch4 = Color(0xFF034B8E);
+  static const Color swatch5 = Color(0xFF394779);
 }

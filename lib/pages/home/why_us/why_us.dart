@@ -29,8 +29,8 @@ class WhyUs extends StatelessWidget{
           navBarHeightKey: GlobalKey(),
           nestedScrollKey: nestedScrollKey,
           menuButtons: [
-            MenuButton(title: "Stories", pageKey: GlobalKey(), scrollToIndex: scrollToIndex),
-            MenuButton(title: "Industries", pageKey: GlobalKey(), scrollToIndex: scrollToIndex),
+            // MenuButton(title: "Stories", pageKey: GlobalKey(), scrollToIndex: scrollToIndex),
+            // MenuButton(title: "Industries", pageKey: GlobalKey(), scrollToIndex: scrollToIndex),
           ],
           body: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),

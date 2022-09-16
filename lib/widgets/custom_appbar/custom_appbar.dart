@@ -121,16 +121,16 @@ class CustomAppbar extends StatelessWidget{
 
 class MenuButton extends StatelessWidget{
   final String title;
-  final Function(GlobalKey) scrollToIndex;
-  final GlobalKey pageKey;
-  const MenuButton({required this.title, required this.pageKey, required this.scrollToIndex, Key? key}) : super(key: key);
+  //final Function(GlobalKey) scrollToIndex;
+
+  const MenuButton({required this.title, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return InkWell(
         onTap: (){
-          scrollToIndex(pageKey);
+          //scrollToIndex(pageKey);
         },
         child: SizedBox(
           height: 50,

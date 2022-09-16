@@ -4,13 +4,14 @@ import 'package:flutter_svg/svg.dart';
 
 class CubedHeading extends StatelessWidget{
   final String path;
-  const CubedHeading({required this.path, Key? key}) : super(key: key);
+  final double topPadding, bottomPadding;
+  const CubedHeading({this.topPadding=20, this.bottomPadding=40, required this.path, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Padding(
-      padding: const EdgeInsets.only(top: 20, bottom: 40),
+      padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 700),
         child: AspectRatio(

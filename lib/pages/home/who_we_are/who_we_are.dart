@@ -1,43 +1,44 @@
 
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rcubed/widgets/custom_appbar/custom_appbar.dart';
+import 'package:rcubed/widgets/cubed_heading/cubed_heading.dart';
+import 'package:rcubed/widgets/custom_column/custom_column.dart';
+import 'package:rcubed/widgets/nested_navbar/nested_navbar.dart';
 
 import '../../../themes/rcubed_theme.dart';
-import '../../../widgets/employee_gridview/employee_gridview.dart';
+import '../../../widgets/custom_appbar/custom_appbar.dart';
+import '../what_we_do/categories/cloud_computing.dart';
+import '../what_we_do/categories/co_sourcing.dart';
+import '../what_we_do/categories/enterprise_applications.dart';
+import '../what_we_do/categories/integration_architecture.dart';
+import '../what_we_do/categories/managed_services.dart';
+import 'employee_profile/employee_profile.dart';
 
 class WhoWeAre extends StatelessWidget{
-  final nestedScrollKey = GlobalKey<NestedScrollViewState>();
-
-  WhoWeAre({Key? key}) : super(key: key);
-
-  void scrollToIndex(GlobalKey key){
-
-  }
+  const WhoWeAre({Key? key}) : super(key: key);
+  static const leadershipHeading = "assets/images/who_we_are/leadership.svg";
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Stack(
-      children: [
-        Container(
-          decoration: BoxDecoration(gradient: LinearGradient(colors: [RCubedTheme.primary.withOpacity(0.5),Palette.offWhite, ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-        ),
-        //Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whoWeAreInfo)),
-        CustomAppbar(
-            title: "Who We Are",
-            navBarHeightKey: GlobalKey(),
-            nestedScrollKey: nestedScrollKey,
-            menuButtons: [
-              MenuButton(title: "Leadership", pageKey: GlobalKey(), scrollToIndex: scrollToIndex),
-              MenuButton(title: "Values", pageKey: GlobalKey(), scrollToIndex: scrollToIndex),
-            ],
-            body: const Padding(
-              padding: EdgeInsets.only(left: 20, right: 20),
-              child: EmployeeGridView(),
+    return Container(
+      decoration: BoxDecoration(gradient: LinearGradient(colors:[Shades.swatch5.withOpacity(0.9), Colors.black.withOpacity(0.9)], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+      child: const MaterialColumn(
+          children: [
+            NestedNavBar(
+                title: "Who We Are",
+                menuButtons: [
+                  MenuButton(title: "Leadership", ),
+                  MenuButton(title: "Values", ),
+                ],
             ),
-        ),
-      ],
+            CubedHeading(path: leadershipHeading, topPadding: 60,),
+            EmployeeProfile(name: "Jim Williams", position: "Principal & Founder",),
+            EmployeeProfile(name: "Rita Popp", position: "Principal & Founder",),
+            EmployeeProfile(name: "Yasser Abderlrahim", position: "Head of Technology Services",),
+          ]
+      ),
     );
   }
+
 }
