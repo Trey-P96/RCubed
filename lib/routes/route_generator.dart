@@ -3,6 +3,8 @@ import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/scratch.dart';
 
+import '../pages/home/careers/careers.dart';
+
 class RouteGenerator{
 
 
@@ -13,9 +15,9 @@ class RouteGenerator{
         return MaterialPageRoute(
             settings: settings,
             builder: (_)=>const Home());
-      case '/test': return MaterialPageRoute(
+      case '/careers': return MaterialPageRoute(
           settings: settings,
-          builder: (_)=>const TestRoute());
+          builder: (_)=>const Careers());
       default: return MaterialPageRoute(
           settings: settings,
           builder: (_){

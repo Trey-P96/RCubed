@@ -1,21 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
-import 'package:rcubed/providers/primary_scroll_provider.dart';
-import 'package:rcubed/providers/scaffold_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
 import '../logo/logo_simple.dart';
 
-class NavBarMobile extends StatelessWidget {
+class NavBarMobile extends ConsumerWidget {
   const NavBarMobile({Key? key}) : super(key: key);
   final double navBarHeight = 60;
   final double iconSize = 40;
   final double outerPadding = 30;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     // TODO: implement build
     return Container(
       height: navBarHeight,
@@ -30,7 +28,7 @@ class NavBarMobile extends StatelessWidget {
                   mouseCursor: SystemMouseCursors.click,
                   hoverColor: Colors.blue,
                   onPressed: () {
-                    Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
+                    // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
                   },
                 iconSize: iconSize,
                   icon: const Logo()),
@@ -38,7 +36,8 @@ class NavBarMobile extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(right: outerPadding),
             child: SizedBox(height: iconSize, width: iconSize, child: IconButton(padding: EdgeInsets.zero, onPressed: (){
-              Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.openEndDrawer();
+              // Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.openEndDrawer();
+              ref.watch(navBarProvider).currentState!.openEndDrawer();
             }, icon: Icon(Icons.menu, size: iconSize,),)),
           )
         ],

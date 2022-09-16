@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/scaffold_provider.dart';
+import 'package:rcubed/themes/fonts.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 
 import '../../providers/primary_scroll_provider.dart';
@@ -14,60 +15,61 @@ class NavList extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return SingleChildScrollView(
+      controller: ScrollController(),
       child: Column(
         children: [
           InkWell(
             onTap:(){
-              Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
+              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
               if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text("Home", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
+              child: RcubedText("Home", color: RCubedTheme.primary, fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
             ),
           ),
           const Divider(),
 
           InkWell(
             onTap:(){
-              Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(1);
+              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(1);
               if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text("What We Do", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
+              child: RcubedText("What We Do", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
             ),
           ),
           const Divider(),
 
           InkWell(
             onTap:(){
-              Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(2);
+              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(2);
               if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text("Who We Are", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
+              child: RcubedText("Who We Are", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
             ),
           ),
           const Divider(),
 
           InkWell(
             onTap:(){
-              Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(3);
+              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(3);
               if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
                 Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
               }
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text("Why Us", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
+              child: RcubedText("Why Us", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
             ),
           ),
           const Divider(),
@@ -78,7 +80,7 @@ class NavList extends StatelessWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text("Careers", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
+              child: RcubedText("Careers", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
             ),
           ),
           const Divider(),
@@ -94,7 +96,7 @@ class NavList extends StatelessWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: Text("Contact", style: TextStyle(color: RCubedTheme.primary, fontSize: 20, fontWeight: FontWeight.bold),),
+              child: RcubedText("Let's Chat", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
             ),
           ),
           const Divider(),

@@ -31,7 +31,7 @@ class NavBarDesktop extends StatelessWidget {
                 mouseCursor: SystemMouseCursors.click,
                 hoverColor: Colors.blue,
                 onPressed: () {
-                    Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(0);
+                    // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(0);
                 },
                 iconSize: iconSize,
                 icon: const Logo()),
@@ -43,7 +43,7 @@ class NavBarDesktop extends StatelessWidget {
           _NavBarObject(
             child: InkWell(
               onTap: () {
-                Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(1);
+                // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(1);
               },
               child: const _NavBarText(text: "What We Do",),
             ),
@@ -55,7 +55,7 @@ class NavBarDesktop extends StatelessWidget {
             child: _NavBarObject(
               child: InkWell(
                 onTap: () {
-                  Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(2);
+                  // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(2);
                 },
                 child: const _NavBarText(text: "Who We Are",),
               ),
@@ -67,7 +67,7 @@ class NavBarDesktop extends StatelessWidget {
           _NavBarObject(
             child: InkWell(
               onTap: () {
-                Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(3);
+                // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(3);
               },
               child: const _NavBarText(text: "Why Us",),
             ),
@@ -79,6 +79,7 @@ class NavBarDesktop extends StatelessWidget {
             child: InkWell(
               onTap:(){
                 //launchUrlString("https://rcubed.bamboohr.com/jobs/");
+                Navigator.pushNamed(context, '/careers');
               },
               child: const _NavBarText(text: "Careers",),
             ),
