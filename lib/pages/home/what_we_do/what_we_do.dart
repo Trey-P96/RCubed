@@ -1,5 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rcubed/pages/home/home.dart';
 
 import '../../../widgets/custom_appbar/custom_appbar.dart';
 import '../../../widgets/custom_column/custom_column.dart';
@@ -11,13 +13,14 @@ import 'categories/integration_architecture.dart';
 import 'categories/managed_services.dart';
 import 'categories/technologies.dart';
 
-class WhatWeDo extends StatelessWidget{
+class WhatWeDo extends ConsumerWidget{
   const WhatWeDo({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     // TODO: implement build
     return MaterialColumn(
+      key: ref.watch(whatWeDoProvider),
       children: [
         const NestedNavBar(
           title: "What We Do",

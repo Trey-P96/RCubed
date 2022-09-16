@@ -28,7 +28,8 @@ class NavBarMobile extends ConsumerWidget {
                   mouseCursor: SystemMouseCursors.click,
                   hoverColor: Colors.blue,
                   onPressed: () {
-                    // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
+                    GlobalKey key = ref.watch(homePageProvider);
+                    PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                   },
                 iconSize: iconSize,
                   icon: const Logo()),

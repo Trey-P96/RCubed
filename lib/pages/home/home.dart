@@ -18,7 +18,8 @@ import 'home_page_view/home_page_view.dart';
 
 final navBarProvider = StateProvider<GlobalKey<ScaffoldState>>((ref) => GlobalKey());
 final homePageProvider = StateProvider<GlobalKey>((ref) => GlobalKey());
-
+final whatWeDoProvider = StateProvider<GlobalKey>((ref)=>GlobalKey());
+final whoWeAreProvider = StateProvider<GlobalKey>((ref) => GlobalKey());
 
 class Home extends ConsumerWidget{
   const Home({Key? key}) : super(key: key);

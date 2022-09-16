@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
+import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/providers/scaffold_provider.dart';
 import 'package:rcubed/themes/fonts.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
@@ -8,11 +10,11 @@ import 'package:rcubed/themes/rcubed_theme.dart';
 import '../../providers/primary_scroll_provider.dart';
 import '../contact_dialog/contact_dialog.dart';
 
-class NavList extends StatelessWidget{
+class NavList extends ConsumerWidget{
   const NavList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     // TODO: implement build
     return SingleChildScrollView(
       controller: ScrollController(),
@@ -20,10 +22,9 @@ class NavList extends StatelessWidget{
         children: [
           InkWell(
             onTap:(){
-              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(0);
-              if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
-                Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
-              }
+              GlobalKey key = ref.watch(homePageProvider);
+              PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState!.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -34,10 +35,9 @@ class NavList extends StatelessWidget{
 
           InkWell(
             onTap:(){
-              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(1);
-              if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
-                Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
-              }
+              GlobalKey key = ref.watch(whatWeDoProvider);
+              PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState!.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -48,10 +48,9 @@ class NavList extends StatelessWidget{
 
           InkWell(
             onTap:(){
-              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(2);
-              if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
-                Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
-              }
+              GlobalKey key = ref.watch(whoWeAreProvider);
+              PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState!.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -62,10 +61,7 @@ class NavList extends StatelessWidget{
 
           InkWell(
             onTap:(){
-              // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState!.animateTo(3);
-              if(Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.isEndDrawerOpen){
-                Provider.of<ScaffoldProvider>(context, listen: false).getKey().currentState!.closeEndDrawer();
-              }
+
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -76,7 +72,7 @@ class NavList extends StatelessWidget{
 
           InkWell(
             onTap:(){
-
+              Navigator.pushNamed(context, '/careers');
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),

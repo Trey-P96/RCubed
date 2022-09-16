@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:rcubed/widgets/contact_dialog/contact_dialog.dart';
 
+import '../../pages/home/home.dart';
 import '../../providers/primary_scroll_provider.dart';
 import '../logo/logo_simple.dart';
 
-class NavBarDesktop extends StatelessWidget {
+class NavBarDesktop extends ConsumerWidget {
   const NavBarDesktop({Key? key}) : super(key: key);
   final double navBarHeight = 60;
   final double iconSize = 40;
@@ -14,7 +16,7 @@ class NavBarDesktop extends StatelessWidget {
 
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
 
     // TODO: implement build
     return Container(
@@ -31,7 +33,8 @@ class NavBarDesktop extends StatelessWidget {
                 mouseCursor: SystemMouseCursors.click,
                 hoverColor: Colors.blue,
                 onPressed: () {
-                    // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(0);
+                  GlobalKey key = ref.watch(homePageProvider);
+                  PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                 },
                 iconSize: iconSize,
                 icon: const Logo()),
@@ -43,7 +46,8 @@ class NavBarDesktop extends StatelessWidget {
           _NavBarObject(
             child: InkWell(
               onTap: () {
-                // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(1);
+                GlobalKey key = ref.watch(whatWeDoProvider);
+                PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
               },
               child: const _NavBarText(text: "What We Do",),
             ),
@@ -55,7 +59,8 @@ class NavBarDesktop extends StatelessWidget {
             child: _NavBarObject(
               child: InkWell(
                 onTap: () {
-                  // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(2);
+                  GlobalKey key = ref.watch(whoWeAreProvider);
+                  PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                 },
                 child: const _NavBarText(text: "Who We Are",),
               ),
