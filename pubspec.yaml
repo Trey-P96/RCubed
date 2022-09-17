@@ -29,7 +29,7 @@ environment:
 dependencies:
   flutter_riverpod: ^1.0.4
   url_strategy: ^0.2.0
-  dyn_mouse_scroll: ^1.0.0
+  simple_shadow: ^0.3.0
 #  easy_scroll_to_index: ^1.0.2
   preload_page_view: ^0.1.6
 #  url_launcher: any
@@ -96,6 +96,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/images/cubed_right_corner.svg
+    - assets/images/cubed_left_corner.svg
     - assets/images/who_we_are/leadership.svg
     - assets/images/what_we_do/categories/enterprise_applications/enterprise_applications.svg
     - assets/images/what_we_do/categories/integration_architecture/integration_architecture.svg

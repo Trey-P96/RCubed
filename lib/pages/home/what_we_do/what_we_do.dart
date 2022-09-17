@@ -15,6 +15,10 @@ import 'categories/technologies.dart';
 
 class WhatWeDo extends ConsumerWidget{
   const WhatWeDo({Key? key}) : super(key: key);
+  static const headerSvgPath = "assets/images/what_we_do/what_we_do.svg";
+  static const summary =
+      "We transform the way people work by putting clients at the center of business solutions. Our disruptive "
+      "model converts possibilities into real business value. Let’s build a better tomorrow.";
 
   @override
   Widget build(BuildContext context, ref) {
@@ -23,7 +27,8 @@ class WhatWeDo extends ConsumerWidget{
       key: ref.watch(whatWeDoProvider),
       children: [
         const NestedNavBar(
-          title: "What We Do",
+          headerSvgPath: headerSvgPath,
+          summary: summary,
           menuButtons: [
             MenuButton(title: "Enterprise Applications", ),
             MenuButton(title: "Integration Architecture", ),

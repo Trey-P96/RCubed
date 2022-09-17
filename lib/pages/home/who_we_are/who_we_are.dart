@@ -19,6 +19,11 @@ import 'employee_profile/employee_profile.dart';
 class WhoWeAre extends ConsumerWidget{
   const WhoWeAre({Key? key}) : super(key: key);
   static const leadershipHeading = "assets/images/who_we_are/leadership.svg";
+  static const headerSvgPath = "assets/images/who_we_are/who_we_are.svg";
+  static const summary =
+      "We do things differently - retooling the consulting model way. It's not about billables, "
+      "big attitudes, & political capital. The R-CUBED way is about doing what is right and helping "
+      "realize business values & outcomes together.";
 
   @override
   Widget build(BuildContext context, ref) {
@@ -29,7 +34,8 @@ class WhoWeAre extends ConsumerWidget{
       child: const MaterialColumn(
           children: [
             NestedNavBar(
-                title: "Who We Are",
+                headerSvgPath: headerSvgPath,
+                summary: summary,
                 menuButtons: [
                   MenuButton(title: "Leadership", ),
                   MenuButton(title: "Values", ),

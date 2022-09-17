@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dyn_mouse_scroll/dyn_mouse_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
+import '../../custom_scroll_physics/custom_scroll_physics.dart';
 import '../../network_images/network_images.dart';
-import '../../themes/custom_scroll_physics/custom_scroll_physics.dart';
 import '../../widgets/background/background.dart';
 import '../../widgets/device_listener/device_listener.dart';
 import '../../widgets/nav_bar/nav_bar.dart';
@@ -29,6 +28,7 @@ class Home extends ConsumerWidget{
     // TODO: implement build
     return SafeArea(
       child: Scaffold(
+          //extendBodyBehindAppBar: true,
           key: ref.watch(navBarProvider),
           endDrawer: Drawer(
             backgroundColor: Colors.white.withOpacity(0.95),
@@ -37,6 +37,7 @@ class Home extends ConsumerWidget{
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Colors.transparent,
+            //foregroundColor: Colors.transparent,
             elevation: 5,
             title: const NavBar(),
             actions: [Container()],

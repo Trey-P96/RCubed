@@ -36,10 +36,7 @@ class EmbeddedWebPageState extends State<EmbeddedWebPage>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return const Padding(
-      padding: EdgeInsets.only(left: 20, right: 20),
-      child: HtmlElementView(viewType: 'iframeElement'),
-    );
+    return const HtmlElementView(viewType: 'iframeElement');
   }
 
 }
