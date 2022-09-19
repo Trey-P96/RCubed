@@ -101,13 +101,12 @@ class _HomeState extends State<_Home>{
                     physics: const CustomScrollPhysics(),
                     slivers: [
                       SliverList(
-                          delegate: SliverChildBuilderDelegate(
-                                  (context, index){
-                                return pages[index];
-                              },
-                              childCount: pages.length,
-                              addRepaintBoundaries: false,
-                              addAutomaticKeepAlives: false
+                          delegate: SliverChildListDelegate.fixed(
+                              pages,
+
+                              addAutomaticKeepAlives: false,
+                            addRepaintBoundaries: false,
+                            addSemanticIndexes: false,
                           )
                       )
                     ],

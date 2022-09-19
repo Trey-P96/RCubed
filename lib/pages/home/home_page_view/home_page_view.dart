@@ -13,16 +13,18 @@ class HomePageView extends ConsumerWidget{
   @override
   Widget build(BuildContext context, ref) {
     // TODO: implement build
-    return SizedBox(
-      key: ref.watch(homePageProvider),// HOME PAGE LOGO
-      height: MediaQuery.of(context).size.height-56,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          //BackgroundVideo(),
-          CachedNetworkImage(imageUrl: Images.homeLogoBackground, fit: BoxFit.cover,),
-          const CompleteLogo(),
-        ],
+    return RepaintBoundary(
+      child: SizedBox(
+        key: ref.watch(homePageProvider),// HOME PAGE LOGO
+        height: MediaQuery.of(context).size.height-56,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            //BackgroundVideo(),
+            CachedNetworkImage(imageUrl: Images.homeLogoBackground, fit: BoxFit.cover,),
+            const CompleteLogo(),
+          ],
+        ),
       ),
     );
   }

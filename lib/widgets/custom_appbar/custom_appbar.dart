@@ -1,4 +1,9 @@
+import 'dart:ui';
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:rcubed/themes/fonts.dart';
 
 //
 // class CustomAppbar extends StatelessWidget{
@@ -112,28 +117,54 @@ import 'package:flutter/material.dart';
 //
 // }
 //
+
+
 class MenuButton extends StatelessWidget{
   final String title;
-  //final Function(GlobalKey) scrollToIndex;
-
   const MenuButton({required this.title, Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return InkWell(
-        onTap: (){
-          //scrollToIndex(pageKey);
-        },
-        child: SizedBox(
-          height: 50,
-          width: 350,
-          child: Center(
-              child: Text(title,
-                style: const TextStyle(
-                    color: Colors.black, fontFamily: "Montserrat"), )
-          ),
-        )
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: InkWell(
+          onTap: (){
+            //scrollToIndex(pageKey);
+          },
+          child: SizedBox(
+            height: 50,
+            width: 350,
+            child: Center(
+                child: _ButtonContent(title: title)
+            ),
+          )
+      ),
     );
   }
+}
+
+class _ButtonContent extends StatelessWidget{
+  final String title;
+  const _ButtonContent({required this.title, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(height: 15, child: Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: CachedNetworkImage(imageUrl: 'https://i.imgur.com/e31zf1A.png',),
+        )),
+        Text(title,
+          style: const TextStyle(
+              color: Colors.black, fontFamily: DefaultFonts.kumbhsans, fontSize: 20), ),
+        //SizedBox(height: 10, child: SvgPicture.asset("assets/images/cubed_right_corner.svg", color: Colors.black,)),
+      ],
+    );
+  }
+
 }

@@ -35,13 +35,15 @@ class DescriptionBox extends StatelessWidget{
         constraints: const BoxConstraints(
             maxWidth: 1000
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children:  [
-            _Heading(heading: heading,),
-            RcubedText(description, isBlockBody: true,),
-          ],
+        child: RepaintBoundary(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children:  [
+              _Heading(heading: heading,),
+              RcubedText(description, isBlockBody: true,),
+            ],
+          ),
         ),
       ),
     );
