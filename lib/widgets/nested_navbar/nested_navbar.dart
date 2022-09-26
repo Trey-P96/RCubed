@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:asset_cache/asset_cache.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_svg/svg.dart';
@@ -24,21 +24,19 @@ class NestedNavBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Material(
-      elevation: 10,
-      child: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.white, Palette.offWhite], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-        ),
+    return RepaintBoundary(
+      child: Material(
+        elevation: 10,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const _Title(),
-            Container(color: Colors.black, height: 1,),
-            Center(child: _Summary(text: summary, fontSize: max(min(MediaQuery.of(context).size.width*0.06,40),30))),
-            menuButtons.isNotEmpty?Container(color: Colors.black, height: 1,):const SizedBox(),
-            RepaintBoundary(child: _MenuButtons(menuButtons: menuButtons)),
+
+            //Container(color: Colors.black, height: 1,),
+            //Center(child: _Summary(text: summary, fontSize: 18)),
+            //menuButtons.isNotEmpty?Container(color: Colors.black, height: 1,):const SizedBox(),
+            //_MenuButtons(menuButtons: menuButtons),
           ],
         ),
       ),
@@ -46,8 +44,6 @@ class NestedNavBar extends StatelessWidget{
   }
 
 }
-
-
 
 
 
@@ -116,18 +112,32 @@ class _Summary extends StatelessWidget{
       padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       child: SizedBox(
         width: 700,
-        child:RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-          children: [
-            TextSpan(text: text[0], style: TextStyle(fontFamily: DefaultFonts.kumbhsans, fontSize: fontSize, color: Colors.black.withOpacity(0.8))),
-            TextSpan(text: text.substring(1), style: TextStyle(fontFamily: DefaultFonts.kumbhsans, fontSize: fontSize*0.6, color: Colors.black.withOpacity(0.8), letterSpacing: 1.5, wordSpacing: 2, height: 2))
-          ]
-        ),),
+        child: _TextTest(text: text,),
+        // child:RichText(
+        //   textAlign: TextAlign.center,
+        //   text: TextSpan(
+        //   children: [
+        //     TextSpan(text: text[0], style: TextStyle(fontFamily: DefaultFonts.kumbhsans, fontSize: 18, color: Colors.black.withOpacity(0.8))),
+        //     TextSpan(text: text.substring(1), style: TextStyle(fontFamily: DefaultFonts.kumbhsans, fontSize: 18, color: Colors.black.withOpacity(0.8), letterSpacing: 1.5, wordSpacing: 2, height: 2))
+        //   ]
+        // ),),
       ),
     );
   }
   
+}
+
+
+class _TextTest extends StatelessWidget{
+  final String text;
+  const _TextTest({required this.text, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Text(text);
+  }
+
 }
 
 class _MenuButtons extends StatelessWidget{

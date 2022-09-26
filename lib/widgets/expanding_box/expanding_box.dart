@@ -66,60 +66,58 @@ class ExpandingBox extends ConsumerWidget{
   Widget build(context, ref) {
 
     // TODO: implement build
-    return RepaintBoundary(
-      child: Builder(
-        builder: (context) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            if(isExpandable) ref.read(expandedMapProvider).updateMap(svgPath, false);
-          });
-          return isExpandable? ColoredBox(
-            color: color.withOpacity(0.9),
-            child: AnimatedSize(
-                alignment: Alignment.topCenter,
-                duration: const Duration(milliseconds: 1700),
-                curve: Curves.easeInOut,
-                //child: !Provider.of<AnimatedContainerProvider>(context).isExpanded()?
-                child:
-                 Consumer(
-                   builder: (context, ref, child) {
-                     final shouldExpand = ref.watch(expandedMapProvider).isExpanded(svgPath);
-                     //if(shouldExpand!= null && shouldExpand) {
-                       //print(ref.watch(expandedProvider)[svgPath]);
-                       return !shouldExpand?
-                       _BuildHeader(
-                         svgPath: svgPath,
-                         summary: summary,
-                         buttonColor: buttonColor,
-                         buttonText: buttonText,
-                         buttonTextColor: buttonTextColor,)
-                           :
-                       _BuildExpanded(
-                         svgPath: svgPath,
-                         summary: summary,
-                         details: expanded,
-                         buttonTextColor: buttonTextColor,
-                         buttonColor: buttonColor,
-                         buttonText: shrinkButtonText,);
-                   }
-                 )
+    return Builder(
+      builder: (context) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if(isExpandable) ref.read(expandedMapProvider).updateMap(svgPath, false);
+        });
+        return isExpandable? ColoredBox(
+          color: color.withOpacity(0.9),
+          child: AnimatedSize(
+              alignment: Alignment.topCenter,
+              duration: const Duration(milliseconds: 1700),
+              curve: Curves.easeInOut,
+              //child: !Provider.of<AnimatedContainerProvider>(context).isExpanded()?
+              child:
+               Consumer(
+                 builder: (context, ref, child) {
+                   final shouldExpand = ref.watch(expandedMapProvider).isExpanded(svgPath);
+                   //if(shouldExpand!= null && shouldExpand) {
+                     //print(ref.watch(expandedProvider)[svgPath]);
+                     return !shouldExpand?
+                     _BuildHeader(
+                       svgPath: svgPath,
+                       summary: summary,
+                       buttonColor: buttonColor,
+                       buttonText: buttonText,
+                       buttonTextColor: buttonTextColor,)
+                         :
+                     _BuildExpanded(
+                       svgPath: svgPath,
+                       summary: summary,
+                       details: expanded,
+                       buttonTextColor: buttonTextColor,
+                       buttonColor: buttonColor,
+                       buttonText: shrinkButtonText,);
+                 }
+               )
 
 
-            ),
-          )
-              :
-              Container(
-                color: color.withOpacity(0.9),
-                child: _BuildHeader(
-                  svgPath: svgPath,
-                  summary: summary,
-                  buttonColor: buttonColor,
-                  buttonText: buttonText,
-                  buttonTextColor: buttonTextColor,
-                  isExpandable: false,
-                ),
-              );
-        }
-      ),
+          ),
+        )
+            :
+            Container(
+              color: color.withOpacity(0.9),
+              child: _BuildHeader(
+                svgPath: svgPath,
+                summary: summary,
+                buttonColor: buttonColor,
+                buttonText: buttonText,
+                buttonTextColor: buttonTextColor,
+                isExpandable: false,
+              ),
+            );
+      }
     );
   }
 }
@@ -140,26 +138,28 @@ class _BuildHeader extends ConsumerWidget{
   @override
   Widget build(BuildContext context, ref) {
     // TODO: implement build
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        CubedHeading(path: svgPath),
-        Padding(
-          padding: EdgeInsets.only(bottom: isExpandable?0:60),
-          child: SummaryBox(description: summary),
-        ),
-        isExpandable?ThemedButton(
-          label: buttonText,
-          textColor: buttonTextColor,
-          bottomPadding: 60,
-          onPressed: (){
-          ref.read(expandedMapProvider).updateMap(svgPath, true);
-          //Provider.of<AnimatedContainerProvider>(context,listen: false).expand();
-        }, color: buttonColor,)
-            :
-        const SizedBox(),
-      ],
+    return RepaintBoundary(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CubedHeading(path: svgPath),
+          Padding(
+            padding: EdgeInsets.only(bottom: isExpandable?0:60),
+            child: SummaryBox(description: summary),
+          ),
+          isExpandable?ThemedButton(
+            label: buttonText,
+            textColor: buttonTextColor,
+            bottomPadding: 60,
+            onPressed: (){
+            ref.read(expandedMapProvider).updateMap(svgPath, true);
+            //Provider.of<AnimatedContainerProvider>(context,listen: false).expand();
+          }, color: buttonColor,)
+              :
+          const SizedBox(),
+        ],
+      ),
     );
   }
 

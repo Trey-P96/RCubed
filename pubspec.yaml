@@ -39,7 +39,7 @@ dependencies:
 #  visibility_detector: ^0.3.3
   transparent_pointer: ^1.0.0
 #  sticky_headers: ^0.3.0
-  #scrollable_positioned_list: ^0.3.2
+  scrollable_positioned_list: ^0.3.2
   provider: ^6.0.3
 #  dots_indicator: ^2.1.0
   google_fonts: any

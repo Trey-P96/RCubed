@@ -33,15 +33,27 @@ class WhoWeAre extends ConsumerWidget{
       decoration: BoxDecoration(gradient: LinearGradient(colors:[Shades.swatch5.withOpacity(0.9), Colors.black.withOpacity(0.9)], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
       child: const MaterialColumn(
           children: [
-            NestedNavBar(
-                headerSvgPath: headerSvgPath,
-                summary: summary,
-                menuButtons: [
-                  MenuButton(title: "Leadership", ),
-                  MenuButton(title: "Values", ),
-                ],
-            ),
+            // NestedNavBar(
+            //     headerSvgPath: headerSvgPath,
+            //     summary: summary,
+            //     menuButtons: [
+            //       MenuButton(title: "Leadership", ),
+            //       MenuButton(title: "Values", ),
+            //     ],
+            // ),
             CubedHeading(path: leadershipHeading, topPadding: 60,),
+            EmployeeProfile(name: "Jim Williams", position: "Principal & Founder",),
+            EmployeeProfile(name: "Rita Popp", position: "Principal & Founder",),
+            EmployeeProfile(name: "Yasser Abderlrahim", position: "Head of Technology Services",),
+            EmployeeProfile(name: "Jim Williams", position: "Principal & Founder",),
+            EmployeeProfile(name: "Rita Popp", position: "Principal & Founder",),
+            EmployeeProfile(name: "Yasser Abderlrahim", position: "Head of Technology Services",),
+            EmployeeProfile(name: "Jim Williams", position: "Principal & Founder",),
+            EmployeeProfile(name: "Rita Popp", position: "Principal & Founder",),
+            EmployeeProfile(name: "Yasser Abderlrahim", position: "Head of Technology Services",),
+            EmployeeProfile(name: "Jim Williams", position: "Principal & Founder",),
+            EmployeeProfile(name: "Rita Popp", position: "Principal & Founder",),
+            EmployeeProfile(name: "Yasser Abderlrahim", position: "Head of Technology Services",),
             EmployeeProfile(name: "Jim Williams", position: "Principal & Founder",),
             EmployeeProfile(name: "Rita Popp", position: "Principal & Founder",),
             EmployeeProfile(name: "Yasser Abderlrahim", position: "Head of Technology Services",),

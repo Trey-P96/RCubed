@@ -127,19 +127,21 @@ class MenuButton extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Padding(
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: InkWell(
-          onTap: (){
-            //scrollToIndex(pageKey);
-          },
-          child: SizedBox(
-            height: 50,
-            width: 350,
-            child: Center(
-                child: _ButtonContent(title: title)
-            ),
-          )
+    return RepaintBoundary(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10, bottom: 10),
+        child: InkWell(
+            onTap: (){
+              //scrollToIndex(pageKey);
+            },
+            child: SizedBox(
+              height: 50,
+              width: 350,
+              child: Center(
+                  child: _ButtonContent(title: title)
+              ),
+            )
+        ),
       ),
     );
   }

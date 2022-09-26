@@ -1,5 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/pages/home/home.dart';
 
@@ -17,33 +18,65 @@ class WhatWeDo extends ConsumerWidget{
   const WhatWeDo({Key? key}) : super(key: key);
   static const headerSvgPath = "assets/images/what_we_do/what_we_do.svg";
   static const summary =
-      "We transform the way people work by putting clients at the center of business solutions. Our disruptive "
+      "Wxse transform the way people work by putting clients at the center of business solutions. Our disruptive "
       "model converts possibilities into real business value. Let’s build a better tomorrow.";
 
   @override
   Widget build(BuildContext context, ref) {
     // TODO: implement build
-    return MaterialColumn(
-      key: ref.watch(whatWeDoProvider),
+    return const MaterialColumn(
+      //key: ref.watch(whatWeDoProvider),
       children: [
-        const NestedNavBar(
-          headerSvgPath: headerSvgPath,
-          summary: summary,
-          menuButtons: [
-            MenuButton(title: "Enterprise Applications", ),
-            MenuButton(title: "Integration Architecture", ),
-            MenuButton(title: "Cloud Computing",),
-            MenuButton(title: "Managed Services",),
-            MenuButton(title: "Co Sourcing", ),
-            MenuButton(title: "Technologies", ),
-          ],
-        ),
-        const EnterpriseApplications(),
-        const IntegrationArchitecture(),
-        const CloudComputing(),
-        const ManagedServices(),
-        const CoSourcing(),
-        Technologies(key: key),
+        // const NestedNavBar(
+        //   headerSvgPath: headerSvgPath,
+        //   summary: summary,
+        //   menuButtons: [
+        //     MenuButton(title: "Enterprise Applications", ),
+        //     MenuButton(title: "Integration Architecture", ),
+        //     MenuButton(title: "Cloud Computing",),
+        //     MenuButton(title: "Managed Services",),
+        //     MenuButton(title: "Co Sourcing", ),
+        //     MenuButton(title: "Technologies", ),
+        //   ],
+        // ),
+        EnterpriseApplications(),
+        EnterpriseApplications(),
+        EnterpriseApplications(),
+        EnterpriseApplications(),
+        EnterpriseApplications(),
+        EnterpriseApplications(),
+        // const IntegrationArchitecture(),
+        // const CloudComputing(),
+        // const ManagedServices(),
+        // const CoSourcing(),
+        // Technologies(key: key),
+      ],
+    );
+  }
+
+}
+
+
+class WhatWeDoNavBar extends StatelessWidget{
+  const WhatWeDoNavBar({Key? key}) : super(key: key);
+  static const headerSvgPath = "assets/images/what_we_do/what_we_do.svg";
+  static const summary =
+      "We transform the way people work by putting clients at the center of business solutions. Our disruptive "
+      "model converts possibilities into real business value. Let’s build a better tomorrow.";
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return const NestedNavBar(
+      headerSvgPath: headerSvgPath,
+      summary: summary,
+      menuButtons: [
+        // MenuButton(title: "Enterprise Applications", ),
+        // MenuButton(title: "Integration Architecture", ),
+        // MenuButton(title: "Cloud Computing",),
+        // MenuButton(title: "Managed Services",),
+        // MenuButton(title: "Co Sourcing", ),
+        // MenuButton(title: "Technologies", ),
       ],
     );
   }

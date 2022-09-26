@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:rcubed/widgets/cubed_heading/cubed_heading.dart';
 import 'package:rcubed/widgets/description_box/description_box.dart';
 import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
 
@@ -17,6 +18,7 @@ class EnterpriseApplications extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    //
     return ExpandingBox(
       svgPath: enterpriseAppSVG,
       summary: description,

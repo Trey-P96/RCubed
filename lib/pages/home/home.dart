@@ -2,8 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/main.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/cloud_computing.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/co_sourcing.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/integration_architecture.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
+import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../custom_scroll_physics/custom_scroll_physics.dart';
 import '../../network_images/network_images.dart';
 import '../../widgets/background/background.dart';
@@ -72,11 +79,28 @@ class _HomeState extends State<_Home>{
     pages = [
       Column(
         children: const [
+          WhatWeDoNavBar(),
           HomePageView(),
-          WhatWeDo(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          WhatWeDoNavBar(),
+          //const WhatWeDo(),
+          // EnterpriseApplications(),
+          // IntegrationArchitecture(),
+          // CloudComputing(),
+          // ManagedServices(),
+          // CoSourcing(),
+          // Technologies(),
           WhoWeAre(),
         ],
       )
+
     ];
   }
 
@@ -96,17 +120,26 @@ class _HomeState extends State<_Home>{
               children: [
                 Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
 
+                // ScrollablePositionedList.builder(
+                //     // minCacheExtent: 500000,
+                //     physics: const CustomScrollPhysics(),
+                //     itemCount: pages.length,
+                //     addRepaintBoundaries: false,
+                //     addAutomaticKeepAlives: false,
+                //     itemBuilder: (context, index){
+                //       return pages[index];
+                //     }),
+
 
                 CustomScrollView(
+                    shrinkWrap: true,
                     physics: const CustomScrollPhysics(),
                     slivers: [
                       SliverList(
                           delegate: SliverChildListDelegate.fixed(
                               pages,
-
                               addAutomaticKeepAlives: false,
                             addRepaintBoundaries: false,
-                            addSemanticIndexes: false,
                           )
                       )
                     ],
