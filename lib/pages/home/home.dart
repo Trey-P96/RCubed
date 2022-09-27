@@ -10,7 +10,7 @@ import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+// import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../custom_scroll_physics/custom_scroll_physics.dart';
 import '../../network_images/network_images.dart';
 import '../../widgets/background/background.dart';
@@ -32,6 +32,7 @@ class Home extends ConsumerWidget{
 
   @override
   Widget build(context, ref) {
+    GlobalKey<ScaffoldState> key = GlobalKey();
     // TODO: implement build
     return SafeArea(
       child: Scaffold(
@@ -79,7 +80,7 @@ class _HomeState extends State<_Home>{
     pages = [
       Column(
         children: const [
-          WhatWeDoNavBar(),
+          //WhatWeDoNavBar(),
           HomePageView(),
           WhatWeDoNavBar(),
           WhatWeDoNavBar(),
@@ -90,16 +91,23 @@ class _HomeState extends State<_Home>{
           WhatWeDoNavBar(),
           WhatWeDoNavBar(),
           WhatWeDoNavBar(),
-          //const WhatWeDo(),
-          // EnterpriseApplications(),
-          // IntegrationArchitecture(),
-          // CloudComputing(),
-          // ManagedServices(),
-          // CoSourcing(),
-          // Technologies(),
-          WhoWeAre(),
+          WhoWeAre()
         ],
       )
+
+
+      //const WhatWeDoNavBar(),
+      // const HomePageView(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhatWeDoNavBar(),
+      // const WhoWeAre()
 
     ];
   }
@@ -127,7 +135,7 @@ class _HomeState extends State<_Home>{
                 //     addRepaintBoundaries: false,
                 //     addAutomaticKeepAlives: false,
                 //     itemBuilder: (context, index){
-                //       return pages[index];
+                //       return RepaintBoundary(child: pages[index]);
                 //     }),
 
 

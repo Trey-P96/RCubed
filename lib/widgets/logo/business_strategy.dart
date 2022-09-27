@@ -38,7 +38,7 @@ class BusinessStrategyState extends State<BusinessStrategy>{
     timer.cancel();
   }
 
-  void updatePosition() => WidgetsBinding.instance.addPostFrameCallback((_) {
+  void updatePosition() => WidgetsBinding.instance!.addPostFrameCallback((_) {
     final RenderBox? box = _key.currentContext?.findRenderObject() as RenderBox?;
     if(box != null) position = box.localToGlobal(Offset.zero);
   });

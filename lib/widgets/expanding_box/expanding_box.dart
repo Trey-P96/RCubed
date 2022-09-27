@@ -68,7 +68,7 @@ class ExpandingBox extends ConsumerWidget{
     // TODO: implement build
     return Builder(
       builder: (context) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
+        WidgetsBinding.instance?.addPostFrameCallback((_) {
           if(isExpandable) ref.read(expandedMapProvider).updateMap(svgPath, false);
         });
         return isExpandable? ColoredBox(
@@ -199,7 +199,7 @@ class _BuildExpanded extends StatelessWidget {
         SummaryBox(description: summary),
         Consumer(
           builder: (context, ref, child) {
-            WidgetsBinding.instance.addPostFrameCallback((_) {
+            WidgetsBinding.instance?.addPostFrameCallback((_) {
               if(ref.watch(expandedMapProvider).getOpacity(svgPath) == 0){
                 ref.read(expandedMapProvider).setOpacity(svgPath, 1);
               }

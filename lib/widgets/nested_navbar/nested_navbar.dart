@@ -1,5 +1,6 @@
 
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:asset_cache/asset_cache.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,6 +8,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_svg/svg.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
+import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../themes/fonts.dart';
@@ -21,29 +24,79 @@ class NestedNavBar extends StatelessWidget{
 
   void scrollToIndex(GlobalKey key){}
 
+  // @override
+  // Widget build(BuildContext context) {
+  //   // TODO: implement build
+  //   return Text(summary+summary);
+  // }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return RepaintBoundary(
-      child: Material(
-        elevation: 10,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const _Title(),
-
-            //Container(color: Colors.black, height: 1,),
-            //Center(child: _Summary(text: summary, fontSize: 18)),
-            //menuButtons.isNotEmpty?Container(color: Colors.black, height: 1,):const SizedBox(),
-            //_MenuButtons(menuButtons: menuButtons),
-          ],
-        ),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const _Title(),
+        //Text(summary+summary)
+        //RepaintBoundary(child: SelectableText(summary, style: TextStyle(fontSize: 30, decoration: TextDecoration.underline, decorationColor: Colors.white.withOpacity(0.01)),)),
+        // RepaintBoundary(child: TextRenderer(style: TextRendererStyle.paragraph,child: Text(summary),)),
+        //RepaintBoundary(child: SizedBox(width: 500, height: 500, child: Text(summary),))
+        RepaintBoundary(child: SizedBox(width: 300, height: 300, child: CustomPaint(painter: MyPainter(text: summary),))),
+        //Container(color: Colors.black, height: 1,),
+        //Center(child: _Summary(text: summary, fontSize: 18)),
+        //menuButtons.isNotEmpty?Container(color: Colors.black, height: 1,):const SizedBox(),
+        //_MenuButtons(menuButtons: menuButtons),
+      ],
     );
   }
 
 }
+
+
+class MyPainter extends CustomPainter{
+  final String text;
+  MyPainter({required this.text});
+  @override
+  void paint(Canvas canvas, Size size) {
+    // TODO: implement paint
+    final paint = Paint()
+    ..color = Colors.black;
+    const textStyle = TextStyle(
+      color: Colors.black,
+      fontSize: 30,
+    );
+
+    final textSpan = TextSpan(
+      text: text,
+      style: textStyle,
+    );
+
+    final textPainter = TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout(maxWidth: size.width);
+    final xCenter = (size.width - textPainter.width)/2;
+    final yCenter = (size.height- textPainter.height)/2;
+    final offset = Offset(xCenter, yCenter);
+    textPainter.paint(canvas, offset);
+    // ParagraphBuilder pb = ParagraphBuilder(ParagraphStyle(locale: window.locale, fontSize: 30,));
+    // pb.addText(text);  // smiley face emoji
+    // final Paragraph paragraph = pb.build()
+    //   ..layout(ParagraphConstraints(width: size.width -12.0 - 12.0));
+    // canvas.drawParagraph(paragraph, offset);
+
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    // TODO: implement shouldRepaint
+    return false;
+  }
+
+}
+
 
 
 

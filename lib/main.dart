@@ -16,6 +16,7 @@ import 'package:rcubed/providers/who_we_are_providers.dart';
 import 'package:rcubed/routes/route_generator.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:renderer_switcher/renderer_switcher.dart';
 import 'package:url_strategy/url_strategy.dart';
 
 void main() {
@@ -23,6 +24,15 @@ void main() {
   //flutter build web --release --web-renderer canvaskit --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false // compatible for android
   // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
   //flutter run -d chrome --web-renderer html
+
+
+
+  /*
+  <script>
+    if(window.innerWidth < 600 || window.innerHeight < 600) window.flutterWebRenderer = "html";
+    else{window.flutterWebRenderer = "canvaskit";}
+  </script>
+   */
 
   //GestureBinding.instance.resamplingEnabled = true;
 
@@ -49,6 +59,7 @@ class MyAppState extends State<MyApp> {
   @override
   void initState(){
     super.initState();
+
   }
 
 
