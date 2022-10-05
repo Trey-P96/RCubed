@@ -28,13 +28,14 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   seo_renderer: ^0.6.0
+  extended_text: ^9.1.2
   renderer_switcher: ^0.1.0
   flutter_riverpod: ^1.0.2
   asset_cache: ^2.0.0
   url_strategy: ^0.2.0
   simple_shadow: ^0.3.0
 #  easy_scroll_to_index: ^1.0.2
-  preload_page_view: ^0.1.6
+#  preload_page_view: ^0.1.6
 #  url_launcher: any
   image_network: any
   cached_network_image: any

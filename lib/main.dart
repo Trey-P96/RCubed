@@ -28,8 +28,25 @@ void main() {
 
 
   /*
+  <script type="text/javascript">
+    let useHtml = false;
+    if(useHtml) {
+      window.flutterWebRenderer = "html";
+    } else {
+      window.flutterWebRenderer = "canvaskit";
+    }
+  </script>
+
+
+
+   <script type="text/javascript">
+    window.flutterWebRenderer = localStorage.getItem('flutterWebRenderer');
+   </script>
+
+
+
   <script>
-    if(window.innerWidth < 600 || window.innerHeight < 600) window.flutterWebRenderer = "html";
+    if(screen.availWidth < 600 || screen.availHeight < 600) window.flutterWebRenderer = "html";
     else{window.flutterWebRenderer = "canvaskit";}
   </script>
    */
@@ -59,7 +76,6 @@ class MyAppState extends State<MyApp> {
   @override
   void initState(){
     super.initState();
-
   }
 
 

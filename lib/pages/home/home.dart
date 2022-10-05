@@ -10,6 +10,7 @@ import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
 import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
 import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
+import 'package:rcubed/widgets/custom_painter/custom_painter.dart';
 // import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../custom_scroll_physics/custom_scroll_physics.dart';
 import '../../network_images/network_images.dart';
@@ -83,14 +84,14 @@ class _HomeState extends State<_Home>{
           //WhatWeDoNavBar(),
           HomePageView(),
           WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
-          WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
+          // WhatWeDoNavBar(),
           WhoWeAre()
         ],
       )
@@ -127,7 +128,7 @@ class _HomeState extends State<_Home>{
             child: Stack(
               children: [
                 Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
-
+                Container(color: Colors.white),
                 // ScrollablePositionedList.builder(
                 //     // minCacheExtent: 500000,
                 //     physics: const CustomScrollPhysics(),
@@ -152,6 +153,16 @@ class _HomeState extends State<_Home>{
                       )
                     ],
                   ),
+
+
+                // ListView.builder(
+                //     physics: const CustomScrollPhysics(),
+                //     //itemCount: 2,
+                //     addAutomaticKeepAlives: false,
+                //     addRepaintBoundaries: false,
+                //     itemBuilder: (context, index){
+                //   return const MyRcubedText(text: "THIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXTTHIS IS VERY LONG TEXT", fontSize: 60);
+                // })
 
 
               ],
