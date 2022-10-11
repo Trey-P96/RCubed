@@ -16,15 +16,20 @@ class Careers extends StatelessWidget{
       verticalDirection: VerticalDirection.up,
       children: [
         Expanded(
-          child: Container(
-            color: RCubedTheme.primary,
-            child: const EmbeddedWebPage(url: "https://rcubed.bamboohr.com/jobs/",),
+          child: Stack(
+            children: const [
+              Center(child: CircularProgressIndicator()),
+              // Container(
+              //   color: Colors.white,
+              EmbeddedWebPage(url: "https://rcubed.bamboohr.com/jobs/",),
+              // ),
+            ],
           ),
         ),
         AppBar(
           elevation: 5,
           backgroundColor: RCubedTheme.primary,
-          title: const Center(child: RcubedText("Careers")),
+          title: const Center(child: RcubedText("Careers", fontFamily: DefaultFonts.kumbhsans,)),
         ),
       ],
     );

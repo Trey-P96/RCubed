@@ -19,7 +19,7 @@ class CoSrcExpandingBox extends StatelessWidget{
 
 
       SliverStack(children: [
-        SliverPositioned.fill(child: ColoredBox(color: color.withOpacity(0.9),)),
+        SliverPositioned.fill(child: ColoredBox(color: color.withOpacity(0.95),)),
         MultiSliver(children: [
           const SliverToBoxAdapter(
             child: CubedHeading(path: CoSourcing.svgPath,bottomPadding: 20,),),
@@ -55,7 +55,7 @@ class CoSrcExpandingBox extends StatelessWidget{
           child: Stack(
             children: [
               Positioned.fill(child: CachedNetworkImage(imageUrl: Images.lightBulbs, fit: BoxFit.cover,),),
-              Container(color: color.withOpacity(0.9),)
+              Container(color: color.withOpacity(0.95),)
             ],
           ),
         ),

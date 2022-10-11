@@ -67,28 +67,31 @@ class Header extends StatelessWidget{
         SliverToBoxAdapter(child: Heading(url: headingUrl,)),
 
         SliverToBoxAdapter(child: Container(height: 1, color: Colors.black,)),
-        //
-        //
-        // SliverToBoxAdapter(
-        //   child: Padding(
-        //     padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
-        //     child: RichText(
-        //       text: TextSpan(
-        //           children: [
-        //             TextSpan(text: summary[0], style: const TextStyle(fontSize: 30, color: Colors.black, fontFamily: DefaultFonts.kumbhsans)),
-        //             TextSpan(text: summary.substring(1), style: const TextStyle(fontSize: 22, color: Colors.black, letterSpacing: 2, fontFamily: DefaultFonts.kumbhsans))
-        //           ]
-        //       ),
-        //       textAlign: TextAlign.center,
-        //     ),
-        //   ),
-        // ),
-        //
-        //
-        //
-        // SliverToBoxAdapter(
-        //   child: Container(height: 1, color:Colors.black,),
-        // ),
+
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+            child: Align(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 800),
+                child: RichText(
+                  text: TextSpan(
+                      children: [
+                        TextSpan(text: summary[0], style: const TextStyle(fontSize: 32, color: Colors.black, fontFamily: DefaultFonts.kumbhsans)),
+                        TextSpan(text: summary.substring(1), style: const TextStyle(fontSize: 26, color: Colors.black,height: 2, letterSpacing: 2, fontFamily: DefaultFonts.kumbhsans))
+                      ]
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
+        ),
+
+        SliverToBoxAdapter(
+          child: Container(height: 1, color:Colors.black,),
+        ),
+
 
         SliverToBoxAdapter(child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
@@ -97,6 +100,15 @@ class Header extends StatelessWidget{
                 child: Wrap( alignment: WrapAlignment.spaceEvenly, spacing:60, runSpacing: 10, children: navButtons)),
           ),
         ),),
+
+
+
+
+
+
+
+
+
 
       ]),
     ]);
@@ -144,14 +156,11 @@ class NavButton extends ConsumerWidget{
             height: 30,
             borderRadius: 50,
             borderWidth: borderWidth,
-            animatedOn: ref.watch(device)==PointerDeviceKind.mouse? AnimatedOn.onHover:AnimatedOn.onTap,
+            animatedOn: AnimatedOn.onHover,
             animationDuration: const Duration(milliseconds: 350),
             onPress: (){
               if(indexKey != null){
-
-                //PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                 ref.watch(scrollController).position.ensureVisible(indexKey!.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
-
               }
 
             }

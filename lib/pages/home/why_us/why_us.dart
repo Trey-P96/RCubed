@@ -64,18 +64,18 @@ class Stories extends StatelessWidget{
       ),),
 
 
-      const SliverToBoxAdapter(child: Padding(
-        padding: EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 60),
-        child: Center(child: NavButton(
-          text: 'Acquisition Integration',
-          textColor: Colors.black,
-          selectedBgOpacity: 1,
-          selectedBackgroundColor: RCubedTheme.primary,
-          selectedTextColor: Colors.white,
-          borderColor: Colors.transparent,
-          borderWidth: 0,
-          backgroundColor: Colors.white,)),
-      ),)
+      // const SliverToBoxAdapter(child: Padding(
+      //   padding: EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 60),
+      //   child: Center(child: NavButton(
+      //     text: 'Acquisition Integration',
+      //     textColor: Colors.black,
+      //     selectedBgOpacity: 1,
+      //     selectedBackgroundColor: RCubedTheme.primary,
+      //     selectedTextColor: Colors.white,
+      //     borderColor: Colors.transparent,
+      //     borderWidth: 0,
+      //     backgroundColor: Colors.white,)),
+      // ),)
 
 
     ]);

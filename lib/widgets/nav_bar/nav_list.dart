@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/providers/scaffold_provider.dart';
@@ -19,7 +20,11 @@ class NavList extends ConsumerWidget{
     return SingleChildScrollView(
       controller: ScrollController(),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          ConstrainedBox(constraints: const BoxConstraints(maxWidth: 200, maxHeight: 75),
+          child: SvgPicture.asset("assets/images/rcubed_hrzntl.svg", color: RCubedTheme.primary, fit: BoxFit.fitWidth,)),
+          const Divider(thickness: 2,),
           InkWell(
             onTap:(){
               GlobalKey key = ref.watch(homePageProvider);

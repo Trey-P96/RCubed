@@ -14,6 +14,9 @@ class Images{
   static String circularArch = "https://i.imgur.com/HRnZVV9.png";
   static String motherBoard = "https://i.imgur.com/eovAxPW.png";
   static String cityClouds = "https://i.imgur.com/adDB3yf.png";
+  static String homeLogo = "https://i.imgur.com/pL1Ss6F.png";
+  static String techDesk = "https://i.imgur.com/6KupSLV.png";
+  static String infinityPool = "https://i.imgur.com/4FxfVOR.png";
 }
 
 class Employees{

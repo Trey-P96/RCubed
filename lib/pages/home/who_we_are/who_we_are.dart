@@ -9,6 +9,7 @@ import 'package:rcubed/widgets/nested_navbar/nested_navbar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../../network_images/network_images.dart';
+import '../../../themes/fonts.dart';
 import '../../../themes/rcubed_theme.dart';
 import '../../../widgets/custom_appbar/custom_appbar.dart';
 import '../what_we_do/categories/cloud_computing.dart';
@@ -19,24 +20,31 @@ import '../what_we_do/categories/managed_services.dart';
 import 'employee_profile/employee_profile.dart';
 
 
-class WhoWeAre extends StatelessWidget{
+StateProvider<GlobalKey> valuesKey = StateProvider((ref) => GlobalKey());
+StateProvider<GlobalKey> leadershipKey = StateProvider((ref) => GlobalKey());
+
+
+class WhoWeAre extends ConsumerWidget{
+  static const leadershipHeading = "assets/images/who_we_are/leadership.svg";
+  static const valuesHeading = "assets/images/who_we_are/values.svg";
   static const headerSvgPath = "assets/images/who_we_are/who_we_are.svg";
   static const summary =
       "We do things differently - retooling the consulting model way. It's not about billables, "
       "big attitudes, & political capital. The R-CUBED way is about doing what is right and helping "
       "realize business values & outcomes together.";
+  static const values = "Our core values guide our compass & sets the tone for the way we work. We believe culture is everything to attract & retain the right talent, drive client advocacy & forge the right alliances.";
   const WhoWeAre({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     // TODO: implement build
     return MultiSliver(children: [
     Header(
           headingUrl: Images.whoWeAre,
           summary: summary,
-          navButtons: const [
-            NavButton(text: "Leadership"),
-            NavButton(text: "Values"),
+          navButtons: [
+            NavButton(text: "Values", indexKey: ref.watch(valuesKey),),
+            NavButton(text: "Leadership", indexKey: ref.watch(leadershipKey),),
           ]),
 
       const _Body(),
@@ -47,18 +55,30 @@ class WhoWeAre extends StatelessWidget{
 }
 
 
-class _Body extends StatelessWidget{
+class _Body extends ConsumerWidget{
   const _Body({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     // TODO: implement build
     return SliverStack(children: [
       SliverPositioned.fill(child: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: [Shades.swatch5.withOpacity(0.9), Shades.darkGrey.withOpacity(0.9)], begin: Alignment.topCenter, end: Alignment.bottomCenter)),)),
+
       MultiSliver(children: [
-        // SliverToBoxAdapter(child: EmployeeProfile(name: 'Rita Popp', position: 'Principal & Founder', imgUrl: Employees.ritaPopp,),),
-        // SliverToBoxAdapter(child: EmployeeProfile(name: 'Jim Williams', position: 'Principal & Founder', imgUrl: Employees.jimWilliams,),),
-        // SliverToBoxAdapter(child: EmployeeProfile(name: 'Mark Hoxmeier', position: 'Principal & Founder', imgUrl: Employees.markHowmeier,),),
+        SliverToBoxAdapter(key: ref.watch(valuesKey),child: const CubedHeading(path: WhoWeAre.valuesHeading, topPadding: 60,),),
+
+        SliverToBoxAdapter(child: Align(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
+            child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800),
+            child: RichText(text: const TextSpan(text: WhoWeAre.values, style: TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),)),
+          ),
+        ),),
+
+        SliverToBoxAdapter(child: Container(height: 1, color: Colors.white,),),
+
+
+        SliverToBoxAdapter(key: ref.watch(leadershipKey),child: const CubedHeading(path: WhoWeAre.leadershipHeading, topPadding: 60,),),
 
         SliverToBoxAdapter(child: Wrap(
           alignment:WrapAlignment.center,

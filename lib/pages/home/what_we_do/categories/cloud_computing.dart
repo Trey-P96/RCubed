@@ -56,7 +56,7 @@ class CloudCmptExpandingBox extends StatelessWidget{
           elevation: 10,
           child: Stack(
             children: [
-              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.cityClouds, fit: BoxFit.cover,),),
+              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.techDesk, fit: BoxFit.cover,),),
               Container(color: color.withOpacity(0.9),)
             ],
           ),

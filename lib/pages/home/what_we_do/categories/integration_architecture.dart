@@ -29,7 +29,7 @@ class IntArchExpandingBox extends StatelessWidget{
             elevation: 10,
             child: Stack(
               children: [
-                Positioned.fill(child: CachedNetworkImage(imageUrl: Images.circularArch, fit: BoxFit.cover,),),
+                Positioned.fill(child: CachedNetworkImage(imageUrl: Images.infinityPool, fit: BoxFit.cover,),),
                 Container(color: color.withOpacity(0.9),)
               ],
             ),
@@ -69,8 +69,8 @@ class IntArchExpandingBox extends StatelessWidget{
           elevation: 10,
           child: Stack(
             children: [
-              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.circularArch, fit: BoxFit.cover,),),
-              Container(color: color.withOpacity(0.95),)
+              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.infinityPool, fit: BoxFit.cover,),),
+              Container(color: color.withOpacity(0.9),)
             ],
           ),
         ),
