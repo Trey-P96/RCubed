@@ -29,7 +29,7 @@ class NavBarMobile extends ConsumerWidget {
                   hoverColor: Colors.blue,
                   onPressed: () {
                     GlobalKey key = ref.watch(homePageProvider);
-                    PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+                    ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                   },
                 iconSize: iconSize,
                   icon: const Logo()),

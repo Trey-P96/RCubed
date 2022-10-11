@@ -1,9 +1,98 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/description_box/description_box.dart';
 import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
+import 'package:sliver_tools/sliver_tools.dart';
 
+import '../../../../network_images/network_images.dart';
+import '../../../../themes/fonts.dart';
 import '../../../../themes/rcubed_theme.dart';
+import '../../../../widgets/cubed_heading/cubed_heading.dart';
+import '../../../../widgets/custom_sliver_list/custom_sliver_list.dart';
+
+
+class CloudCmptExpandingBox extends StatelessWidget{
+  final Color color;
+  const CloudCmptExpandingBox({Key? key, required this.color}) : super(key: key);
+
+  List<Widget> slivers(){
+    return [
+
+
+      SliverStack(children: [
+        SliverPositioned.fill(child: ColoredBox(color: color.withOpacity(0.9),)),
+        MultiSliver(children: [
+          const SliverToBoxAdapter(
+            child: CubedHeading(path: CloudComputing.svgPath,bottomPadding: 20,),),
+
+          CustomSliverBuilder(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+                child: RichText(
+                    textAlign: TextAlign.center,
+                    text: const TextSpan(text:CloudComputing.summary,
+                      style: TextStyle(fontSize: 22, color: Colors.white, fontFamily: DefaultFonts.kumbhsans, letterSpacing: 3),
+                    )),
+              )
+          ).buildSliver(),
+
+
+
+        ]),
+
+
+      ],
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return SliverStack(children: [
+      SliverPositioned.fill(child: RepaintBoundary(
+        child: Material(
+          elevation: 10,
+          child: Stack(
+            children: [
+              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.cityClouds, fit: BoxFit.cover,),),
+              Container(color: color.withOpacity(0.9),)
+            ],
+          ),
+        ),
+      )),
+      MultiSliver(children: [
+        const SliverToBoxAdapter(
+          child: CubedHeading(path: CloudComputing.svgPath,bottomPadding: 10, topPadding: 60,),),
+
+        SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 10),
+              child: Align(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(text: CloudComputing.summary,
+                        style: TextStyle(fontSize: 22, color: Colors.white, fontFamily: DefaultFonts.kumbhsans, letterSpacing: 2, height: 2),
+                      )),
+                ),
+              ),
+            )
+        ),
+
+
+
+      ]),
+    ]);
+  }
+}
+
+
+
+
+
 
 class CloudComputing extends StatelessWidget {
   const CloudComputing({Key? key}) : super(key: key);

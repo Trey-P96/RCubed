@@ -34,7 +34,7 @@ class NavBarDesktop extends ConsumerWidget {
                 hoverColor: Colors.blue,
                 onPressed: () {
                   GlobalKey key = ref.watch(homePageProvider);
-                  PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+                  ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                 },
                 iconSize: iconSize,
                 icon: const Logo()),
@@ -47,7 +47,7 @@ class NavBarDesktop extends ConsumerWidget {
             child: InkWell(
               onTap: () {
                 GlobalKey key = ref.watch(whatWeDoProvider);
-                PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+                ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
               },
               child: const _NavBarText(text: "What We Do",),
             ),
@@ -60,7 +60,7 @@ class NavBarDesktop extends ConsumerWidget {
               child: InkWell(
                 onTap: () {
                   GlobalKey key = ref.watch(whoWeAreProvider);
-                  PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+                  ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                 },
                 child: const _NavBarText(text: "Who We Are",),
               ),
@@ -73,6 +73,8 @@ class NavBarDesktop extends ConsumerWidget {
             child: InkWell(
               onTap: () {
                 // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(3);
+                GlobalKey key = ref.watch(whyUsProvider);
+                ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
               },
               child: const _NavBarText(text: "Why Us",),
             ),

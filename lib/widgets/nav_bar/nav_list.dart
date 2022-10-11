@@ -23,8 +23,8 @@ class NavList extends ConsumerWidget{
           InkWell(
             onTap:(){
               GlobalKey key = ref.watch(homePageProvider);
-              PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
-              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ;
+              ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState?.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -36,8 +36,8 @@ class NavList extends ConsumerWidget{
           InkWell(
             onTap:(){
               GlobalKey key = ref.watch(whatWeDoProvider);
-              PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
-              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ;
+              ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState?.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -49,8 +49,8 @@ class NavList extends ConsumerWidget{
           InkWell(
             onTap:(){
               GlobalKey key = ref.watch(whoWeAreProvider);
-              PrimaryScrollController.of(context)?.position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
-              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ;
+              ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState?.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
@@ -61,7 +61,9 @@ class NavList extends ConsumerWidget{
 
           InkWell(
             onTap:(){
-
+              GlobalKey key = ref.watch(whyUsProvider);
+              ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
+              if(ref.watch(navBarProvider).currentState!.isEndDrawerOpen) ref.watch(navBarProvider).currentState?.closeEndDrawer();
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),

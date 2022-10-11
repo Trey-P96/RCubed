@@ -1,27 +1,30 @@
 
 
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:extended_text/extended_text.dart';
 import 'package:flutter/material.dart';
+import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/widgets/custom_painter/custom_painter.dart';
 
 import '../../themes/fonts.dart';
+import '../column_builder/column_builder.dart';
 
 final List<InlineSpan> list = [
   for(int i=0;i<100;i++)const TextSpan(text: "THIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXT",style: TextStyle(fontSize: 12))
 ];
 
-class TextBuilder extends StatelessWidget{
-  const TextBuilder({Key? key}) : super(key: key);
+class Testing extends StatelessWidget{
+  const Testing({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: const [
+      children: [
 
         // CustomScrollView(
         //   shrinkWrap: true,
@@ -38,8 +41,9 @@ class TextBuilder extends StatelessWidget{
 
 
 
-        //_BuildLine(text: "${(MediaQuery.of(context).size.shortestSide).toString()} xCOME ON This is a text that i want to overflow. Hurry up and overflow.",),
-        _BuildLine(text: "kCOME ON This is a text that i want to overflow. Hurry up and overflow.",),
+
+        _TextBuilder(style: const TextStyle(fontSize: 25,),text: "What do we know. What do we know. What do we know. "*100, textAlign: TextAlign.center, leadingChar: 35, lineSpacing: 20,),
+        // Visibility( maintainAnimation: true, visible:false, maintainState:true, maintainSize:true, child: RichText(text: const TextSpan(text: "What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. What do we know. ", style: TextStyle(fontSize: 40)),))
 
       ],
     );
@@ -49,38 +53,134 @@ class TextBuilder extends StatelessWidget{
 
 
 
-class _BuildLine extends StatelessWidget{
+class _TextBuilder extends StatelessWidget{
   final String text;
-  const _BuildLine({required this.text, Key? key}) : super(key: key);
+  final TextStyle style;
+  final double leadingChar, lineSpacing;
+  final TextAlign textAlign;
+  const _TextBuilder({required this.text, required this.style, this.leadingChar=0, this.lineSpacing=0, this.textAlign=TextAlign.start, Key? key}) : super(key: key);
 
-  Future<List<String>> builder(BoxConstraints size) async{
 
+  // List<Widget> textBuilder(BuildContext context){
+  //   List<String> words = text.split(" ");
+  //   List<Widget> builtLines = [];
+  //   List<TextSpan> currentLine = [];
+  //
+  //
+  //   TextPainter textPainter = TextPainter(
+  //       text: TextSpan(
+  //           text: "XXX", style: style
+  //       ),
+  //       textAlign: textAlign,
+  //       textDirection: TextDirection.ltr
+  //   );
+  //
+  //   textPainter.layout();
+  //   double width = min(MediaQuery.of(context).size.width, 1200);
+  //   double w = width/(textPainter.width/30);
+  //   double accumulator=0;
+  //
+  //
+  //   for(int i=0;i<words.length;i++){
+  //     // print(w);
+  //     // print(textPainter.width);
+  //     // print(width);
+  //
+  //     String word = i==words.length-1?words[i]:" ${words[i]} ";
+  //     accumulator+=word.length;
+  //     if(accumulator < w){
+  //       currentLine.add(TextSpan(text: word, style: style));
+  //     }
+  //     else{
+  //       builtLines.add(TestText(span: TextSpan(children: currentLine.toList(), style: style)));
+  //       currentLine.clear();
+  //       currentLine.add(TextSpan(text: word, style: style));
+  //       accumulator=word.length.toDouble();
+  //     }
+  //
+  //     if(i==words.length-1){
+  //       builtLines.add(TestText(span:TextSpan(
+  //         children: currentLine.toList(),
+  //       )));
+  //     }
+  //
+  //
+  //   } // END OF LOOP LOGIC
+  //
+  //   return builtLines;
+  // }
+
+
+
+  Future<List<TextSpan>> builder(BoxConstraints size) async{
     List<String> words = text.split(" ");
-    List<String> lines = [];
+    List<TextSpan> builtLines = [], currentLine = [];
     bool didExceedMaxLines = false;
-    String line = "";
-    for(String word in words) {
-      String tmp = line;
-      if(line=="") {tmp += word;}
-      else{tmp += " $word";}
-      TextPainter textPainter = TextPainter(
-          text: TextSpan(text: tmp,
-              style: const TextStyle(fontSize: 50)),
-          maxLines: 1,
-          textDirection: TextDirection.ltr
+
+
+
+    for(int i=0;i<words.length;i++){
+
+      // --------------------------------------------- STYLE WORD TO TEXTSPAN
+      TextSpan textSpan = (i==0)&&leadingChar!=0? // IF FIRST CHARACTER OF FIRST WORD SHOULD BE BIGGER THAN REST OF TEXT
+      TextSpan(
+        children: [
+          TextSpan(text: words[0][0], style: style.copyWith(fontSize: leadingChar)), //first letter of first word
+          TextSpan(text: words[0].substring(1), style: style), // first word excluding first character
+        ]
+      )
+      :
+      i==0?
+      TextSpan(           // ELSE IF IS FIRST WORD AND LEADING IS NOT SPECIFIED
+          text: words[i],
+          style: style,
+      )
+      :
+      TextSpan(           // IS NOT FIRST WORD, ADD A WHITESPACE CHARACTER IN FRONT OF WORD
+        text: " ${words[i]}",
+        style: style,
       );
+
+
+      // ---------------------------------------------- PAINT LINE AND CHECK IF OVERFLOW
+      TextPainter textPainter = TextPainter(
+        text: TextSpan(
+          children: currentLine + [textSpan]
+        ),
+        textAlign: textAlign,
+        textDirection: TextDirection.ltr
+      );
+
       textPainter.layout();
       didExceedMaxLines = textPainter.width > size.maxWidth;
 
-      if(didExceedMaxLines){
-        lines.add(line);
-        line = word;
-      }
-      else{line = tmp;}
-    }
-    lines.add(line);
 
-    return lines;
+
+      // ---------------------------------------------- ADD TO CURRENT LINE IF NO OVERFLOW,
+      // ---------------------------------------------- ELSE IF OVERFLOW ADD TO BUILT LINE
+      // ---------------------------------------------- AND ADD OVERFLOW WORD TO NEW LINE
+      if(didExceedMaxLines){
+        builtLines.add(TextSpan(
+          children: currentLine.toList(),
+        ));
+        currentLine.clear();
+        currentLine.add(textSpan);
+
+      }
+      else {currentLine.add(textSpan);}
+
+
+      // ---------------------------------------------- IF AT END OF LOOP, ADD REMAINING TEXT THAT DID NOT OVERFLOW
+      if(i==words.length-1){
+        builtLines.add(TextSpan(
+          children: currentLine.toList(),
+        ));
+      }
+
+    } // END OF LOOP LOGIC
+
+
+    return builtLines;
   }
 
 
@@ -91,54 +191,24 @@ class _BuildLine extends StatelessWidget{
     return LayoutBuilder(builder: (context, size){
       return FutureBuilder(
           future: builder(size),
-          initialData: const <String>[],
+          initialData: const <TextSpan>[],
           builder: (context, snapshot){
 
-            if(snapshot.connectionState == ConnectionState.done){
+            if(snapshot.hasData){
+              final lines = snapshot.data as List<TextSpan>;
 
-              final lines = snapshot.data as List<String>;
-              return Column(
-                children: [
-                  for(String line in lines) RichText(text: TextSpan(text: line, style: const TextStyle(fontSize: 50)))
-                ],
-              );
-
-
-              // return CustomScrollView(
-              //   shrinkWrap: true,
-              //   physics: const NeverScrollableScrollPhysics(),
-              //   slivers: [
-              //     SliverList(
-              //       delegate: SliverChildBuilderDelegate((context,index){return RichText(text: TextSpan(text: lines[index], style: const TextStyle(fontSize: 50)));} ,
-              //           childCount: lines.length),
-              //     )
-              //   ],
-              // );
+              return ListView.builder(
+                  shrinkWrap: true,
+                  primary: false,
+                  addAutomaticKeepAlives: false,
+                  addRepaintBoundaries: false,
+                  itemCount: lines.length,
+                  itemBuilder: (context, index){
+                return RichText(text: lines[index], textAlign: textAlign,);
+              });
             }
-
-            return RichText(text: TextSpan(text: text, style: const TextStyle(fontSize: 50)));
+            return RichText(text: TextSpan(text: text, style: style), textAlign: textAlign,);
       });
-      // return RichText(text: TextSpan(text: text, style: const TextStyle(fontSize: 50)));
     });
   }
-}
-
-class _Word extends StatelessWidget{
-  final String text;
-  const _Word({required this.text, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return RichText(text: const TextSpan(
-      children: [
-        WidgetSpan(child: Visibility(visible: false, child: Text("THIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXT"),)),
-        WidgetSpan(child: Visibility(visible: false, child: Text("THIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXT"),)),
-        WidgetSpan(child: Visibility(visible: false, child: Text("THIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXT"),)),
-        WidgetSpan(child: Visibility(visible: false, child: Text("THIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXT"),)),
-        WidgetSpan(child: Visibility(visible: false, child: Text("THIS IS TEXTTHIS IS TEXTTHIS IS TEXTTHIS IS TEXT"),)),
-      ]
-    ));
-  }
-
 }

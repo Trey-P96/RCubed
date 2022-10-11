@@ -12,7 +12,7 @@ class Palette {
   static const Color darkBlue = Color(0xFF002c47);
   static const Color darkBlueShade = Color(0xFF00509A);
   static const Color darkerBlueShade = Color(0xFF0E4170);
-  static const Color offWhite = Color(0xFFcccccc);
+  static const Color offWhite = Color(0xFFb5b5b5);
 }
 
 class Shades{
@@ -21,4 +21,7 @@ class Shades{
   static const Color swatch3 = Color(0xFF0156D6);
   static const Color swatch4 = Color(0xFF034B8E);
   static const Color swatch5 = Color(0xFF394779);
+  static const Color swatch6 = Color(0xFF404040);
+  static const Color darkGrey = Color(0xFF1c1c1c);
+  static const Color swatch7 = Color(0xFF4e8191);
 }

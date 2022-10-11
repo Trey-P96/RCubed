@@ -12,12 +12,17 @@ class CubedHeading extends StatelessWidget{
     // TODO: implement build
     return Padding(
       padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 700),
-        child: AspectRatio(
-          aspectRatio: 14,
-          child: SvgPicture.asset(path,
-            fit: BoxFit.fitHeight,
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 700),
+          child: AspectRatio(
+            aspectRatio: 14,
+            child: RepaintBoundary(
+              child: SvgPicture.asset(path,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
           ),
         ),
       ),

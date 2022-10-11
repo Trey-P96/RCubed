@@ -1,8 +1,110 @@
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/widgets/cubed_heading/cubed_heading.dart';
+import 'package:rcubed/widgets/custom_sliver_list/custom_sliver_list.dart';
 import 'package:rcubed/widgets/description_box/description_box.dart';
 import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
+import 'package:sliver_tools/sliver_tools.dart';
+
+import '../../../../network_images/network_images.dart';
+import '../../../../themes/fonts.dart';
+
+
+
+StateProvider<bool> isVisible = StateProvider((ref) => false);
+
+class EntPrseExpandingBox extends StatelessWidget{
+  final Color color;
+  const EntPrseExpandingBox({Key? key, required this.color}) : super(key: key);
+
+  List<Widget> slivers(){
+    return [
+
+
+      SliverStack(children: [
+        SliverPositioned.fill(child: Stack(
+          children: [
+            Positioned.fill(child: CachedNetworkImage(imageUrl: Images.buildings,),),
+            ColoredBox(color: color.withOpacity(0.9),),
+          ],
+        )),
+
+
+        MultiSliver(children: [
+          const SliverToBoxAdapter(
+            child: CubedHeading(path: EnterpriseApplications.enterpriseAppSVG,bottomPadding: 20,),),
+
+          SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
+                child: Align(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 800),
+                    child: RichText(
+                        textAlign: TextAlign.center,
+                        text: const TextSpan(text: EnterpriseApplications.description,
+                          style: TextStyle(fontSize: 22, color: Colors.white, fontFamily: DefaultFonts.kumbhsans, letterSpacing: 2, height: 2),
+                        )),
+                  ),
+                ),
+              )
+          ),
+
+
+
+        ]),
+
+
+      ],
+      ),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return SliverStack(children: [
+      SliverPositioned.fill(child: RepaintBoundary(
+        child: Material(
+          elevation: 10,
+          child: Stack(
+            children: [
+              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.buildings, fit: BoxFit.cover,),),
+              Container(color: color.withOpacity(0.9),)
+            ],
+          ),
+        ),
+      )),
+
+      MultiSliver(children: [
+        const SliverToBoxAdapter(
+          child: CubedHeading(path: EnterpriseApplications.enterpriseAppSVG,bottomPadding: 10, topPadding: 60,),),
+
+        SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 10),
+              child: Align(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 800),
+                  child: RichText(
+                      textAlign: TextAlign.center,
+                      text: const TextSpan(text: EnterpriseApplications.description,
+                        style: TextStyle(fontSize: 22, color: Colors.white, fontFamily: DefaultFonts.kumbhsans, letterSpacing: 2, height: 2),
+                      )),
+                ),
+              ),
+            )
+        ),
+
+
+
+      ]),
+
+    ]);
+  }
+}
 
 class EnterpriseApplications extends StatelessWidget {
   const EnterpriseApplications({Key? key}) : super(key: key);

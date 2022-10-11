@@ -2,12 +2,25 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/providers/contact_form_provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:http/http.dart' as http;
 
-class ContactForm extends StatelessWidget{
+
+StateProvider<MessageInfo> contactDetails = StateProvider((ref) => MessageInfo());
+
+class MessageInfo{
+  String name = "";
+  String email = "";
+  String subject = "";
+  String message = "";
+
+  MessageInfo();
+}
+
+class ContactForm extends ConsumerWidget{
   const ContactForm({Key? key}) : super(key: key);
 
   Future sendEmail({
@@ -39,7 +52,7 @@ class ContactForm extends StatelessWidget{
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     // TODO: implement build
     return Dialog(
       child: Container(
@@ -58,7 +71,8 @@ class ContactForm extends StatelessWidget{
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         onChanged: (input){
-                          Provider.of<ContactProvider>(context, listen: false).name = input;
+                          // Provider.of<ContactProvider>(context, listen: false).name = input;
+                          ref.read(contactDetails.state).state.name = input;
                         },
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -71,7 +85,8 @@ class ContactForm extends StatelessWidget{
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         onChanged: (input){
-                          Provider.of<ContactProvider>(context, listen: false).email = input;
+                          // Provider.of<ContactProvider>(context, listen: false).email = input;
+                          ref.read(contactDetails.state).state.email = input;
                         },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -84,7 +99,8 @@ class ContactForm extends StatelessWidget{
                       padding: const EdgeInsets.all(8.0),
                       child: TextField(
                         onChanged: (input){
-                          Provider.of<ContactProvider>(context, listen: false).subject = input;
+                          // Provider.of<ContactProvider>(context, listen: false).subject = input;
+                          ref.read(contactDetails.state).state.subject = input;
                         },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -98,7 +114,8 @@ class ContactForm extends StatelessWidget{
                       child: TextField(
                         maxLines: 10,
                         onChanged: (input){
-                          Provider.of<ContactProvider>(context, listen: false).message = input;
+                          // Provider.of<ContactProvider>(context, listen: false).message = input;
+                          ref.read(contactDetails.state).state.message = input;
                         },
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -114,10 +131,14 @@ class ContactForm extends StatelessWidget{
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(primary: RCubedTheme.primary),
                           onPressed: () {
-                            String name = Provider.of<ContactProvider>(context, listen: false).name;
-                            String email = Provider.of<ContactProvider>(context, listen: false).email;
-                            String subject = Provider.of<ContactProvider>(context, listen: false).subject;
-                            String message = Provider.of<ContactProvider>(context, listen: false).message;
+                            // String name = Provider.of<ContactProvider>(context, listen: false).name;
+                            // String email = Provider.of<ContactProvider>(context, listen: false).email;
+                            // String subject = Provider.of<ContactProvider>(context, listen: false).subject;
+                            // String message = Provider.of<ContactProvider>(context, listen: false).message;
+                            String name = ref.watch(contactDetails).name;
+                            String email = ref.watch(contactDetails).email;
+                            String subject = ref.watch(contactDetails).subject;
+                            String message = ref.watch(contactDetails).message;
 
                             sendEmail(name: name, email: email, subject: subject, message: message);
                             Navigator.pop(context);
