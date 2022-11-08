@@ -98,12 +98,14 @@ class NavBarDesktop extends ConsumerWidget {
             child: InkWell(
               child: const _NavBarText(text: "Contact",),
               onTap: (){
-                showDialog(
-                    context: context,
-                    builder: (context){
-                      return const ContactForm();
-                    }
-                );
+                Navigator.pushNamed(context, '/contact');
+
+                // showDialog(
+                //     context: context,
+                //     builder: (context){
+                //       return const ContactForm();
+                //     }
+                // );
               },
             ),
           ),

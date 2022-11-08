@@ -8,15 +8,10 @@ import 'package:rcubed/widgets/custom_column/custom_column.dart';
 import 'package:rcubed/widgets/nested_navbar/nested_navbar.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../network_images/network_images.dart';
-import '../../../themes/fonts.dart';
-import '../../../themes/rcubed_theme.dart';
-import '../../../widgets/custom_appbar/custom_appbar.dart';
-import '../what_we_do/categories/cloud_computing.dart';
-import '../what_we_do/categories/co_sourcing.dart';
-import '../what_we_do/categories/enterprise_applications.dart';
-import '../what_we_do/categories/integration_architecture.dart';
-import '../what_we_do/categories/managed_services.dart';
+import '../../../../emloyee_info/employee_info.dart';
+import '../../../../network_images/network_images.dart';
+import '../../../../themes/fonts.dart';
+import '../../../../themes/rcubed_theme.dart';
 import 'employee_profile/employee_profile.dart';
 
 
@@ -42,9 +37,9 @@ class WhoWeAre extends ConsumerWidget{
     Header(
           headingUrl: Images.whoWeAre,
           summary: summary,
-          navButtons: [
-            NavButton(text: "Values", indexKey: ref.watch(valuesKey),),
-            NavButton(text: "Leadership", indexKey: ref.watch(leadershipKey),),
+          navButtons: const [
+            // NavButton(text: "Values", indexKey: ref.watch(valuesKey),),
+            // NavButton(text: "Leadership", indexKey: ref.watch(leadershipKey),),
           ]),
 
       const _Body(),
@@ -83,11 +78,11 @@ class _Body extends ConsumerWidget{
         SliverToBoxAdapter(child: Wrap(
           alignment:WrapAlignment.center,
           children: [
-          EmployeeProfile(name: 'Rita Popp', position: 'Principal & Founder', imgUrl: Employees.ritaPopp,),
-          EmployeeProfile(name: 'Jim Williams', position: 'Principal & Founder', imgUrl: Employees.jimWilliams,),
-          EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology Services', imgUrl: Employees.yasserAbdelrahim,),
-          EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', imgUrl: Employees.naveenKesavalu,),
-          EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', imgUrl: Employees.markHowmeier,),
+          EmployeeProfile(name: 'Rita Popp', position: 'Principal & Founder', bio: RitaPopp.bio, imgUrl: Employees.ritaPopp,),
+          EmployeeProfile(name: 'Jim Williams', position: 'Principal & Founder', bio: JimWilliams.bio, imgUrl: Employees.jimWilliams,),
+          EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology & Data Management', bio: YasserA.bio, imgUrl: Employees.yasserAbdelrahim,),
+          EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', bio: NaveenK.bio, imgUrl: Employees.naveenKesavalu,),
+          EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),
           EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', imgUrl: Employees.steveMurphy,),
           EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', imgUrl: Employees.donnaDraper,),
         ],),)

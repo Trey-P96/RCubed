@@ -104,6 +104,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/images/why_us/case_studies/case_study.svg
+    - assets/images/why_us/stories.svg
+    - assets/images/careers/careers.svg
+    - assets/images/contact/contact.svg
     - assets/images/who_we_are/values.svg
     - assets/images/rcubed_hrzntl.svg
     - assets/images/why_us/industries.svg

@@ -10,7 +10,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:ui' as ui;
 import 'package:flutter_svg/svg.dart';
 import 'package:rcubed/pages/home/home.dart';
-import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/widgets/custom_sliver_list/custom_sliver_list.dart';
 import 'package:rcubed/widgets/text_builder/text_builder.dart';
 import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
@@ -97,7 +96,8 @@ class Header extends StatelessWidget{
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: Align(
             child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 1050),
-                child: Wrap( alignment: WrapAlignment.spaceEvenly, spacing:60, runSpacing: 10, children: navButtons)),
+                child: Wrap(
+                    alignment: WrapAlignment.start, spacing:60, runSpacing: 10, children: navButtons)),
           ),
         ),),
 

@@ -42,3 +42,63 @@ class Employment{
 
   ];
 }
+
+
+
+
+class RitaPopp{
+  static String bio = "Rita is a Co-founder and Partner of R-Cubed with over 30 years of experience in executive leadership, account "
+  "management, project quality assurance, project management, change management and software implementation "
+  "experience of business intelligence analytics, data warehousing, ERP, HCM and CPM systems. She has functional "
+  "and technical expertise implementing the entire suite of Oracle’s financial applications. Her accounting, consulting "
+  "and diverse industry experience combined with strong written and verbal communications skills and a solid "
+  "understanding of the importance of change management has given her the ability to quickly identify strategic "
+  "solutions for business process improvements that provide a positive impact to all levels of an organization.";
+}
+
+class JimWilliams{
+  static String bio = "Co-Founder and Partner of R-CUBED Consulting, Jim brings over 33 years of experience in managing strategic "
+  "initiatives to achieve business results. Jim started his career in finance as an Accounting Manager. Technology "
+  "intensive projects pushed Jim’s career into business case development and project management, starting with "
+  "supply chain modernization and other mission-critical projects ranging from small revenue cycle process "
+  "improvements to multi-year enterprise transformations. Successful completion of these projects propelled Jim "
+  "into IT Leadership where he was responsible for enterprise applications, business case development and project "
+  "execution leadership. This became the genesis for launching Jim’s first consulting firm. Acquired by The "
+  "Hackett Group, Jim was responsible for Hackett’s Strategy Practice, bringing highly experienced teams to our "
+  "client’s most challenging problems to design and implement world class solutions. "
+  "At R-CUBED, Jim leads growth and expansion bringing the best people together to surpass client expectations "
+  "in delivering successful engagements. "
+  "Jim is an accomplished, visionary leader and highly sought-after consultant.";
+}
+
+class YasserA{
+  static String bio = "Yasser is a technology leader with 20+ years of experience in consulting and industry that has focused on leading, "
+      "managing, and delivering large multimillion dollar implementations for ERP, Integrations, Business Intelligence, "
+      "B2B, and eCommerce. His technical and business background enables him to design and architect solutions that act "
+  "as a solid foundation for future flexibility and growth while delivering the immediate results needed by clients. "
+  "Yasser is deeply focused on Data Management and Integrations. Over the last 14 years, he has designed and "
+  "implemented transformative solutions that enable global enterprises with a large data and application footprint to "
+  "become data driven and gain the insights to drive business growth.";
+}
+
+class NaveenK{
+  static String bio = "Naveen is a consolidations expert with over 17 years of experience implementing, deploying, testing, "
+      "administering, supporting, and fine-tuning applications for multinational diversified industrial, hospitality, "
+  "financial, F&B and retail clients. Successfully led numerous Finance Transformation teams. Provide "
+  "leadership/mentoring to large on shore and offshore teams. Negotiating vendor contracts / Reduce annual "
+  "operating costs for Hyperion platform support by300%. Architect, Design, Lead and implement solutions using "
+  "Board Software and its suite of products as well as Oracle HFM (Hyperion Financial Management) and its suite of "
+  "products which including Hyperion Reports, ESSBASE, HAL, DRM, FDM and FDMEE. ";
+}
+
+class MarkH{
+  static String bio = "Mark Hoxmeier, MBA is a technology professional with over 18 years of experience in program and project "
+  "management, business analysis, operations, and customer support. Focusing on executive business initiatives he "
+  "successfully leads cross-organizational teams from technology and product roadmap ideation to market. Mark "
+  "effectively leads teams through the entire project lifecycle of ERP, EPM, and Business Intelligence (BI) "
+  "implementations, custom software and report development, end-user training, and data and systems integration. "
+  "Mark has experience working with organizations in numerous industries that include e-commerce, marketing and "
+  "PR, financial technology, distribution, healthcare and life sciences, manufacturing, energy, retail, education, "
+  "engineering services, forest products, and transportation.";
+}
+

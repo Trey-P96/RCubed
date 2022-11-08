@@ -7,11 +7,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:overflow_view/overflow_view.dart';
-import 'package:rcubed/pages/home/what_we_do/categories/cloud_computing.dart';
-import 'package:rcubed/pages/home/what_we_do/categories/co_sourcing.dart';
-import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.dart';
-import 'package:rcubed/pages/home/what_we_do/categories/managed_services.dart';
-import 'package:rcubed/pages/home/what_we_do/categories/technologies.dart';
 import 'package:rcubed/themes/fonts.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:rcubed/widgets/column_builder/column_builder.dart';
@@ -23,9 +18,13 @@ import 'package:sliver_tools/sliver_tools.dart';
 
 import 'package:rcubed/widgets/nested_navbar/nested_navbar.dart';
 
-import '../../../network_images/network_images.dart';
-import '../../../widgets/text_builder/text_builder.dart';
+import '../../../../network_images/network_images.dart';
+import '../../sub_pages/what_we_do/categories/enterprise_applications.dart';
+import 'categories/cloud_computing.dart';
+import 'categories/co_sourcing.dart';
 import 'categories/integration_architecture.dart';
+import 'categories/managed_services.dart';
+import 'categories/technologies.dart';
 
 StateProvider<GlobalKey> enterpriseAppKey = StateProvider<GlobalKey>((ref) => GlobalKey());
 StateProvider<GlobalKey> intArchKey = StateProvider<GlobalKey>((ref) => GlobalKey());
@@ -36,7 +35,7 @@ StateProvider<GlobalKey> technologiesKey = StateProvider<GlobalKey>((ref) => Glo
 
 class WhatWeDo extends ConsumerWidget{
   static String summary =
-  '''We transform the way people work by putting clients at the center of business solutions. Our disruptive model converts possibilities into real business value. Let’s build a better tomorrow.''';
+  '''We transform the way people work by putting clients at the center of business solutions. Our experience converts possibilities into real business value. Let’s build a better tomorrow.''';
 
   const WhatWeDo({Key? key}) : super(key: key);
 
@@ -50,7 +49,7 @@ class WhatWeDo extends ConsumerWidget{
           navButtons: [
             NavButton(text: "Enterprise Applications", indexKey: ref.watch(enterpriseAppKey),),
             NavButton(text: "Integration Architecture", indexKey: ref.watch(intArchKey),),
-            NavButton(text: "Cloud Computing", indexKey: ref.watch(cloudCmptKey),),
+            //NavButton(text: "Cloud Computing", indexKey: ref.watch(cloudCmptKey),),
             NavButton(text: "Managed Services", indexKey: ref.watch(mngSrvcKey),),
             NavButton(text: "Co-Sourcing", indexKey: ref.watch(coSrcKey),),
             NavButton(text: "Technologies", indexKey: ref.watch(technologiesKey),),
@@ -58,9 +57,9 @@ class WhatWeDo extends ConsumerWidget{
 
       EntPrseExpandingBox(key: ref.watch(enterpriseAppKey),color: Colors.blue),
       IntArchExpandingBox(key: ref.watch(intArchKey),color: Palette.darkBlueShade),
-      CloudCmptExpandingBox(key: ref.watch(cloudCmptKey), color: Shades.swatch1),
+      //CloudCmptExpandingBox(key: ref.watch(cloudCmptKey), color: Shades.swatch1),
       MngSrvceExpandingBox(key: ref.watch(mngSrvcKey),color: Shades.swatch2),
-      CoSrcExpandingBox(key: ref.watch(coSrcKey),color: Shades.swatch7),
+      CoSrcExpandingBox(key: ref.watch(coSrcKey),color: Shades.swatch1),
       TechExpandingBox(key: ref.watch(technologiesKey),color: Shades.swatch4,),
     ]);
   }

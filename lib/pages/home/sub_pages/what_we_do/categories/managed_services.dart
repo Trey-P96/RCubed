@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../../network_images/network_images.dart';
-import '../../../../themes/fonts.dart';
-import '../../../../themes/rcubed_theme.dart';
-import '../../../../widgets/cubed_heading/cubed_heading.dart';
-import '../../../../widgets/custom_sliver_list/custom_sliver_list.dart';
-import '../../../../widgets/description_box/description_box.dart';
+import '../../../../../network_images/network_images.dart';
+import '../../../../../themes/fonts.dart';
+import '../../../../../themes/rcubed_theme.dart';
+import '../../../../../widgets/cubed_heading/cubed_heading.dart';
+import '../../../../../widgets/custom_sliver_list/custom_sliver_list.dart';
+import '../../../../../widgets/description_box/description_box.dart';
 
 
 

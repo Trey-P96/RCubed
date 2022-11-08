@@ -8,8 +8,8 @@ import 'package:rcubed/widgets/description_box/description_box.dart';
 import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../../network_images/network_images.dart';
-import '../../../../themes/fonts.dart';
+import '../../../../../network_images/network_images.dart';
+import '../../../../../themes/fonts.dart';
 
 
 

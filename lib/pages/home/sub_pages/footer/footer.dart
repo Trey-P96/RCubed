@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../themes/fonts.dart';
-import '../../../themes/rcubed_theme.dart';
+import '../../../../themes/fonts.dart';
+import '../../../../themes/rcubed_theme.dart';
 
 class Footer extends StatelessWidget {
   static String motto = "Our 'WHY' is grounded by our three R's & guides our way of working.";
@@ -104,7 +104,7 @@ class Platforms extends StatelessWidget{
 class WhatWeDoFooter extends StatelessWidget{
   static double padding=10;
   const WhatWeDoFooter({Key? key}) : super(key: key);
-  static List<String> platforms = ["Enterprise Applications", "Integration Architecture", "Cloud Computing", "Managed Services", "Co-Sourcing", "Technologies"];
+  static List<String> platforms = ["Enterprise Applications", "Integration Architecture", "Managed Services", "Co-Sourcing", "Technologies"];
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rcubed/themes/fonts.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:rcubed/widgets/custom_appbar/custom_appbar.dart';
@@ -29,7 +30,8 @@ class Careers extends StatelessWidget{
         AppBar(
           elevation: 5,
           backgroundColor: RCubedTheme.primary,
-          title: const Center(child: RcubedText("Careers", fontFamily: DefaultFonts.kumbhsans,)),
+          centerTitle: true,
+          title: Center(child:SvgPicture.asset("assets/images/careers/careers.svg")),
         ),
       ],
     );

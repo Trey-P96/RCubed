@@ -90,12 +90,13 @@ class NavList extends ConsumerWidget{
 
           InkWell(
             onTap:(){
-              showDialog(
-                  context: context,
-                  builder: (context){
-                    return const ContactForm();
-                  }
-              );
+              Navigator.pushNamed(context, '/contact');
+              // showDialog(
+              //     context: context,
+              //     builder: (context){
+              //       return const ContactForm();
+              //     }
+              // );
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),

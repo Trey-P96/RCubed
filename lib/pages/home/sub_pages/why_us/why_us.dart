@@ -1,13 +1,14 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:rcubed/widgets/cubed_heading/cubed_heading.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../themes/fonts.dart';
-import '../../../widgets/nested_navbar/nested_navbar.dart';
+import '../../../../themes/fonts.dart';
+import '../../../../widgets/nested_navbar/nested_navbar.dart';
 
 StateProvider<GlobalKey> industriesKey = StateProvider((ref) => GlobalKey());
 StateProvider<GlobalKey> storiesKey = StateProvider((ref) => GlobalKey());
@@ -23,9 +24,9 @@ class WhyUs extends ConsumerWidget{
     // TODO: implement build
     return MultiSliver(children: [
       Header( headingUrl: headingSVG, summary: summary,
-        navButtons: [
-          NavButton(text: "Industries", indexKey: ref.watch(industriesKey),),
-          NavButton(text: "Stories", indexKey: ref.watch(storiesKey),),
+        navButtons: const [
+          // NavButton(text: "Industries", indexKey: ref.watch(industriesKey),),
+          // NavButton(text: "Stories", indexKey: ref.watch(storiesKey),),
       ],),
 
 
@@ -33,7 +34,7 @@ class WhyUs extends ConsumerWidget{
         SliverPositioned.fill(child: ColoredBox(color: Colors.black.withOpacity(0.9),)),
 
         MultiSliver(children: [
-          Industries(key: ref.watch(industriesKey),),
+          //Industries(key: ref.watch(industriesKey),),
           Stories(key: ref.watch(storiesKey),),
         ]),
 
@@ -63,19 +64,27 @@ class Stories extends StatelessWidget{
         ),
       ),),
 
-
-      // const SliverToBoxAdapter(child: Padding(
-      //   padding: EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 60),
-      //   child: Center(child: NavButton(
-      //     text: 'Acquisition Integration',
-      //     textColor: Colors.black,
-      //     selectedBgOpacity: 1,
-      //     selectedBackgroundColor: RCubedTheme.primary,
-      //     selectedTextColor: Colors.white,
-      //     borderColor: Colors.transparent,
-      //     borderWidth: 0,
-      //     backgroundColor: Colors.white,)),
-      // ),)
+      SliverToBoxAdapter(child: Padding(
+        padding: const EdgeInsets.only(top: 30, right: 30, left: 30, bottom: 60),
+        child: Center(child: AnimatedButton(
+          text: 'Acquisition Integration',
+          textStyle: const TextStyle(color: Colors.black, fontFamily: DefaultFonts.kumbhsans, fontSize: 22),
+          selectedBackgroundColor: RCubedTheme.primary,
+          selectedTextColor: Colors.white,
+          borderColor: Colors.transparent,
+          height: 30,
+          width: 300,
+          borderWidth: 0,
+          borderRadius: 50,
+          transitionType: TransitionType.LEFT_TOP_ROUNDER,
+          animatedOn: AnimatedOn.onHover,
+          animationDuration: const Duration(milliseconds: 350),
+          backgroundColor: Colors.white,
+          onPress: () {
+            Navigator.pushNamed(context, '/stories');
+          },
+        )),
+      ),)
 
 
     ]);

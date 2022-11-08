@@ -4,12 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/pages/home/home.dart';
+import '../../../../network_images/network_images.dart';
+import '../../../../widgets/logo/logo_complete.dart';
 
-import '../../../network_images/network_images.dart';
-import '../../../widgets/logo/logo_complete.dart';
-
-class HomePageView extends ConsumerWidget{
-  const HomePageView({Key? key}) : super(key: key);
+class HomeLogo extends ConsumerWidget{
+  const HomeLogo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, ref) {

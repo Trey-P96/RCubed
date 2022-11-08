@@ -6,7 +6,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:extended_text/extended_text.dart';
 import 'package:flutter/material.dart';
-import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
 import 'package:rcubed/widgets/custom_painter/custom_painter.dart';
 
 import '../../themes/fonts.dart';

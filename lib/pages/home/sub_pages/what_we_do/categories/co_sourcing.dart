@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:rcubed/widgets/expanding_box/expanding_box.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
-import '../../../../network_images/network_images.dart';
-import '../../../../themes/fonts.dart';
-import '../../../../themes/rcubed_theme.dart';
-import '../../../../widgets/cubed_heading/cubed_heading.dart';
-import '../../../../widgets/custom_sliver_list/custom_sliver_list.dart';
+import '../../../../../network_images/network_images.dart';
+import '../../../../../themes/fonts.dart';
+import '../../../../../themes/rcubed_theme.dart';
+import '../../../../../widgets/cubed_heading/cubed_heading.dart';
+import '../../../../../widgets/custom_sliver_list/custom_sliver_list.dart';
 
 
 class CoSrcExpandingBox extends StatelessWidget{
@@ -54,7 +54,7 @@ class CoSrcExpandingBox extends StatelessWidget{
           elevation: 10,
           child: Stack(
             children: [
-              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.lightBulbs, fit: BoxFit.cover,),),
+              Positioned.fill(child: CachedNetworkImage(imageUrl: Images.techDesk, fit: BoxFit.cover,),),
               Container(color: color.withOpacity(0.95),)
             ],
           ),

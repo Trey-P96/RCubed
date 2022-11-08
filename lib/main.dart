@@ -25,6 +25,12 @@ void main() {
   // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
   //flutter run -d chrome --web-renderer html
 
+  //TODO
+  // update favicon
+  // add 404.html
+  // update emailjs rcubed email
+  // update renderer script
+
 
 
   /*

@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rcubed/pages/home/what_we_do/categories/enterprise_applications.dart';
-
-import 'package:rcubed/pages/home/what_we_do/what_we_do.dart';
-import 'package:rcubed/pages/home/who_we_are/who_we_are.dart';
-import 'package:rcubed/pages/home/why_us/why_us.dart';
+import 'package:rcubed/pages/home/sub_pages/home_logo/home_logo.dart';
+import 'package:rcubed/pages/home/sub_pages/what_we_do/what_we_do.dart';
+import 'package:rcubed/pages/home/sub_pages/who_we_are/who_we_are.dart';
+import 'package:rcubed/pages/home/sub_pages/why_us/why_us.dart';
 import 'package:rcubed/widgets/custom_column/custom_column.dart';
 import 'package:rcubed/widgets/custom_painter/custom_painter.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -19,8 +18,7 @@ import '../../widgets/nav_bar/nav_bar.dart';
 import '../../widgets/nav_bar/nav_list.dart';
 import '../../widgets/nested_navbar/nested_navbar.dart';
 import '../../widgets/widget_builder/widget_builder.dart';
-import 'footer/footer.dart';
-import 'home_page_view/home_page_view.dart';
+import 'sub_pages/footer/footer.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 
@@ -99,7 +97,7 @@ class _HomeState extends State<_Home>{
           Background(path: Images.background,),
           Align(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1200),
+              constraints: const BoxConstraints(maxWidth: 1400),
               child: Stack(
                 children: [
                   Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
@@ -112,7 +110,7 @@ class _HomeState extends State<_Home>{
                         physics: const CustomScrollPhysics(),
                         slivers: [
 
-                          const SliverToBoxAdapter(child: HomePageView(),),
+                          const SliverToBoxAdapter(child: HomeLogo(),),
                           WhatWeDo(key: ref.watch(whatWeDoProvider),),
                           WhoWeAre(key: ref.watch(whoWeAreProvider),),
                           WhyUs(key: ref.watch(whyUsProvider),),
