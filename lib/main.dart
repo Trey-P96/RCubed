@@ -4,20 +4,14 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/physics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:provider/provider.dart';
-import 'package:rcubed/providers/animated_container_provider.dart';
-import 'package:rcubed/providers/contact_form_provider.dart';
-import 'package:rcubed/providers/custom_appbar_provider.dart';
-import 'package:rcubed/providers/what_we_do_providers.dart';
-import 'package:rcubed/providers/device_provider.dart';
-import 'package:rcubed/providers/primary_scroll_provider.dart';
-import 'package:rcubed/providers/scaffold_provider.dart';
-import 'package:rcubed/providers/who_we_are_providers.dart';
 import 'package:rcubed/routes/route_generator.dart';
+import 'package:rcubed/themes/custom_scrollbar/custom_scrollbar.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:renderer_switcher/renderer_switcher.dart';
 import 'package:url_strategy/url_strategy.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart';
 
 void main() {
   // flutter build web --web-renderer canvaskit --release // faster performance
@@ -34,20 +28,7 @@ void main() {
 
 
   /*
-  <script type="text/javascript">
-    let useHtml = false;
-    if(useHtml) {
-      window.flutterWebRenderer = "html";
-    } else {
-      window.flutterWebRenderer = "canvaskit";
-    }
-  </script>
 
-
-
-   <script type="text/javascript">
-    window.flutterWebRenderer = localStorage.getItem('flutterWebRenderer');
-   </script>
 
 
 
@@ -55,6 +36,7 @@ void main() {
     if(screen.availWidth < 600 || screen.availHeight < 600) window.flutterWebRenderer = "html";
     else{window.flutterWebRenderer = "canvaskit";}
   </script>
+
    */
 
   //GestureBinding.instance.resamplingEnabled = true;
@@ -97,12 +79,23 @@ class MyAppState extends State<MyApp> {
         debugShowCheckedModeBanner: false,
         title: 'R-Cubed Consulting',
         theme: ThemeData(
+          scrollbarTheme: ScrollbarThemeData(
+            thickness: PlatformScrollBar.thickness(),
+            radius: PlatformScrollBar.radius(),
+            thumbVisibility: PlatformScrollBar.thumbVisibility(),
+            trackVisibility: PlatformScrollBar.trackVisibility(),
+            thumbColor: PlatformScrollBar.thumbColor(),
+            trackColor: PlatformScrollBar.trackColor(),
+            trackBorderColor: const MaterialStatePropertyAll(Colors.transparent),
+
+          ),
           scaffoldBackgroundColor: RCubedTheme.secondary,
           fontFamily: 'MyRoboto',
+
           textTheme: Theme.of(context).textTheme.apply(
             fontSizeDelta: 2,
             fontSizeFactor: 1.1
-          )
+          ),
         ),
         initialRoute: '/',
         onGenerateRoute: RouteGenerator.generateRoute,

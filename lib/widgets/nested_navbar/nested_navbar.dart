@@ -88,18 +88,18 @@ class Header extends StatelessWidget{
         ),
 
         SliverToBoxAdapter(
-          child: Container(height: 1, color:Colors.black,),
+          child: navButtons.isNotEmpty?Container(height: 1, color:Colors.black,):const SizedBox(),
         ),
 
 
-        SliverToBoxAdapter(child: Padding(
+        SliverToBoxAdapter(child: navButtons.isNotEmpty?Padding(
           padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
           child: Align(
             child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 1050),
                 child: Wrap(
                     alignment: WrapAlignment.start, spacing:60, runSpacing: 10, children: navButtons)),
           ),
-        ),),
+        ): const SizedBox()),
 
 
 

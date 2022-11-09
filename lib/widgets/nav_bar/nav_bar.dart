@@ -10,10 +10,14 @@ class NavBar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ScreenTypeLayout(
-        mobile: const NavBarMobile(),
-        desktop: const NavBarDesktop(),
-    );
+
+    return MediaQuery.of(context).size.width>1200?
+        const NavBarDesktop():
+        const NavBarMobile();
+    // return ScreenTypeLayout(
+    //     mobile: const NavBarMobile(),
+    //     desktop: const NavBarDesktop(),
+    // );
   }
   
 }

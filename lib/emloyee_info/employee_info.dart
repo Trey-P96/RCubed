@@ -86,7 +86,7 @@ class NaveenK{
       "administering, supporting, and fine-tuning applications for multinational diversified industrial, hospitality, "
   "financial, F&B and retail clients. Successfully led numerous Finance Transformation teams. Provide "
   "leadership/mentoring to large on shore and offshore teams. Negotiating vendor contracts / Reduce annual "
-  "operating costs for Hyperion platform support by300%. Architect, Design, Lead and implement solutions using "
+  "operating costs for Hyperion platform support by 300%. Architect, Design, Lead and implement solutions using "
   "Board Software and its suite of products as well as Oracle HFM (Hyperion Financial Management) and its suite of "
   "products which including Hyperion Reports, ESSBASE, HAL, DRM, FDM and FDMEE. ";
 }
@@ -100,5 +100,22 @@ class MarkH{
   "Mark has experience working with organizations in numerous industries that include e-commerce, marketing and "
   "PR, financial technology, distribution, healthcare and life sciences, manufacturing, energy, retail, education, "
   "engineering services, forest products, and transportation.";
+}
+
+class SteveM{
+  static String bio = "Steve is an experienced supply chain and ERP project manager with exceptional record achieving cost savings "
+  "through supply chain, strategic sourcing, S&OP and business process improvement initiatives, as well as over 15 "
+  "full cycle ERP implementations. He is an international and multi-site supply chain specialist with over 25 years of "
+  "experience successfully coordinating global purchasing and supply management activities in numerous countries.";
+}
+
+class DonnaD{
+  static String bio = "Donna applies over 20 years of recruitment leadership experience to quickly help identify at a deep level the "
+  "skills and background required to achieve RCUBED Consulting’s goals, deliver the precise talent needed, and create a highly functional "
+  "internal recruiting ecosystem.  Donna manages full-cycle recruitment of top domestic and international talent on critical and "
+  "difficult-to-fill positions and drives the design, implementation, and execution of talent strategies, processes, and tools. She leads "
+  "recruitment efforts across multiple industries including professional services, high tech, software, SAAS, cloud services, healthcare, "
+      "transportation, retail, energy, manufacturing, logistics & supply chain, and e-commerce.  Donna is a champion of diversity, inclusion, "
+      "and bias-free recruiting strategies.";
 }
 

@@ -5,31 +5,23 @@ import 'package:rcubed/pages/home/sub_pages/home_logo/home_logo.dart';
 import 'package:rcubed/pages/home/sub_pages/what_we_do/what_we_do.dart';
 import 'package:rcubed/pages/home/sub_pages/who_we_are/who_we_are.dart';
 import 'package:rcubed/pages/home/sub_pages/why_us/why_us.dart';
-import 'package:rcubed/widgets/custom_column/custom_column.dart';
-import 'package:rcubed/widgets/custom_painter/custom_painter.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 import '../../custom_scroll_physics/custom_scroll_physics.dart';
 import '../../network_images/network_images.dart';
 import '../../widgets/background/background.dart';
-import '../../widgets/column_builder/column_builder.dart';
 import '../../widgets/device_listener/device_listener.dart';
 import '../../widgets/nav_bar/nav_bar.dart';
 import '../../widgets/nav_bar/nav_list.dart';
-import '../../widgets/nested_navbar/nested_navbar.dart';
-import '../../widgets/widget_builder/widget_builder.dart';
 import 'sub_pages/footer/footer.dart';
-import 'package:visibility_detector/visibility_detector.dart';
-
-
 
 final StateProvider<ScrollController> scrollController = StateProvider((ref) => ScrollController());
-
 final navBarProvider = StateProvider<GlobalKey<ScaffoldState>>((ref) => GlobalKey());
 final homePageProvider = StateProvider<GlobalKey>((ref) => GlobalKey());
 final whatWeDoProvider = StateProvider<GlobalKey>((ref)=>GlobalKey());
 final whoWeAreProvider = StateProvider<GlobalKey>((ref) => GlobalKey());
 final whyUsProvider = StateProvider<GlobalKey>((ref) => GlobalKey());
+final userIsScrolling = StateProvider<bool>((ref) => false);
 
 class Home extends ConsumerWidget{
   const Home({Key? key}) : super(key: key);
@@ -71,13 +63,7 @@ class _Home extends StatefulWidget{
 }
 
 class _HomeState extends State<_Home>{
-  GlobalKey key = GlobalKey();
-
-
-  RenderBox scrollToIndex(GlobalKey key){
-    RenderBox box = key.currentContext?.findRenderObject() as RenderBox;
-    return box;
-  }
+  static double maxWidth = 1400;
 
 
   @override
@@ -96,33 +82,54 @@ class _HomeState extends State<_Home>{
         children: [
           Background(path: Images.background,),
           Align(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1400),
-              child: Stack(
-                children: [
-                  Positioned.fill(child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
+            child: Stack(
+              children: [
 
+                Align(
+                  child: Container(
+                      height: double.infinity,
+                      width: double.infinity,
+                      constraints: BoxConstraints(maxWidth: maxWidth),
+                      child: CachedNetworkImage(fit: BoxFit.cover, imageUrl: Images.whatWeDoInfo)),
+                ),
 
-                  Consumer(
-                    builder: (context, ref, child) {
-                      return CustomScrollView(
+                Consumer(
+                  builder: (context, ref, child) {
+                    return NotificationListener(
+                      onNotification: (notification){
+                        if(notification is ScrollStartNotification){
+                          ref.read(userIsScrolling.state).state = true;
+                        }
+                        else if(notification is ScrollEndNotification){
+                          ref.read(userIsScrolling.state).state = false;
+                        }
+                        return false;
+                      },
+                      child: CustomScrollView(
                         controller: ref.watch(scrollController),
                         physics: const CustomScrollPhysics(),
                         slivers: [
 
-                          const SliverToBoxAdapter(child: HomeLogo(),),
-                          WhatWeDo(key: ref.watch(whatWeDoProvider),),
-                          WhoWeAre(key: ref.watch(whoWeAreProvider),),
-                          WhyUs(key: ref.watch(whyUsProvider),),
-                          const Footer(),
+                          SliverCrossAxisConstrained(
+                            maxCrossAxisExtent: maxWidth,
+                            child: MultiSliver(
+                              children: [
+                                const SliverToBoxAdapter(child: HomeLogo(),),
+                                WhatWeDo(key: ref.watch(whatWeDoProvider),),
+                                WhoWeAre(key: ref.watch(whoWeAreProvider),),
+                                WhyUs(key: ref.watch(whyUsProvider),),
+                                const Footer(),
+                              ],
+                            ),
+                          ),
 
                         ],
-                      );
-                    }
-                  ),
+                      ),
+                    );
+                  }
+                ),
 
-                ],
-              )
+              ],
             ),
           ),
 
@@ -141,20 +148,4 @@ class _HomeState extends State<_Home>{
     );
   }
 
-}
-
-
-class DebugBox extends StatelessWidget{
-  final Color color;
-  final double height, width;
-  final String debugLabel;
-  const DebugBox({this.color=Colors.blue, this.width=100, this.height=100, this.debugLabel="", Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    // if(debugLabel=="align")print(debugLabel);
-    print(debugLabel);
-    return Container(color: color, height: height, width: width,);
-  }
 }

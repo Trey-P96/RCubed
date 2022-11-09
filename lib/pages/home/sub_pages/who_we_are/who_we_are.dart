@@ -57,21 +57,9 @@ class _Body extends ConsumerWidget{
   Widget build(BuildContext context, ref) {
     // TODO: implement build
     return SliverStack(children: [
-      SliverPositioned.fill(child: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: [Shades.swatch5.withOpacity(0.9), Shades.darkGrey.withOpacity(0.9)], begin: Alignment.topCenter, end: Alignment.bottomCenter)),)),
+      SliverPositioned.fill(child: Container(decoration: BoxDecoration(gradient: LinearGradient(colors: [Shades.swatch8.withOpacity(0.95), Shades.darkGrey.withOpacity(0.95)], begin: Alignment.topCenter, end: Alignment.bottomCenter)),)),
 
       MultiSliver(children: [
-        SliverToBoxAdapter(key: ref.watch(valuesKey),child: const CubedHeading(path: WhoWeAre.valuesHeading, topPadding: 60,),),
-
-        SliverToBoxAdapter(child: Align(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
-            child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800),
-            child: RichText(text: const TextSpan(text: WhoWeAre.values, style: TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),)),
-          ),
-        ),),
-
-        SliverToBoxAdapter(child: Container(height: 1, color: Colors.white,),),
-
 
         SliverToBoxAdapter(key: ref.watch(leadershipKey),child: const CubedHeading(path: WhoWeAre.leadershipHeading, topPadding: 60,),),
 
@@ -83,9 +71,22 @@ class _Body extends ConsumerWidget{
           EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology & Data Management', bio: YasserA.bio, imgUrl: Employees.yasserAbdelrahim,),
           EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', bio: NaveenK.bio, imgUrl: Employees.naveenKesavalu,),
           EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),
-          EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', imgUrl: Employees.steveMurphy,),
-          EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', imgUrl: Employees.donnaDraper,),
-        ],),)
+          EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', bio: SteveM.bio, imgUrl: Employees.steveMurphy,),
+          EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', bio: DonnaD.bio,imgUrl: Employees.donnaDraper,),
+        ],),),
+
+        SliverToBoxAdapter(child: Container(height: 1, color: Colors.white,),),
+
+
+        SliverToBoxAdapter(key: ref.watch(valuesKey),child: const CubedHeading(path: WhoWeAre.valuesHeading, topPadding: 60,),),
+
+        SliverToBoxAdapter(child: Align(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
+            child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800),
+                child: RichText(text: const TextSpan(text: WhoWeAre.values, style: TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),)),
+          ),
+        ),),
 
       ]),
     ]);

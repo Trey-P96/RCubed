@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
@@ -6,6 +7,7 @@ import 'package:rcubed/widgets/contact_dialog/contact_dialog.dart';
 
 import '../../pages/home/home.dart';
 import '../../providers/primary_scroll_provider.dart';
+import '../../themes/fonts.dart';
 import '../logo/logo_simple.dart';
 
 class NavBarDesktop extends ConsumerWidget {
@@ -39,73 +41,132 @@ class NavBarDesktop extends ConsumerWidget {
                 iconSize: iconSize,
                 icon: const Logo()),
           ),
+
+
+
+
           //const Logo(),
 
 
           // ----------------- WHAT WE DO -----------------
           _NavBarObject(
-            child: InkWell(
-              onTap: () {
+            child: AnimatedButton(
+              text: 'What We Do',
+              textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
+              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedTextColor: Colors.white,
+              borderColor: Colors.transparent,
+              height: 30,
+              width: 200,
+              borderWidth: 0,
+              borderRadius: 50,
+              transitionType: TransitionType.LEFT_TOP_ROUNDER,
+              animatedOn: AnimatedOn.onHover,
+              animationDuration: const Duration(milliseconds: 350),
+              backgroundColor: RCubedTheme.primary,
+              onPress: () {
                 GlobalKey key = ref.watch(whatWeDoProvider);
                 ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
               },
-              child: const _NavBarText(text: "What We Do",),
             ),
           ),
+
 
 
           // ----------------- WHO WE ARE -----------------
           _NavBarObject(
             child: _NavBarObject(
-              child: InkWell(
-                onTap: () {
+              child: AnimatedButton(
+                text: 'Who We Are',
+                textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
+                selectedBackgroundColor: RCubedTheme.darkBlue,
+                selectedTextColor: Colors.white,
+                borderColor: Colors.transparent,
+                height: 30,
+                width: 200,
+                borderWidth: 0,
+                borderRadius: 50,
+                transitionType: TransitionType.LEFT_TOP_ROUNDER,
+                animatedOn: AnimatedOn.onHover,
+                animationDuration: const Duration(milliseconds: 350),
+                backgroundColor: RCubedTheme.primary,
+                onPress: () {
                   GlobalKey key = ref.watch(whoWeAreProvider);
                   ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
                 },
-                child: const _NavBarText(text: "Who We Are",),
               ),
             ),
           ),
 
 
+
           // ----------------- WHY US -----------------
           _NavBarObject(
-            child: InkWell(
-              onTap: () {
-                // Provider.of<PrimaryScrollProvider>(context,listen: false).getKey().currentState?.animateTo(3);
+            child: AnimatedButton(
+              text: 'Why Us',
+              textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
+              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedTextColor: Colors.white,
+              borderColor: Colors.transparent,
+              height: 30,
+              width: 200,
+              borderWidth: 0,
+              borderRadius: 50,
+              transitionType: TransitionType.LEFT_TOP_ROUNDER,
+              animatedOn: AnimatedOn.onHover,
+              animationDuration: const Duration(milliseconds: 350),
+              backgroundColor: RCubedTheme.primary,
+              onPress: () {
                 GlobalKey key = ref.watch(whyUsProvider);
                 ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
               },
-              child: const _NavBarText(text: "Why Us",),
             ),
           ),
 
 
+
+
           // ----------------- CAREERS -----------------
           _NavBarObject(
-            child: InkWell(
-              onTap:(){
-                //launchUrlString("https://rcubed.bamboohr.com/jobs/");
+            child: AnimatedButton(
+              text: 'Careers',
+              textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
+              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedTextColor: Colors.white,
+              borderColor: Colors.transparent,
+              height: 30,
+              width: 200,
+              borderWidth: 0,
+              borderRadius: 50,
+              transitionType: TransitionType.LEFT_TOP_ROUNDER,
+              animatedOn: AnimatedOn.onHover,
+              animationDuration: const Duration(milliseconds: 350),
+              backgroundColor: RCubedTheme.primary,
+              onPress: () {
                 Navigator.pushNamed(context, '/careers');
               },
-              child: const _NavBarText(text: "Careers",),
             ),
           ),
 
 
           // ----------------- CONTACT -----------------
           _NavBarObject(
-            child: InkWell(
-              child: const _NavBarText(text: "Contact",),
-              onTap: (){
+            child: AnimatedButton(
+              text: 'Contact',
+              textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
+              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedTextColor: Colors.white,
+              borderColor: Colors.transparent,
+              height: 30,
+              width: 200,
+              borderWidth: 0,
+              borderRadius: 50,
+              transitionType: TransitionType.LEFT_TOP_ROUNDER,
+              animatedOn: AnimatedOn.onHover,
+              animationDuration: const Duration(milliseconds: 350),
+              backgroundColor: RCubedTheme.primary,
+              onPress: () {
                 Navigator.pushNamed(context, '/contact');
-
-                // showDialog(
-                //     context: context,
-                //     builder: (context){
-                //       return const ContactForm();
-                //     }
-                // );
               },
             ),
           ),

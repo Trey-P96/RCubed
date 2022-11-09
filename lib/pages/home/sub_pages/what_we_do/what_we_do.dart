@@ -35,7 +35,7 @@ StateProvider<GlobalKey> technologiesKey = StateProvider<GlobalKey>((ref) => Glo
 
 class WhatWeDo extends ConsumerWidget{
   static String summary =
-  '''We transform the way people work by putting clients at the center of business solutions. Our experience converts possibilities into real business value. Let’s build a better tomorrow.''';
+  '''We transform the way people work by putting clients at the center of business solutions. Our experience converts possibilities into real business value.''';
 
   const WhatWeDo({Key? key}) : super(key: key);
 
@@ -49,7 +49,6 @@ class WhatWeDo extends ConsumerWidget{
           navButtons: [
             NavButton(text: "Enterprise Applications", indexKey: ref.watch(enterpriseAppKey),),
             NavButton(text: "Integration Architecture", indexKey: ref.watch(intArchKey),),
-            //NavButton(text: "Cloud Computing", indexKey: ref.watch(cloudCmptKey),),
             NavButton(text: "Managed Services", indexKey: ref.watch(mngSrvcKey),),
             NavButton(text: "Co-Sourcing", indexKey: ref.watch(coSrcKey),),
             NavButton(text: "Technologies", indexKey: ref.watch(technologiesKey),),

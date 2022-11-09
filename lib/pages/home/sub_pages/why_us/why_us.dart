@@ -85,8 +85,6 @@ class Stories extends StatelessWidget{
           },
         )),
       ),)
-
-
     ]);
   }
 
