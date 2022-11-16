@@ -22,7 +22,7 @@ StateProvider<GlobalKey> leadershipKey = StateProvider((ref) => GlobalKey());
 class WhoWeAre extends ConsumerWidget{
   static const leadershipHeading = "assets/images/who_we_are/leadership.svg";
   static const valuesHeading = "assets/images/who_we_are/values.svg";
-  static const headerSvgPath = "assets/images/who_we_are/who_we_are.svg";
+  static const headerSvgPath = "assets/images/who_we_are/who_we_are_flat.svg";
   static const summary =
       "We do things differently - retooling the consulting model way. It's not about billables, "
       "big attitudes, & political capital. The R-CUBED way is about doing what is right and helping "
@@ -33,16 +33,16 @@ class WhoWeAre extends ConsumerWidget{
   @override
   Widget build(BuildContext context, ref) {
     // TODO: implement build
-    return MultiSliver(children: [
+    return MultiSliver(children: const [
     Header(
-          headingUrl: Images.whoWeAre,
+          headingUrl: headerSvgPath,
           summary: summary,
-          navButtons: const [
+          navButtons: [
             // NavButton(text: "Values", indexKey: ref.watch(valuesKey),),
             // NavButton(text: "Leadership", indexKey: ref.watch(leadershipKey),),
           ]),
 
-      const _Body(),
+      _Body(),
 
     ]);
   }
@@ -66,13 +66,13 @@ class _Body extends ConsumerWidget{
         SliverToBoxAdapter(child: Wrap(
           alignment:WrapAlignment.center,
           children: [
-          EmployeeProfile(name: 'Rita Popp', position: 'Principal & Founder', bio: RitaPopp.bio, imgUrl: Employees.ritaPopp,),
-          EmployeeProfile(name: 'Jim Williams', position: 'Principal & Founder', bio: JimWilliams.bio, imgUrl: Employees.jimWilliams,),
-          EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology & Data Management', bio: YasserA.bio, imgUrl: Employees.yasserAbdelrahim,),
-          EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', bio: NaveenK.bio, imgUrl: Employees.naveenKesavalu,),
-          EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),
-          EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', bio: SteveM.bio, imgUrl: Employees.steveMurphy,),
-          EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', bio: DonnaD.bio,imgUrl: Employees.donnaDraper,),
+            EmployeeProfile(name: 'Jim Williams', position: 'C.E.O. & Co-Founder', bio: JimWilliams.bio, imgUrl: Employees.jimWilliams,),
+            EmployeeProfile(name: 'Rita Popp', position: 'C.O.O. & Co-Founder', bio: RitaPopp.bio, imgUrl: Employees.ritaPopp,),
+            EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology & Data Management', bio: YasserA.bio, imgUrl: Employees.yasserAbdelrahim,),
+            EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', bio: NaveenK.bio, imgUrl: Employees.naveenKesavalu,),
+            EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),
+            EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', bio: SteveM.bio, imgUrl: Employees.steveMurphy,),
+            EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', bio: DonnaD.bio,imgUrl: Employees.donnaDraper,),
         ],),),
 
         SliverToBoxAdapter(child: Container(height: 1, color: Colors.white,),),
@@ -84,7 +84,7 @@ class _Body extends ConsumerWidget{
           child: Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, bottom: 60),
             child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800),
-                child: RichText(text: const TextSpan(text: WhoWeAre.values, style: TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),)),
+                child: const SelectableText.rich(TextSpan(text: WhoWeAre.values, style: TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),)),
           ),
         ),),
 

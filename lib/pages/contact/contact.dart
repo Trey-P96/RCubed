@@ -102,7 +102,7 @@ class Contact extends ConsumerWidget{
                       children: [
 
                         Padding(padding: const EdgeInsets.symmetric(vertical: 40),
-                        child: SvgPicture.asset("assets/images/rcubed_hrzntl.svg", color: RCubedTheme.primary, width: 250,)),
+                        child: CachedNetworkImage(imageUrl: Images.rcubedLogoBlue, width: 340,)),
 
                         Padding(
                           padding: const EdgeInsets.all(8.0),

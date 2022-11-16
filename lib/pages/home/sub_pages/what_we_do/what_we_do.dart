@@ -34,6 +34,7 @@ StateProvider<GlobalKey> coSrcKey = StateProvider<GlobalKey>((ref) => GlobalKey(
 StateProvider<GlobalKey> technologiesKey = StateProvider<GlobalKey>((ref) => GlobalKey());
 
 class WhatWeDo extends ConsumerWidget{
+  static String headingUrl = "assets/images/what_we_do/what_we_do_flat.svg";
   static String summary =
   '''We transform the way people work by putting clients at the center of business solutions. Our experience converts possibilities into real business value.''';
 
@@ -44,14 +45,14 @@ class WhatWeDo extends ConsumerWidget{
     // TODO: implement build
     return MultiSliver(children: [
       Header(
-          headingUrl: Images.whatWeDo,
+          headingUrl: headingUrl,
           summary: WhatWeDo.summary,
-          navButtons: [
-            NavButton(text: "Enterprise Applications", indexKey: ref.watch(enterpriseAppKey),),
-            NavButton(text: "Integration Architecture", indexKey: ref.watch(intArchKey),),
-            NavButton(text: "Managed Services", indexKey: ref.watch(mngSrvcKey),),
-            NavButton(text: "Co-Sourcing", indexKey: ref.watch(coSrcKey),),
-            NavButton(text: "Technologies", indexKey: ref.watch(technologiesKey),),
+          navButtons: const [
+            // NavButton(text: "Enterprise Applications", indexKey: ref.watch(enterpriseAppKey),),
+            // NavButton(text: "Integration Architecture", indexKey: ref.watch(intArchKey),),
+            // NavButton(text: "Managed Services", indexKey: ref.watch(mngSrvcKey),),
+            // NavButton(text: "Co-Sourcing", indexKey: ref.watch(coSrcKey),),
+            // NavButton(text: "Technologies", indexKey: ref.watch(technologiesKey),),
           ]),
 
       EntPrseExpandingBox(key: ref.watch(enterpriseAppKey),color: Colors.blue),

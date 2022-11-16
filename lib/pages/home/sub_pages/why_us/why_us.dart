@@ -15,7 +15,7 @@ StateProvider<GlobalKey> storiesKey = StateProvider((ref) => GlobalKey());
 
 class WhyUs extends ConsumerWidget{
   static String summary = "At R-CUBED we walk our talk. Employees & clients are at the heart of our operating model. We are committed to building a better tomorrow together.";
-  static String headingSVG = "https://i.imgur.com/HfcLCeF.png";
+  static String headingSVG = "assets/images/why_us/why_us_flat.svg";
 
   const WhyUs({Key? key}) : super(key: key);
 
@@ -48,7 +48,7 @@ class WhyUs extends ConsumerWidget{
 
 class Stories extends StatelessWidget{
   static String svgHeading = "assets/images/why_us/whyUs.svg";
-  static String stories = '''100% reference-able & out of the park Client Advocacy is the R-CUBED Way. We are committed to engaging & delivering real business outcome and making sure you have a first-in-class client experience ... One Idea, One Solution, One Think Ahead.''';
+  static String stories = '''100% referenceable & out of the park Client Advocacy is the R-CUBED way. We are committed to engaging & delivering real business outcome and making sure you have a first-in-class client experience ... One Idea, One Solution, One Think Ahead.''';
   const Stories({Key? key}) : super(key: key);
 
   @override
@@ -60,7 +60,7 @@ class Stories extends StatelessWidget{
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
         child: Align(
           child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 800),
-          child: RichText(textAlign:TextAlign.center, text: TextSpan(text: stories, style: const TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),)),
+          child: SelectableText.rich(TextSpan(text: stories, style: const TextStyle(fontSize: 22, color: Colors.white, letterSpacing: 2, height: 2, fontFamily: DefaultFonts.kumbhsans)),textAlign:TextAlign.center, )),
         ),
       ),),
 

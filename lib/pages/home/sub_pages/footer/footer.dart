@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../themes/fonts.dart';
 import '../../../../themes/rcubed_theme.dart';
@@ -26,7 +27,7 @@ class Footer extends StatelessWidget {
 
 
               SizedBox(
-                width: 200,
+                width: 250,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +43,7 @@ class Footer extends StatelessWidget {
                     //RichText(text: TextSpan(text: motto, style: const TextStyle(color: Colors.white, fontFamily: DefaultFonts.kumbhsans, fontSize: 18))),
                     Padding(
                       padding: const EdgeInsets.only(top: 25),
-                      child: RichText(text: TextSpan(text: businessStrtgy, style: const TextStyle(color: Colors.white, fontFamily: DefaultFonts.kumbhsans, fontSize: 18))),
+                      child: SelectableText.rich(TextSpan(text: businessStrtgy, style: const TextStyle(color: Colors.white, fontFamily: DefaultFonts.kumbhsans, fontSize: 18))),
                     ),
                   ],
                 ),
@@ -71,27 +72,36 @@ class Platforms extends StatelessWidget{
   static double padding=10;
   const Platforms({Key? key}) : super(key: key);
   static List<String> platforms = ["Oracle","NetSuite","Board", "UiPath", "Boomi", "MuleSoft"];
+  static List<String> urls = [];
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return SizedBox(
-      width: 200,
+      width: 250,
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
 
 
           Padding(
             padding: EdgeInsets.only(bottom: padding),
-            child: const Text("Platforms", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
+            child: const SelectableText("Platforms", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
           ),
           Container(height: 1, width:150,color: Colors.white,),
           for(int i=0;i<platforms.length;i++) Padding(
             padding: EdgeInsets.only(top: padding),
-            child: Text(platforms[i], style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
+            //child: Text(platforms[i], style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
+            child: SelectableText.rich(
+              TextSpan(children: [
+                const TextSpan(text: "\u2022 ", style: TextStyle(color: Colors.white)),
+                TextSpan(text: platforms[i], style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),)
+              ]),
+              //textAlign: TextAlign.center,
+            ),
           ),
+
 
         ],),
     );
@@ -104,7 +114,7 @@ class Platforms extends StatelessWidget{
 class WhatWeDoFooter extends StatelessWidget{
   static double padding=10;
   const WhatWeDoFooter({Key? key}) : super(key: key);
-  static List<String> platforms = ["Enterprise Applications", "Integration Architecture", "Managed Services", "Co-Sourcing", "Technologies"];
+  static List<String> whatWeDo = ["Enterprise Applications", "Integration Architecture", "Managed Services", "Co-Sourcing", "Technology Assessment & Selection", "Cloud Application & Integration Roadmaps", "Analytics & Datawarehousing"];
 
   @override
   Widget build(BuildContext context) {
@@ -112,19 +122,26 @@ class WhatWeDoFooter extends StatelessWidget{
     return SizedBox(
       width: 250,
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
 
 
           Padding(
             padding: EdgeInsets.only(bottom: padding),
-            child: const Text("What We Do", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
+            child: const SelectableText("What We Do", style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
           ),
           Container(height: 1, width:150,color: Colors.white,),
-          for(int i=0;i<platforms.length;i++) Padding(
+          for(int i=0;i<whatWeDo.length;i++) Padding(
             padding: EdgeInsets.only(top: padding),
-            child: Text(platforms[i], style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),),
+            //child: SizedBox(width: 250, child: Text(platforms[i], textAlign: TextAlign.center, style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),)),
+            child: SelectableText.rich(
+              TextSpan(children: [
+              const TextSpan(text: "\u2022 ", style: TextStyle(color: Colors.white)),
+              TextSpan(text: whatWeDo[i], style: const TextStyle(fontSize: 18, color: Colors.white, fontFamily: DefaultFonts.kumbhsans),)
+            ]),
+              //textAlign: TextAlign.center,
+            ),
           ),
 
         ],),

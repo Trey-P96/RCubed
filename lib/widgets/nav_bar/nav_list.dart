@@ -33,7 +33,7 @@ class NavList extends ConsumerWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: RcubedText("Home", color: RCubedTheme.primary, fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
+              child: Text("Home", style: TextStyle(color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans,),),
             ),
           ),
           const Divider(),
@@ -46,7 +46,7 @@ class NavList extends ConsumerWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: RcubedText("What We Do", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
+              child: Text("What We Do", style: TextStyle(color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans,),),
             ),
           ),
           const Divider(),
@@ -59,7 +59,7 @@ class NavList extends ConsumerWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: RcubedText("Who We Are", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
+              child: Text("Who We Are", style: TextStyle(color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans,),),
             ),
           ),
           const Divider(),
@@ -72,7 +72,7 @@ class NavList extends ConsumerWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: RcubedText("Why Us", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
+              child: Text("Why Us", style: TextStyle(color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans,),),
             ),
           ),
           const Divider(),
@@ -83,7 +83,7 @@ class NavList extends ConsumerWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: RcubedText("Careers", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
+              child: Text("Careers", style: TextStyle(color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans,),),
             ),
           ),
           const Divider(),
@@ -100,7 +100,7 @@ class NavList extends ConsumerWidget{
             },
             child: const Padding(
               padding: EdgeInsets.only(top: 10, bottom: 10),
-              child: RcubedText("Let's Chat", color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans, isBlockBody: true,),
+              child: Text("Let's Chat", style: TextStyle(color: RCubedTheme.primary,fontFamily: DefaultFonts.kumbhsans,),),
             ),
           ),
           const Divider(),

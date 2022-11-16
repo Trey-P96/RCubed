@@ -27,26 +27,26 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  seo_renderer: ^0.6.0
+#  seo_renderer: ^0.6.0
   sliver_tools: ^0.2.8
   overflow_view: ^0.3.1
-  visibility_detector: ^0.3.3
-  extended_text: ^9.1.2
+#  visibility_detector: ^0.3.3
+#  extended_text: ^9.1.2
   flutter_animated_button: ^2.0.1
   renderer_switcher: ^0.1.0
   flutter_riverpod: ^1.0.2
-  asset_cache: ^2.0.0
+#  asset_cache: ^2.0.0
   url_strategy: ^0.2.0
-  simple_shadow: ^0.3.0
+#  simple_shadow: ^0.3.0
 #  easy_scroll_to_index: ^1.0.2
 #  preload_page_view: ^0.1.6
-#  url_launcher: any
+  url_launcher: any
   image_network: any
   cached_network_image: any
 #  visibility_detector: ^0.3.3
-  transparent_pointer: ^1.0.0
+#  transparent_pointer: ^1.0.0
 #  sticky_headers: ^0.3.0
-  scrollable_positioned_list: ^0.3.2
+#  scrollable_positioned_list: ^0.3.2
   provider: ^6.0.3
 #  dots_indicator: ^2.1.0
   google_fonts: any
@@ -104,6 +104,10 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/images/why_us/why_us_flat.svg
+    - assets/images/who_we_are/who_we_are_flat.svg
+    - assets/images/what_we_do/what_we_do_flat.svg
+    - assets/images/why_us/case_studies/case_study.png
     - assets/images/why_us/case_studies/case_study.svg
     - assets/images/why_us/stories.svg
     - assets/images/careers/careers.svg

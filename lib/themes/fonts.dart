@@ -16,7 +16,7 @@ class RcubedText extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Text(text, style: TextStyle(fontFamily: fontFamily, color: color, fontSize: isBlockBody?18:fontSize, letterSpacing: letterSpacing, height: isBlockBody?1.5:lineSpacing, wordSpacing: isBlockBody?1:wordSpacing),);
+    return SelectableText(text, style: TextStyle(fontFamily: fontFamily, color: color, fontSize: isBlockBody?18:fontSize, letterSpacing: letterSpacing, height: isBlockBody?1.5:lineSpacing, wordSpacing: isBlockBody?1:wordSpacing),);
   }
 
 }

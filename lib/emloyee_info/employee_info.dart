@@ -82,13 +82,15 @@ class YasserA{
 }
 
 class NaveenK{
-  static String bio = "Naveen is a consolidations expert with over 17 years of experience implementing, deploying, testing, "
-      "administering, supporting, and fine-tuning applications for multinational diversified industrial, hospitality, "
-  "financial, F&B and retail clients. Successfully led numerous Finance Transformation teams. Provide "
-  "leadership/mentoring to large on shore and offshore teams. Negotiating vendor contracts / Reduce annual "
-  "operating costs for Hyperion platform support by 300%. Architect, Design, Lead and implement solutions using "
-  "Board Software and its suite of products as well as Oracle HFM (Hyperion Financial Management) and its suite of "
-  "products which including Hyperion Reports, ESSBASE, HAL, DRM, FDM and FDMEE. ";
+  static String bio = "Naveen is an industry leader in Financial Transformation projects focusing "
+  "in Financial Consolidations and FP&A with over 20 years of experience "
+  "implementing , deploying, testing and supporting Financial Applications "
+  "for global diversified industrial, hospitality , financial , F&B and retail "
+  "clients. Expertise leading Finance Transformation teams/ mentorship to onshore "
+  "and offshore teams. Expertise in negotiating vendor contracts and reducing"
+  "annual operating costs for maintaining Financial applications and "
+  "infrastructure. Architect, Design , Lead and implement Financial solutions "
+  "using Board CPM software as well as Oracle EPM and its suite of Hyperion products.";
 }
 
 class MarkH{

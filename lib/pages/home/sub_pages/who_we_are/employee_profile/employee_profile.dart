@@ -101,7 +101,7 @@ class _EmployeeBio extends StatelessWidget{
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Container(
                           decoration: BoxDecoration(color: Colors.white.withOpacity(0.3),border: Border.all(color: bio!=""? Colors.black:Colors.transparent, width: 1), borderRadius: BorderRadius.circular(10)),
-                          padding: const EdgeInsets.all(20), child: Text(bio, style: const TextStyle(height: 2, fontFamily: DefaultFonts.kumbhsans, fontWeight: FontWeight.bold),)),
+                          padding: const EdgeInsets.all(20), child: SelectableText(bio, style: const TextStyle(height: 2, fontFamily: DefaultFonts.kumbhsans, fontWeight: FontWeight.bold),)),
                     ),),
 
                   Padding(

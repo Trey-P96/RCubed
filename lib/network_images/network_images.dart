@@ -18,6 +18,8 @@ class Images{
   static String techDesk = "https://i.imgur.com/6KupSLV.png";
   static String infinityPool = "https://i.imgur.com/4FxfVOR.png";
   static String contactBG = "https://i.imgur.com/qR13Q2p.png";
+  static String rcubedLogoBlue = "https://i.imgur.com/4wmnYOP.png";
+  static String storiesBG = "https://i.imgur.com/E2P5BwR.jpg";
 }
 
 class Employees{
@@ -38,4 +40,9 @@ class BioBG{
   static String img5 = 'https://i.imgur.com/yg36TWJ.png';
 
   static List<String> backgrounds = [img1, img2, img3, img4, img5];
+}
+
+class PlatformURL{
+  static String oracle = "https://www.oracle.com/";
+  static String netSuite = "https://www.netsuite.com/portal/home.shtml";
 }

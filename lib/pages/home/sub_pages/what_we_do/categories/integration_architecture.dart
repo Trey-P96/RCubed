@@ -86,11 +86,12 @@ class IntArchExpandingBox extends StatelessWidget{
               child: Align(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 800),
-                  child: RichText(
-                      textAlign: TextAlign.center,
-                      text: const TextSpan(text: IntegrationArchitecture.description,
-                        style: TextStyle(fontSize: 22, color: Colors.white, fontFamily: DefaultFonts.kumbhsans, letterSpacing: 2, height: 2),
-                      )),
+                  child: const SelectableText.rich(
+                    TextSpan(text: IntegrationArchitecture.description,
+                      style: TextStyle(fontSize: 22, color: Colors.white, fontFamily: DefaultFonts.kumbhsans, letterSpacing: 2, height: 2),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ),
             )

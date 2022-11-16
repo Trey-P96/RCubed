@@ -18,7 +18,12 @@ class AcquisitionIntegration extends StatelessWidget{
     return Stack(
       fit: StackFit.expand,
       children: [
-        Positioned.fill(child: Image.network(Images.background, fit: BoxFit.cover,)),
+        Positioned.fill(
+          child: Opacity(
+            opacity: 0.5,
+            child: Image.network(Images.storiesBG, fit: BoxFit.cover,),
+          ),
+        ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(

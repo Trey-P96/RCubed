@@ -3,6 +3,7 @@ import 'package:rcubed/main.dart';
 import 'package:rcubed/pages/acquisition_integration/acquisition_integration.dart';
 import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/scratch.dart';
+import 'package:rcubed/themes/rcubed_theme.dart';
 
 import '../pages/careers/careers.dart';
 import '../pages/contact/contact.dart';
@@ -34,24 +35,23 @@ class RouteGenerator{
           builder: (_){
         return Scaffold(
           appBar: AppBar(
-            title: const Text("Error"),
+            backgroundColor: RCubedTheme.primary,
+            leading: _Return(), //separate widget needed for build context
+            title: const Text("Return"),
           ),
-          body: const Center(child: Text("ERROR"),),
+          body: const Center(child: Text("404 Page not found"),),
         );
       });
     }
   }
-
-  static Route<dynamic> _errorRoute(){
-    return MaterialPageRoute(
-        builder: (_){
-      return Scaffold(
-        appBar: AppBar(
-          title: const Text("Error"),
-        ),
-        body: const Center(child: Text("ERROR"),),
-      );
-    });
-  }
 }
 
+
+class _Return extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.home));
+  }
+
+}

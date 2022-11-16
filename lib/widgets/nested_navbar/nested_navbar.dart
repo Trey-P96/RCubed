@@ -2,7 +2,7 @@
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:asset_cache/asset_cache.dart';
+
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
@@ -12,9 +12,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:rcubed/pages/home/home.dart';
 import 'package:rcubed/widgets/custom_sliver_list/custom_sliver_list.dart';
 import 'package:rcubed/widgets/text_builder/text_builder.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_style.dart';
-import 'package:seo_renderer/renderers/text_renderer/text_renderer_vm.dart';
-import 'package:simple_shadow/simple_shadow.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 import '../../themes/fonts.dart';
@@ -73,8 +70,8 @@ class Header extends StatelessWidget{
             child: Align(
               child: ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 800),
-                child: RichText(
-                  text: TextSpan(
+                child: SelectableText.rich(
+                  TextSpan(
                       children: [
                         TextSpan(text: summary[0], style: const TextStyle(fontSize: 32, color: Colors.black, fontFamily: DefaultFonts.kumbhsans)),
                         TextSpan(text: summary.substring(1), style: const TextStyle(fontSize: 26, color: Colors.black,height: 2, letterSpacing: 2, fontFamily: DefaultFonts.kumbhsans))
@@ -276,7 +273,7 @@ class Heading extends StatelessWidget{
           padding: const EdgeInsets.only(top: 15, bottom: 15, left: 30, right: 30),
           child: Center(
             // child: SimpleShadow(child: SvgPicture.asset(svg, fit: BoxFit.fitWidth,), offset: const Offset(0,3),sigma: 4, opacity: 0.3,),
-            child: SizedBox(width: 450, height: 80, child: CachedNetworkImage(imageUrl: url,))
+            child: SizedBox(width: 450, height: 80, child: SvgPicture.asset(url,))
           ),
         ),
         const _AlignCorners(),

@@ -1,21 +1,19 @@
 
-import 'dart:math';
 import 'dart:ui';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/physics.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rcubed/routes/route_generator.dart';
 import 'package:rcubed/themes/custom_scrollbar/custom_scrollbar.dart';
 import 'package:rcubed/themes/rcubed_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:renderer_switcher/renderer_switcher.dart';
 import 'package:url_strategy/url_strategy.dart';
-import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart';
+
+
 
 void main() {
-  // flutter build web --web-renderer canvaskit --release // faster performance
-  //flutter build web --release --web-renderer canvaskit --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false // compatible for android
+  //build command:
+  //flutter build web --release --web-renderer auto --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false  // compatible for android
+
+
   // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
   //flutter run -d chrome --web-renderer html
 
@@ -24,19 +22,17 @@ void main() {
   // add 404.html
   // update emailjs rcubed email
   // update renderer script
+  // update 404 page dont forget baseref url
+  // change nav button hover color
+  // change 404 page theme
 
 
 
   /*
-
-
-
-
   <script>
     if(screen.availWidth < 600 || screen.availHeight < 600) window.flutterWebRenderer = "html";
     else{window.flutterWebRenderer = "canvaskit";}
   </script>
-
    */
 
   //GestureBinding.instance.resamplingEnabled = true;
