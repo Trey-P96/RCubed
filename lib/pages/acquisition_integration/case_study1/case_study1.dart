@@ -41,10 +41,18 @@ class _Heading extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 600),
+        constraints: const BoxConstraints(maxWidth: 1000),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50),
-          child: Image.asset("assets/images/why_us/case_studies/case_study.png"),
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              SvgPicture.asset("assets/images/why_us/case_studies/case_study_c.svg", width: 400,),
+              Image.asset("assets/images/why_us/case_studies/sincro.png", width: 400,)
+            ],
+          ),
         ));
   }
 

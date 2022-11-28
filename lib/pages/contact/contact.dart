@@ -89,13 +89,14 @@ class Contact extends ConsumerWidget{
         ),
         body: Stack(
           children: [
-            Positioned.fill(child: CachedNetworkImage(imageUrl: Images.contactBG, fit: BoxFit.cover,)),
-            
-            Align(
-              alignment: Alignment.topCenter,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
+            //Forced to use mediaquery instead of positioned.fill ... not sure why positioned.fill wouldnt fill background image
+            SizedBox(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, child: CachedNetworkImage(imageUrl: Images.contactBG, fit: BoxFit.cover,),),
+
+            SingleChildScrollView(
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: Container(
                     constraints: const BoxConstraints(maxWidth: 800),
                     child: Column(

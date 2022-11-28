@@ -10,12 +10,22 @@ import 'package:url_strategy/url_strategy.dart';
 
 
 void main() {
+
+  // CURRENT BUILD VERSIONS:
+  // Flutter (Channel stable, 3.3.4, on Microsoft Windows [Version 10.0.19045.2251], locale en-US)
+  // Dart version 2.18.2
+
   //build command:
-  //flutter build web --release --web-renderer auto --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false  // compatible for android
+  //flutter build web --release --web-renderer auto --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false
 
 
-  // Channel master, 3.1.0-0.0.pre.1129 // Dart version 2.18.0
-  //flutter run -d chrome --web-renderer html
+  //IMPORTANT: AFTER BUILDING FOR WEB, ADD SCRIPT BELOW TO: index.html inside <body> and paste inside <body> before any other scripts
+  /*
+  <script>
+    if(screen.availWidth < 600 || screen.availHeight < 600) window.flutterWebRenderer = "html";
+    else{window.flutterWebRenderer = "canvaskit";}
+  </script>
+   */
 
   //TODO
   // update favicon
@@ -26,16 +36,6 @@ void main() {
   // change nav button hover color
   // change 404 page theme
 
-
-
-  /*
-  <script>
-    if(screen.availWidth < 600 || screen.availHeight < 600) window.flutterWebRenderer = "html";
-    else{window.flutterWebRenderer = "canvaskit";}
-  </script>
-   */
-
-  //GestureBinding.instance.resamplingEnabled = true;
 
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();

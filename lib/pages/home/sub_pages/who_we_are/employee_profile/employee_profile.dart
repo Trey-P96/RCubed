@@ -123,7 +123,10 @@ class _EmployeeBio extends StatelessWidget{
               ),
             ),
             
-            Align(alignment: Alignment.topRight, child: IconButton(iconSize: 30, onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.clear)))
+            Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: Align(alignment: Alignment.topRight, child: IconButton(iconSize: 30, onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.clear))),
+            )
           ],
         ),
       ),
