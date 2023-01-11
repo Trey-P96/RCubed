@@ -66,8 +66,8 @@ class _Body extends ConsumerWidget{
         SliverToBoxAdapter(child: Wrap(
           alignment:WrapAlignment.center,
           children: [
-            EmployeeProfile(name: 'Jim Williams', position: 'C.E.O. & Co-Founder', bio: JimWilliams.bio, imgUrl: Employees.jimWilliams,),
-            EmployeeProfile(name: 'Rita Popp', position: 'C.O.O. & Co-Founder', bio: RitaPopp.bio, imgUrl: Employees.ritaPopp,),
+            EmployeeProfile(name: 'Jim Williams', position: 'CEO & Co-Founder', bio: JimWilliams.bio, imgUrl: Employees.jimWilliams,),
+            EmployeeProfile(name: 'Rita Popp', position: 'COO & Co-Founder', bio: RitaPopp.bio, imgUrl: Employees.ritaPopp,),
             EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology & Data Management', bio: YasserA.bio, imgUrl: Employees.yasserAbdelrahim,),
             EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', bio: NaveenK.bio, imgUrl: Employees.naveenKesavalu,),
             EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),

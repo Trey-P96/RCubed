@@ -86,8 +86,8 @@ class NaveenK{
   "in Financial Consolidations and FP&A with over 20 years of experience "
   "implementing , deploying, testing and supporting Financial Applications "
   "for global diversified industrial, hospitality , financial , F&B and retail "
-  "clients. Expertise leading Finance Transformation teams/ mentorship to onshore "
-  "and offshore teams. Expertise in negotiating vendor contracts and reducing"
+  "clients. Expertise leading Finance Transformation teams/mentorship to onshore "
+  "and offshore teams. Expertise in negotiating vendor contracts and reducing "
   "annual operating costs for maintaining Financial applications and "
   "infrastructure. Architect, Design , Lead and implement Financial solutions "
   "using Board CPM software as well as Oracle EPM and its suite of Hyperion products.";
