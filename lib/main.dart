@@ -19,7 +19,8 @@ void main() {
   //flutter build web --release --web-renderer auto --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false
 
 
-  //IMPORTANT: AFTER BUILDING FOR WEB, ADD SCRIPT BELOW TO: index.html inside <body> and paste inside <body> before any other scripts
+  //Step 1: AFTER BUILDING FOR WEB, ADD SCRIPT BELOW TO: build/web/index.html inside <body> and paste inside <body> before any other scripts
+
   /*
   <script>
     if(screen.availWidth < 600 || screen.availHeight < 600) window.flutterWebRenderer = "html";
@@ -27,14 +28,9 @@ void main() {
   </script>
    */
 
-  //TODO
-  // update favicon
-  // add 404.html
-  // update emailjs rcubed email
-  // update renderer script
-  // update 404 page dont forget baseref url
-  // change nav button hover color
-  // change 404 page theme
+  //Step 2: update href inside build/web/index.html on line 17 to "/$website_domain"
+  //Step 3: copy code from index.html and paste into 404.html. If 404.html does not exist inside build folder, then create it manually in same folder as index.html.
+  //Step 4: under project folder navigate to folder "icons" and copy all files EXCEPT for favicon.png, then paste and overwrite into build/web/icons. Then copy and overwrite favicon.png to build/web
 
 
   WidgetsFlutterBinding.ensureInitialized();

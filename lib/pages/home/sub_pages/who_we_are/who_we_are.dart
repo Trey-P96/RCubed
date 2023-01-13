@@ -71,7 +71,7 @@ class _Body extends ConsumerWidget{
             EmployeeProfile(name: 'Yasser Abdelrahim', position: 'Technology & Data Management', bio: YasserA.bio, imgUrl: Employees.yasserAbdelrahim,),
             EmployeeProfile(name: 'Naveen Kesavalu', position: 'CPM Practice', bio: NaveenK.bio, imgUrl: Employees.naveenKesavalu,),
             EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),
-            EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', bio: SteveM.bio, imgUrl: Employees.steveMurphy,),
+            //EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', bio: SteveM.bio, imgUrl: Employees.steveMurphy,),
             EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', bio: DonnaD.bio,imgUrl: Employees.donnaDraper,),
         ],),),
 

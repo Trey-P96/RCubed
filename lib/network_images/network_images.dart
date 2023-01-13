@@ -14,11 +14,13 @@ class Images{
   static String circularArch = "https://i.imgur.com/HRnZVV9.png";
   static String motherBoard = "https://i.imgur.com/eovAxPW.png";
   static String cityClouds = "https://i.imgur.com/adDB3yf.png";
-  static String homeLogo = "https://i.imgur.com/p4Ts32L.png";
+  //static String homeLogo = "https://i.imgur.com/p4Ts32L.png";
+  static String homeLogo = "https://i.imgur.com/B8umr6T.png";
   static String techDesk = "https://i.imgur.com/6KupSLV.png";
   static String infinityPool = "https://i.imgur.com/4FxfVOR.png";
   static String contactBG = "https://i.imgur.com/qR13Q2p.png";
-  static String rcubedLogoBlue = "https://i.imgur.com/4wmnYOP.png";
+  // static String rcubedLogoBlue = "https://i.imgur.com/4wmnYOP.png";
+  static String rcubedLogoBlue = "https://i.imgur.com/MlxUpOI.png";
   static String storiesBG = "https://i.imgur.com/E2P5BwR.jpg";
 }
 

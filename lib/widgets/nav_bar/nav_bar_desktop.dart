@@ -53,7 +53,7 @@ class NavBarDesktop extends ConsumerWidget {
             child: AnimatedButton(
               text: 'What We Do',
               textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
-              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedBackgroundColor: Colors.black,
               selectedTextColor: Colors.white,
               borderColor: Colors.transparent,
               height: 30,
@@ -63,7 +63,7 @@ class NavBarDesktop extends ConsumerWidget {
               transitionType: TransitionType.LEFT_TOP_ROUNDER,
               animatedOn: AnimatedOn.onHover,
               animationDuration: const Duration(milliseconds: 350),
-              backgroundColor: RCubedTheme.primary,
+              backgroundColor: Colors.transparent,
               onPress: () {
                 GlobalKey key = ref.watch(whatWeDoProvider);
                 ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
@@ -79,7 +79,7 @@ class NavBarDesktop extends ConsumerWidget {
               child: AnimatedButton(
                 text: 'Who We Are',
                 textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
-                selectedBackgroundColor: RCubedTheme.darkBlue,
+                selectedBackgroundColor: Colors.black,
                 selectedTextColor: Colors.white,
                 borderColor: Colors.transparent,
                 height: 30,
@@ -89,7 +89,7 @@ class NavBarDesktop extends ConsumerWidget {
                 transitionType: TransitionType.LEFT_TOP_ROUNDER,
                 animatedOn: AnimatedOn.onHover,
                 animationDuration: const Duration(milliseconds: 350),
-                backgroundColor: RCubedTheme.primary,
+                backgroundColor: Colors.transparent,
                 onPress: () {
                   GlobalKey key = ref.watch(whoWeAreProvider);
                   ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
@@ -105,7 +105,7 @@ class NavBarDesktop extends ConsumerWidget {
             child: AnimatedButton(
               text: 'Why Us',
               textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
-              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedBackgroundColor: Colors.black,
               selectedTextColor: Colors.white,
               borderColor: Colors.transparent,
               height: 30,
@@ -115,7 +115,7 @@ class NavBarDesktop extends ConsumerWidget {
               transitionType: TransitionType.LEFT_TOP_ROUNDER,
               animatedOn: AnimatedOn.onHover,
               animationDuration: const Duration(milliseconds: 350),
-              backgroundColor: RCubedTheme.primary,
+              backgroundColor: Colors.transparent,
               onPress: () {
                 GlobalKey key = ref.watch(whyUsProvider);
                 ref.watch(scrollController).position.ensureVisible(key.currentContext!.findRenderObject()!, duration: const Duration(seconds: 1), curve: Curves.easeInOut);
@@ -131,7 +131,7 @@ class NavBarDesktop extends ConsumerWidget {
             child: AnimatedButton(
               text: 'Careers',
               textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
-              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedBackgroundColor: Colors.black,
               selectedTextColor: Colors.white,
               borderColor: Colors.transparent,
               height: 30,
@@ -141,7 +141,7 @@ class NavBarDesktop extends ConsumerWidget {
               transitionType: TransitionType.LEFT_TOP_ROUNDER,
               animatedOn: AnimatedOn.onHover,
               animationDuration: const Duration(milliseconds: 350),
-              backgroundColor: RCubedTheme.primary,
+              backgroundColor: Colors.transparent,
               onPress: () {
                 Navigator.pushNamed(context, '/careers');
               },
@@ -154,7 +154,7 @@ class NavBarDesktop extends ConsumerWidget {
             child: AnimatedButton(
               text: 'Contact',
               textStyle: const TextStyle(color: Colors.white, fontFamily: "MyRoboto", fontSize: 24),
-              selectedBackgroundColor: RCubedTheme.darkBlue,
+              selectedBackgroundColor: Colors.black,
               selectedTextColor: Colors.white,
               borderColor: Colors.transparent,
               height: 30,
@@ -164,7 +164,7 @@ class NavBarDesktop extends ConsumerWidget {
               transitionType: TransitionType.LEFT_TOP_ROUNDER,
               animatedOn: AnimatedOn.onHover,
               animationDuration: const Duration(milliseconds: 350),
-              backgroundColor: RCubedTheme.primary,
+              backgroundColor: Colors.transparent,
               onPress: () {
                 Navigator.pushNamed(context, '/contact');
               },

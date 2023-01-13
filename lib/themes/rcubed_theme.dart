@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class RCubedTheme {
   //static const Color primary = Color(0xFF43729E);
-  static const Color primary = Color(0xFF005788);
+  //static const Color primary = Color(0xFF005788);
+  static const Color primary = Color(0xFF0052460);
   static const Color secondary = Color(0xFFFFFFFF);
   static const Color offPrimary = Color(0xFF3a6791);
   static const Color darkBlue = Color(0xFF052460);
+  static const Color buttonHighlight = Color(0xFF005788);
 }
 
 class Palette {

@@ -182,7 +182,7 @@ class Contact extends ConsumerWidget{
                                 child: AnimatedButton(
                                   text: 'Submit',
                                   textStyle: const TextStyle(color: Colors.white, fontFamily: DefaultFonts.kumbhsans, fontSize: 22),
-                                  selectedBackgroundColor: Colors.blue,
+                                  selectedBackgroundColor: Colors.black,
                                   selectedTextColor: Colors.white,
                                   borderColor: Colors.transparent,
                                   height: 30,

@@ -32,16 +32,6 @@ class Header extends StatelessWidget{
   //static String summary = '''We transform the way people work by putting clients at the center of business solutions. Our disruptive model converts possibilities into real business value. Let’s build a better tomorrow.''';
   const Header({Key? key, required this.navButtons, required this.headingUrl, required this.summary}) : super(key: key);
 
-  List<Widget> buildSlivers(){
-    List<Widget> slivers = [
-
-
-
-    ];
-
-    return slivers;
-  }
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -303,10 +293,10 @@ class _AlignCorners extends StatelessWidget{
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(alignment: Alignment.topCenter, padding: const EdgeInsets.all(10),
-            child: MediaQuery.of(context).size.width>600?CachedNetworkImage(imageUrl: "https://i.imgur.com/ugPSJSB.png",):null),
-        Container(alignment: Alignment.topCenter, padding: const EdgeInsets.all(10),
-            child: MediaQuery.of(context).size.width>600?CachedNetworkImage(imageUrl: "https://i.imgur.com/e31zf1A.png",):null),
+        Container(alignment: Alignment.topCenter, padding: const EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 10),
+            child: MediaQuery.of(context).size.width>600?CachedNetworkImage(imageUrl: "https://i.imgur.com/7E0Ts8c.png",):null),
+        Container(alignment: Alignment.topCenter, padding: const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 20),
+            child: MediaQuery.of(context).size.width>600?CachedNetworkImage(imageUrl: "https://i.imgur.com/dGSlcpa.png",):null),
       ],
     );
   }

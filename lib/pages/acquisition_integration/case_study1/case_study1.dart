@@ -43,14 +43,14 @@ class _Heading extends StatelessWidget{
     return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1000),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50),
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
           child: Wrap(
             alignment: WrapAlignment.center,
             runAlignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               SvgPicture.asset("assets/images/why_us/case_studies/case_study_c.svg", width: 400,),
-              Image.asset("assets/images/why_us/case_studies/sincro.png", width: 400,)
+              Image.asset("assets/images/why_us/case_studies/sincro.png", width: 300,)
             ],
           ),
         ));
