@@ -1,8 +1,22 @@
 :root {
-  --primary: #052460;
+  --primary-color: #052460;
+
+  --navbarHeight: 60px;
+}
+
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 500px;
 }
 
 body{
   margin: 0;
+  padding-top: var(--navbarHeight);
 }
+
+p{
+  margin: 0;
+}
+
+
 

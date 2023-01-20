@@ -6,6 +6,12 @@
   align-items: center;
   padding: 6rem;
   min-height: 100%;
-  overflow-x: hidden;
 }
 
+.test{
+  opacity: 0.4;
+}
+
+html{
+  scroll-padding-top: 200px;
+}
