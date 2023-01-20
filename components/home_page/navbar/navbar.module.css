@@ -1,0 +1,6 @@
+
+.navbar{
+    color: white;
+    background-color: var(--test-color);
+    height: 50px;
+}
