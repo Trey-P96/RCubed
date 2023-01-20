@@ -1,6 +1,10 @@
 
 .navbar{
     color: white;
-    background-color: var(--test-color);
+    background-color: var(--primary);
     height: 50px;
+    width: 100%;
+    overflow-x: hidden;
+    padding: 0;
+    margin: 0;
 }

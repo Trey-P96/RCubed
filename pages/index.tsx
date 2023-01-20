@@ -17,10 +17,8 @@ export default function Home() {
       </Head>
       <Navbar></Navbar>
       <main className={styles.main}>
-        <h1 className={styles.test}>test1</h1>
-        
-        
-        
+        <h1>Home Content</h1>
+      
       </main>
     </>
   )
