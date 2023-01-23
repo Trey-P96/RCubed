@@ -1,10 +1,35 @@
 
-.navbar{
-    color: white;
+.banner{
     background-color: var(--primary-color);
     height: var(--navbarHeight);
     width: 100%;
     position: fixed;
     top: 0;
     box-shadow: 5px 5px 10px #000000a9
+}
+
+.navbar{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: var(--navbarHeight);
+    width: 100%;
+}
+
+.navbarItem{
+    max-height: 80%;
+    max-width: 80%;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}
+
+.desktop{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: var(--navbarHeight);
+    width: 100%;
 }
