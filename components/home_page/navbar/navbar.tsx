@@ -15,12 +15,18 @@ export default function Navbar(){
                 <div className={styles.navItem}>
                     <Logo ></Logo>
                 </div>
-                <WhatWeDo className={styles.test}></WhatWeDo>
-                <WhoWeAre className={styles.test}></WhoWeAre>
+                
+                <div className={styles.test}><WhatWeDo className={styles.test2}></WhatWeDo></div>
+                <div className={styles.test}><WhatWeDo className={styles.test2}></WhatWeDo></div>
+                <div className={styles.test}><WhatWeDo className={styles.test2}></WhatWeDo></div>
+                <div className={styles.test}><WhatWeDo className={styles.test2}></WhatWeDo></div>
+                <div className={styles.test}><WhatWeDo className={styles.test2}></WhatWeDo></div>
+                
+                {/* <WhoWeAre className={styles.test}></WhoWeAre>
                 <WhyUs className={styles.test}></WhyUs>
                 <Careers className={styles.test}></Careers>
                 <Contact className={styles.test}></Contact>
-                <MenuIcon className={styles.navItem}></MenuIcon>
+                <MenuIcon className={styles.navItem}></MenuIcon> */}
             </section>
 
 
