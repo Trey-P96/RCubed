@@ -23,61 +23,6 @@ StateProvider<bool> showErrorMessage = StateProvider((ref) => false);
 class Contact extends ConsumerWidget{
   const Contact({Key? key}) : super(key: key);
 
-  // Future sendEmail({
-  //   required WidgetRef ref,
-  //   //required BuildContext context,
-  //   required String name,
-  //   required String email,
-  //   required String subject,
-  //   required String message})async{
-  //   ref.read(index.state).state = 1;
-  //
-  //   // personal id's
-  //   // const serviceId = 'service_v0g8ugj';
-  //   // const templateId = 'template_boqz4hs';
-  //   // const publicKey = '6N5P9Mz9o77w3IbIg';
-  //
-  //   const serviceId = 'service_dquj6ra';
-  //   const templateId = 'template_alxf3mg';
-  //   const publicKey = 'NJa5aU3eFDivKM_hA';
-  //   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-  //   final response = await http.post(
-  //       url,
-  //       headers: {'Content-Type': 'application/json',},
-  //       body: json.encode({
-  //         'service_id': serviceId,
-  //         'template_id': templateId,
-  //         'user_id': publicKey,
-  //         'template_params':{
-  //           'user_name': name,
-  //           'user_email': email,
-  //           'user_subject': subject,
-  //           'user_message': message,
-  //         }
-  //       })
-  //   );
-  //
-  //   if(response.statusCode==200){
-  //     ref.read(statusCode.state).state=200;
-  //     Future.delayed(const Duration(seconds: 1), (){
-  //       ref.read(index.state).state = 2;
-  //     });
-  //   }
-  //   else{
-  //     ref.read(statusCode.state).state=response.statusCode;
-  //     Future.delayed(const Duration(seconds: 1), (){
-  //       ref.read(index.state).state = 2;
-  //     });
-  //   }
-  //
-  //
-  //
-  //   // Future.delayed(const Duration(seconds: 3),(){
-  //   //   Navigator.pop(context);
-  //   // });
-  //   //print(response.statusCode);
-  // }
-
   @override
   Widget build(BuildContext context, ref) {
     // TODO: implement build
@@ -103,9 +48,11 @@ class Contact extends ConsumerWidget{
                     child: Column(
                       children: [
 
+                        //RCUBED LOGO
                         Padding(padding: const EdgeInsets.symmetric(vertical: 40),
                         child: CachedNetworkImage(imageUrl: Images.rcubedLogoBlue, width: 340,)),
 
+                        //NAME INPUT FIELD
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -123,6 +70,7 @@ class Contact extends ConsumerWidget{
                           ),
                         ),
 
+                        //COMPANY NAME INPUT FIELD
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -139,6 +87,7 @@ class Contact extends ConsumerWidget{
                           ),
                         ),
 
+                        //PHONE NUMBER INPUT FIELD
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -155,6 +104,7 @@ class Contact extends ConsumerWidget{
                           ),
                         ),
 
+                        //EMAIL INPUT FIELD
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -172,6 +122,7 @@ class Contact extends ConsumerWidget{
                           ),
                         ),
 
+                        //SUBJECT INPUT FIELD
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -188,6 +139,7 @@ class Contact extends ConsumerWidget{
                           ),
                         ),
 
+                        //MESSAGE INPUT FIELD
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: TextField(
@@ -215,12 +167,16 @@ class Contact extends ConsumerWidget{
                             index: ref.watch(index),
                             children: [
 
+                              //index 0
                               Column(
                                 children: [
+                                  //TOGGLE FOR NOTIFYING USER INPUT ERROR
                                   Visibility(visible: ref.watch(showErrorMessage), child: const Padding(
                                     padding: EdgeInsets.only(bottom: 20),
                                     child: Text("Please fill required fields above.", style: TextStyle(color: Colors.red),),
                                   )),
+
+                                  //SEND BUTTON
                                   Center(
                                     child: AnimatedButton(
                                       text: 'Submit',
@@ -237,9 +193,9 @@ class Contact extends ConsumerWidget{
                                       animationDuration: const Duration(milliseconds: 350),
                                       backgroundColor: RCubedTheme.primary,
                                       onPress: () {
-                                        //ref.read(contactDetails).resetErrors(ref);
                                         ref.read(contactDetails).processUserInput(ref);
 
+                                        //scrolls to bottom of page for user to see any error messages.
                                         Future.delayed(const Duration(milliseconds: 100), (){
                                           PrimaryScrollController.of(context)?.animateTo(
                                               PrimaryScrollController.of(context)!.position.maxScrollExtent,
@@ -247,25 +203,16 @@ class Contact extends ConsumerWidget{
                                               curve: Curves.easeInOut);
                                         });
 
-
-                                        // String name = ref.watch(contactDetails).name;
-                                        // String email = ref.watch(contactDetails).email;
-                                        // String subject = ref.watch(contactDetails).subject;
-                                        // String message = ref.watch(contactDetails).message;
-
-
-                                        // if(!ref.watch(showErrorMessage)){
-                                        //   sendEmail(name: name, email: email, subject: subject, message: "$name: $message", ref: ref, context: context);
-                                        //   ref.read(index.state).state = 1;
-                                        // }
-
                                       },
                                     ),
                                   ),
                                 ],
                               ),
 
+                              //index 1
                               const Center(child: CircularProgressIndicator()),
+
+                              //index 2
                               Center(
                                   child: ref.watch(statusCode)==200?
                                   RichText(text: const TextSpan(children: [
