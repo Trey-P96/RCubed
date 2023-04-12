@@ -18,64 +18,65 @@ import '../../widgets/nav_bar/nav_bar.dart';
 StateProvider<MessageInfo> contactDetails = StateProvider((ref) => MessageInfo());
 StateProvider<int> index = StateProvider((ref) => 0);
 StateProvider<int> statusCode = StateProvider((ref) => 404);
+StateProvider<bool> showErrorMessage = StateProvider((ref) => false);
 
 class Contact extends ConsumerWidget{
   const Contact({Key? key}) : super(key: key);
 
-  Future sendEmail({
-    required WidgetRef ref,
-    required BuildContext context,
-    required String name,
-    required String email,
-    required String subject,
-    required String message})async{
-    ref.read(index.state).state = 1;
-
-    // personal id's
-    // const serviceId = 'service_v0g8ugj';
-    // const templateId = 'template_boqz4hs';
-    // const publicKey = '6N5P9Mz9o77w3IbIg';
-
-    const serviceId = 'service_dquj6ra';
-    const templateId = 'template_alxf3mg';
-    const publicKey = 'NJa5aU3eFDivKM_hA';
-    final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
-    final response = await http.post(
-        url,
-        headers: {'Content-Type': 'application/json',},
-        body: json.encode({
-          'service_id': serviceId,
-          'template_id': templateId,
-          'user_id': publicKey,
-          'template_params':{
-            'user_name': name,
-            'user_email': email,
-            'user_subject': subject,
-            'user_message': message,
-          }
-        })
-    );
-
-    if(response.statusCode==200){
-      ref.read(statusCode.state).state=200;
-      Future.delayed(const Duration(seconds: 1), (){
-        ref.read(index.state).state = 2;
-      });
-    }
-    else{
-      ref.read(statusCode.state).state=response.statusCode;
-      Future.delayed(const Duration(seconds: 1), (){
-        ref.read(index.state).state = 2;
-      });
-    }
-
-
-
-    // Future.delayed(const Duration(seconds: 3),(){
-    //   Navigator.pop(context);
-    // });
-    //print(response.statusCode);
-  }
+  // Future sendEmail({
+  //   required WidgetRef ref,
+  //   //required BuildContext context,
+  //   required String name,
+  //   required String email,
+  //   required String subject,
+  //   required String message})async{
+  //   ref.read(index.state).state = 1;
+  //
+  //   // personal id's
+  //   // const serviceId = 'service_v0g8ugj';
+  //   // const templateId = 'template_boqz4hs';
+  //   // const publicKey = '6N5P9Mz9o77w3IbIg';
+  //
+  //   const serviceId = 'service_dquj6ra';
+  //   const templateId = 'template_alxf3mg';
+  //   const publicKey = 'NJa5aU3eFDivKM_hA';
+  //   final url = Uri.parse("https://api.emailjs.com/api/v1.0/email/send");
+  //   final response = await http.post(
+  //       url,
+  //       headers: {'Content-Type': 'application/json',},
+  //       body: json.encode({
+  //         'service_id': serviceId,
+  //         'template_id': templateId,
+  //         'user_id': publicKey,
+  //         'template_params':{
+  //           'user_name': name,
+  //           'user_email': email,
+  //           'user_subject': subject,
+  //           'user_message': message,
+  //         }
+  //       })
+  //   );
+  //
+  //   if(response.statusCode==200){
+  //     ref.read(statusCode.state).state=200;
+  //     Future.delayed(const Duration(seconds: 1), (){
+  //       ref.read(index.state).state = 2;
+  //     });
+  //   }
+  //   else{
+  //     ref.read(statusCode.state).state=response.statusCode;
+  //     Future.delayed(const Duration(seconds: 1), (){
+  //       ref.read(index.state).state = 2;
+  //     });
+  //   }
+  //
+  //
+  //
+  //   // Future.delayed(const Duration(seconds: 3),(){
+  //   //   Navigator.pop(context);
+  //   // });
+  //   //print(response.statusCode);
+  // }
 
   @override
   Widget build(BuildContext context, ref) {
@@ -117,6 +118,39 @@ class Contact extends ConsumerWidget{
                               filled: true,
                               labelStyle: const TextStyle(fontFamily: DefaultFonts.kumbhsans),
                               labelText: "Name:",
+                              errorText: ref.watch(contactDetails).nameError.isEmpty?null:ref.watch(contactDetails).nameError,
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            onChanged: (input){
+                              ref.read(contactDetails.state).state.companyName = input;
+                            },
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              fillColor: Colors.white.withOpacity(0.5),
+                              filled: true,
+                              labelStyle: const TextStyle(fontFamily: DefaultFonts.kumbhsans),
+                              labelText: "Company Name: (optional)",
+                            ),
+                          ),
+                        ),
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            onChanged: (input){
+                              ref.read(contactDetails.state).state.phone = input;
+                            },
+                            decoration: InputDecoration(
+                              border: const OutlineInputBorder(),
+                              fillColor: Colors.white.withOpacity(0.5),
+                              filled: true,
+                              labelStyle: const TextStyle(fontFamily: DefaultFonts.kumbhsans),
+                              labelText: "Phone: (optional)",
                             ),
                           ),
                         ),
@@ -133,6 +167,7 @@ class Contact extends ConsumerWidget{
                               filled: true,
                               labelStyle: const TextStyle(fontFamily: DefaultFonts.kumbhsans),
                               labelText: "Email:",
+                              errorText: ref.watch(contactDetails).emailError.isEmpty?null:ref.watch(contactDetails).emailError,
                             ),
                           ),
                         ),
@@ -148,7 +183,7 @@ class Contact extends ConsumerWidget{
                               fillColor: Colors.white.withOpacity(0.5),
                               filled: true,
                               labelStyle: const TextStyle(fontFamily: DefaultFonts.kumbhsans),
-                              labelText: "Subject:",
+                              labelText: "Subject: (optional)",
                             ),
                           ),
                         ),
@@ -166,7 +201,8 @@ class Contact extends ConsumerWidget{
                                 fillColor: Colors.white.withOpacity(0.5),
                                 filled: true,
                                 //labelText: "Your message:",
-                                hintText: "Message"
+                                hintText: "Message",
+                                errorText: ref.watch(contactDetails).messageError.isEmpty?null:ref.watch(contactDetails).messageError,
                               //helperText: "Your message"
                             ),
                           ),
@@ -178,32 +214,55 @@ class Contact extends ConsumerWidget{
                           child: IndexedStack(
                             index: ref.watch(index),
                             children: [
-                              Center(
-                                child: AnimatedButton(
-                                  text: 'Submit',
-                                  textStyle: const TextStyle(color: Colors.white, fontFamily: DefaultFonts.kumbhsans, fontSize: 22),
-                                  selectedBackgroundColor: Colors.black,
-                                  selectedTextColor: Colors.white,
-                                  borderColor: Colors.transparent,
-                                  height: 30,
-                                  width: 150,
-                                  borderWidth: 0,
-                                  borderRadius: 50,
-                                  transitionType: TransitionType.LEFT_TOP_ROUNDER,
-                                  animatedOn: AnimatedOn.onHover,
-                                  animationDuration: const Duration(milliseconds: 350),
-                                  backgroundColor: RCubedTheme.primary,
-                                  onPress: () {
-                                    String name = ref.watch(contactDetails).name;
-                                    String email = ref.watch(contactDetails).email;
-                                    String subject = ref.watch(contactDetails).subject;
-                                    String message = "$name: ${ref.watch(contactDetails).message}";
 
-                                    sendEmail(name: name, email: email, subject: subject, message: message, ref: ref, context: context);
+                              Column(
+                                children: [
+                                  Visibility(visible: ref.watch(showErrorMessage), child: const Padding(
+                                    padding: EdgeInsets.only(bottom: 20),
+                                    child: Text("Please fill required fields above.", style: TextStyle(color: Colors.red),),
+                                  )),
+                                  Center(
+                                    child: AnimatedButton(
+                                      text: 'Submit',
+                                      textStyle: const TextStyle(color: Colors.white, fontFamily: DefaultFonts.kumbhsans, fontSize: 22),
+                                      selectedBackgroundColor: Colors.black,
+                                      selectedTextColor: Colors.white,
+                                      borderColor: Colors.transparent,
+                                      height: 30,
+                                      width: 150,
+                                      borderWidth: 0,
+                                      borderRadius: 50,
+                                      transitionType: TransitionType.LEFT_TOP_ROUNDER,
+                                      animatedOn: AnimatedOn.onHover,
+                                      animationDuration: const Duration(milliseconds: 350),
+                                      backgroundColor: RCubedTheme.primary,
+                                      onPress: () {
+                                        //ref.read(contactDetails).resetErrors(ref);
+                                        ref.read(contactDetails).processUserInput(ref);
 
-                                    ref.read(index.state).state = 1;
-                                  },
-                                ),
+                                        Future.delayed(const Duration(milliseconds: 100), (){
+                                          PrimaryScrollController.of(context)?.animateTo(
+                                              PrimaryScrollController.of(context)!.position.maxScrollExtent,
+                                              duration: const Duration(milliseconds: 500),
+                                              curve: Curves.easeInOut);
+                                        });
+
+
+                                        // String name = ref.watch(contactDetails).name;
+                                        // String email = ref.watch(contactDetails).email;
+                                        // String subject = ref.watch(contactDetails).subject;
+                                        // String message = ref.watch(contactDetails).message;
+
+
+                                        // if(!ref.watch(showErrorMessage)){
+                                        //   sendEmail(name: name, email: email, subject: subject, message: "$name: $message", ref: ref, context: context);
+                                        //   ref.read(index.state).state = 1;
+                                        // }
+
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
 
                               const Center(child: CircularProgressIndicator()),
@@ -217,7 +276,7 @@ class Contact extends ConsumerWidget{
                                   RichText(
                                       text: TextSpan(children: [
                                         const WidgetSpan(child: Icon(Icons.clear, color: Colors.red,)),
-                                        TextSpan(text: "MESSAGE FAILED DUE TO NETWORK ERROR\n\nStatus Code: ${ref.watch(statusCode)}", style: const TextStyle(color: Colors.red))
+                                        TextSpan(text: "Message failed due to network error.\n\nStatus Code: ${ref.watch(statusCode)}", style: const TextStyle(color: Colors.red))
                                   ]))
                               ),
                             ],
