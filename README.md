@@ -1,8 +1,4 @@
-# R - Cubed
-
-A new Flutter project.
-
-## Getting Started
+# R - Cubed Website
 
 ## Versions
 CURRENT BUILD VERSIONS: <br>
