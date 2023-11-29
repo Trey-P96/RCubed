@@ -5,7 +5,8 @@ CURRENT BUILD VERSIONS: <br>
 Flutter (Channel stable, 3.3.4, on Microsoft Windows [Version 10.0.19045.2251], locale en-US) <br>
 Dart version 2.18.2 <br><br>
 
---HINT--: TO REVERT TO FLUTTER VERSION 3.3.4 OPEN TERMINAL AND NAVIGATE TO YOUR MACHINE'S FLUTTER INSTALL DIRECTORY
+#Helpful Tip
+TO REVERT TO FLUTTER VERSION 3.3.4 OPEN TERMINAL AND NAVIGATE TO YOUR MACHINE'S FLUTTER INSTALL DIRECTORY
 THEN INSIDE "C:/../flutter" run command "git checkout eb6d86e" <br>
 FOR OTHER VERSIONS SEE: https://flutter-ko.dev/development/tools/sdk/releases
 
