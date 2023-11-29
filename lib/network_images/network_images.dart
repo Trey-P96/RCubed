@@ -32,6 +32,7 @@ class Employees{
   static String naveenKesavalu = "https://i.imgur.com/JyEckmh.png";
   static String donnaDraper = "https://i.imgur.com/D81mEmi.png";
   static String steveMurphy = "https://i.imgur.com/6pYkto9.jpg";
+  static String suzyBates = "https://i.imgur.com/KGnHbJ0.png";
 }
 
 class BioBG{

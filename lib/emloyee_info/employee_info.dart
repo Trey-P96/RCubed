@@ -121,3 +121,16 @@ class DonnaD{
       "and bias-free recruiting strategies.";
 }
 
+class SuzyB{
+  static String bio = "Director of ERP at R-CUBED Consulting, Suzy brings over 25 years of experience in managing large scales ERP/COTS software "
+      "implementations, developing IT strategies and executing strategic initiatives to meet business goals. Suzy started her consulting career at "
+      "Oracle and has worked as both a consultant and a customer of Oracle. She expanded her skill set to focus on project/program management and "
+      "account management. Success in these areas lead to Suzy expanding her responsibilities into consulting practice and people management. "
+      "Suzy had a long-standing record of developing a strategic partnerships with her clients and teams which has had a direct impact on delivering "
+      "high quality IT projects that deliver to her clients’ needs. "
+
+      "At R-CUBED, Suzy leads the ERP practice where she focuses on bringing passion for driving best-in-class IT solutions that ultimately deliver client success beyond expectations. "
+
+      "Suzy is a leader focused on the development of strategic relationships , visionary leader and highly sought-after consultant.";
+}
+

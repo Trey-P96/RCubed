@@ -39,6 +39,7 @@ class Contact extends ConsumerWidget{
             SizedBox(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, child: CachedNetworkImage(imageUrl: Images.contactBG, fit: BoxFit.cover,),),
 
             SingleChildScrollView(
+              primary: true,
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Padding(

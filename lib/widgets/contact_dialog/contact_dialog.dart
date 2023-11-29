@@ -89,7 +89,7 @@ class MessageInfo{
         })
     );
 
-    if(response.statusCode==200){
+    if(response.statusCode==200){ // set state of status code to 200
       ref.read(statusCode.state).state=200;
       Future.delayed(const Duration(seconds: 1), (){
         ref.read(index.state).state = 2;

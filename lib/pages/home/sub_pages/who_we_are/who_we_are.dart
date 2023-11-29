@@ -73,6 +73,7 @@ class _Body extends ConsumerWidget{
             EmployeeProfile(name: 'Mark Hoxmeier', position: 'PMO Practice', bio: MarkH.bio, imgUrl: Employees.markHowmeier,),
             //EmployeeProfile(name: 'Steve Murphy', position: 'Oracle Practice', bio: SteveM.bio, imgUrl: Employees.steveMurphy,),
             EmployeeProfile(name: 'Donna Draper', position: 'Talent Acquisition', bio: DonnaD.bio,imgUrl: Employees.donnaDraper,),
+            EmployeeProfile(name: 'Suzy Bates', position: 'Director of ERP', bio: SuzyB.bio, imgUrl: Employees.suzyBates,)
         ],),),
 
         SliverToBoxAdapter(child: Container(height: 1, color: Colors.white,),),
