@@ -24,7 +24,7 @@ Step 2: AFTER BUILDING FOR WEB, ADD SCRIPT (LOCATED BELOW THIS LINE) TO: build/w
 </script>
 <br><br>
 Step 3 (for staging): update href inside build/web/index.html on line 17 to "/staged/" (assuming "staged" folder exists under /root) .. for production: set <base href="/"> <br><br>
-Step 4: copy code from index.html and paste into 404.html. If 404.html does not exist inside build folder, then create it manually in same folder as index.html... 
+Step 4: copy code from index.html and paste into 404.html. If 404.html does not exist inside build folder, then create it manually in same folder as index.html... <br>
 ps. if in staged, manually typing url in url bar (eg. rcubedco/staged/contact) will result in 404 page not found.
 Step 5: under project folder navigate to folder "icons" and copy all files EXCEPT for favicon.png, then paste and overwrite into build/web/icons. Then copy and overwrite favicon.png to build/web <br><br>
 Step 6: inside build/web/ replace favicon.png with favicon.png located in RCubed/icons. <br><br>
