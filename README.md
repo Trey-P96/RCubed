@@ -10,7 +10,7 @@ TO REVERT TO FLUTTER VERSION 3.3.4 OPEN TERMINAL AND NAVIGATE TO YOUR MACHINE'S 
 THEN INSIDE "C:/../flutter" run command "git checkout eb6d86e" <br>
 FOR OTHER VERSIONS SEE: https://flutter-ko.dev/development/tools/sdk/releases
 
-# Steps to Build
+## Steps to Build
 
 Step 1.1: Set flutter version to 3.3.4 (see hints above for details) <br><br>
 Step 1.2: execute the build command: flutter build web --release --web-renderer auto --release --dart-define=BROWSER_IMAGE_DECODING_ENABLED=false <br><br>
